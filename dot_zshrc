@@ -123,17 +123,13 @@ fi
 
 # Config profiles
 function prof {
-  vim ~/.zshrc
+  chezmoi edit ~/.zshrc
 }
 function gitprof {
-  vim ~/.gitconfig
-}
-function reprof {
-  # shellcheck disable=SC1090
-  source ~/.zshrc
+  chezmoi edit ~/.gitconfig
 }
 function vimprof {
-  vim ~/.vimrc
+  chezmoi edit ~/.vimrc
 }
 function setup {
   local setup_path="$HOME/dev/setup"
@@ -202,6 +198,4 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh/completion/ ~/.homesick/repos/homeshick/completions $fpath)
 
 autoload -Uz compinit && compinit
-
-source "$HOMESHICK_DIR/homeshick.sh"
 
