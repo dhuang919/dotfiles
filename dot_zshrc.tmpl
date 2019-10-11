@@ -13,11 +13,12 @@ export FZF_BASE="$HOME/.fzf"
 export GOPATH="${HOME}/go/"
 export PYTHONPATH=$BIO_ROOT
 export JIRA_API_USER=derek@beeswax.com
-export JIRA_API_TOKEN="{{ (index (lastpass "BW_JIRA_TOKEN") 0).password }}"
-export GITHUB_API_TOKEN="{{ (index (lastpass "BW_GITHUB_TOKEN") 0).password }}"
-export GOOGLE_MAPS_API_KEY="{{ (index (lastpass "BIO_GMAPS_KEY") 0).password }}"
-export GOOGLE_MAPS_SECRET_KEY="{{ (index (lastpass "BIO_GMAPS_SECRET") 0).password }}"
-export METAMARKETS_SECRET_KEY="{{ (index (lastpass "BIO_METAMARKETS_SECRET") 0).password }}"
+export JIRA_API_TOKEN="{{ .BW_JIRA_TOKEN }}"
+export GITHUB_API_TOKEN="{{ .BW_GITHUB_TOKEN }}"
+export GOOGLE_MAPS_API_KEY="{{ .BIO_GMAPS_KEY }}"
+export GOOGLE_MAPS_SECRET_KEY="{{ .BIO_GMAPS_SECRET }}"
+export METAMARKETS_SECRET_KEY="{{ .BIO_METAMARKETS_SECRET }}"
+{{- end }}
 
 # adding go to PATH
 [[ $PATH != */usr/local/go/bin* ]] && PATH="${PATH}:/usr/local/go/bin"
