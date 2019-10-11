@@ -156,6 +156,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git fzf)
 
 source $ZSH/oh-my-zsh.sh
+
 {{- if eq .chezmoi.os "linux" }}
 source ~/.bash_completion.d/python-argcomplete.sh
 
@@ -163,7 +164,9 @@ source ~/.bashrc_bw
 
 source /etc/profile.d/beeve_bash_init.sh
 
-complete -C '/usr/local/bin/aws_completer' aws
+source /usr/local/lib/bazel/bin/bazel-complete.bash
+
+# complete -C '/usr/local/bin/aws_completer' aws
 
 eval "$(register-python-argcomplete hive)"  # hive autocomplete!
 
@@ -174,8 +177,6 @@ eval $(ssh-agent)  # startup ssh-agent
 ssh-add ~/.aws/bee-prod-ssh-key-pair.pem ~/.ssh/beeswax-gateway
 
 aws ecr get-login --no-include-email | bash
-
-source /usr/local/lib/bazel/bin/bazel-complete.bash
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
