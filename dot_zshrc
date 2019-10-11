@@ -109,7 +109,6 @@ alias htop="sudo htop"
 
 [[ $PATH != *$HOME/bin* ]] && PATH=$PATH:~/bin
 [[ $PATH != *$HOME/Library/Python/2.7/bin* ]] && PATH=$PATH:~/Library/Python/2.7/bin
-[[ $PATH != */usr/local/opt/gnu-getopt/bin* ]] && PATH=$PATH:/usr/local/opt/gnu-getopt/bin
 
 if [[ -s "/usr/local/opt/nvm/nvm.sh" ]]; then
   # shellcheck disable=SC1091
