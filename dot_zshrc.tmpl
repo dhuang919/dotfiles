@@ -1,0 +1,193 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/vagrant/.oh-my-zsh"
+export EDITOR='vim'
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export NVM_DIR="$HOME/.nvm"
+{{- if eq .chezmoi.os "linux" }}
+export BIO_ROOT="${HOME}/beeswaxio"
+export BW_USER="derek"
+export FZF_BASE="$HOME/.fzf"
+export GOPATH="${HOME}/go/"
+export PYTHONPATH=$BIO_ROOT
+export JIRA_API_USER=derek@beeswax.com
+export JIRA_API_TOKEN="{{ (index (lastpass "BW_JIRA_TOKEN") 0).password }}"
+export GITHUB_API_TOKEN="{{ (index (lastpass "BW_GITHUB_TOKEN") 0).password }}"
+export GOOGLE_MAPS_API_KEY="{{ (index (lastpass "BIO_GMAPS_KEY") 0).password }}"
+export GOOGLE_MAPS_SECRET_KEY="{{ (index (lastpass "BIO_GMAPS_SECRET") 0).password }}"
+export METAMARKETS_SECRET_KEY="{{ (index (lastpass "BIO_METAMARKETS_SECRET") 0).password }}"
+
+# adding go to PATH
+[[ $PATH != */usr/local/go/bin* ]] && PATH="${PATH}:/usr/local/go/bin"
+# adding `go` packages to PATH
+[[ $PATH != *$GOPATH* ]] && PATH="${PATH}:${GOPATH}bin"
+# adding `hive` to PATH
+[[ $PATH != *$BIO_ROOT/bazel-bin/beeswax/prod/hive* ]] && PATH="${PATH}:${BIO_ROOT}/bazel-bin/beeswax/prod/hive"
+# adding `buzz-cli` to PATH
+[[ $PATH != *$BIO_ROOT/bazel-bin/beeswax/buzz* ]] && PATH="${PATH}:${BIO_ROOT}/bazel-bin/beeswax/buzz"
+# adding `.yarn/bin` to PATH
+[[ $PATH != *$HOME/.yarn/bin* ]] && PATH="${PATH}:${HOME}/.yarn/bin"
+# for php codesniffer
+[[ $PATH != *$BIO_ROOT/beeswax/buzz_api/buzz/vendor/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/buzz_api/buzz/vendor/bin"
+# for buzz executables
+[[ $PATH != *$BIO_ROOT/beeswax/people/derek/exec* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/people/derek/exec"
+# for Beeswax Workflow Tool (bw)
+[[ $PATH != *$BIO_ROOT/bazel-bin/beeswax/bw* ]] && PATH="${PATH}:${BIO_ROOT}/bazel-bin/beeswax/bw"
+[[ $PATH != */snap/bin* ]] && PATH="${PATH}:/snap/bin"
+export PATH
+{{- else if eq .chezmoi.os "darwin" }}
+export FZF_BASE="/usr/local/bin/fzf"
+export PYTHONPATH=/usr/bin/python
+export PYTHONDONTWRITEBYTECODE=1
+{{- end }}
+
+prof() {
+  chezmoi edit ~/.zshrc
+}
+reprof() {
+  source ~/.zshrc
+}
+npr() {
+  npm run "$1"
+}
+setup() {
+  cd ~/dev/setup
+}
+{{- if eq .chezmoi.os "linux" }}
+cdb() {
+  cd "${BIO_ROOT}"
+}
+ui() {
+  cd "${BIO_ROOT}/beeswax/buzz_ui"
+}
+fes() {
+  cd "${BIO_ROOT}/beeswax/buzz_fes_ui"
+}
+api() {
+  cd "${BIO_ROOT}/beeswax/buzz_api"
+}
+ppl() {
+  cd "${BIO_ROOT}/beeswax/people/derek"
+}
+
+use_app() {
+  bazel run //beeswax/buzz_api/dev:use_app -- "$1"
+}
+compile_messages() {
+  $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
+}
+startui() {
+  cd $BIO_ROOT/beeswax/buzz_ui
+  npm cache verify && yarn run dev
+}
+docker_clean() {
+  docker image prune -a
+}
+sql() {
+  mysql -uroot -proot stingersbx_buzz_db
+}
+get_buzz_pw() {
+  echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption | jq .Parameter.Value | tr -d '\"'"
+}
+master() {
+  git cm && git prul && git br -D @{-1}
+}
+{{ else if eq .chezmoi.os "darwin" }}
+sbx() {
+  local sbx_path="$HOME/dev/sandbox"
+  if [[ ! -d "$sbx_path" ]]; then
+    echo "$sbx_path doesn't exist"
+  else
+    cd ~/dev/sandbox
+  fi
+}
+bb() {
+  local bb_path="$HOME/bionicbee"
+  if [[ -d "$bb_path" ]]; then
+    cd "$bb_path"
+  else
+    echo "$bb_path doesn't exist"
+  fi
+}
+workwork() {
+  open /System/Applications/Calendar.app
+  open /System/Applications/Mail.app
+  open /Applications/Slack.app
+  open /Applications/Typora.app
+  open /Applications/Spotify.app
+  bb
+}
+tunnel() {
+  bb && vagrant ssh
+}
+up() {
+  bb && vagrant up && code
+}
+down() {
+  bb && vagrant halt
+}
+{{- end }}
+
+# This way the completion script does not have to parse Bazel's options
+# repeatedly.  The directory in cache-path must be created manually.
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+
+autoload -Uz compinit && compinit
+autoload bashcompinit
+bashcompinit
+
+fpath=(~/.zsh/ ~/.zsh/completion/ $fpath)
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git fzf)
+
+source $ZSH/oh-my-zsh.sh
+{{- if eq .chezmoi.os "linux" }}
+source ~/.bash_completion.d/python-argcomplete.sh
+
+source ~/.bashrc_bw
+
+source /etc/profile.d/beeve_bash_init.sh
+
+complete -C '/usr/local/bin/aws_completer' aws
+
+eval "$(register-python-argcomplete hive)"  # hive autocomplete!
+
+eval "$(register-python-argcomplete bw)"
+
+eval $(ssh-agent)  # startup ssh-agent
+
+ssh-add ~/.aws/bee-prod-ssh-key-pair.pem ~/.ssh/beeswax-gateway
+
+aws ecr get-login --no-include-email | bash
+
+source /usr/local/lib/bazel/bin/bazel-complete.bash
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
+{{- else if eq .chezmoi.os "darwin" }}
+alias ll="ls -laF"
+alias htop="sudo htop"
+{{- end }}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
