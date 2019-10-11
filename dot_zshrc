@@ -198,3 +198,5 @@ fpath=(~/.zsh/completion/ ~/.homesick/repos/homeshick/completions $fpath)
 
 autoload -Uz compinit && compinit
 
+chezmoi update
+
