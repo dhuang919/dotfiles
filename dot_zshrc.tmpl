@@ -3,7 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='vim'
+export EDITOR="vim"
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export NVM_DIR="$HOME/.nvm"
 {{- if eq .chezmoi.os "linux" }}
@@ -11,13 +11,13 @@ export BIO_ROOT="${HOME}/beeswaxio"
 export BW_USER="derek"
 export FZF_BASE="$HOME/.fzf"
 export GOPATH="${HOME}/go/"
-export PYTHONPATH=$BIO_ROOT
+export PYTHONPATH="$BIO_ROOT"
 export JIRA_API_USER=derek@beeswax.com
-export JIRA_API_TOKEN="{{ .BW_JIRA_TOKEN }}"
-export GITHUB_API_TOKEN="{{ .BW_GITHUB_TOKEN }}"
-export GOOGLE_MAPS_API_KEY="{{ .BIO_GMAPS_KEY }}"
-export GOOGLE_MAPS_SECRET_KEY="{{ .BIO_GMAPS_SECRET }}"
-export METAMARKETS_SECRET_KEY="{{ .BIO_METAMARKETS_SECRET }}"
+export JIRA_API_TOKEN={{ .BW_JIRA_TOKEN }}
+export GITHUB_API_TOKEN={{ .BW_GITHUB_TOKEN }}
+export GOOGLE_MAPS_API_KEY={{ .BIO_GMAPS_KEY }}
+export GOOGLE_MAPS_SECRET_KEY={{ .BIO_GMAPS_SECRET }}
+export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 
 # adding go to PATH
 [[ $PATH != */usr/local/go/bin* ]] && PATH="${PATH}:/usr/local/go/bin"
