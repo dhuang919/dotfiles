@@ -159,13 +159,9 @@ source $ZSH/oh-my-zsh.sh
 {{- if eq .chezmoi.os "linux" }}
 source ~/.bash_completion.d/python-argcomplete.sh
 
-source ~/.bashrc_bw
-
 source /etc/profile.d/beeve_bash_init.sh
 
 source /usr/local/lib/bazel/bin/bazel-complete.bash
-
-# complete -C '/usr/local/bin/aws_completer' aws
 
 eval "$(register-python-argcomplete hive)"  # hive autocomplete!
 
