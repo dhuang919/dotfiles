@@ -178,10 +178,9 @@ aws ecr get-login --no-include-email | bash
 
 {{- if eq .chezmoi.os "linux" }}
 alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
-{{- else if eq .chezmoi.os "darwin" }}
-alias ll="ls -laF"
 alias htop="sudo htop"
 {{- end }}
+alias ll="ls -laF"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
