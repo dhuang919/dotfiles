@@ -51,9 +51,6 @@ reprof() {
 npr() {
   npm run "$1"
 }
-setup() {
-  cd ~/dev/setup
-}
 {{- if eq .chezmoi.os "linux" }}
 cdb() {
   cd "${BIO_ROOT}"
@@ -126,6 +123,10 @@ up() {
 }
 down() {
   bb && vagrant halt
+}
+{{- else if -eq .chezmoi.os "darwin" }}
+setup() {
+  cd ~/dev/setup
 }
 {{- end }}
 
