@@ -124,7 +124,7 @@ up() {
 down() {
   bb && vagrant halt
 }
-{{- else if -eq .chezmoi.os "darwin" }}
+{{- else if eq .chezmoi.os "darwin" }}
 setup() {
   cd ~/dev/setup
 }
