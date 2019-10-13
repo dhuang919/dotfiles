@@ -157,6 +157,8 @@ plugins=(git fzf)
 source $ZSH/oh-my-zsh.sh
 
 {{- if eq .chezmoi.os "linux" }}
+source ~/.bashrc
+
 source ~/.bash_completion.d/python-argcomplete.sh
 
 source /etc/profile.d/beeve_bash_init.sh
@@ -186,8 +188,4 @@ alias htop="sudo htop"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-{{- if eq .chezmoi.os "linux" }}
-cd $BIO_ROOT
-{{- end }}
 
