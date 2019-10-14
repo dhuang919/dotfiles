@@ -56,7 +56,7 @@ ccd() {
   chezmoi cd
 }
 ce() {
-  ccd && chezmoi edit "~/\.${1}"
+  chezmoi edit "~/\.${1}"
 }
 
 {{- if eq .chezmoi.os "linux" }}
