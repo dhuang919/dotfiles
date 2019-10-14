@@ -50,6 +50,15 @@ reprof() {
 npr() {
   npm run "$1"
 }
+
+# chezmoi shortcuts
+ccd() {
+  chezmoi cd
+}
+ce() {
+  ccd && chezmoi edit "~/\.${1}"
+}
+
 {{- if eq .chezmoi.os "linux" }}
 cdb() {
   cd "${BIO_ROOT}"
