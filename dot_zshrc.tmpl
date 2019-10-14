@@ -37,7 +37,6 @@ export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 [[ $PATH != *$BIO_ROOT/bazel-bin/beeswax/bw* ]] && PATH="${PATH}:${BIO_ROOT}/bazel-bin/beeswax/bw"
 export PATH
 {{- else if eq .chezmoi.os "darwin" }}
-export FZF_BASE="/usr/local/bin/fzf"
 export PYTHONPATH=/usr/bin/python
 export PYTHONDONTWRITEBYTECODE=1
 {{- end }}
