@@ -162,6 +162,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf)
 
+{{- if eq .chezmoi.os "linux" }}
+alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
+alias htop="sudo htop"
+alias aws="$HOME/awscli_venv/bin/aws"
+{{- end }}
+alias ll="ls -laF"
+
 source $ZSH/oh-my-zsh.sh
 
 {{- if eq .chezmoi.os "linux" }}
@@ -181,13 +188,6 @@ ssh-add ~/.aws/bee-prod-ssh-key-pair.pem ~/.ssh/beeswax-gateway
 
 aws ecr get-login --no-include-email | bash
 {{- end }}
-
-{{- if eq .chezmoi.os "linux" }}
-alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
-alias htop="sudo htop"
-alias aws="$HOME/awscli_venv/bin/aws"
-{{- end }}
-alias ll="ls -laF"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
