@@ -58,6 +58,9 @@ ccd() {
 ce() {
   chezmoi edit "$HOME/.${1}"
 }
+cu() {
+  chezmoi update
+}
 
 {{- if eq .chezmoi.os "linux" }}
 cdb() {
@@ -194,6 +197,4 @@ aws ecr get-login --no-include-email | bash
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-chezmoi update
 
