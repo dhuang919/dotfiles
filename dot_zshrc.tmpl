@@ -161,13 +161,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf)
 
-{{- if eq .chezmoi.os "linux" }}
-alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
-alias htop="sudo htop"
-alias aws="$HOME/awscli_venv/bin/aws"
-{{- end }}
-alias ll="ls -laF"
-
 source $ZSH/oh-my-zsh.sh
 
 {{- if eq .chezmoi.os "linux" }}
@@ -193,4 +186,11 @@ aws ecr get-login --no-include-email | bash
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+{{- if eq .chezmoi.os "linux" }}
+alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
+alias htop="sudo htop"
+alias aws="$HOME/awscli_venv/bin/aws"
+{{- end }}
+alias ll="ls -laF"
 
