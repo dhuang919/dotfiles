@@ -136,6 +136,8 @@ setup() {
 }
 {{- end }}
 
+fpath[1,0]=~/.zsh/completion/
+
 # This way the completion script does not have to parse Bazel's options
 # repeatedly.  The directory in cache-path must be created manually.
 zstyle ':completion:*' use-cache on
@@ -145,8 +147,6 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 autoload -Uz compinit && compinit
 autoload bashcompinit
 bashcompinit
-
-fpath=(~/.zsh/ ~/.zsh/completion/ $fpath)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
