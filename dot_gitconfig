@@ -16,6 +16,7 @@
 	br = branch
 	co = checkout
 	cm = checkout master
+    pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
 	sta = stash
 	stp = stash pop
 	prul = !git pull && git remote update origin --prune
