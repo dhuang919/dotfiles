@@ -199,6 +199,9 @@ aws ecr get-login --no-include-email | bash
 alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
 alias htop="sudo htop"
 alias aws="$HOME/awscli_venv/bin/aws"
+{{- else if eq .chezmoi.os "darwin" }}
+alias pip=/usr/local/bin/pip3
+alias python=/usr/local/bin/python3
 {{- end }}
 alias ll="ls -laF"
 
