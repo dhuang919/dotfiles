@@ -96,8 +96,8 @@ startui() {
   cd ~- 
 }
 stopui() {
-  kill $(netstat -tulpn | grep ::::3001 | awk '{print $7}' | cut -d/ -f1)
-  kill $(netstat -tulpn | grep ::::35729 | awk '{print $7}' | cut -d/ -f1)
+  kill $(netstat -tulpn | grep :::3001 | awk '{print $7}' | cut -d/ -f1)
+  kill $(netstat -tulpn | grep :::35729 | awk '{print $7}' | cut -d/ -f1)
 }
 docker_clean() {
   docker image prune -a
