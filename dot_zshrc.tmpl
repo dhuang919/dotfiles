@@ -86,18 +86,8 @@ compile_messages() {
   $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
 }
 startui() {
-  local log_dir=/var/log/beeswax/ui
-  local log_file=$log_dir/ui.log
-  sudo mkdir -p $log_dir
-  sudo chmod 777 $log_dir
-  touch $log_file
-  ui
-  yarn dev > $log_file &
-  cd ~- 
-}
-stopui() {
-  kill $(netstat -tulpn | grep :::3001 | awk '{print $7}' | cut -d/ -f1)
-  kill $(netstat -tulpn | grep :::35729 | awk '{print $7}' | cut -d/ -f1)
+  cd "${BIO_ROOT}/beeswax/buzz_ui"
+  npm cache verify && yarn run dev
 }
 docker_clean() {
   docker image prune -a
