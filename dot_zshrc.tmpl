@@ -93,7 +93,7 @@ docker_clean() {
   docker image prune -a
 }
 sql() {
-  mysql -uroot -proot stingersbx_buzz_db
+  mysql -uroot -proot dev_buzz_db
 }
 get_buzz_pw() {
   echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption | jq .Parameter.Value | tr -d '\"'"
