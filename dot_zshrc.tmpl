@@ -101,6 +101,9 @@ get_buzz_pw() {
 master() {
   git cm && git prul && git br -D @{-1}
 }
+xdebug() {
+  sudo vim /etc/php/7.3/fpm/conf.d/20-xdebug.ini
+}
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
   local sbx_path="$HOME/dev/sandbox"
