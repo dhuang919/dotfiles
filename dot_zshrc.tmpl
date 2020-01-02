@@ -182,7 +182,7 @@ eval "$(register-python-argcomplete bw)"
 
 eval $(ssh-agent)  # startup ssh-agent
 
-# ssh-add ~/.aws/bee-prod-ssh-key-pair.pem ~/.ssh/beeswax-gateway
+ssh-add ~/.aws/bee-prod-ssh-key-pair.pem ~/.ssh/beeswax-gateway
 
 aws ecr get-login --no-include-email | bash
 {{- end }}
