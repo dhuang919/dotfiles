@@ -80,7 +80,9 @@ ppl() {
 }
 
 use_app() {
+  beeve activate //beeswax/buzz_api/dev:use_app_env
   bazel run //beeswax/buzz_api/dev:use_app -- "$1"
+  deactivate
 }
 compile_messages() {
   $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
@@ -102,7 +104,7 @@ master() {
   git cm && git prul && git br -D @{-1}
 }
 xdebug() {
-  sudo vim /etc/php/7.3/fpm/conf.d/20-xdebug.ini
+  sudo vim /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 }
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
