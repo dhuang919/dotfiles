@@ -106,6 +106,13 @@ master() {
 xdebug() {
   sudo vim /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 }
+migrate_log() {
+  less +G "/var/log/beeswax/buzz-next/aster/migrate-$1.log"
+}
+migrate() {
+  next "$1"
+  pipenv run python migrate.py
+}
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
   local sbx_path="$HOME/dev/sandbox"
