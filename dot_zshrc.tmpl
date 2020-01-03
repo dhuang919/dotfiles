@@ -112,6 +112,7 @@ migrate_log() {
 migrate() {
   next "$1"
   pipenv run python migrate.py
+  cd -
 }
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
