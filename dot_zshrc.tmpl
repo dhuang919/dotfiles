@@ -107,7 +107,7 @@ xdebug() {
   sudo vim /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 }
 migrate_log() {
-  less +G "/var/log/beeswax/buzz-next/aster/migrate-$1.log"
+  less +G "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
 }
 migrate() {
   next "$1"
