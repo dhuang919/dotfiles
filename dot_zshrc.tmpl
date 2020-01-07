@@ -114,6 +114,10 @@ migrate() {
   pipenv run python migrate.py
   cd -
 }
+rollback() {
+  next aster
+  pipenv run python manage.py migrate $1 $2
+}
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
   local sbx_path="$HOME/dev/sandbox"
