@@ -108,7 +108,7 @@ migrate_log() {
 }
 migrate() {
   next "$1"
-  pipenv run python migrate.py
+  pipenv run python migrate.py $2
   cd -
 }
 rollback() {
