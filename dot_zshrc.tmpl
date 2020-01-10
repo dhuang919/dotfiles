@@ -121,6 +121,11 @@ rollback() {
   pipenv run python manage.py migrate $1 $2
   cd -
 }
+buzz_test() {
+  sudo phpdismod xdebug
+  bazel run //beeswax/buzz_api/test:run_tests -- "$@"
+  sudo phpenmod xdebug
+}
 {{- else if eq .chezmoi.os "darwin" }}
 sbx() {
   local sbx_path="$HOME/dev/sandbox"
@@ -216,7 +221,6 @@ aws ecr get-login --no-include-email | bash
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
-alias buzz_test="bazel run //beeswax/buzz_api/test:run_tests --"
 alias htop="sudo htop"
 {{- else if eq .chezmoi.os "darwin" }}
 alias pip=/usr/local/bin/pip3
