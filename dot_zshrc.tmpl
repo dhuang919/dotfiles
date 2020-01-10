@@ -104,10 +104,11 @@ master() {
   git cm && git prul && git br -D @{-1}
 }
 migrate_log() {
-  if [[ -z "${3+x}" ]]; then
-    less +G "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
-  else
+  local flag=${3:--l}
+  if [[ ${flag} == "-t" ]]; then
     tail -f -n 100 "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
+  else
+    less +G "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
   fi
 }
 migrate() {
