@@ -16,6 +16,7 @@ export GOOGLE_MAPS_API_KEY={{ .BIO_GMAPS_KEY }}
 export GOOGLE_MAPS_SECRET_KEY={{ .BIO_GMAPS_SECRET }}
 export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 
+[[ $PATH != *"${HOME}/.npm-global/bin"* ]] && PATH="${PATH}:${HOME}/.npm-global/bin"
 # adding go to PATH
 [[ $PATH != */usr/local/go/bin* ]] && PATH="${PATH}:/usr/local/go/bin"
 # adding `go` packages to PATH
