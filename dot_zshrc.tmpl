@@ -104,6 +104,10 @@ get_buzz_pw() {
 master() {
   git cm && git prul && git br -D @{-1}
 }
+create_custom_migration() {
+  next "$1"
+  pipenv run python manage.py makemigrations --empty "${1}_custom_migrations" --name "$2"
+}
 migrate_log() {
   local flag=${3:--l}
   if [[ ${flag} == "-t" ]]; then

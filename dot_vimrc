@@ -67,9 +67,9 @@ set laststatus=2
 set statusline+=%f
 set number
 set mouse=a
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smartindent
 set cursorline
 set wildmenu
@@ -81,6 +81,9 @@ set incsearch
 set hlsearch
 set updatetime=1000
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 
 " easy navigation between splits with the alt key
 " mapped for the option key on mac
