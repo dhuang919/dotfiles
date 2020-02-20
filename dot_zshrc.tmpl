@@ -126,8 +126,7 @@ function rollback {
   if [[ ${app} == "-h" ]]; then
     cat <<EOF
     Usage: rollback [-h] <app> <migration app> <older migration>
-
-    Rollback django migrations
+           rollback beekeeper beekeeper_custom_migrations 0023
 EOF
   else
     next $app
