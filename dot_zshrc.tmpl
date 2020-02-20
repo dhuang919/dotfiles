@@ -39,76 +39,76 @@ export PYTHONPATH=/usr/bin/python
 export PYTHONDONTWRITEBYTECODE=1
 {{- end }}
 
-prof() {
+function prof {
   chezmoi edit ~/.zshrc
 }
-reprof() {
+function reprof {
   source ~/.zshrc
 }
-npr() {
+function npr {
   npm run "$1"
 }
 
 # chezmoi shortcuts
-chcd() {
+function chcd {
   chezmoi cd
 }
-che() {
+function che {
   chezmoi edit "$HOME/.${1}"
 }
-chu() {
+function chu {
   chezmoi update
 }
 
 {{- if eq .chezmoi.os "linux" }}
-cdb() {
+function cdb {
   cd "${BIO_ROOT}"
 }
-ui() {
+function ui {
   cd "${BIO_ROOT}/beeswax/buzz_ui"
 }
-fes() {
+function fes {
   cd "${BIO_ROOT}/beeswax/buzz_fes_ui"
 }
-api() {
+function api {
   cd "${BIO_ROOT}/beeswax/buzz_api"
 }
-next() {
+function next {
   cd "${BIO_ROOT}/beeswax/buzz_next/$1"
 }
-ppl() {
+function ppl {
   cd "${BIO_ROOT}/beeswax/people/derek"
 }
 
-use_app() {
+function use_app {
   beeve activate //beeswax/buzz_api/dev:use_app_env
   bazel run //beeswax/buzz_api/dev:use_app -- "$1"
   deactivate
 }
-compile_messages() {
+function compile_messages {
   $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
 }
-startui() {
+function startui {
   cd "${BIO_ROOT}/beeswax/buzz_ui"
   npm cache verify && yarn run dev
 }
-docker_clean() {
+function docker_clean {
   docker image prune -a
 }
-sql() {
+function sql {
   mysql -uroot -proot dev_buzz_db
 }
-get_buzz_pw() {
+function get_buzz_pw {
   echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption | jq .Parameter.Value | tr -d '\"'"
 }
-master() {
+function master {
   git cm && git prul && git br -D @{-1}
 }
-create_custom_migration() {
-  next "$1"
-  pipenv run python manage.py makemigrations --empty "${1}_custom_migrations" --name "$2"
+function create_custom_migration {
+  next $1
+  pipenv run python manage.py makemigrations --empty "${1}_custom_migrations" --name $2
 }
-migrate_log() {
+function migrate_log {
   local flag=${3:--l}
   if [[ ${flag} == "-t" ]]; then
     tail -f -n 100 "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
@@ -116,23 +116,32 @@ migrate_log() {
     less +G "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
   fi
 }
-migrate() {
-  next "$1"
+function migrate {
+  next $1
   pipenv run python migrate.py $2 $3
   cd -
 }
-rollback() {
-  next aster
-  pipenv run python manage.py migrate $1 $2
-  cd -
+function rollback {
+  local readonly $app=${1:--h}
+  if [[ "$1" == "-h" ]]; then
+    cat <<EOF
+    Usage: rollback [-h] <app> <migration app> <older migration>
+
+    Rollback django migrations
+EOF
+  else
+    next $1 
+    pipenv run python manage.py migrate $2 $3
+    cd -
+  fi
 }
-buzz_test() {
+function buzz_test {
   sudo phpdismod xdebug
   bazel run //beeswax/buzz_api/test:run_tests -- "$@"
   sudo phpenmod xdebug
 }
 {{- else if eq .chezmoi.os "darwin" }}
-sbx() {
+function sbx {
   local sbx_path="$HOME/dev/sandbox"
   if [[ ! -d "$sbx_path" ]]; then
     echo "$sbx_path doesn't exist"
@@ -140,7 +149,7 @@ sbx() {
     cd ~/dev/sandbox
   fi
 }
-bb() {
+function bb {
   local bb_path="$HOME/beeswax/vms/biobee"
   if [[ -d "$bb_path" ]]; then
     cd "$bb_path"
@@ -148,23 +157,23 @@ bb() {
     echo "$bb_path doesn't exist"
   fi
 }
-workwork() {
+function workwork {
   open /System/Applications/Calendar.app
   open /System/Applications/Mail.app
   open /Applications/Slack.app
   open /Applications/Typora.app
   open /Applications/Spotify.app
 }
-in() {
+function in {
   bb && vagrant ssh
 }
-up() {
+function up {
   bb && vagrant up && code
 }
-down() {
+function down {
   bb && vagrant halt
 }
-setup() {
+function setup {
   cd ~/dev/setup
 }
 {{- end }}
