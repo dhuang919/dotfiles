@@ -122,15 +122,15 @@ function migrate {
   cd -
 }
 function rollback {
-  local readonly $app=${1:--h}
-  if [[ "$1" == "-h" ]]; then
+  local $app=${1:--h}
+  if [[ ${app} == "-h" ]]; then
     cat <<EOF
     Usage: rollback [-h] <app> <migration app> <older migration>
 
     Rollback django migrations
 EOF
   else
-    next $1 
+    next $app
     pipenv run python manage.py migrate $2 $3
     cd -
   fi
