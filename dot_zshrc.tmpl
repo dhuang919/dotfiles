@@ -74,7 +74,15 @@ function api {
   cd "${BIO_ROOT}/beeswax/buzz_api"
 }
 function next {
-  cd "${BIO_ROOT}/beeswax/buzz_next/$1"
+  local app=${1}
+  if [[ ${app} == "as" ]]; then
+    $app = "aster"
+  elseif [[ ${app} == "bk" ]]; then
+    $app = "beekeeper"
+  elseif [[ ${app} == "ns" ]]; then
+    $app = "nest"
+  fi
+  cd "${BIO_ROOT}/beeswax/buzz_next/$app"
 }
 function ppl {
   cd "${BIO_ROOT}/beeswax/people/derek"
