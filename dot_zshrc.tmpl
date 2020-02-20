@@ -119,6 +119,9 @@ function migrate_log {
 function migrate {
   next $1
   pipenv run python migrate.py $2 $3
+  if [[ -v ${2} ]]; then
+    tail -n 150 "/var/log/beeswax/buzz-next/$1/migrate-dev.log"
+  fi
   cd -
 }
 function rollback {
