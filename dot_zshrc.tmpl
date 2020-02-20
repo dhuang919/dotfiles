@@ -122,7 +122,7 @@ function migrate {
   cd -
 }
 function rollback {
-  local $app=${1:--h}
+  local app=${1:--h}
   if [[ ${app} == "-h" ]]; then
     cat <<EOF
     Usage: rollback [-h] <app> <migration app> <older migration>
