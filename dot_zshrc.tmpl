@@ -76,11 +76,11 @@ function api {
 function next {
   local app=${1}
   if [[ ${app} == "as" ]]; then
-    $app = "aster"
+    app="aster"
   elseif [[ ${app} == "bk" ]]; then
-    $app = "beekeeper"
+    app="beekeeper"
   elseif [[ ${app} == "ns" ]]; then
-    $app = "nest"
+    app="nest"
   fi
   cd "${BIO_ROOT}/beeswax/buzz_next/$app"
 }
