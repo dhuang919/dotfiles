@@ -77,9 +77,9 @@ function next {
   local app=${1}
   if [[ ${app} == "as" ]]; then
     app="aster"
-  elseif [[ ${app} == "bk" ]]; then
+  elif [[ ${app} == "bk" ]]; then
     app="beekeeper"
-  elseif [[ ${app} == "ns" ]]; then
+  elif [[ ${app} == "ns" ]]; then
     app="nest"
   fi
   cd "${BIO_ROOT}/beeswax/buzz_next/$app"
