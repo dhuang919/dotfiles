@@ -95,6 +95,7 @@ function use_app {
 }
 function compile_messages {
   $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
+  sudo service php7.4-fpm restart
 }
 function startui {
   cd "${BIO_ROOT}/beeswax/buzz_ui"
@@ -112,9 +113,17 @@ function get_buzz_pw {
 function master {
   git cm && git prul && git br -D @{-1}
 }
-function create_custom_migration {
-  next $1
-  pipenv run python manage.py makemigrations --empty "${1}_custom_migrations" --name $2
+function create_migration {
+  local app=$1
+  if [[ ${app} == "as" ]]; then
+    app="aster"
+  elif [[ ${app} == "bk" ]]; then
+    app="beekeeper"
+  elif [[ ${app} == "ns" ]]; then
+    app="nest"
+  fi
+  next $app
+  pipenv run python manage.py makemigrations --empty "${app}_custom_migrations" --name $2
 }
 function migrate_log {
   local flag=${3:--l}
@@ -125,24 +134,37 @@ function migrate_log {
   fi
 }
 function migrate {
-  next $1
+  local app=$1
+  if [[ ${app} == "as" ]]; then
+    app="aster"
+  elif [[ ${app} == "bk" ]]; then
+    app="beekeeper"
+  elif [[ ${app} == "ns" ]]; then
+    app="nest"
+  fi
+  next $app
   pipenv run python migrate.py $2 $3
   if [[ -v ${2} ]]; then
     tail -n 150 "/var/log/beeswax/buzz-next/$1/migrate-dev.log"
   fi
-  cd -
 }
 function rollback {
   local app=${1:--h}
   if [[ ${app} == "-h" ]]; then
     cat <<EOF
-    Usage: rollback [-h] <app> <migration app> <older migration>
-           rollback beekeeper beekeeper_custom_migrations 0023
+    Usage: rollback [-h] <app> <migration id>
+           rollback bk 0023
 EOF
   else
+    if [[ ${app} == "as" ]]; then
+      app="aster"
+    elif [[ ${app} == "bk" ]]; then
+      app="beekeeper"
+    elif [[ ${app} == "ns" ]]; then
+      app="nest"
+    fi
     next $app
-    pipenv run python manage.py migrate $2 $3
-    cd -
+    pipenv run python manage.py migrate "${app}_custom_migrations" $3
   fi
 }
 function buzz_test {
