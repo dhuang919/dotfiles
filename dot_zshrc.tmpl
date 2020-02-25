@@ -218,9 +218,8 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
-autoload -Uz compinit && compinit
-autoload bashcompinit
-bashcompinit
+autoload -U compinit && compinit
+autoload bashcompinit && bashcompinit
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
