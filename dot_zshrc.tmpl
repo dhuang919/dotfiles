@@ -164,7 +164,7 @@ EOF
       app="nest"
     fi
     next $app
-    pipenv run python manage.py migrate "${app}_custom_migrations" $3
+    pipenv run python manage.py migrate "${app}_custom_migrations" $2
   fi
 }
 function buzz_test {
