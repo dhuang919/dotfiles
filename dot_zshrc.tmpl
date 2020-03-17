@@ -61,6 +61,16 @@ function chu {
 }
 
 {{- if eq .chezmoi.os "linux" }}
+function convert_app_name {
+  local app=${1}
+  case $app in
+    as | aster ) app="aster" ;;
+    bk | beekeeper ) app="beekeeper" ;;
+    ns | nest ) app="nest" ;;
+    * ) echo "Invalid app shortcut"; exit 1 ;; 
+  esac
+  echo $app
+}
 function cdb {
   cd "${BIO_ROOT}"
 }
@@ -74,20 +84,12 @@ function api {
   cd "${BIO_ROOT}/beeswax/buzz_api"
 }
 function next {
-  local app=${1}
-  if [[ ${app} == "as" ]]; then
-    app="aster"
-  elif [[ ${app} == "bk" ]]; then
-    app="beekeeper"
-  elif [[ ${app} == "ns" ]]; then
-    app="nest"
-  fi
+  local app=$(convert_app_name $1)
   cd "${BIO_ROOT}/beeswax/buzz_next/$app"
 }
 function ppl {
   cd "${BIO_ROOT}/beeswax/people/derek"
 }
-
 function use_app {
   beeve activate //beeswax/buzz_api/dev:use_app_env
   bazel run //beeswax/buzz_api/dev:use_app -- "$1"
@@ -114,14 +116,7 @@ function master {
   git cm && git prul && git br -D @{-1}
 }
 function create_migration {
-  local app=$1
-  if [[ ${app} == "as" ]]; then
-    app="aster"
-  elif [[ ${app} == "bk" ]]; then
-    app="beekeeper"
-  elif [[ ${app} == "ns" ]]; then
-    app="nest"
-  fi
+  local app=$(convert_app_name $1)
   next $app
   pipenv run python manage.py makemigrations --empty "${app}_custom_migrations" --name $2
 }
@@ -134,19 +129,11 @@ function migrate_log {
   fi
 }
 function migrate {
-  local app=$1
-  if [[ ${app} == "as" ]]; then
-    app="aster"
-  elif [[ ${app} == "bk" ]]; then
-    app="beekeeper"
-  elif [[ ${app} == "ns" ]]; then
-    app="nest"
-  fi
+  local app=$(convert_app_name $1)
   next $app
   pipenv run python migrate.py $2 $3
-  if [[ -v ${2} ]]; then
-    tail -n 150 "/var/log/beeswax/buzz-next/$1/migrate-dev.log"
-  fi
+  local env=${3:-dev}
+  tail -n 150 "/var/log/beeswax/buzz-next/$app/migrate-$env.log"
 }
 function rollback {
   local app=${1:--h}
@@ -156,13 +143,7 @@ function rollback {
            rollback bk 0023
 EOF
   else
-    if [[ ${app} == "as" ]]; then
-      app="aster"
-    elif [[ ${app} == "bk" ]]; then
-      app="beekeeper"
-    elif [[ ${app} == "ns" ]]; then
-      app="nest"
-    fi
+    app=$(convert_app_name $app) 
     next $app
     pipenv run python manage.py migrate "${app}_custom_migrations" $2
   fi
