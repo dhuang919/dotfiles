@@ -133,7 +133,7 @@ function migrate {
   pipenv run python migrate.py $2 $3
   # default env to dev if none was passed
   local env=${3:-dev}
-  tail -n 150 "/var/log/beeswax/buzz-next/$app/migrate-$env.log"
+  tail -n 50 "/var/log/beeswax/buzz-next/$app/migrate-$env.log"
 }
 function rollback {
   local app=${1:--h}
