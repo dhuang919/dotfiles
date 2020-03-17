@@ -67,7 +67,6 @@ function convert_app_name {
     as | aster ) app="aster" ;;
     bk | beekeeper ) app="beekeeper" ;;
     ns | nest ) app="nest" ;;
-    * ) echo "Invalid app shortcut"; exit 1 ;; 
   esac
   echo $app
 }
@@ -132,6 +131,7 @@ function migrate {
   local app=$(convert_app_name $1)
   next $app
   pipenv run python migrate.py $2 $3
+  # default env to dev if none was passed
   local env=${3:-dev}
   tail -n 150 "/var/log/beeswax/buzz-next/$app/migrate-$env.log"
 }
