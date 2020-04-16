@@ -124,11 +124,12 @@ function create_migration {
   pipenv run python manage.py makemigrations --empty "${app}_custom_migrations" --name $2
 }
 function migrate_log {
+  local app=$(convert_app_name $1)
   local flag=${3:--l}
   if [[ ${flag} == "-t" ]]; then
-    tail -f -n 100 "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
+    tail -f -n 100 "/var/log/beeswax/buzz-next/$app/migrate-$2.log"
   else
-    less +G "/var/log/beeswax/buzz-next/$1/migrate-$2.log"
+    less +G "/var/log/beeswax/buzz-next/$app/migrate-$2.log"
   fi
 }
 function migrate {
