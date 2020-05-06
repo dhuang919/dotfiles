@@ -37,6 +37,7 @@ export PATH
 {{- else if eq .chezmoi.os "darwin" }}
 export PYTHONPATH=/usr/bin/python
 export PYTHONDONTWRITEBYTECODE=1
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 {{- end }}
 
 function prof {
