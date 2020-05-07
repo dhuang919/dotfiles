@@ -155,9 +155,14 @@ EOF
   fi
 }
 function buzz_test {
-  sudo phpdismod xdebug
-  bazel run //beeswax/buzz_api/test:run_tests -- "$@"
-  sudo phpenmod xdebug
+  if [[ "$1" == "-d" ]]; then
+    shift
+    bazel run //beeswax/buzz_api/test:run_tests -- "$@"
+  else
+    sudo phpdismod xdebug
+    bazel run //beeswax/buzz_api/test:run_tests -- "$@"
+    sudo phpenmod xdebug
+  fi
 }
 {{- else if eq .chezmoi.os "darwin" }}
 function sbx {
