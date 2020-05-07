@@ -169,7 +169,7 @@ function sbx {
   fi
 }
 function bb {
-  local bb_path="$HOME/beeswax/vms/biobee"
+  local bb_path="$HOME/beeswax/vms/bio"
   if [[ -d "$bb_path" ]]; then
     cd "$bb_path"
   else
@@ -258,7 +258,6 @@ alias htop="sudo htop"
 {{- else if eq .chezmoi.os "darwin" }}
 alias pip=/usr/local/bin/pip3.8
 alias python=/usr/local/bin/python3
-eval "$(rbenv init -)"
 {{- end }}
 alias ll="ls -laF"
 
