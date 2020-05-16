@@ -41,7 +41,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 {{- end }}
 
 function bubu {
-  brew update && brew upgrade
+  brew update && brew upgrade && brew cleanup
 }
 function prof {
   chezmoi edit ~/.zshrc
