@@ -258,7 +258,7 @@ eval "$(register-python-argcomplete bw)"
 {{- if eq .chezmoi.os "linux" }}
 alias htop="sudo htop"
 {{- else if eq .chezmoi.os "darwin" }}
-alias pip=/usr/local/bin/pip3.8
+alias pip=/usr/local/bin/pip3
 alias python=/usr/local/bin/python3
 {{- end }}
 alias ll="ls -lahF"
