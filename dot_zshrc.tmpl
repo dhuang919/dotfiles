@@ -119,9 +119,6 @@ function sql {
 function get_buzz_pw {
   echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption | jq .Parameter.Value | tr -d '\"'"
 }
-function master {
-  git cm && git prul && git br -D @{-1}
-}
 function create_migration {
   local app=$(convert_app_name $1)
   next $app
@@ -167,13 +164,16 @@ function buzz_test {
     sudo phpenmod xdebug
   fi
 }
+function setup_vm {
+  "$BIO_ROOT/beeswax/setup/dev/setup_vm.sh $@"
+}
 {{- else if eq .chezmoi.os "darwin" }}
 function sbx {
   local sbx_path="$HOME/dev/sandbox"
   if [[ ! -d "$sbx_path" ]]; then
     echo "$sbx_path doesn't exist"
   else
-    cd ~/dev/sandbox
+    cd "$sbx_path" 
   fi
 }
 function bb {
