@@ -165,7 +165,7 @@ function buzz_test {
   fi
 }
 function setup_vm {
-  "$BIO_ROOT/beeswax/setup/dev/setup_vm.sh $@"
+  source "$BIO_ROOT/beeswax/setup/dev/setup_vm.sh $@"
 }
 {{- else if eq .chezmoi.os "darwin" }}
 function sbx {
