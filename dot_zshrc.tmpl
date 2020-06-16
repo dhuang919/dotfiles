@@ -93,11 +93,6 @@ function next {
 function ppl {
   cd "${BIO_ROOT}/beeswax/people/derek"
 }
-function use_app {
-  beeve activate //beeswax/buzz_api/dev:use_app_env
-  bazel run //beeswax/buzz_api/dev:use_app -- "$1"
-  deactivate
-}
 function compile_messages {
   $BIO_ROOT/beeswax/buzz_api/tools/compile_messages.py
   sudo service php7.4-fpm restart
