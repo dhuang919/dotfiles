@@ -10,14 +10,16 @@
 	pager = diff-so-fancy | less --tabs=2 -RFX
 [push]
 	default = upstream
+[pull]
+  rebase = false
 [alias]
 	ci = commit
 	st = status
 	br = branch
 	co = checkout
 	cm = checkout master
-    pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-    pum = !git pull origin master
+  pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  pum = !git pull origin master
 	sta = stash
 	stp = stash pop
 	prul = !git pull && git remote update origin --prune
@@ -33,3 +35,4 @@
 	required = true
 [credential]
 	helper = store
+
