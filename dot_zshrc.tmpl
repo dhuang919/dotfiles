@@ -204,6 +204,7 @@ fpath[1,0]=~/.zsh/completion/
 # repeatedly.  The directory in cache-path must be created manually.
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' special-dirs true 
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
 autoload -Uz compinit && compinit
