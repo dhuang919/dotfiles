@@ -194,7 +194,7 @@ function up {
   bb && vagrant up && code
 }
 function down {
-  bb && vagrant halt
+  bb && vagrant halt && osascript -e 'quit app "Visual Studio Code"'
 }
 function setup {
   cd ~/dev/setup
