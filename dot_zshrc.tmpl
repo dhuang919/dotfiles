@@ -32,12 +32,13 @@ export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 [[ $PATH != *$BIO_ROOT/beeswax/people/derek/exec* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/people/derek/exec"
 # for Beeswax Workflow Tool (bw)
 [[ $PATH != *$BIO_ROOT/beeswax/bw/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/bw/bin"
-export PATH
 {{- else if eq .chezmoi.os "darwin" }}
+[[ $PATH != */Users/derek/Library/Python/3.8/bin* ]] && PATH="${PATH}:/Users/derek/Library/Python/3.8/bin"
 export PYTHONPATH=/usr/bin/python
 export PYTHONDONTWRITEBYTECODE=1
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 {{- end }}
+export PATH
 
 function bubu {
   brew update && brew upgrade && brew cleanup
