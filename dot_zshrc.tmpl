@@ -114,7 +114,7 @@ function sql {
   mysql -uroot -proot dev_buzz_db
 }
 function get_buzz_pw {
-  echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption | jq .Parameter.Value | tr -d '\"'"
+  echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption --query 'Parameters[0].Value' | tr -d '\"'"
 }
 function create_migration {
   local app=$(convert_app_name $1)
