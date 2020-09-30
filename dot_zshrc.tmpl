@@ -250,12 +250,11 @@ eval "$(register-python-argcomplete bw)"
 [ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && \. /usr/local/opt/nvm/etc/bash_completion.d/nvm
 {{- end }}
 
-{{- if eq .chezmoi.os "linux" }}
-alias htop="sudo htop"
-{{- else if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 alias pip=/usr/local/bin/pip3
 alias python=/usr/local/bin/python3
 {{- end }}
+alias htop="sudo htop"
 alias ll="ls -lahF"
 alias ipy=ipython
 
