@@ -12,7 +12,10 @@ trim_trailing_whitespae = true
 [*.py]
 indent_size = 4
 
-[*.{sh,bash,zsh}]
+[*.lua]
+indent_size = 2
+
+[*.{bash,sh,zsh}]
 indent_size = 2
 
 [*.{json,yml}]
