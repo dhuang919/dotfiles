@@ -257,6 +257,8 @@ eval "$(register-python-argcomplete bw)"
 {{- if eq .chezmoi.os "darwin" }}
 alias pip=/usr/local/bin/pip3
 alias python=/usr/local/bin/python3
+{{- else if eq .chezmoi.os "linux"}}
+alias setup_vm=$BIO_ROOT/beeswax/setup/dev/setup_vm.sh
 {{- end }}
 alias htop="sudo htop"
 alias ll="ls -lahF"
