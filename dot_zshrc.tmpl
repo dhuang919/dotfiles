@@ -127,7 +127,7 @@ function migrate_log {
 }
 function migrate {
   local app=$(convert_app_name $1)
-  buzz_tool $app $2 $3
+  buzz_tool $app migrate $2 $3
   # default env to dev if none was passed
   local env=${3:-dev}
   tail -n 50 "/var/log/beeswax/buzz-next/$app/$env.log"
