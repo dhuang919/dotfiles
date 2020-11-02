@@ -116,11 +116,6 @@ function sql {
 function get_buzz_pw {
   echo "aws ssm get-parameter --name /buzz/password/prod/info_beeswax.com --with-decryption --query 'Parameters[0].Value' | tr -d '\"'"
 }
-function create_migration {
-  local app=$(convert_app_name $1)
-  next $app
-  pipenv run python manage.py makemigrations --empty "${app}_custom_migrations" --name $2
-}
 function migrate_log {
   local app=$(convert_app_name $1)
   local flag=${3:--l}
@@ -132,24 +127,10 @@ function migrate_log {
 }
 function migrate {
   local app=$(convert_app_name $1)
-  next $app
-  pipenv run python migrate.py $2 $3
+  buzz_tool $app $2 $3
   # default env to dev if none was passed
   local env=${3:-dev}
   tail -n 50 "/var/log/beeswax/buzz-next/$app/$env.log"
-}
-function rollback {
-  local app=${1:--h}
-  if [[ ${app} == "-h" ]]; then
-    cat <<EOF
-    Usage: rollback [-h] <app> <migration id>
-           rollback bk 0023
-EOF
-  else
-    app=$(convert_app_name $app) 
-    next $app
-    pipenv run python manage.py migrate "${app}_custom_migrations" $2
-  fi
 }
 function buzz_test {
   if [[ "$1" == "-d" ]]; then
