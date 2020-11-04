@@ -96,12 +96,12 @@ function compile_messages {
   sudo service php7.4-fpm restart
 }
 function startas {
-  next as
-  env DEBUGPY_LAUNCHER_PORT=34189 pipenv run python manage.py runserver_plus 0.0.0.0:7000 --nopin
+  # env DEBUGPY_LAUNCHER_PORT=34189 pipenv run python manage.py runserver_plus 0.0.0.0:7000 --nopin
+  buzz_tool aster manage runserver 0.0.0.0:7000
 }
 function startbk {
-  next bk
-  env DEBUGPY_LAUNCHER_PORT=34189 pipenv run python manage.py runserver_plus 0.0.0.0:7050 --nopin
+  # env DEBUGPY_LAUNCHER_PORT=34189 pipenv run python manage.py runserver_plus 0.0.0.0:7050 --nopin
+  buzz_tool beekeeper manage runserver 0.0.0.0:7050
 }
 function startui {
   cd "${BIO_ROOT}/beeswax/buzz_ui"
