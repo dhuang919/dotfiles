@@ -16,6 +16,7 @@
 	ci = commit
 	st = status
 	br = branch
+  df = diff
 	co = checkout
 	cm = checkout master
 	pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
