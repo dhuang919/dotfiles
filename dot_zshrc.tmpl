@@ -28,8 +28,6 @@ export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 [[ $PATH != *$HOME/.yarn/bin* ]] && PATH="${PATH}:${HOME}/.yarn/bin"
 # for php codesniffer
 [[ $PATH != *$BIO_ROOT/beeswax/buzz_api/buzz/vendor/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/buzz_api/buzz/vendor/bin"
-# for buzz executables
-[[ $PATH != *$BIO_ROOT/beeswax/people/derek/exec* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/people/derek/exec"
 # for Beeswax Workflow Tool (bw)
 [[ $PATH != *$BIO_ROOT/beeswax/bw/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/bw/bin"
 {{- else if eq .chezmoi.os "darwin" }}
