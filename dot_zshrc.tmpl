@@ -182,7 +182,7 @@ fpath[1,0]=~/.zsh/completion/
 {{- if eq .chezmoi.os "linux"}}
 fpath+=(/usr/local/bin/bazel)
 {{- end }}
-if [[ type brew &>/dev/null ]]; then
+if type brew &>/dev/null; then
   fpath+=$(brew --prefix)/share/zsh/site-functions
 fi
 
