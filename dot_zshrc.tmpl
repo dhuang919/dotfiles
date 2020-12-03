@@ -179,6 +179,12 @@ function setup {
 {{- end }}
 
 fpath[1,0]=~/.zsh/completion/
+{{- if eq .chezmoi.os "linux"}}
+fpath+=(/usr/local/bin/bazel)
+{{- end }}
+if [[ type brew &>/dev/null ]]; then
+  fpath+=$(brew --prefix)/share/zsh/site-functions
+fi
 
 # This way the completion script does not have to parse Bazel's options
 # repeatedly.  The directory in cache-path must be created manually.
@@ -186,10 +192,6 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true 
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
-
-autoload -Uz compinit && compinit
-autoload bashcompinit && bashcompinit
-zmodload -i zsh/complist
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -205,6 +207,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git fzf)
 
 source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit
+autoload bashcompinit && bashcompinit
+zmodload -i zsh/complist
 
 {{- if eq .chezmoi.os "linux" }}
 PROG=croc
