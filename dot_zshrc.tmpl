@@ -126,6 +126,7 @@ function migrate_log {
 }
 function migrate {
   local app=$(convert_app_name $1)
+  shift || true
   buzz_tool $app migrate "$@"
   # default env to dev if none was passed
   local env=${3:-dev}
