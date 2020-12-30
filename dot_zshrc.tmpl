@@ -35,6 +35,8 @@ export METAMARKETS_SECRET_KEY={{ .BIO_METAMARKETS_SECRET }}
 export PYTHONPATH=/usr/bin/python
 export PYTHONDONTWRITEBYTECODE=1
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+{{- else if eq .chezmoi.os "darwin" }}
+[[ $PATH != */usr/local/opt/postgresql@12/bin* ]] && PATH="${PATH}:/usr/local/opt/postgresql@12/bin"
 {{- end }}
 export PATH
 
