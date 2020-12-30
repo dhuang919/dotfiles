@@ -236,10 +236,7 @@ eval "$(register-python-argcomplete bw)"
 [ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && \. /usr/local/opt/nvm/etc/bash_completion.d/nvm
 {{- end }}
 
-{{- if eq .chezmoi.os "darwin" }}
-alias pip=/usr/local/bin/pip3
-alias python=/usr/local/bin/python3
-{{- else if eq .chezmoi.os "linux"}}
+{{- if eq .chezmoi.os "linux"}}
 alias setup_vm=$BIO_ROOT/beeswax/setup/dev/setup_vm.sh
 {{- end }}
 alias htop="sudo htop"
