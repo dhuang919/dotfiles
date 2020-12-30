@@ -248,3 +248,7 @@ alias ipy=ipython
 
 eval $(thefuck --alias)
 
+{{- if eq .chezmoi.os "darwin" }}
+eval "$(pyenv init -)"
+{{- end }}
+
