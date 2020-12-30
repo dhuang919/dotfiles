@@ -249,5 +249,6 @@ eval $(thefuck --alias)
 
 {{- if eq .chezmoi.os "darwin" }}
 eval "$(pyenv init -)"
+pyenv shell 3.7.5
 {{- end }}
 
