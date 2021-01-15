@@ -257,7 +257,7 @@ pyenv shell 3.7.5
 alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
 alias cdd="cd ~/dev/dave-energy"
 alias startapi="FLASK_ENV=development pipenv run flask run"
-alias startui="cd ~/dev/dave-energy/client && yarn dev"
+alias startui="yarn cache clean && yarn dev"
 alias sql="psql denergy"
 {{- end }}
 
