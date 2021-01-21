@@ -255,6 +255,7 @@ pyenv shell 3.7.5
 # david energy
 {{- if eq .chezmoi.os "darwin" }}
 alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
+alias stopdb="pg_ctl -D /usr/local/var/postgresql@12 stop"
 alias cdd="cd ~/dev/dave-energy"
 alias startapi="FLASK_ENV=development pipenv run flask run"
 alias startui="yarn cache clean && yarn dev"
