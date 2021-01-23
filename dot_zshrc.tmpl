@@ -76,6 +76,9 @@ function convert_app_name {
 function cdb {
   cd "${BIO_ROOT}"
 }
+function cucu {
+  xvfb-run -a bundle exec cucumber "$@"
+}
 function ui {
   cd "${BIO_ROOT}/beeswax/buzz_ui"
 }
