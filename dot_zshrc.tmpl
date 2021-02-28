@@ -215,13 +215,7 @@ autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
 
 {{- if eq .chezmoi.os "linux" }}
-PROG=croc
-_CLI_ZSH_AUTOCOMPLETE_HACK=1
-source /etc/zsh/zsh_autocomplete_croc
-
 source ~/.bash_completion.d/python-argcomplete
-
-source /etc/profile.d/beeve_bash_init.sh
 
 source /usr/local/lib/bazel/bin/bazel-complete.bash
 
