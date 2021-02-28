@@ -153,12 +153,12 @@ function sbx {
     cd "$sbx_path" 
   fi
 }
-function bb {
-  local bb_path="$HOME/beeswax/vms/bio"
-  if [[ -d "$bb_path" ]]; then
-    cd "$bb_path"
+function vm {
+  local vm_path="$HOME/beeswax/vms/cloudvm"
+  if [[ -d "$vm_path" ]]; then
+    cd "$vm_path"
   else
-    echo "$bb_path doesn't exist"
+    echo "$vm_path doesn't exist"
   fi
 }
 function ww {
@@ -168,13 +168,13 @@ function ww {
   open /Applications/Typora.app
 }
 function in {
-  bb && vagrant ssh
+  vm && aws2-wrap --profile dev vagrant ssh
 }
 function up {
-  bb && vagrant up && code
+  vm && code
 }
 function down {
-  osascript -e 'quit app "Visual Studio Code"' && bb && vagrant halt
+  osascript -e 'quit app "Visual Studio Code"'
 }
 function setup {
   cd ~/dev/setup
@@ -199,7 +199,7 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# See https://github.com/rovmyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load?
