@@ -201,7 +201,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf)
 
-fpath[1,0]=~/.zsh/completion/
+fpath=(~/.zsh/completion/ $fpath)
 {{- if eq .chezmoi.os "linux"}}
 fpath+=(/usr/local/bin/bazel)
 {{- end }}
