@@ -181,14 +181,6 @@ function setup {
 }
 {{- end }}
 
-fpath[1,0]=~/.zsh/completion/
-{{- if eq .chezmoi.os "linux"}}
-fpath+=(/usr/local/bin/bazel)
-{{- end }}
-if type brew &>/dev/null; then
-  fpath+=$(brew --prefix)/share/zsh/site-functions
-fi
-
 # This way the completion script does not have to parse Bazel's options
 # repeatedly.  The directory in cache-path must be created manually.
 zstyle ':completion:*' use-cache on
@@ -208,6 +200,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf)
+
+fpath[1,0]=~/.zsh/completion/
+{{- if eq .chezmoi.os "linux"}}
+fpath+=(/usr/local/bin/bazel)
+{{- end }}
+if type brew &>/dev/null; then
+  fpath+=$(brew --prefix)/share/zsh/site-functions
+fi
 
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit && compinit
