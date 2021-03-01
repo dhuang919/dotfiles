@@ -170,11 +170,8 @@ function ww {
 function in {
   vm && aws2-wrap --profile dev vagrant ssh
 }
-function up {
-  vm && aws2-wrap --profile dev vagrant up && code
-}
 function down {
-  osascript -e 'quit app "Visual Studio Code"' && vm && aws2-wrap --profile dev vagrant halt
+  osascript -e 'quit app "Visual Studio Code"'
 }
 function setup {
   cd ~/dev/setup
