@@ -121,12 +121,6 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 function bubu {
   brew update && brew upgrade && brew cleanup
 }
-function chcd {
-  chezmoi cd
-}
-function chu {
-  chezmoi update
-}
 function sbx {
   local sbx_path="$HOME/dev/sandbox"
   if [[ ! -d "$sbx_path" ]]; then
@@ -192,6 +186,12 @@ function prof {
 }
 function reprof {
   source ~/.zshrc
+}
+function chcd {
+  chezmoi cd
+}
+function chu {
+  chezmoi update
 }
 
 # This way the completion script does not have to parse Bazel's options
