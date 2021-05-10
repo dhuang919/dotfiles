@@ -25,7 +25,7 @@
 	stp = stash pop
 	prul = !git pull && git remote update origin --prune
 	alias = config --get-regexp ^alias\\.
-	hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''             %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short 
 [merge]
 	tool = opendiff
 	conflictstyle = diff3
