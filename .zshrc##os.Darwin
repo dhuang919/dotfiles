@@ -1,0 +1,105 @@
+[[ $PATH != */Users/derek/Library/Python/3.8/bin* ]] && PATH="${PATH}:/Users/derek/Library/Python/3.8/bin"
+[[ $PATH != */usr/local/opt/postgresql@12/bin* ]] && PATH="${PATH}:/usr/local/opt/postgresql@12/bin"
+[[ $PATH != *$HOME/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
+
+export PYTHONPATH=/usr/bin/python
+export PYTHONDONTWRITEBYTECODE=1
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export ZSH="$HOME/.oh-my-zsh"
+export EDITOR="vim"
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export NVM_DIR="$HOME/.nvm"
+export FZF_DIR="$HOME/.fzf"
+export PATH
+
+function bubu {
+  brew update && brew upgrade && brew cleanup
+}
+
+function sbx {
+  local sbx_path="$HOME/dev/sandbox"
+  if [[ ! -d "$sbx_path" ]]; then
+    echo "$sbx_path doesn't exist"
+  else
+    cd "$sbx_path"
+  fi
+}
+
+function vm {
+  local vm_path="$HOME/beeswax/vms/cloudvm"
+  if [[ -d "$vm_path" ]]; then
+    cd "$vm_path"
+  else
+    echo "$vm_path doesn't exist"
+  fi
+}
+
+function ww {
+  open /Applications/Microsoft\ Outlook.app
+  open /Applications/Slack.app
+  open /Applications/Spotify.app
+  open /Applications/Typora.app
+}
+
+function in {
+  vm && ssh cloudvm
+}
+
+function setup {
+  cd ~/dev/setup
+}
+
+function prof {
+  chezmoi edit ~/.zshrc
+}
+
+function reprof {
+  source ~/.zshrc
+}
+
+function chcd {
+  chezmoi cd
+}
+
+function chu {
+  chezmoi update
+}
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+plugins=(fzf git)
+
+fpath=(~/.zsh/completion/ $fpath)
+
+if type brew &>/dev/null; then
+  fpath+=$(brew --prefix)/share/zsh/site-functions
+fi
+
+source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit
+autoload bashcompinit && bashcompinit
+zmodload -i zsh/complist
+
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias htop="sudo htop"
+alias ll="ls -lahF"
+alias ipy=ipython
+
+# david energy
+alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
+alias stopdb="pg_ctl -D /usr/local/var/postgresql@12 stop"
+alias cdd="cd ~/dev/dave-energy"
+alias startapi="FLASK_ENV=development pipenv run flask run"
+alias startui="yarn cache clean && yarn dev"
+alias sql="psql denergy"
+
+eval $(thefuck --alias)
+eval "$(pyenv init -)"
+
