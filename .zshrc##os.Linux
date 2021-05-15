@@ -1,19 +1,12 @@
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR="vim"
+export EDITOR=vim
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export NVM_DIR="$HOME/.nvm"
 export FZF_DIR="$HOME/.fzf"
 
 export BIO_ROOT="${HOME}/beeswaxio"
-export BW_USER="derek"
+export BW_USER=derek
 export GOPATH="${HOME}/go/"
-export JIRA_API_USER=derek@beeswax.com
-export JIRA_API_TOKEN=***REMOVED_JIRA***
-export GITHUB_API_TOKEN=***REMOVED_GITHUB***
-export GOOGLE_MAPS_API_KEY=***REMOVED_GOOGLE_MAPS_KEY***
-export GOOGLE_MAPS_SECRET_KEY=***REMOVED_GOOGLE_MAPS_SECRET***
-export METAMARKETS_SECRET_KEY=***REMOVED_METAMARKETS***
-export PATH
 
 [[ $PATH != *$HOME/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
 [[ $PATH != *"${HOME}/.npm-global/bin"* ]] && PATH="${PATH}:${HOME}/.npm-global/bin"
@@ -22,16 +15,17 @@ export PATH
 [[ $PATH != *$HOME/.yarn/bin* ]] && PATH="${PATH}:${HOME}/.yarn/bin"
 [[ $PATH != *$BIO_ROOT/beeswax/buzz_api/buzz/vendor/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/buzz_api/buzz/vendor/bin"
 [[ $PATH != *$BIO_ROOT/beeswax/bw/bin* ]] && PATH="${PATH}:${BIO_ROOT}/beeswax/bw/bin"
+export PATH
 
 
 function convert_app_name {
   local app=${1}
   case $app in
-    as | aster ) app="aster" ;;
-    bk | beekeeper ) app="beekeeper" ;;
-    ns | nest ) app="nest" ;;
-    hc | honeycrisp ) app="honeycrisp" ;;
-    st | stats ) app="stats" ;;
+    as | aster ) app=aster ;;
+    bk | beekeeper ) app=beekeeper ;;
+    ns | nest ) app=nest ;;
+    hc | honeycrisp ) app=honeycrisp ;;
+    st | stats ) app=stats ;;
   esac
   echo $app
 }
@@ -139,7 +133,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=powerlevel10k/powerlevel10k
 
 plugins=(fzf git sudo)
 
@@ -160,6 +154,8 @@ zmodload -i zsh/complist
 alias htop="sudo htop"
 alias ll="ls -lahF"
 alias ipy=ipython
-alias setup_vm=$BIO_ROOT/beeswax/setup/dev/setup_vm.sh
+alias setup_vm="$BIO_ROOT/beeswax/setup/dev/setup_vm.sh"
 
 eval $(thefuck --alias)
+
+source $HOME/.pvars
