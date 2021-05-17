@@ -14,10 +14,6 @@ export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 
 
-function bubu {
-  brew update && brew upgrade && brew cleanup
-}
-
 function sbx {
   local sbx_path="$HOME/dev/sandbox"
   if [[ ! -d "$sbx_path" ]]; then
@@ -43,30 +39,6 @@ function ww {
   open /Applications/Typora.app
 }
 
-function in {
-  vm && ssh cloudvm
-}
-
-function setup {
-  cd ~/dev/setup
-}
-
-function prof {
-  chezmoi edit ~/.zshrc
-}
-
-function reprof {
-  source ~/.zshrc
-}
-
-function chcd {
-  chezmoi cd
-}
-
-function chu {
-  chezmoi update
-}
-
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
@@ -90,16 +62,21 @@ zmodload -i zsh/complist
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 alias htop="sudo htop"
 alias ll="ls -lahF"
 alias ipy=ipython
+alias bubu="brew update && brew upgrade && brew cleanup"
+alias setup="cd ~/dev/setup"
+alias in="vm && ssh cloudvm"
 
 # david energy
 alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
 alias stopdb="pg_ctl -D /usr/local/var/postgresql@12 stop"
 alias cdd="cd ~/dev/dave-energy"
 alias startapi="FLASK_ENV=development pipenv run flask run"
-alias startui="yarn cache clean && yarn dev"
 alias sql="psql denergy"
 
 eval $(thefuck --alias)
