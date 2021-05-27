@@ -82,5 +82,4 @@ alias startapi="FLASK_ENV=development pipenv run flask run"
 alias sql="psql denergy"
 
 eval $(thefuck --alias)
-eval "$(pyenv init -)"
 
