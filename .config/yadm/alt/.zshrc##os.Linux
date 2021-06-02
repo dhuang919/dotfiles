@@ -39,7 +39,7 @@ function next {
   cd "${BIO_ROOT}/beeswax/buzz_next/$app"
 }
 
-function migrate_log {
+function mlog {
   local app=$(convert_app_name $1)
   local flag=${3:--l}
   if [[ ${flag} == "-t" ]]; then
