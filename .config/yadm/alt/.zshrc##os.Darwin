@@ -33,6 +33,7 @@ function vm {
 }
 
 function ww {
+  open /Applications/Insomnia.app
   open /Applications/Microsoft\ Outlook.app
   open /Applications/Slack.app
   open /Applications/Spotify.app
