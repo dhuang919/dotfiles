@@ -14,15 +14,6 @@ export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 
 
-function sbx {
-  local sbx_path="$HOME/dev/sandbox"
-  if [[ ! -d "$sbx_path" ]]; then
-    echo "$sbx_path doesn't exist"
-  else
-    cd "$sbx_path"
-  fi
-}
-
 function vm {
   local vm_path="$HOME/beeswax/vms/cloudvm"
   if [[ -d "$vm_path" ]]; then
@@ -79,6 +70,8 @@ alias in="vm && ssh cloudvm"
 alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
 alias stopdb="pg_ctl -D /usr/local/var/postgresql@12 stop"
 alias cdd="cd ~/dev/dave-energy"
+alias sbx="cd ${HOME}/dev/sandbox"
+alias sbxc="code ${HOME}/dev/sandbox"
 alias startapi="FLASK_ENV=development pipenv run flask run"
 alias sql="psql denergy"
 
