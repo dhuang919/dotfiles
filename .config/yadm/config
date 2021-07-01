@@ -1,0 +1,4 @@
+[yadm]
+	ciper = openssl
+	auto-private-dirs = false
+	cifer = openssl
