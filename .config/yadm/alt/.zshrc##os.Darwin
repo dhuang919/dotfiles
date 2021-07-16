@@ -1,5 +1,4 @@
 [[ $PATH != */Users/derek/Library/Python/3.8/bin* ]] && PATH="${PATH}:/Users/derek/Library/Python/3.8/bin"
-[[ $PATH != */usr/local/opt/postgresql@12/bin* ]] && PATH="${PATH}:/usr/local/opt/postgresql@12/bin"
 [[ $PATH != *$HOME/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
 export PATH
 
@@ -66,17 +65,10 @@ alias bubu="brew update && brew upgrade && brew cleanup"
 alias setup="cd ~/dev/setup"
 alias in="vm && ssh cloudvm"
 
-# david energy
-alias startdb="pg_ctl -D /usr/local/var/postgresql@12 start"
-alias stopdb="pg_ctl -D /usr/local/var/postgresql@12 stop"
-alias cdd="cd ~/dev/dave-energy"
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
-alias startapi="FLASK_ENV=development pipenv run flask run"
-alias sql="psql denergy"
 
 eval $(thefuck --alias)
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
