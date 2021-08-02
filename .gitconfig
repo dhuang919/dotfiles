@@ -18,6 +18,7 @@
     br = branch
     df = diff
     co = checkout
+    sw = switch
     cm = checkout master
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
     pum = !git pull origin master
