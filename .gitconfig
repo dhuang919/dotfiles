@@ -19,7 +19,7 @@
     df = diff
     co = checkout
     sw = switch
-    cm = checkout master
+    sm = switch master
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
     pum = !git pull origin master
     sta = stash
