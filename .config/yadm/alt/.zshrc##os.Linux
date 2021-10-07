@@ -41,12 +41,8 @@ function next {
 
 function mlog {
   local app=$(convert_app_name $1)
-  local flag=${3:--l}
-  if [[ ${flag} == "-t" ]]; then
-    tail -f -n 100 "/var/log/beeswax/buzz-next/$app/$2.log"
-  else
-    less +G "/var/log/beeswax/buzz-next/$app/$2.log"
-  fi
+  local env=${2:-dev}
+  less +G "/var/log/beeswax/buzz-next/$app/$env.log"
 }
 
 function migrate {
