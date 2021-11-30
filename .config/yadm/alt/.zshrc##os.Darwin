@@ -27,7 +27,7 @@ function ww {
   open /Applications/Microsoft\ Outlook.app
   open /Applications/Slack.app
   open /Applications/Spotify.app
-  open /Applications/Typora.app
+  open /Applications/Obsidian.app
 }
 
 zstyle ':completion:*' use-cache on
