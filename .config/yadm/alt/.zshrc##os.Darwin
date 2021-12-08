@@ -11,6 +11,7 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export NVM_DIR="$HOME/.nvm"
 export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
+export YADM="$HOME/.config/yadm"
 
 
 function vm {
@@ -67,10 +68,11 @@ alias in="vm && ssh cloudvm"
 
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
+alias kb="curl -s https://mekibo.com/pages/group-buy-status | awk 'c&&!--c;/GMK Demon Sword\<\/a\>/{c=3}'"
 
 eval $(thefuck --alias)
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
 export PATH="$HOME/.poetry/bin:$PATH"
+
