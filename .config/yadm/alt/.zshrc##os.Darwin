@@ -68,7 +68,7 @@ alias in="vm && ssh cloudvm"
 
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
-alias kb="curl -s https://mekibo.com/pages/group-buy-status | awk 'c&&!--c;/GMK Demon Sword\<\/a\>/{c=3}'"
+alias kb="curl -s https://mekibo.com/pages/group-buy-status | grep 'GMK Demon Sword'"
 
 eval $(thefuck --alias)
 
