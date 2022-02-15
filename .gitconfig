@@ -17,7 +17,6 @@
     br = branch
     ci = commit
     co = checkout
-    df = diff
     hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short
     prul = !git pull && git remote update origin --prune
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
@@ -30,7 +29,7 @@
     sw = switch
 [merge]
     tool = opendiff
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
