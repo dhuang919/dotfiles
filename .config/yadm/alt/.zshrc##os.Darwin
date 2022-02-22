@@ -1,5 +1,6 @@
 [[ $PATH != */Users/derek/Library/Python/3.8/bin* ]] && PATH="${PATH}:/Users/derek/Library/Python/3.8/bin"
 [[ $PATH != *$HOME/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
+[[ $PATH != *$HOME/.poetry/bin* ]] && PATH="${PATH}:${HOME}/.poetry/bin"
 export PATH
 
 export PYTHONPATH=/usr/bin/python
@@ -14,18 +15,8 @@ export GPG_TTY=$(tty)
 export YADM="$HOME/.config/yadm"
 
 
-function vm {
-  local vm_path="$HOME/beeswax/vms/cloudvm"
-  if [[ -d "$vm_path" ]]; then
-    cd "$vm_path"
-  else
-    echo "$vm_path doesn't exist"
-  fi
-}
-
 function ww {
   open /Applications/Insomnia.app
-  open /Applications/Microsoft\ Outlook.app
   open /Applications/Slack.app
   open /Applications/Spotify.app
   open /Applications/Obsidian.app
@@ -64,14 +55,9 @@ alias ll="ls -lahF"
 alias ipy=ipython
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias setup="cd ~/dev/setup"
-alias in="vm && ssh cloudvm"
 
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
 
-eval $(thefuck --alias)
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export PATH="$HOME/.poetry/bin:$PATH"
 
