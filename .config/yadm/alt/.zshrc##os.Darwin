@@ -14,12 +14,27 @@ export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 export YADM="$HOME/.config/yadm"
 
+function morning {
+  local today=$(date +%Y_%m_%d)
+  local today_path=${HOME}/Dropbox/notes/scratch/${today}.md
+  if [ -f ${today_path} ]; then
+    echo "${today}.md already exists"
+  else
+    cat << 'EOF' >> ${today_path}
+# Todo
+  - [ ] 
+
+# Notes
+  * 
+EOF
+  fi
+}
 
 function ww {
-  open /Applications/Insomnia.app
   open /Applications/Slack.app
   open /Applications/Spotify.app
   open /Applications/Obsidian.app
+  open /System/Applications/Mail.app
 }
 
 zstyle ':completion:*' use-cache on
@@ -31,7 +46,7 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 
 plugins=(fzf git)
 
-fpath=(~/.zsh/completion/ $fpath)
+fpath=(~/.zsh/completion $fpath)
 
 if type brew &>/dev/null; then
   fpath+=$(brew --prefix)/share/zsh/site-functions
