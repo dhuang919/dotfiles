@@ -15,14 +15,13 @@ else
 fi
 
 echo "Cloning setup repo..."
-mkdir -p ~/dev && cd ~/dev
+mkdir -p ~/dev
 if [[ -d ~/dev/setup ]]; then
   echo "  -> Setup exists. Skipping..."
 else
-  git clone https://github.com/dhuang919/setup.git
+  git clone https://github.com/dhuang919/setup.git ~/dev
 fi
 
 echo "Running ansible-playbook..."
-cd ~/dev/setup/ansible
-ansible-playbook ./playbooks/macos.yml
+ansible-playbook ~/dev/setup/playbooks/macos.yml
 
