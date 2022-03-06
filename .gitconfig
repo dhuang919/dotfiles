@@ -1,6 +1,11 @@
 [user]
     name = Derek Huang
     email = derekh919@gmail.com
+[branch]
+    autosetupmerge = true
+[diff]
+    mnemonicprefix = true
+    algorithm = patience
 [color]
     ui = auto
 [core]
@@ -37,3 +42,7 @@
     required = true
 [credential]
     helper = store
+[rerere]
+    # Remember my merges
+    # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
+    enabled = true

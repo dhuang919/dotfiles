@@ -1,0 +1,28 @@
+# !/usr/bin/env bash
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+echo "Installing ansible..."
+if command -v ansible &> /dev/null; then
+  echo "  -> Ansible already installed. Skipping..."
+else
+  sudo pip3 install ansible
+fi
+
+echo "Cloning setup repo..."
+mkdir -p ~/dev && cd ~/dev
+if [[ -d ~/dev/setup ]]; then
+  echo "  -> Setup exists. Skipping..."
+else
+  git clone https://github.com/dhuang919/setup.git
+fi
+
+echo "Running ansible-playbook..."
+cd ~/dev/setup/ansible
+ansible-playbook ./playbooks/macos.yml
+
