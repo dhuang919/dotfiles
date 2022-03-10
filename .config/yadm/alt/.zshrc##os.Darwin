@@ -21,10 +21,10 @@ function morning {
   else
     cat << 'EOF' >> ${today_path}
 # Todo
-  - [ ]
+ - [ ]
 
 # Notes
-  *
+ *
 EOF
   fi
 }
