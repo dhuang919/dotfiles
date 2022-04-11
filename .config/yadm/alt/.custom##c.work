@@ -11,7 +11,8 @@ export AWS_REGION=us-east-1
 export GITHUB_API_TOKEN=***REMOVED_GITHUB_PAT***
 export JIRA_API_TOKEN=***REMOVED_JIRA***
 export JIRA_USER_EMAIL="derek.huang@petalcard.com"
-export JIRA_PROJECT="RE"
+export JIRA_PROJECT_KEY=RE
+export JIRA_SAMPLE_ISSUE=RE-1991
 export PT_USER=derek
 export PT_ROOT=~/dev/shared
 

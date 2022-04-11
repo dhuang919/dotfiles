@@ -14,11 +14,14 @@ export GPG_TTY=$(tty)
 export YADM="$HOME/.config/yadm"
 
 function morning {
-  local today=$(date +%Y_%m_%d)
-  local today_path=${HOME}/Dropbox/notes/scratch/${today}.md
+  local year_month=$(date +%Y_%m)
+  local today=$(date +%d)
+  local today_path=${HOME}/Dropbox/notes/scratch/${year_month}/${today}.md
   if [ -f ${today_path} ]; then
     echo "${today}.md already exists"
   else
+    # Make sure the year_month dir exists
+    mkdir -p ${HOME}/Dropbox/notes/scratch/${year_month}
     cat << 'EOF' >> ${today_path}
 # Todo
  - [ ] list todos
