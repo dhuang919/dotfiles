@@ -18,10 +18,10 @@ function _get_last_md {
 }
 
 function dailymd {
-  local readonly scratch_path="${HOME}/Dropbox/notes/scratch"
-  local readonly year_month=$(date +%Y_%m)
-  local readonly today=$(date +%d)
-  local readonly today_path="${scratch_path}/${year_month}/${today}.md"
+  local -r scratch_path="${HOME}/Dropbox/notes/scratch"
+  local -r year_month=$(date +%Y_%m)
+  local -r today=$(date +%d)
+  local -r today_path="${scratch_path}/${year_month}/${today}.md"
 
   if [[ -f "${today_path}" ]]
   then
