@@ -17,7 +17,7 @@ function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
 }
 
-function dailymd {
+function morning {
   local -r scratch_path="${HOME}/Dropbox/notes/scratch"
   local -r year_month=$(date +%Y_%m)
   local -r today=$(date +%d)
