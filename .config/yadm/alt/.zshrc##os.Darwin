@@ -20,7 +20,7 @@ function _get_last_md {
 function morning {
   local -r scratch_path="${HOME}/Dropbox/notes/scratch"
   local -r year_month=$(date +%Y_%m)
-  local -r today=$(date +%d)
+  local -r today=$(date +%d_%a | tr '[:upper:]' '[:lower:]')
   local -r today_path="${scratch_path}/${year_month}/${today}.md"
 
   if [[ -f "${today_path}" ]]
