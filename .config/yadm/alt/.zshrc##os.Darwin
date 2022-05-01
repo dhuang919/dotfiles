@@ -13,26 +13,51 @@ export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 export YADM="$HOME/.config/yadm"
 
-function morning {
-  local year_month=$(date +%Y_%m)
-  local today=$(date +%d)
-  local today_path=${HOME}/Dropbox/notes/scratch/${year_month}/${today}.md
-  if [ -f ${today_path} ]; then
-    echo "${today}.md already exists"
+function _get_last_md {
+  echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
+}
+
+function dailymd {
+  local readonly scratch_path="${HOME}/Dropbox/notes/scratch"
+  local readonly year_month=$(date +%Y_%m)
+  local readonly today=$(date +%d)
+  local readonly today_path="${scratch_path}/${year_month}/${today}.md"
+
+  if [[ -f "${today_path}" ]]
+  then
+    echo "${today_path} already exists" >&2
+    exit 1
+  fi
+
+  # Make sure the current year month dir exists
+  mkdir -p "${scratch_path}/${year_month}"
+
+  # Get the most recent md before today
+  local prev_md=$(_get_last_md "${scratch_path}/${year_month}")
+
+  local prev_dir
+  # If the prev md is empty, today is the first of the month
+  if [[ -z "${prev_md}" ]]
+  then
+    prev_dir=$(date -d "1 month ago" +%Y_%m)
+    prev_md=$(_get_last_md "${scratch_path}/${prev_dir}")
   else
-    # Make sure the year_month dir exists
-    mkdir -p ${HOME}/Dropbox/notes/scratch/${year_month}
-    cat << 'EOF' >> ${today_path}
+    prev_dir="${year_month}"
+  fi
+
+  local readonly unfinished_todos=$(sed -ne '/- \[ \] [\w]*/p' "${scratch_path}/${prev_dir}/${prev_md}")
+
+  cat << EOF >> ${today_path}
 # Todo
  - [ ] list todos
+$unfinished_todos
 
 # Notes
-*
+* 
 
 # Decisions
-*
+* 
 EOF
-  fi
 }
 
 function ww {
