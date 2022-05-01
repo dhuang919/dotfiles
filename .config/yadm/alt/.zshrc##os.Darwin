@@ -26,7 +26,7 @@ function morning {
   if [[ -f "${today_path}" ]]
   then
     echo "${today_path} already exists" >&2
-    exit 1
+    return 1
   fi
 
   # Make sure the current year month dir exists
@@ -39,7 +39,7 @@ function morning {
   # If the prev md is empty, today is the first of the month
   if [[ -z "${prev_md}" ]]
   then
-    prev_dir=$(date -d "1 month ago" +%Y_%m)
+    prev_dir=$(date -v -1m +%Y_%m)
     prev_md=$(_get_last_md "${scratch_path}/${prev_dir}")
   else
     prev_dir="${year_month}"
