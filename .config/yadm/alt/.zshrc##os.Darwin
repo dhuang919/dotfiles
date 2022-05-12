@@ -66,6 +66,7 @@ function ww {
   open /Applications/Spotify.app
   open /Applications/Obsidian.app
   open /System/Applications/Mail.app
+  morning
 }
 
 zstyle ':completion:*' use-cache on
