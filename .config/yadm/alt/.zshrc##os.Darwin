@@ -49,7 +49,6 @@ function morning {
 
   cat << EOF >> ${today_path}
 # Todo
-- [ ] 
 $unfinished_todos
 
 # Notes
