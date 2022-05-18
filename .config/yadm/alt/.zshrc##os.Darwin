@@ -17,6 +17,14 @@ function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
 }
 
+function get_lc_times {
+  ag --nofilename -i 'leetcode' ~/Dropbox/notes/scratch | \
+  grep -E '[0-9]{4} - [0-9]{4}' | \
+  tr -d '* leetcode ' | \
+  tr , '\n' | \
+  sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4"),/'
+}
+
 function morning {
   local -r scratch_path="${HOME}/Dropbox/notes/scratch"
   local -r year_month=$(date +%Y_%m)
