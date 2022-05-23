@@ -60,7 +60,7 @@ function morning {
 $unfinished_todos
 
 # Notes
-- leetcode
+* leetcode
 
 # Decisions
 EOF
