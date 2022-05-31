@@ -72,6 +72,7 @@ function tp {
     echo "blueutil not installed" >&2
     return 1
   fi
+  blueutil --unpair a0-78-17-e3-31-79
   blueutil --connect a0-78-17-e3-31-79
 }
 
