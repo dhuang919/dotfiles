@@ -1,6 +1,7 @@
-[[ $PATH != */Users/derek/Library/Python/3.8/bin* ]] && PATH="${PATH}:/Users/derek/Library/Python/3.8/bin"
-[[ $PATH != *$HOME/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
-[[ $PATH != *$HOME/.poetry/bin* ]] && PATH="${PATH}:${HOME}/.poetry/bin"
+[[ $PATH != *$HOME/.local/bin* ]] && PATH="${HOME}/.local/bin:${PATH}"
+[[ $PATH != *$HOME/.poetry/bin* ]] && PATH="${HOME}/.poetry/bin:${PATH}"
+[[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="/usr/local/opt/findutils/libexec/gnubin:${PATH}"
+[[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 export PATH
 
 export PYTHONDONTWRITEBYTECODE=1
