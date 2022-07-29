@@ -10,6 +10,7 @@ export JIRA_SAMPLE_ISSUE=RE-1991
 export PAGERDUTY_TOKEN="***REMOVED_PAGERDUTY***"
 export PT_USER=derek
 export PT_ROOT=~/dev/shared
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 alias v_staging_login="vt staging login -method=okta username=derek.huang@petalcard.com"
 alias v_prod_login="vt production login -method=okta username=derek.huang@petalcard.com"
@@ -41,6 +42,5 @@ function pta {
 }
 
 alias pt=/Users/derek.huang/dev/shared/pt/venv/bin/pt
-alias oncalls="python ~/dev/sandbox/py/get_pagerduty_oncalls.py"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+alias oncalls=~/dev/sandbox/py/get_pagerduty_oncalls
 
