@@ -7,6 +7,7 @@ export JIRA_API_TOKEN=***REMOVED_JIRA***
 export JIRA_USER_EMAIL="derek.huang@petalcard.com"
 export JIRA_PROJECT_KEY=RE
 export JIRA_SAMPLE_ISSUE=RE-1991
+export PAGERDUTY_TOKEN="***REMOVED_PAGERDUTY***"
 export PT_USER=derek
 export PT_ROOT=~/dev/shared
 
@@ -22,12 +23,14 @@ function vt {
 function get_db_iam_token {
   local env=${1:-staging}
   local SERVICE_NAME=decision_engine
-  AWS_ACCESS_KEY_ID=$(vt "$env" kv get -field=access_key_id secret/${SERVICE_NAME}/postgres/aws) \
-  AWS_SECRET_ACCESS_KEY=$(vt "$env" kv get -field=secret_access_key secret/${SERVICE_NAME}/postgres/aws) \
-  TOKEN=$(aws rds generate-db-auth-token --hostname $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/host) \
-  --port $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/port) \
-  --region $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/aws_region) \
-  --username $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/username))
+  TOKEN=$(\
+    AWS_SECRET_ACCESS_KEY=$(vt "$env" kv get -field=secret_access_key secret/${SERVICE_NAME}/postgres/aws) \
+    AWS_ACCESS_KEY_ID=$(vt "$env" kv get -field=access_key_id secret/${SERVICE_NAME}/postgres/aws) \
+    aws rds generate-db-auth-token --hostname $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/host) \
+    --port $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/port) \
+    --region $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/aws_region) \
+    --username $(vt "$env" kv get -field=value secret/${SERVICE_NAME}/postgres/username) \
+  )
   echo "psql \"host=decision-engine-database1-$env.cqrfni06lp1e.us-east-1.rds.amazonaws.com dbname=decision_engine user=decision_engine password=$TOKEN\""
 }
 
@@ -38,5 +41,6 @@ function pta {
 }
 
 alias pt=/Users/derek.huang/dev/shared/pt/venv/bin/pt
+alias oncalls="python ~/dev/sandbox/py/get_pagerduty_oncalls.py"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
