@@ -2,6 +2,7 @@
 [[ $PATH != *$HOME/.poetry/bin* ]] && PATH="${HOME}/.poetry/bin:${PATH}"
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="/usr/local/opt/findutils/libexec/gnubin:${PATH}"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+[[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="/usr/local/texlive/2022basic/bin/universal-darwin:${PATH}"
 export PATH
 
 export PYTHONDONTWRITEBYTECODE=1
@@ -13,6 +14,7 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 export YADM="$HOME/.config/yadm"
+export SCRATCH="$HOME/Dropbox/notes/scratch/"
 
 function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
