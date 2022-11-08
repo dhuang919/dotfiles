@@ -29,10 +29,9 @@ function get_lc_times {
 }
 
 function morning {
-  local -r scratch_path="${HOME}/Dropbox/notes/scratch"
   local -r year_month=$(date +%Y_%m)
   local -r today=$(date +%d_%a | tr '[:upper:]' '[:lower:]')
-  local -r today_path="${scratch_path}/${year_month}/${today}.md"
+  local -r today_path="${SCRATCH}/${year_month}/${today}.md"
 
   if [[ -f "${today_path}" ]]
   then
@@ -41,22 +40,22 @@ function morning {
   fi
 
   # Make sure the current year month dir exists
-  mkdir -p "${scratch_path}/${year_month}"
+  mkdir -p "${SCRATCH}/${year_month}"
 
   # Get the most recent md before today
-  local prev_md=$(_get_last_md "${scratch_path}/${year_month}")
+  local prev_md=$(_get_last_md "${SCRATCH}/${year_month}")
 
   local prev_dir
   # If the prev md is empty, today is the first of the month
   if [[ -z "${prev_md}" ]]
   then
     prev_dir=$(date -d "1 month ago" +%Y_%m)
-    prev_md=$(_get_last_md "${scratch_path}/${prev_dir}")
+    prev_md=$(_get_last_md "${SCRATCH}/${prev_dir}")
   else
     prev_dir="${year_month}"
   fi
 
-  local -r unfinished_todos=$(sed -ne '/- \[ \] [\w]*/p' "${scratch_path}/${prev_dir}/${prev_md}")
+  local -r unfinished_todos=$(sed -ne '/- \[ \] [\w]*/p' "${SCRATCH}/${prev_dir}/${prev_md}")
 
   cat << EOF >> ${today_path}
 # Todo
