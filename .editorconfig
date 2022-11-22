@@ -11,6 +11,9 @@ indent_style = space
 # Remove any whitespace characters preceding newline
 trim_trailing_whitespae = true
 
+[*.{js,ts}]
+indent_size = 2
+
 [*.py]
 indent_size = 4
 
