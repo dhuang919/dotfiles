@@ -76,10 +76,9 @@ function tp {
 }
 
 function ww {
-  open /Applications/Slack.app
   open /Applications/Spotify.app
   open /Applications/Obsidian.app
-  open /System/Applications/Mail.app
+  open /System/Applications/Calendar.app
   morning
 }
 
