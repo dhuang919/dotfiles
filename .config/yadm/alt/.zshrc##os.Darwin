@@ -79,6 +79,7 @@ function ww {
   open /Applications/Spotify.app
   open /Applications/Obsidian.app
   open /System/Applications/Calendar.app
+  open /Applications/Bitwarden.app
   morning
 }
 
