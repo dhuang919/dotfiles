@@ -113,7 +113,7 @@ zmodload -i zsh/complist
 [ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && \. /usr/local/opt/nvm/etc/bash_completion.d/nvm
 
 alias htop="sudo htop"
-alias ll="ls -lahF"
+alias ll="ls -lAh"
 alias ipy=ipython
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
