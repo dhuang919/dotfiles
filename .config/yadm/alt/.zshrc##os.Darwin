@@ -31,7 +31,7 @@ function get_lc_times {
 function morning {
   local -r year_month=$(date +%Y_%m)
   local -r today=$(date +%d_%a | tr '[:upper:]' '[:lower:]')
-  local -r today_path="${SCRATCH}/${year_month}/${today}.md"
+  local -r today_path="${SCR}/${year_month}/${today}.md"
 
   if [[ -f "${today_path}" ]]
   then
@@ -40,22 +40,22 @@ function morning {
   fi
 
   # Make sure the current year month dir exists
-  mkdir -p "${SCRATCH}/${year_month}"
+  mkdir -p "${SCR}/${year_month}"
 
   # Get the most recent md before today
-  local prev_md=$(_get_last_md "${SCRATCH}/${year_month}")
+  local prev_md=$(_get_last_md "${SCR}/${year_month}")
 
   local prev_dir
   # If the prev md is empty, today is the first of the month
   if [[ -z "${prev_md}" ]]
   then
     prev_dir=$(date -d "1 month ago" +%Y_%m)
-    prev_md=$(_get_last_md "${SCRATCH}/${prev_dir}")
+    prev_md=$(_get_last_md "${SCR}/${prev_dir}")
   else
     prev_dir="${year_month}"
   fi
 
-  local -r unfinished_todos=$(sed -ne '/- \[ \] [\w]*/p' "${SCRATCH}/${prev_dir}/${prev_md}")
+  local -r unfinished_todos=$(sed -ne '/- \[ \] [\w]*/p' "${SCR}/${prev_dir}/${prev_md}")
 
   cat << EOF >> ${today_path}
 # Todo
@@ -76,7 +76,6 @@ function tp {
 }
 
 function ww {
-  open /Applications/Spotify.app
   open /Applications/Obsidian.app
   open /System/Applications/Calendar.app
   open /Applications/Bitwarden.app
