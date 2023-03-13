@@ -1,5 +1,3 @@
-[[ $PATH != *$HOME/.local/bin* ]] && PATH="${HOME}/.local/bin:${PATH}"
-[[ $PATH != *$HOME/.poetry/bin* ]] && PATH="${HOME}/.poetry/bin:${PATH}"
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="/usr/local/opt/findutils/libexec/gnubin:${PATH}"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 [[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="/usr/local/texlive/2022basic/bin/universal-darwin:${PATH}"
