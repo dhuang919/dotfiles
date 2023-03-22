@@ -77,6 +77,7 @@ function ww {
   open /Applications/Obsidian.app
   open /System/Applications/Calendar.app
   open /Applications/Bitwarden.app
+  open /Applications/Docker.app
   morning
 }
 
