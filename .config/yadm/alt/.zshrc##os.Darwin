@@ -27,8 +27,8 @@ function get_lc_times {
 }
 
 function morning {
-  local -r year_month=$(date +%Y_%m)
-  local -r today=$(date +%d_%a | tr '[:upper:]' '[:lower:]')
+  local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
+  local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
   local -r today_path="${SCR}/${year_month}/${today}.md"
 
   if [[ -f "${today_path}" ]]
@@ -47,7 +47,7 @@ function morning {
   # If the prev md is empty, today is the first of the month
   if [[ -z "${prev_md}" ]]
   then
-    prev_dir=$(date -d "1 month ago" +%Y_%m)
+    prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y_%m)
     prev_md=$(_get_last_md "${SCR}/${prev_dir}")
   else
     prev_dir="${year_month}"
