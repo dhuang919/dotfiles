@@ -1,0 +1,12 @@
+export SCR="${HOME}/Library/CloudStorage/OneDrive-BloombergLP/notes/scratch"
+export GH_NO_UPDATE_NOTIFIER=1
+export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
+
+BBID=31453293
+
+alias bbmd='~/dev/sandbox/py/to_md'
+alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://bproxy.tdmz1.bloomberg.com:80'
+alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81'
+alias macbootstrap='curl -s https://lcldev-public.dx.bloomberg.com/mac-bootstrap -o /tmp/mac-bootstrap && chmod +x /tmp/mac-bootstrap && /tmp/mac-bootstrap'
+alias ts='cd ~/Projects/tssr'
+
