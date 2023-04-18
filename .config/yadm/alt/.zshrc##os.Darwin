@@ -53,7 +53,7 @@ function morning {
     prev_dir="${year_month}"
   fi
 
-  local -r unfinished_todos=$(sed -E -ne '(- \[ \] [\w]*|#do_it|#schedule_it|#delegate_it|#delete_it)/p' "${SCR}/${prev_dir}/${prev_md}")
+  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|#do_it|#schedule_it|#delegate_it|#delete_it)/p' "${SCR}/${prev_dir}/${prev_md}")
 
   cat << EOF >> ${today_path}
 # Todo
