@@ -26,6 +26,18 @@ function get_lc_times {
   sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
 }
 
+function man {
+  env \
+  LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+  LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+  LESS_TERMCAP_me="$(printf "\e[0m")" \
+  LESS_TERMCAP_se="$(printf "\e[0m")" \
+  LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
+  LESS_TERMCAP_ue="$(printf "\e[0m")" \
+  LESS_TERMCAP_us="$(printf "\e[1;32m")" \
+  man "${@}"
+}
+
 function morning {
   local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
   local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
@@ -104,11 +116,6 @@ zmodload -i zsh/complist
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-[ -s /usr/local/opt/nvm/nvm.sh ] && \. /usr/local/opt/nvm/nvm.sh
-[ -s /usr/local/opt/nvm/etc/bash_completion.d/nvm ] && \. /usr/local/opt/nvm/etc/bash_completion.d/nvm
 
 alias htop="sudo htop"
 alias ll="ls -lAh"
