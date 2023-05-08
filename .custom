@@ -11,7 +11,7 @@ export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
 
 BBID=31453293
 
-alias bbmd='~/dev/sandbox/py/to_md'
+alias bbmd='~/dev/sandbox/py/bbmd'
 alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://bproxy.tdmz1.bloomberg.com:80'
 alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81'
 alias macbootstrap='curl -s https://lcldev-public.dx.bloomberg.com/mac-bootstrap -o /tmp/mac-bootstrap && chmod +x /tmp/mac-bootstrap && /tmp/mac-bootstrap'
