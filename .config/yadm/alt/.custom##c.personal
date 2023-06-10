@@ -1,2 +1,5 @@
 export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
 
+alias bf="cd ~/dev/bradfield-csi-5/derekhuang"
+alias bp="cd ~/dev/bradfield-csi-5/derekhuang/prep-phase"
+
