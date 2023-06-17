@@ -1,7 +1,6 @@
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
 [[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="${PATH}:/usr/local/texlive/2022basic/bin/universal-darwin"
-[[ $PATH != */Users/derek/.local/bin* ]] && PATH="${PATH}:/Users/derek/.local/bin"
 export PATH
 
 export PYTHONDONTWRITEBYTECODE=1
@@ -57,11 +56,14 @@ function morning {
   local prev_md=$(_get_last_md "${SCR}/${year_month}")
 
   local prev_dir
-  # If the prev md is empty, today is the first of the month
   if [[ -z "${prev_md}" ]]
   then
-    prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y_%m)
-    prev_md=$(_get_last_md "${SCR}/${prev_dir}")
+    # ensure we get the last md if it's been longer than a month since the last
+    while [[ -z "${prev_md}" ]]
+    do
+      prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y_%m)
+      prev_md=$(_get_last_md "${SCR}/${prev_dir}")
+    done
   else
     prev_dir="${year_month}"
   fi
@@ -128,4 +130,3 @@ alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
