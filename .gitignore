@@ -198,6 +198,7 @@ Exercism/
 .videostream/
 .pylint.d/
 .kube/
+.vagrant.d/
 
 ## .config abusers
 .config/opera/
