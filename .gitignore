@@ -194,6 +194,10 @@ caches/
 .tldrc/
 .pyenv/
 .docker/
+Exercism/
+.videostream/
+.pylint.d/
+.kube/
 
 ## .config abusers
 .config/opera/
