@@ -27,6 +27,7 @@
 .AppleDouble
 .LSOverride
 
+
 # Icon must end with two \r
 Icon
 
@@ -137,18 +138,27 @@ $RECYCLE.BIN/
 *.swp
 
 # Homedir yadm optimization
-Videos/
-Pictures/
+Applications/
+Applications (Parallels)/
 Downloads/
-IdeaProjects/
-Templates/
 Dropbox/
 Desktop/
 Documents/
+IdeaProjects/
+Library/
+Music/
+Movies/
+Pictures/
+Projects/
+Templates/
+Videos/
+dev/
+go/
 .cache/
 caches/
 .zoom/
 .zi/
+.vscode/
 .vscode-oss/
 .vim/
 .thunderbird/
@@ -181,6 +191,9 @@ caches/
 .cargo/
 .asdf/
 .adobe-reader*/
+.tldrc/
+.pyenv/
+.docker/
 
 ## .config abusers
 .config/opera/
