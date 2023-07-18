@@ -1,8 +1,15 @@
 local o = require('open')
 local s = require('screens')
 local home = false
+local work = false
+
 if s.SCREENS['HORIZONTAL'] ~= nil then
-  home = s.SCREENS.HORIZONTAL:name() == 'DELL U2518D'
+  if s.SCREENS.HORIZONTAL:name() == 'DELL U2518D' then
+    home = true
+  end
+  if s.SCREENS.HORIZONTAL:name() == 'BFP100-27 (1)' then
+    work = true
+  end
 end
 
 local ratios = {
@@ -18,11 +25,23 @@ local ratios = {
     height = 0.6,
     width = 0.62,
   },
-  chrome = {
-    top = home and 0.19 or 0,
-    left = home and 0 or 0.1,
-    height = home and 0.378 or 1,
-    width = home and 1 or 0.8,
+  chrome_lptp = {
+    top = 0,
+    left = 0.1,
+    height = 1,
+    width = 0.8,
+  },
+  chrome_hm = {
+    top = 0.19,
+    left = 0.1,
+    height = 0.378,
+    width = 1,
+  },
+  chrome_wrk = {
+    top = 0,
+    left = 0,
+    height = 0.66,
+    width = 0.5,
   },
   iterm = {
     top = home and 0.568 or 0,
@@ -64,7 +83,14 @@ hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'W', function()
   o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian)
 
   o.moveIfOpen('iTerm2', home and 'VERTICAL' or 'LAPTOP', ratios.iterm)
-  o.moveIfOpen('Google Chrome', home and 'VERTICAL' or 'LAPTOP', ratios.chrome)
+
+  if home then
+    o.moveIfOpen('Google Chrome', 'VERTICAL', ratios.chrome_hm)
+  elseif work then
+    o.moveIfOpen('Google Chrome', 'VERTICAL', ratios.chrome_wrk)
+  else
+    o.moveIfOpen('Google Chrome', 'LAPTOP', ratios.chrome_lptp)
+  end
 end)
 
 hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'R', function()
