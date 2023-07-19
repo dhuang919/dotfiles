@@ -6,8 +6,7 @@ local work = false
 if s.SCREENS['HORIZONTAL'] ~= nil then
   if s.SCREENS.HORIZONTAL:name() == 'DELL U2518D' then
     home = true
-  end
-  if s.SCREENS.HORIZONTAL:name() == 'BFP100-27 (1)' then
+  elseif s.SCREENS.HORIZONTAL:name() == 'BFP100-27 (1)' then
     work = true
   end
 end
@@ -33,7 +32,7 @@ local ratios = {
   },
   chrome_hm = {
     top = 0.19,
-    left = 0.1,
+    left = 0,
     height = 0.378,
     width = 1,
   },
