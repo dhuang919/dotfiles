@@ -2,5 +2,6 @@ export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
 
 alias bb="cd ~/dev/bloomberg"
 alias bf="cd ~/dev/bradfield/derekhuang"
+alias bfc="code ~/dev/workspaces/bradfield.code-workspace"
 alias boug="cd ~/dev/bougie"
 

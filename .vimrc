@@ -14,6 +14,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
