@@ -15,6 +15,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'preservim/nerdtree'
 
 " Initialize plugin system
 call plug#end()
@@ -83,6 +84,7 @@ set ruler
 set completeopt+=menuone
 set statusline+=%#warningmsg#
 set statusline+=%*
+set hlsearch
 
 nmap ß <C-w>s
 
