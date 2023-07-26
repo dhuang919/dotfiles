@@ -356,19 +356,22 @@ tmux_conf_copy_to_os_clipboard=false
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
 #set -g status-keys vi
 #set -g mode-keys vi
 
-# replace C-b by C-a instead of using both prefixes
+# replace C-b by M-Space
 set -gu prefix2
 unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
+unbind C-b
+set -g prefix M-Space
+bind M-Space send-prefix
+
+# reload config
+bind r source ~/.config/tmux/tmux.conf; display "tmux.conf sourced!"
 
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
