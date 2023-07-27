@@ -66,17 +66,11 @@ local ratios = {
     height = 0.77,
     width = 0.7,
   },
-  obsidian_wk = {
-    top = 0.21,
+  obsidian = {
+    top = 0.19,
     left = 0.12,
-    height = 0.78,
+    height = 0.8,
     width = 0.85,
-  },
-  obsidian_hm = {
-    top = 0.08,
-    left = 0.18,
-    height = 0.89,
-    width = 0.788888888,
   },
 }
 
@@ -85,11 +79,7 @@ hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'W', function()
   o.moveIfOpen('Spotify', 'LAPTOP', ratios.spotify)
   o.moveIfOpen('bbvpn2', 'LAPTOP', ratios.bbvpn)
   o.moveIfOpen('Calendar', 'LAPTOP', ratios.calendar)
-  if home then
-    o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian_hm)
-  else
-    o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian_wk)
-  end
+  o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian)
 
   o.moveIfOpen('iTerm2', home and 'VERTICAL' or 'LAPTOP', ratios.iterm)
 
