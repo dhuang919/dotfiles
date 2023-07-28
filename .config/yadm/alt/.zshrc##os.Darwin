@@ -10,7 +10,6 @@ export YADM="$HOME/.config/yadm"
 export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch/"
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
-export TMUX="$HOME/.config/tmux"
 
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
