@@ -4,4 +4,13 @@ alias bb="cd ~/dev/bloomberg"
 alias bf="cd ~/dev/bradfield/derekhuang"
 alias bfc="code ~/dev/workspaces/bradfield.code-workspace"
 alias boug="cd ~/dev/bougie"
+alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
+
+function get_lc_times {
+  ag --nofilename -i 'leetcode' ~/Dropbox/notes/scratch | \
+  grep -E '[0-9]{4} - [0-9]{4}' | \
+  tr -d '* leetcode ' | \
+  tr , '\n' | \
+  sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
+}
 

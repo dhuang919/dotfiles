@@ -135,7 +135,6 @@ alias htop="sudo htop"
 alias ll="ls -lAh"
 alias ipy=ipython
 alias bubu="brew update && brew upgrade && brew cleanup"
-alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
 alias setup="cd ~/dev/setup"
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
