@@ -137,4 +137,7 @@ alias bubu="brew update && brew upgrade && brew cleanup"
 alias setup="cd ~/dev/setup"
 alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
+alias tme="vim ~/.config/tmux/tmux.conf"
+alias tmle="vim ~/.config/tmux/tmux.conf.local"
+
 
