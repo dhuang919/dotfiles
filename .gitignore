@@ -202,6 +202,8 @@ Exercism/
 .pylint.d/
 .kube/
 .vagrant.d/
+.oh-my-zsh/
+.fzf/
 
 ## .config abusers
 .config/opera/

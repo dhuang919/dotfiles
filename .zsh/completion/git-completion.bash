@@ -1,0 +1,1 @@
+/Users/derek/dev/setup/roles/dotfiles/files/git-completion.bash
