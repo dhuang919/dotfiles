@@ -366,7 +366,7 @@ set -g mouse on
 #set -g status-keys vi
 #set -g mode-keys vi
 
-# replace C-b by M-Space
+# replace C-b with M-Space
 set -gu prefix2
 unbind C-a
 unbind C-b
