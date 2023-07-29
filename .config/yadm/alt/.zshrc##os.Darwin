@@ -28,14 +28,6 @@ function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
 }
 
-function get_lc_times {
-  ag --nofilename -i 'leetcode' ~/Dropbox/notes/scratch | \
-  grep -E '[0-9]{4} - [0-9]{4}' | \
-  tr -d '* leetcode ' | \
-  tr , '\n' | \
-  sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
-}
-
 function man {
   env \
   LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
@@ -48,7 +40,7 @@ function man {
   man "${@}"
 }
 
-function morning {
+function mng {
   local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
   local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
   local -r today_path="${SCR}/${year_month}/${today}.md"
@@ -103,7 +95,7 @@ function ww {
   open /System/Applications/Calendar.app
   open /Applications/Bitwarden.app
   open /Applications/Docker.app
-  morning
+  mng
 }
 
 zstyle ':completion:*' use-cache on
@@ -139,5 +131,4 @@ alias sbx="cd ${HOME}/dev/sandbox"
 alias sbxc="code ${HOME}/dev/sandbox"
 alias tme="vim ~/.config/tmux/tmux.conf"
 alias tmle="vim ~/.config/tmux/tmux.conf.local"
-
 
