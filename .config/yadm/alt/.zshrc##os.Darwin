@@ -81,13 +81,23 @@ EOF
 }
 
 function tp {
-  if ! type blueutil &> /dev/null
-  then
+  if ! type blueutil &> /dev/null; then
     echo "blueutil not installed" >&2
     return 1
+  elif [ $(blueutil -p) -eq 0 ]; then
+    echo "bluetooth needs to be turned on" >&2
+    return 1
   fi
-  blueutil --unpair a0-78-17-e3-31-79
-  blueutil --connect a0-78-17-e3-31-79
+  local trackpad="a0-78-17-e3-31-79"
+  local tries=0
+  while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
+    if [ tries -eq 5 ]; then
+      echo "stopping after 5 retries" >&2
+      return 1
+    fi
+    blueutil --connect "$trackpad"
+    ((tries++))
+  done
 }
 
 function ww {

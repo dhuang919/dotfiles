@@ -12,7 +12,7 @@ indent_size = 4
 [BUILD]
 indent_size = 4
 
-[*.{c,h,cpp,hpp,bash,sh,zsh,js,ts,json,lua,proto,yml}]
+[*.{c,h,cpp,hpp,bash,sh,zsh,js,ts,json,lua,proto,yml,*rc}]
 indent_size = 2
 
 [Makefile]
