@@ -16,6 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'jiangmiao/auto-pairs'
 
 " Initialize plugin system
 call plug#end()

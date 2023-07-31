@@ -85,18 +85,18 @@ function tp {
     echo "blueutil not installed" >&2
     return 1
   elif [ $(blueutil -p) -eq 0 ]; then
-    echo "bluetooth needs to be turned on" >&2
-    return 1
+    echo "Bluetooth is off. Toggling..." >&2
+    blueutil -p toggle
   fi
   local trackpad="a0-78-17-e3-31-79"
   local tries=0
   while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
-    if [ tries -eq 5 ]; then
+    if [ "$tries" -eq 5 ]; then
       echo "stopping after 5 retries" >&2
       return 1
     fi
     blueutil --connect "$trackpad"
-    ((tries++))
+    (( tries++ ))
   done
 }
 
