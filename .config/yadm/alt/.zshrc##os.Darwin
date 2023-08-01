@@ -11,6 +11,18 @@ export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch/"
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 
+# add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
 [[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="${PATH}:/usr/local/texlive/2022basic/bin/universal-darwin"
@@ -26,18 +38,6 @@ function fmt_img {
 
 function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
-}
-
-function man {
-  env \
-  LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
-  LESS_TERMCAP_md="$(printf "\e[1;31m")" \
-  LESS_TERMCAP_me="$(printf "\e[0m")" \
-  LESS_TERMCAP_se="$(printf "\e[0m")" \
-  LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
-  LESS_TERMCAP_ue="$(printf "\e[0m")" \
-  LESS_TERMCAP_us="$(printf "\e[1;32m")" \
-  man "${@}"
 }
 
 function mng {

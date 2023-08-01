@@ -13,10 +13,14 @@ endif
 call plug#begin('~/.vim/bundle')
 
 Plug 'morhetz/gruvbox'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" Language plugins
+Plug 'vim-scripts/c.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
@@ -30,28 +34,30 @@ let g:gruvbox_contrast_dark='hard'
 let NERDTreeShowHidden=1
 
 set background=dark
-set statusline+=%f
-set number
-set mouse=a
-set smartindent
-set expandtab
+set backspace=indent,eol,start
+set clipboard=unnamed
 set cursorline
-set wildmenu
+set expandtab
+set hlsearch
+set incsearch
+set mouse=a
+set nocp
+set nospell
+set number
+set ruler
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 set showmatch
+set smartindent
 set splitbelow
 set splitright
-set nospell
-set incsearch
-set updatetime=1000
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set nocp
-set backspace=indent,eol,start
-set ruler
 set statusline+=%#warningmsg#
 set statusline+=%*
-set hlsearch
+set statusline+=%f
+set updatetime=1000
+set wildmenu
 
 map <C-n> :NERDTreeToggle<CR>
+map Q <Nop>
 
 filetype plugin indent on
 
