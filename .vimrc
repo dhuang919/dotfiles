@@ -29,11 +29,6 @@ call plug#end()
 " ============================================
 " Editor Options
 " ============================================
-let g:gruvbox_italic=0
-let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-let NERDTreeShowHidden=1
-
 set background=dark
 set backspace=indent,eol,start
 set clipboard=unnamed
@@ -57,6 +52,11 @@ set statusline+=%f
 set updatetime=1000
 set wildmenu
 
+let g:gruvbox_italic=0
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+
+let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
 map Q <Nop>
 
