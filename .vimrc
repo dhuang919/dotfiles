@@ -17,6 +17,7 @@ Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 " Language plugins
 Plug 'vim-scripts/c.vim'
@@ -28,9 +29,9 @@ call plug#end()
 " ============================================
 " Editor Options
 " ============================================
-colorscheme gruvbox
-let g:gruvbox_italic=1
+let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 let NERDTreeShowHidden=1
 
 set background=dark
