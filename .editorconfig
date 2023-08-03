@@ -9,9 +9,6 @@ trim_trailing_whitespae = true
 [*.{go,py}]
 indent_size = 4
 
-[BUILD]
-indent_size = 4
-
 [*.{c,h,cpp,hpp,bash,sh,zsh,js,ts,json,lua,proto,yml,*rc}]
 indent_size = 2
 
