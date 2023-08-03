@@ -6,8 +6,6 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export NVM_DIR="$HOME/.nvm"
 export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
-export YADM="$HOME/.config/yadm"
-export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch/"
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/opt/go/libexec
 
@@ -22,6 +20,11 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
+
+# personal env vars
+export YADM="$HOME/.config/yadm"
+export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch"
+export ITERM_DPS="$HOME/Library/Application Support/iTerm2/DynamicProfiles"
 
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
@@ -134,13 +137,12 @@ zmodload -i zsh/complist
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
 
-alias htop="sudo htop"
-alias ll="ls -lAh"
-alias ipy=ipython
 alias bubu="brew update && brew upgrade && brew cleanup"
+alias htop="sudo htop"
+alias ipy=ipython
+alias itdpe="vim $ITERM_DPS/dynamic_profiles.json"
+alias ll="ls -lAh"
+alias sbx="cd $HOME/dev/sandbox"
+alias sbxc="code $HOME/dev/sandbox"
 alias setup="cd ~/dev/setup"
-alias sbx="cd ${HOME}/dev/sandbox"
-alias sbxc="code ${HOME}/dev/sandbox"
-alias tme="vim ~/.config/tmux/tmux.conf"
-alias tmle="vim ~/.config/tmux/tmux.conf.local"
 
