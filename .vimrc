@@ -12,10 +12,12 @@ endif
 " Start installing plugins. We use .vim/bundle for backwards compatibility
 call plug#begin('~/.vim/bundle')
 
-Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
@@ -52,13 +54,18 @@ set statusline+=%f
 set updatetime=1000
 set wildmenu
 
+" gruvbox settings
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
+" NERDTree settings
 let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
 map Q <Nop>
+
+" fzf settings
+let g:fzf_layout = { 'down': '40%' }
 
 filetype plugin indent on
 
