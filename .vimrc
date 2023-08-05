@@ -20,6 +20,8 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Language plugins
 Plug 'vim-scripts/c.vim'
@@ -54,6 +56,8 @@ set statusline+=%f
 set updatetime=1000
 set wildmenu
 
+filetype plugin indent on
+
 " gruvbox settings
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
@@ -67,5 +71,5 @@ map Q <Nop>
 " fzf settings
 let g:fzf_layout = { 'down': '40%' }
 
-filetype plugin indent on
-
+" vim-airline settings
+let g:airline_theme='deus'
