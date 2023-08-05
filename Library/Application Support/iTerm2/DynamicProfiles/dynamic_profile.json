@@ -335,7 +335,7 @@
         "Red Component": 0.73333334922790527,
         "Blue Component": 0.73333334922790527
       },
-      "Use Non-ASCII Font": false,
+      "Use Non-ASCII Font": true,
       "Right Option Key Sends": 2,
       "Normal Font": "SourceCodeProForPowerline-Regular 12",
       "Custom Directory": "Recycle",
