@@ -27,7 +27,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/c.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Initialize plugin system
 call plug#end()
 
 " ============================================
@@ -50,9 +49,6 @@ set showmatch
 set smartindent
 set splitbelow
 set splitright
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline+=%f
 set updatetime=1000
 set wildmenu
 
@@ -64,7 +60,7 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
 " NERDTree settings
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 map <C-n> :NERDTreeToggle<CR>
 map Q <Nop>
 
@@ -72,4 +68,20 @@ map Q <Nop>
 let g:fzf_layout = { 'down': '40%' }
 
 " vim-airline settings
+let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.whitespace = 'Ξ'
+
