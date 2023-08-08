@@ -95,11 +95,12 @@ function tp {
   fi
   local trackpad="a0-78-17-e3-31-79"
   local tries=0
+  local retries=3
   echo "Unpairing..."
   blueutil --unpair "$trackpad"
   while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
-    if [ "$tries" -eq 3 ]; then
-      echo "stopping after 3 retries" >&2
+    if [ "$tries" -eq "$retries" ]; then
+      echo "stopping after $retries retries" >&2
       return 1
     fi
     blueutil --connect "$trackpad"
