@@ -52,6 +52,9 @@ set splitright
 set updatetime=1000
 set wildmenu
 
+" list all loaded buffers and populate prompt, waiting for a buffer id
+nnoremap gb :ls<CR>:b<Space>
+
 filetype plugin indent on
 
 " gruvbox settings
