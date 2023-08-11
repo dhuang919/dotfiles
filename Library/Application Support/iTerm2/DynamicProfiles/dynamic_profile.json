@@ -345,6 +345,7 @@
     {
       "Name": "bloomberg",
       "Guid": "5313B1B4-1A78-4725-B644-9FEF48D0A0EF",
+      "Working Directory" : "\/Users\/dhuang295\/Projects\/tssr",
       "Ansi 7 Color": {
         "Green Component": 0.73333334922790527,
         "Red Component": 0.73333334922790527,
@@ -662,7 +663,7 @@
         "Red Component": 0,
         "Blue Component": 0
       },
-      "Custom Directory": "Recycle",
+      "Custom Directory": "Yes",
       "Ansi 4 Color": {
         "Green Component": 0,
         "Red Component": 0,
