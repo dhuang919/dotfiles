@@ -3,6 +3,7 @@
     {
       "Name": "personal",
       "Guid": "00D987DB-68FF-4FBA-B017-DC6B60A24B00",
+      "Working Directory" : "\/Users\/derek\/dev\/bradfield\/derekhuang",
       "Ansi 7 Color": {
         "Green Component": 0.73333334922790527,
         "Red Component": 0.73333334922790527,
@@ -338,7 +339,7 @@
       "Use Non-ASCII Font": true,
       "Right Option Key Sends": 2,
       "Normal Font": "SourceCodeProForPowerline-Regular 12",
-      "Custom Directory": "Recycle",
+      "Custom Directory": "Yes",
       "Horizontal Spacing": 1
     },
     {
