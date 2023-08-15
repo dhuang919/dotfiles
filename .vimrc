@@ -13,6 +13,7 @@ endif
 call plug#begin('~/.vim/bundle')
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -20,6 +21,8 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -46,7 +49,6 @@ set number
 set ruler
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set showmatch
-set smartindent
 set splitbelow
 set splitright
 set updatetime=1000
@@ -87,4 +89,3 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.whitespace = 'Ξ'
-
