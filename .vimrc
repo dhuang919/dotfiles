@@ -89,3 +89,12 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.whitespace = 'Ξ'
+
+" File change settings stolen from https://unix.stackexchange.com/a/383044/517031
+" Trigger `autoread` when files change on disk
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+  \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
