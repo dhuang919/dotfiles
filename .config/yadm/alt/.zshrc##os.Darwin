@@ -117,6 +117,13 @@ function ww {
   mng
 }
 
+function ss {
+  open /Applications/Google\ Chrome.app
+  open /Applications/Obsidian.app
+  open /System/Applications/Calendar.app
+  mng
+}
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
