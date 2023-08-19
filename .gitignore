@@ -226,6 +226,7 @@ Exercism/
 .vagrant.d/
 .oh-my-zsh/
 .fzf/
+*venv*
 
 ## .config abusers
 .config/opera/
