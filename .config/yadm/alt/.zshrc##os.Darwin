@@ -147,6 +147,7 @@ zmodload -i zsh/complist
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
+[ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
 
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias htop="sudo htop"
