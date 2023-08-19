@@ -48,6 +48,12 @@ local ratios = {
     height = home and 0.44 or 0.8,
     width = home and 1 or 0.6,
   },
+  wezterm = {
+    top = home and 0.568 or 0,
+    left = home and 0 or 0,
+    height = home and 0.44 or 0.8,
+    width = home and 1 or 0.6,
+  },
   mail = {
     top = 0.03,
     left = 0.004,
@@ -82,6 +88,7 @@ hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'W', function()
   o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian)
 
   o.moveIfOpen('iTerm2', home and 'VERTICAL' or 'LAPTOP', ratios.iterm)
+  o.moveIfOpen('WezTerm', home and 'VERTICAL' or 'LAPTOP', ratios.wezterm)
 
   if home then
     o.moveIfOpen('Google Chrome', 'VERTICAL', ratios.chrome_hm)
