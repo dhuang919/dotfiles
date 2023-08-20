@@ -1,6 +1,30 @@
 local vimrc = vim.fn.expand("~/.vimrc")
 vim.cmd.source(vimrc)
 
+vim.wo.number = true
+vim.g.background = "dark"
+vim.g.backspace = {"indent", "eol", "start"}
+vim.g.clipboard = "unnamed"
+vim.g.cursorline = true
+vim.g.expandtab = true
+vim.g.hlsearch = true
+vim.g.incsearch = true
+vim.g.mouse = "a"
+vim.g.nospell = true
+vim.g.ruler = true
+vim.g.showmatch = true
+vim.g.splitbelow = true
+vim.g.splitright = true
+vim.g.updatetime = 1000
+vim.g.wildmenu = true
+
+local lualine = require("lualine")
+lualine.setup {
+  options = {
+    theme = "horizon",
+  },
+}
+
 local catppuccin = require("catppuccin")
 catppuccin.setup({
   color_overrides = {
@@ -11,6 +35,7 @@ catppuccin.setup({
     },
   },
 })
+vim.cmd.colorscheme("catppuccin-mocha")
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -28,21 +53,21 @@ mason_lspcfg.setup()
 local lspcfg = require("lspconfig")
 mason_lspcfg.setup_handlers {
   -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
+  -- and will be called for each installed server that doesn"t have
   -- a dedicated handler.
-  function (server_name) -- default handler (optional)
+  function(server_name) -- default handler (optional)
     if server_name == "lua_ls" then
       lspcfg[server_name].setup {
         settings = {
           Lua = {
             diagnostics = {
-              globals = {"vim"}
+              globals = { "vim" }
             }
           }
         }
       }
     else
-      lspcfg[server_name].setup{}
+      lspcfg[server_name].setup {}
     end
   end
   -- Next, you can provide a dedicated handler for specific servers.
@@ -54,38 +79,51 @@ mason_lspcfg.setup_handlers {
 
 -- Lsp global mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<space>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
+    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<space>f", function()
       vim.lsp.buf.format { async = true }
     end, opts)
   end,
 })
+
+-- Toggle nvim-tree
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<cr>")
+vim.keymap.set("n", "Q", "<Nop>")
+
+-- Easily view and switch buffers
+vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true })
+
+-- Find files using Telescope command-line sugar
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
