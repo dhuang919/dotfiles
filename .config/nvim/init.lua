@@ -2,9 +2,11 @@ local vimrc = vim.fn.expand("~/.vimrc")
 vim.cmd.source(vimrc)
 
 vim.wo.number = true
+
+vim.opt.clipboard = {"unnamed", "unnamedplus"}
+
 vim.g.background = "dark"
 vim.g.backspace = {"indent", "eol", "start"}
-vim.g.clipboard = "unnamed"
 vim.g.cursorline = true
 vim.g.expandtab = true
 vim.g.hlsearch = true
@@ -127,3 +129,16 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = t
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
+
+-- File change settings stolen from https://unix.stackexchange.com/a/383044/517031
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter", "CursorHold", "CursorHoldI"}, {
+  command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
+  pattern = {"*"},
+})
+
+-- Notification after file change
+vim.api.nvim_create_autocmd({"FileChangedShellPost"}, {
+  command = "echohl WarningMsg | echo 'File changed on disk. Buffer reloaded.' | echohl None",
+  pattern = {"*"},
+})
+

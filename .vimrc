@@ -37,12 +37,12 @@ call plug#end()
 
 " File change settings stolen from https://unix.stackexchange.com/a/383044/517031
 " Trigger `autoread` when files change on disk
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
-  \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+" autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+"   \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 
 " Notification after file change
-autocmd FileChangedShellPost *
-  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+" autocmd FileChangedShellPost *
+"   \ echohl WarningMsg | echo 'File changed on disk. Buffer reloaded.' | echohl None
 
 " ============================================
 " Editor Options
