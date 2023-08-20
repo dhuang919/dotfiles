@@ -9,5 +9,6 @@ config.font = wezterm.font "Source Code Pro for Powerline"
 config.initial_cols = 120
 config.initial_rows = 35
 config.term = "wezterm"
+config.window_close_confirmation = "NeverPrompt"
 
 return config

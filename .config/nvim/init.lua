@@ -1,6 +1,17 @@
 local vimrc = vim.fn.expand("~/.vimrc")
 vim.cmd.source(vimrc)
 
+local catppuccin = require("catppuccin")
+catppuccin.setup({
+  color_overrides = {
+    mocha = {
+      base = "#000000",
+      mantle = "#000000",
+      crust = "#000000",
+    },
+  },
+})
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true

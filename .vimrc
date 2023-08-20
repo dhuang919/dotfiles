@@ -12,6 +12,7 @@ endif
 " Start installing plugins. We use .vim/bundle for backwards compatibility
 call plug#begin('~/.vim/bundle')
 
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -45,11 +46,9 @@ set expandtab
 set hlsearch
 set incsearch
 set mouse=a
-set nocp
 set nospell
 set number
 set ruler
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 set showmatch
 set splitbelow
 set splitright
@@ -64,7 +63,7 @@ filetype plugin indent on
 " gruvbox settings
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
+colorscheme catppuccin-mocha
 
 map <C-n> :NvimTreeToggle<CR>
 map Q <Nop>
