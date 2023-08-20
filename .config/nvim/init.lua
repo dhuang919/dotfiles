@@ -1,12 +1,47 @@
 local vimrc = vim.fn.expand("~/.vimrc")
 vim.cmd.source(vimrc)
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
+local nvim_tree = require("nvim-tree")
+nvim_tree.setup()
+
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
--- Setup language servers.
-local lspconfig = require('lspconfig')
---
--- Global mappings.
+local mason = require("mason")
+local mason_lspcfg = require("mason-lspconfig")
+mason.setup()
+mason_lspcfg.setup()
+
+local lspcfg = require("lspconfig")
+mason_lspcfg.setup_handlers {
+  -- The first entry (without a key) will be the default handler
+  -- and will be called for each installed server that doesn't have
+  -- a dedicated handler.
+  function (server_name) -- default handler (optional)
+    if server_name == "lua_ls" then
+      lspcfg[server_name].setup {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = {"vim"}
+            }
+          }
+        }
+      }
+    else
+      lspcfg[server_name].setup{}
+    end
+  end
+  -- Next, you can provide a dedicated handler for specific servers.
+  -- For example, a handler override for the `rust_analyzer`:
+  -- ["rust_analyzer"] = function ()
+  --   require("rust-tools").setup {}
+  -- end
+}
+
+-- Lsp global mappings
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -43,7 +78,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
-
-lspconfig.gopls.setup{}
-lspconfig.jedi_language_server.setup{}
-lspconfig.lua_ls.setup{}

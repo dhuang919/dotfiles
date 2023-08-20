@@ -12,27 +12,25 @@ endif
 " Start installing plugins. We use .vim/bundle for backwards compatibility
 call plug#begin('~/.vim/bundle')
 
-Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tyru/open-browser-github.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neovim/nvim-lspconfig'
-
-" Language plugins
-Plug 'vim-scripts/c.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'williamboman/mason.nvim'
 
 call plug#end()
 
@@ -68,9 +66,7 @@ let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
-" NERDTree settings
-let NERDTreeShowHidden = 1
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NvimTreeToggle<CR>
 map Q <Nop>
 
 " fzf settings
