@@ -227,6 +227,7 @@ Exercism/
 .oh-my-zsh/
 .fzf/
 *venv*
+.rustup
 
 ## .config abusers
 .config/opera/
