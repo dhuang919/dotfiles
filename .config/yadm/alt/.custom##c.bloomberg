@@ -22,3 +22,24 @@ alias boug='cd ~/dev/bougie'
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+function tglpxy {
+  local pip="~/.pip/pip.conf"
+  local npm="~/.npmrc"
+
+  if [ -f "$pip" ]; then
+    echo "Renaming pip.conf"
+    mv ~/.pip/{,_}pip.conf
+  else
+    echo "Reverting _pip.conf rename"
+    mv ~/.pip/{_,}pip.conf
+  fi
+
+  if [ -f "$npm" ]; then
+    echo "Renaming .npmrc to ._npmrc"
+    mv ~/.{,_}npmrc
+  else
+    echo "Reverting ._npmrc rename"
+    mv ~/.{_,}npmrc
+  fi
+}
+
