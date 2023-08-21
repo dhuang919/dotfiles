@@ -9,7 +9,6 @@ config.default_cwd = wezterm.home_dir .. "/dev/bradfield/derekhuang"
 config.hide_tab_bar_if_only_one_tab = true
 config.initial_cols = 120
 config.initial_rows = 35
-config.term = "wezterm"
 config.use_dead_keys = false
 config.window_close_confirmation = "NeverPrompt"
 
