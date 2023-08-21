@@ -50,7 +50,16 @@ vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 local mason = require("mason")
 local mason_lspcfg = require("mason-lspconfig")
 mason.setup()
-mason_lspcfg.setup()
+mason_lspcfg.setup {
+  ensure_installed = {
+    "clangd",
+    "gopls",
+    "jedi_language_server",
+    "jsonls",
+    "lua_ls",
+    "yamlls",
+  }
+}
 
 local lspcfg = require("lspconfig")
 mason_lspcfg.setup_handlers {
