@@ -28,6 +28,7 @@ autopairs.setup()
 vim.wo.number = true
 
 vim.opt.clipboard = {"unnamed", "unnamedplus"}
+vim.opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 vim.g.background = "dark"
 vim.g.backspace = {"indent", "eol", "start"}
