@@ -1,0 +1,62 @@
+{{ if eq .chezmoi.username "dhuang295" }}
+export SCR="${HOME}/Library/CloudStorage/OneDrive-BloombergLP/notes/scratch"
+export GH_NO_UPDATE_NOTIFIER=1
+export GOPRIVATE="*.dev.bloomberg.com"
+export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
+export GOPATH=$HOME/go
+[[ $PATH != *${GOPATH}/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
+[[ $PATH != *${HOME}/Projects/dhuang295/scripts* ]] && PATH="${PATH}:${HOME}/Projects/dhuang295/scripts"
+export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
+export BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
+export BPKG_TOKEN=***REMOVED_BPKG_PROD***
+export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
+
+BBID=31453293
+
+alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://bproxy.tdmz1.bloomberg.com:80'
+alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81'
+alias mbs='curl -s "https://lcldev-public.dx.bloomberg.com/mac-$(uname -p)-bootstrap" -o /tmp/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap'
+alias scripts='cd ~/Projects/dhuang295/scripts'
+alias ts='cd ~/Projects/tssr'
+alias boug='cd ~/dev/bougie'
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+function tglpxy {
+  local pip="~/.pip/pip.conf"
+  local npm="~/.npmrc"
+
+  if [ -f "$pip" ]; then
+    echo "Renaming pip.conf"
+    mv ~/.pip/{,_}pip.conf
+  else
+    echo "Reverting _pip.conf rename"
+    mv ~/.pip/{_,}pip.conf
+  fi
+
+  if [ -f "$npm" ]; then
+    echo "Renaming .npmrc to ._npmrc"
+    mv ~/.{,_}npmrc
+  else
+    echo "Reverting ._npmrc rename"
+    mv ~/.{_,}npmrc
+  fi
+}
+{{ else if eq .chezmoi.username "derek" }}
+export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
+
+alias bb="cd ~/dev/bloomberg"
+alias bf="cd ~/dev/bradfield/derekhuang"
+alias bfc="code ~/dev/workspaces/bradfield.code-workspace"
+alias boug="cd ~/dev/bougie"
+alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
+
+function get_lc_times {
+  ag --nofilename -i 'leetcode' ~/Dropbox/notes/scratch | \
+  grep -E '[0-9]{4} - [0-9]{4}' | \
+  tr -d '* leetcode ' | \
+  tr , '\n' | \
+  sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
+}
+{{ end }}
