@@ -228,6 +228,7 @@ Exercism/
 .fzf/
 *venv*
 .rustup
+private_dot_config/nvim/plugged/
 
 ## .config abusers
 .config/opera/

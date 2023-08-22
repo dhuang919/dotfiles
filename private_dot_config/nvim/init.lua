@@ -1,5 +1,37 @@
-local vimrc = vim.fn.expand("~/.vimrc")
-vim.cmd.source(vimrc)
+local install_path = vim.fn.stdpath("data") .. "/nvim/site/autoload/plug.vim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({
+    "sh",
+    "-c",
+    'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim',
+    "--create-dirs",
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+  })
+  vim.api.nvim_create_autocmd({"VimEnter"}, {
+    command = "PlugInstall --sync",
+    pattern = {"*"},
+  })
+end
+
+local Plug = vim.fn["plug#"]
+vim.call("plug#begin", "~/.config/nvim/plugged")
+Plug "christoomey/vim-tmux-navigator"
+Plug "editorconfig/editorconfig-vim"
+Plug "folke/trouble.nvim"
+Plug "neovim/nvim-lspconfig"
+Plug "nvim-lua/plenary.nvim"
+Plug "nvim-lualine/lualine.nvim"
+Plug "nvim-telescope/telescope.nvim"
+Plug "nvim-tree/nvim-tree.lua"
+Plug "nvim-tree/nvim-web-devicons"
+Plug "phelipetls/jsonpath.nvim"
+Plug "tpope/vim-surround"
+Plug "williamboman/mason-lspconfig.nvim"
+Plug "williamboman/mason.nvim"
+Plug "windwp/nvim-autopairs"
+Plug("catppuccin/nvim", {as = "catppuccin"})
+Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
+vim.call("plug#end")
 
 vim.wo.number = true
 
