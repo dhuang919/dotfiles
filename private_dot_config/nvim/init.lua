@@ -1,17 +1,10 @@
--- TODO: fix
--- local install_path = vim.fn.stdpath("data") .. "/nvim/site/autoload/plug.vim"
--- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
---   vim.fn.system({
---     "sh",
---     "-c",
---     'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim',
---     "--create-dirs",
---     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
---   })
--- end
+-- 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim' \
+-- "--create-dirs" \
+-- "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 local Plug = vim.fn["plug#"]
-vim.call("plug#begin", "~/.config/nvim/plugged")
+vim.call("plug#begin", vim.fn.stdpath("data") .. "/site")
+Plug "SmiteshP/nvim-navic"
 Plug "christoomey/vim-tmux-navigator"
 Plug "editorconfig/editorconfig-vim"
 Plug "folke/trouble.nvim"
@@ -21,7 +14,6 @@ Plug "nvim-lualine/lualine.nvim"
 Plug "nvim-telescope/telescope.nvim"
 Plug "nvim-tree/nvim-tree.lua"
 Plug "nvim-tree/nvim-web-devicons"
-Plug "phelipetls/jsonpath.nvim"
 Plug "tpope/vim-surround"
 Plug "williamboman/mason-lspconfig.nvim"
 Plug "williamboman/mason.nvim"
@@ -29,6 +21,9 @@ Plug "windwp/nvim-autopairs"
 Plug("catppuccin/nvim", {as = "catppuccin"})
 Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
 vim.call("plug#end")
+
+local autopairs = require("nvim-autopairs")
+autopairs.setup()
 
 vim.wo.number = true
 
@@ -48,6 +43,8 @@ vim.g.splitbelow = true
 vim.g.splitright = true
 vim.g.updatetime = 1000
 vim.g.wildmenu = true
+vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
+
 
 local lualine = require("lualine")
 lualine.setup {
@@ -64,6 +61,7 @@ lualine.setup {
   },
 }
 
+
 local catppuccin = require("catppuccin")
 catppuccin.setup({
   flavour = "mocha",
@@ -77,13 +75,13 @@ catppuccin.setup({
 })
 vim.cmd.colorscheme("catppuccin")
 
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 local nvim_tree = require("nvim-tree")
 nvim_tree.setup()
 
-vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
 local mason = require("mason")
 local mason_lspcfg = require("mason-lspconfig")
@@ -99,6 +97,13 @@ mason_lspcfg.setup {
   }
 }
 
+local navic = require("nvim-navic")
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
+end
+
 local lspcfg = require("lspconfig")
 mason_lspcfg.setup_handlers {
   -- The first entry (without a key) will be the default handler
@@ -107,6 +112,7 @@ mason_lspcfg.setup_handlers {
   function(server_name) -- default handler (optional)
     if server_name == "lua_ls" then
       lspcfg[server_name].setup {
+        on_attach = on_attach,
         settings = {
           Lua = {
             diagnostics = {
@@ -116,7 +122,9 @@ mason_lspcfg.setup_handlers {
         }
       }
     else
-      lspcfg[server_name].setup {}
+      lspcfg[server_name].setup {
+        on_attach = on_attach,
+      }
     end
   end
   -- Next, you can provide a dedicated handler for specific servers.
@@ -164,12 +172,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+
 -- Toggle nvim-tree
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<cr>")
 vim.keymap.set("n", "Q", "<Nop>")
 
+
 -- Easily view and switch buffers
 vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true })
+
 
 -- Find files using Telescope command-line sugar
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true })
@@ -177,11 +188,13 @@ vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = tr
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
 
+
 -- File change settings stolen from https://unix.stackexchange.com/a/383044/517031
 vim.api.nvim_create_autocmd({"FocusGained", "BufEnter", "CursorHold", "CursorHoldI"}, {
   command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
   pattern = {"*"},
 })
+
 
 -- Notification after file change
 vim.api.nvim_create_autocmd({"FileChangedShellPost"}, {
