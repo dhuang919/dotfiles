@@ -24,9 +24,7 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 
 # personal env vars
-export ITERM_DPS="$HOME/Library/Application Support/iTerm2/DynamicProfiles"
 export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch"
-export YADM="$HOME/.config/yadm"
 
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
@@ -45,6 +43,7 @@ function _get_last_md {
   echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
 }
 
+# Daily md
 function mng {
   local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
   local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
@@ -85,6 +84,7 @@ $unfinished_todos
 EOF
 }
 
+# Connect trackpad
 function tp {
   if ! type blueutil &> /dev/null; then
     echo "blueutil not installed" >&2
@@ -108,6 +108,7 @@ function tp {
   done
 }
 
+# Work work
 function ww {
   open /Applications/Google\ Chrome.app
   open /Applications/Obsidian.app
@@ -117,6 +118,7 @@ function ww {
   mng
 }
 
+# Study study
 function ss {
   open /Applications/Google\ Chrome.app
   open /Applications/Obsidian.app
@@ -152,10 +154,10 @@ zmodload -i zsh/complist
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias htop="sudo htop"
 alias ipy=ipython
-alias itdpe="vim $ITERM_DPS/dynamic_profiles.json"
 alias ll="ls -lAh"
 alias sbx="cd $HOME/dev/sandbox"
 alias sbxc="code $HOME/dev/sandbox"
 alias setup="cd ~/dev/setup"
 alias vim="nvim"
+alias cz="chezmoi"
 
