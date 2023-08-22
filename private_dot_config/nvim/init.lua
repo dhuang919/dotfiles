@@ -7,10 +7,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     "--create-dirs",
     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
   })
-  vim.api.nvim_create_autocmd({"VimEnter"}, {
-    command = "PlugInstall --sync",
-    pattern = {"*"},
-  })
 end
 
 local Plug = vim.fn["plug#"]
