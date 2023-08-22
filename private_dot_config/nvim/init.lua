@@ -58,6 +58,7 @@ lualine.setup {
 
 local catppuccin = require("catppuccin")
 catppuccin.setup({
+  flavour = "mocha",
   color_overrides = {
     mocha = {
       base = "#000000",
@@ -66,7 +67,7 @@ catppuccin.setup({
     },
   },
 })
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("catppuccin")
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
