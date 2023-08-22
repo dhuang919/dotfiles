@@ -1,0 +1,161 @@
+export EDITOR='nvim'
+export FZF_DIR="$HOME/.fzf"
+export GOPATH="$HOME/go"
+export GOROOT=/usr/local/opt/go/libexec
+export GPG_TTY=$(tty)
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export KEYTIMEOUT=1
+export NVM_DIR="$HOME/.nvm"
+export PYTHONDONTWRITEBYTECODE=1
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export VISUAL='nvim'
+export ZSH="$HOME/.oh-my-zsh"
+
+# add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+
+# personal env vars
+export ITERM_DPS="$HOME/Library/Application Support/iTerm2/DynamicProfiles"
+export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch"
+export YADM="$HOME/.config/yadm"
+
+[[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
+[[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
+[[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="${PATH}:/usr/local/texlive/2022basic/bin/universal-darwin"
+[[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
+[[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
+export PATH
+
+
+function fmt_img {
+  convert "$1" "$2"
+  convert -resize 30% "$2" "$2"
+}
+
+function _get_last_md {
+  echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
+}
+
+function mng {
+  local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
+  local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
+  local -r today_path="${SCR}/${year_month}/${today}.md"
+
+  if [[ -f "${today_path}" ]]
+  then
+    echo "${today_path} already exists" >&2
+    return 1
+  fi
+
+  # Make sure the current year month dir exists
+  mkdir -p "${SCR}/${year_month}"
+
+  # Get the most recent md before today
+  local prev_md=$(_get_last_md "${SCR}/${year_month}")
+
+  local prev_dir
+  if [[ -z "${prev_md}" ]]
+  then
+    # ensure we get the last md if it's been longer than a month since the last
+    while [[ -z "${prev_md}" ]]
+    do
+      prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y_%m)
+      prev_md=$(_get_last_md "${SCR}/${prev_dir}")
+    done
+  else
+    prev_dir="${year_month}"
+  fi
+
+  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|#do_it|#schedule_it|#delegate_it|#delete_it)/p' "${SCR}/${prev_dir}/${prev_md}")
+
+  cat << EOF >> ${today_path}
+# Todo
+$unfinished_todos
+
+# Notes
+EOF
+}
+
+function tp {
+  if ! type blueutil &> /dev/null; then
+    echo "blueutil not installed" >&2
+    return 1
+  elif [ $(blueutil -p) -eq 0 ]; then
+    echo "Bluetooth is off. Toggling..." >&2
+    blueutil -p toggle
+  fi
+  local trackpad="a0-78-17-e3-31-79"
+  local tries=0
+  local retries=3
+  echo "Unpairing..."
+  blueutil --unpair "$trackpad"
+  while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
+    if [ "$tries" -eq "$retries" ]; then
+      echo "stopping after $retries retries" >&2
+      return 1
+    fi
+    blueutil --connect "$trackpad"
+    (( tries++ ))
+  done
+}
+
+function ww {
+  open /Applications/Google\ Chrome.app
+  open /Applications/Obsidian.app
+  open /System/Applications/Calendar.app
+  open /Applications/Bitwarden.app
+  open /Applications/Docker.app
+  mng
+}
+
+function ss {
+  open /Applications/Google\ Chrome.app
+  open /Applications/Obsidian.app
+  open /System/Applications/Calendar.app
+  mng
+}
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
+
+ZSH_THEME=powerlevel10k/powerlevel10k
+
+plugins=(fzf git)
+
+fpath=(~/.zsh/completion $fpath)
+
+if type brew &>/dev/null; then
+  fpath+=$(brew --prefix)/share/zsh/site-functions
+fi
+
+source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit -i
+autoload bashcompinit && bashcompinit
+zmodload -i zsh/complist
+
+[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.custom ] && source ~/.custom 2>& /dev/null
+[ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
+
+alias bubu="brew update && brew upgrade && brew cleanup"
+alias htop="sudo htop"
+alias ipy=ipython
+alias itdpe="vim $ITERM_DPS/dynamic_profiles.json"
+alias ll="ls -lAh"
+alias sbx="cd $HOME/dev/sandbox"
+alias sbxc="code $HOME/dev/sandbox"
+alias setup="cd ~/dev/setup"
+alias vim="nvim"
+
