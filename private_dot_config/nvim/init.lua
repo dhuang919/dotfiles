@@ -54,6 +54,14 @@ lualine.setup {
   options = {
     theme = "dracula",
   },
+  sections = {
+    lualine_a = {
+      {
+        "filename",
+        path = 2,
+      },
+    },
+  },
 }
 
 local catppuccin = require("catppuccin")
