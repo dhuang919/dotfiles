@@ -160,5 +160,5 @@ alias sbxc="code $HOME/dev/sandbox"
 alias setup="cd ~/dev/setup"
 alias vim="nvim"
 alias cz="chezmoi"
-alias cze="chezmoi edit
+alias cze="chezmoi edit"
 
