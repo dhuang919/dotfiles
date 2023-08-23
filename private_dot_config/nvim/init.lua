@@ -174,7 +174,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 
--- Toggle nvim-tree
+-- nvim-tree
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<cr>")
 vim.keymap.set("n", "Q", "<Nop>")
 
@@ -182,6 +182,14 @@ vim.keymap.set("n", "Q", "<Nop>")
 -- Easily view and switch buffers
 vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true })
 
+
+-- telescope
+local telescope = require("telescope")
+telescope.setup {
+  find_files = {
+    hidden = true,
+  },
+}
 
 -- Find files using Telescope command-line sugar
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true })
