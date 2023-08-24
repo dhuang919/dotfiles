@@ -1,7 +1,9 @@
 export EDITOR='nvim'
 export FZF_DIR="$HOME/.fzf"
 export GOPATH="$HOME/go"
+{{- if eq .chezmoi.os "darin" }}
 export GOROOT=/usr/local/opt/go/libexec
+{{- end }}
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export KEYTIMEOUT=1
