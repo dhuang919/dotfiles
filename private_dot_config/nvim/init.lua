@@ -99,6 +99,7 @@ mason_lspcfg.setup {
     "jedi_language_server",
     "jsonls",
     "lua_ls",
+    "ruff_lsp",
     "yamlls",
   }
 }
@@ -126,6 +127,17 @@ mason_lspcfg.setup_handlers {
             }
           }
         }
+      }
+    elseif server_name == "ruff_lsp" then
+      lspcfg[server_name].setup {
+        on_attach = on_attach,
+        init_options = {
+          settings = {
+            args = {
+              "--select=F",
+            },
+          },
+        },
       }
     else
       lspcfg[server_name].setup {
