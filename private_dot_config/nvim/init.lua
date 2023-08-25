@@ -1,6 +1,11 @@
--- 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim' \
--- "--create-dirs" \
--- "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+local plug_install_path = vim.fn.stdpath("data") .. "/site/autoload/plug.vim"
+if vim.fn.empty(plug_install_path) > 0 then
+  vim.fn.system({
+    'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim',
+    "--create-dirs",
+    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+  })
+end
 
 local Plug = vim.fn["plug#"]
 vim.call("plug#begin", vim.fn.stdpath("data") .. "/site")
