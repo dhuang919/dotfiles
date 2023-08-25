@@ -1,7 +1,7 @@
 export EDITOR='nvim'
 export FZF_DIR="$HOME/.fzf"
 export GOPATH="$HOME/go"
-{{- if eq .chezmoi.os "darin" }}
+{{- if eq .chezmoi.os "darwin" }}
 export GOROOT=/usr/local/opt/go/libexec
 {{- end }}
 export GPG_TTY=$(tty)

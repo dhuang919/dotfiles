@@ -25,8 +25,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 function tglpxy {
-  local pip="~/.pip/pip.conf"
-  local npm="~/.npmrc"
+  local pip="${HOME}/.pip/pip.conf"
+  local npm="${HOME}/.npmrc"
 
   if [ -f "$pip" ]; then
     echo "Renaming pip.conf"
