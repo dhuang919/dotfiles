@@ -30,26 +30,20 @@ vim.call("plug#end")
 local autopairs = require("nvim-autopairs")
 autopairs.setup()
 
-vim.wo.number = true
 
+vim.opt.backspace = {"indent", "eol", "start"}
 vim.opt.clipboard = {"unnamed", "unnamedplus"}
-vim.opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
-vim.g.background = "dark"
-vim.g.backspace = {"indent", "eol", "start"}
-vim.g.cursorline = true
-vim.g.expandtab = true
-vim.g.hlsearch = true
-vim.g.incsearch = true
-vim.g.mouse = "a"
-vim.g.nospell = true
-vim.g.ruler = true
-vim.g.showmatch = true
-vim.g.splitbelow = true
-vim.g.splitright = true
-vim.g.updatetime = 1000
-vim.g.wildmenu = true
+vim.o.expandtab = true
+vim.o.mouse = "a"
+vim.o.number = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
+
+-- disable command history
+vim.keymap.set("n", "Q", "<Nop>")
+vim.keymap.set("n", "q:", "<Nop>")
 
 
 local lualine = require("lualine")
@@ -181,7 +175,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- nvim-tree
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<cr>")
-vim.keymap.set("n", "Q", "<Nop>")
 
 
 -- Easily view and switch buffers
