@@ -134,6 +134,23 @@ function ss {
 }
 {{- end }}
 
+function cze {
+  if [ -z "$1" ]; then
+    echo "File required" >&2
+    return 1
+  fi
+
+  case "$1" in
+    gh) chezmoi edit ~/.config/gh/config.yml; return 0;;
+    nvim) chezmoi edit ~/.config/nvim/init.lua; return 0;;
+    term) chezmoi edit ~/.config/wezterm/wezterm.lua; return 0;;
+    tmux) chezmoi edit ~/.config/tmux/tmux.conf.local; return 0;;
+    zsh) chezmoi edit ~/.zshrc; return 0;;
+  esac
+
+  chezmoi edit "$1"
+}
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
@@ -166,12 +183,9 @@ alias ipy=ipython
 {{- end }}
 alias cz="chezmoi"
 alias cza="cz apply"
-alias cze="cz edit"
 alias czu="cz update"
 alias ll="ls -lAh"
 alias sbx="cd $HOME/dev/sandbox"
 alias sbxc="code $HOME/dev/sandbox"
-alias setup="cd ~/dev/setup"
-alias vcfg="~/.config/nvim"
 alias vim="nvim"
 
