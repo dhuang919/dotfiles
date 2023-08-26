@@ -90,9 +90,9 @@ mason_lspcfg.setup {
   ensure_installed = {
     "clangd",
     "gopls",
-    "jedi_language_server",
     "jsonls",
     "lua_ls",
+    "pyright",
     "yamlls",
   }
 }
