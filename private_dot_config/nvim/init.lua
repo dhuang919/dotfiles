@@ -34,7 +34,7 @@ autopairs.setup()
 
 -- trouble settings
 local trouble = require("trouble")
-vim.keymap.set("n", "<leader>xx", function() trouble.open() end)
+vim.keymap.set("n", "<leader>xx", function() trouble.toggle() end)
 vim.keymap.set("n", "<leader>xw", function() trouble.open("workspace_diagnostics") end)
 vim.keymap.set("n", "<leader>xd", function() trouble.open("document_diagnostics") end)
 vim.keymap.set("n", "<leader>xq", function() trouble.open("quickfix") end)
@@ -52,9 +52,11 @@ vim.o.splitright = true
 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
--- disable command history
+
+-- disable stuff
 vim.keymap.set("n", "Q", "<Nop>")
 vim.keymap.set("n", "q:", "<Nop>")
+vim.keymap.set("n", "q", "<Nop>")
 
 
 local lualine = require("lualine")
