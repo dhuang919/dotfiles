@@ -141,6 +141,7 @@ function cze {
   fi
 
   case "$1" in
+    custom) chezmoi edit ~/.custom; return 0;;
     gh) chezmoi edit ~/.config/gh/config.yml; return 0;;
     nvim) chezmoi edit ~/.config/nvim/init.lua; return 0;;
     term) chezmoi edit ~/.config/wezterm/wezterm.lua; return 0;;

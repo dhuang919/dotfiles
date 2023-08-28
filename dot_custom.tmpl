@@ -29,7 +29,7 @@ function tglpxy {
   local npm="${HOME}/.npmrc"
 
   if [ -f "$pip" ]; then
-    echo "Renaming pip.conf"
+    echo "Renaming pip.conf to ._pip.conf"
     mv ~/.pip/{,_}pip.conf
   else
     echo "Reverting _pip.conf rename"
