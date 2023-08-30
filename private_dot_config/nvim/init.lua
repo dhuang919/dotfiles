@@ -33,7 +33,7 @@ autopairs.setup()
 
 
 -- vim-tmux-navigator
-vim.g.tmux_navigator_save_on_switch = 1
+vim.g.tmux_navigator_save_on_switch = 2
 
 
 -- trouble settings
