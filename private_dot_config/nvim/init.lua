@@ -32,6 +32,10 @@ local autopairs = require("nvim-autopairs")
 autopairs.setup()
 
 
+-- vim-tmux-navigator
+vim.g.tmux_navigator_save_on_switch = 1
+
+
 -- trouble settings
 local trouble = require("trouble")
 vim.keymap.set("n", "<leader>xx", function() trouble.toggle() end)
