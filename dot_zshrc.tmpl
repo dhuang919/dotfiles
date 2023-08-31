@@ -105,6 +105,7 @@ function tp {
   local retries=3
   echo "Unpairing..."
   blueutil --unpair "$trackpad"
+  echo "Connecting..."
   while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
     if [ "$tries" -eq "$retries" ]; then
       echo "stopping after $retries retries" >&2
