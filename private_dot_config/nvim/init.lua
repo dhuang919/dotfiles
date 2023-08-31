@@ -23,6 +23,7 @@ Plug "tpope/vim-surround"
 Plug "williamboman/mason-lspconfig.nvim"
 Plug "williamboman/mason.nvim"
 Plug "windwp/nvim-autopairs"
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug("catppuccin/nvim", {as = "catppuccin"})
 Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
 vim.call("plug#end")
