@@ -8,5 +8,5 @@ stylua.toml
 Brewfile
 {{- end }}
 {{- if ne .chezmoi.username "dhuang295" }}
-dot_gitconfig.work
+.gitconfig.work
 {{- end }}
