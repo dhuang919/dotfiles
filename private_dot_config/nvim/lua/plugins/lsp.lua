@@ -9,7 +9,9 @@ return {
     },
 
     config = function(_, opts)
-      require("mason").setup()
+      require("mason").setup(opts)
+
+      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
       local mason_lspcfg = require("mason-lspconfig")
       local lspcfg = require("lspconfig")
@@ -96,6 +98,8 @@ return {
   },
   {
     "folke/trouble.nvim",
+
+    lazy = false,
 
     config = true,
 

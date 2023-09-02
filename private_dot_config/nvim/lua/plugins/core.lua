@@ -1,5 +1,4 @@
 return {
-  "christoomey/vim-tmux-navigator",
   "tpope/vim-commentary",
   "tpope/vim-fugitive",
   "tpope/vim-surround",

@@ -3,12 +3,16 @@ return {
 
   build = ":TSUpdate",
 
-  auto_install = true,
+  config = true,
 
   opts = {
+    auto_install = true,
     ensure_installed = {
       "bash",
       "c",
+      "css",
+      "dockerfile",
+      "git_config",
       "html",
       "javascript",
       "json",
@@ -23,6 +27,11 @@ return {
       "vim",
       "vimdoc",
       "yaml",
+    },
+    modules = {
+      highlight = {
+        enable = true,
+      },
     },
   },
 }
