@@ -19,6 +19,8 @@ Plug "nvim-lualine/lualine.nvim"
 Plug "nvim-telescope/telescope.nvim"
 Plug "nvim-tree/nvim-tree.lua"
 Plug "nvim-tree/nvim-web-devicons"
+Plug "tpope/vim-commentary"
+Plug "tpope/vim-fugitive"
 Plug "tpope/vim-surround"
 Plug "williamboman/mason-lspconfig.nvim"
 Plug "williamboman/mason.nvim"
@@ -128,28 +130,38 @@ mason_lspcfg.setup_handlers {
   -- and will be called for each installed server that doesn"t have
   -- a dedicated handler.
   function(server_name) -- default handler (optional)
-    if server_name == "lua_ls" then
       lspcfg[server_name].setup {
+        on_attach = on_attach,
+      }
+  end,
+
+  lua_ls = function()
+      lspcfg.lua_ls.setup {
         on_attach = on_attach,
         settings = {
           Lua = {
             diagnostics = {
               globals = { "vim" }
-            }
-          }
-        }
+            },
+          },
+        },
       }
-    else
-      lspcfg[server_name].setup {
+    end,
+
+    pyright = function()
+      lspcfg.pyright.setup {
         on_attach = on_attach,
+        settings = {
+          python = {
+            analysis = {
+              diagnosticSeverityOverrides = {
+                reportMissingImports = "none",
+              },
+            },
+          },
+        },
       }
-    end
-  end
-  -- Next, you can provide a dedicated handler for specific servers.
-  -- For example, a handler override for the `rust_analyzer`:
-  -- ["rust_analyzer"] = function ()
-  --   require("rust-tools").setup {}
-  -- end
+    end,
 }
 
 -- Lsp global mappings
