@@ -15,7 +15,6 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.termguicolors = true
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 vim.g.tmux_navigator_save_on_switch = 2
