@@ -1,67 +1,25 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+require("config.lazy")
 
 
-require("lazy").setup("plugins")
--- local Plug = vim.fn["plug#"]
--- vim.call("plug#begin", vim.fn.stdpath("data") .. "/site")
--- Plug "SmiteshP/nvim-navic"
--- Plug "christoomey/vim-tmux-navigator"
--- Plug "editorconfig/editorconfig-vim"
--- Plug "folke/trouble.nvim"
--- Plug "neovim/nvim-lspconfig"
--- Plug "nvim-lua/plenary.nvim"
--- Plug "nvim-lualine/lualine.nvim"
--- Plug "nvim-telescope/telescope.nvim"
--- Plug "nvim-tree/nvim-tree.lua"
--- Plug "nvim-tree/nvim-web-devicons"
--- Plug "tpope/vim-commentary"
--- Plug "tpope/vim-fugitive"
--- Plug "tpope/vim-surround"
--- Plug "williamboman/mason-lspconfig.nvim"
--- Plug "williamboman/mason.nvim"
--- Plug "windwp/nvim-autopairs"
--- Plug 'Vimjas/vim-python-pep8-indent'
--- Plug("catppuccin/nvim", {as = "catppuccin"})
--- Plug("nvim-treesitter/nvim-treesitter", {['do'] = ":TSUpdate"})
--- vim.call("plug#end")
-
-
--- local autopairs = require("nvim-autopairs")
--- autopairs.setup()
-
-
--- vim-tmux-navigator
+-- TODO: move to tmux nav
 vim.g.tmux_navigator_save_on_switch = 2
-
-
--- trouble settings
--- local trouble = require("trouble")
--- vim.keymap.set("n", "<leader>xx", function() trouble.toggle() end)
--- vim.keymap.set("n", "<leader>xw", function() trouble.open("workspace_diagnostics") end)
--- vim.keymap.set("n", "<leader>xd", function() trouble.open("document_diagnostics") end)
--- vim.keymap.set("n", "<leader>xq", function() trouble.open("quickfix") end)
--- vim.keymap.set("n", "<leader>xl", function() trouble.open("loclist") end)
--- vim.keymap.set("n", "gR", function() trouble.open("lsp_references") end)
 
 
 vim.opt.backspace = {"indent", "eol", "start"}
 vim.opt.clipboard = {"unnamed", "unnamedplus"}
+vim.opt.formatoptions = vim.opt.formatoptions + {
+  c = false,
+  o = false, -- O and o don't continue comments
+  r = true, -- Return will continue comments
+}
+
 vim.o.expandtab = true
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.termguicolors = true
+-- TODO: move to navic
 vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
@@ -69,167 +27,15 @@ vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 -- disable stuff
 vim.keymap.set("n", "Q", "<Nop>")
 vim.keymap.set("n", "q:", "<Nop>")
--- vim.keymap.set("n", "q", "<Nop>")
 
 
--- local lualine = require("lualine")
--- lualine.setup {
---   options = {
---     theme = "dracula",
---   },
---   sections = {
---     lualine_a = {
---       {
---         "filename",
---         path = 1,
---       },
---     },
---   },
--- }
-
-
--- local catppuccin = require("catppuccin")
--- catppuccin.setup({
---   flavour = "mocha",
---   color_overrides = {
---     mocha = {
---       base = "#000000",
---       mantle = "#000000",
---       crust = "#000000",
---     },
---   },
--- })
--- vim.cmd.colorscheme("catppuccin")
-
-
+-- TODO: move to nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
--- local nvim_tree = require("nvim-tree")
--- nvim_tree.setup()
-
-
--- local mason = require("mason")
--- local mason_lspcfg = require("mason-lspconfig")
--- mason.setup()
--- mason_lspcfg.setup {
---   ensure_installed = {
---     "clangd",
---     "gopls",
---     "jsonls",
---     "lua_ls",
---     "pyright",
---     "yamlls",
---   }
--- }
--- 
--- local navic = require("nvim-navic")
--- local on_attach = function(client, bufnr)
---   if client.server_capabilities.documentSymbolProvider then
---     navic.attach(client, bufnr)
---   end
--- end
--- 
--- local lspcfg = require("lspconfig")
--- mason_lspcfg.setup_handlers {
---   -- The first entry (without a key) will be the default handler
---   -- and will be called for each installed server that doesn"t have
---   -- a dedicated handler.
---   function(server_name) -- default handler (optional)
---       lspcfg[server_name].setup {
---         on_attach = on_attach,
---       }
---   end,
--- 
---   lua_ls = function()
---       lspcfg.lua_ls.setup {
---         on_attach = on_attach,
---         settings = {
---           Lua = {
---             diagnostics = {
---               globals = { "vim" }
---             },
---           },
---         },
---       }
---     end,
--- 
---     pyright = function()
---       lspcfg.pyright.setup {
---         on_attach = on_attach,
---         settings = {
---           python = {
---             analysis = {
---               diagnosticSeverityOverrides = {
---                 reportMissingImports = "none",
---               },
---             },
---           },
---         },
---       }
---     end,
--- }
--- 
--- -- Lsp global mappings
--- -- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
--- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
--- vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
--- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
--- 
--- -- Use LspAttach autocommand to only map the following keys
--- -- after the language server attaches to the current buffer
--- vim.api.nvim_create_autocmd("LspAttach", {
---   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
---   callback = function(ev)
---     -- Enable completion triggered by <c-x><c-o>
---     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
--- 
---     -- Buffer local mappings.
---     -- See `:help vim.lsp.*` for documentation on any of the below functions
---     local opts = { buffer = ev.buf }
---     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
---     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
---     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
---     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
---     -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
---     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
---     vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
---     vim.keymap.set("n", "<space>wl", function()
---       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
---     end, opts)
---     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
---     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
---     vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
---     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
---     vim.keymap.set("n", "<space>f", function()
---       vim.lsp.buf.format { async = true }
---     end, opts)
---   end,
--- })
-
-
--- nvim-tree
-vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<cr>")
 
 
 -- Easily view and switch buffers
 vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true })
-
-
--- telescope
--- local telescope = require("telescope")
--- telescope.setup {
---   find_files = {
---     hidden = true,
---   },
--- }
-
--- Find files using Telescope command-line sugar
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
 
 
 -- File change settings stolen from https://unix.stackexchange.com/a/383044/517031
