@@ -3,35 +3,39 @@ return {
 
   build = ":TSUpdate",
 
-  config = true,
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 
   opts = {
     auto_install = true,
     ensure_installed = {
       "bash",
       "c",
-      "css",
       "dockerfile",
       "git_config",
-      "html",
+      "go",
       "javascript",
+      "jq",
       "json",
       "lua",
-      "luadoc",
+      "make",
       "markdown",
+      "markdown_inline",
       "python",
       "query",
       "regex",
+      "rust",
+      "sql",
       "tsx",
       "typescript",
       "vim",
       "vimdoc",
+      "xml",
       "yaml",
     },
-    modules = {
-      highlight = {
-        enable = true,
-      },
+    highlight = {
+      enable = true,
     },
   },
 }
