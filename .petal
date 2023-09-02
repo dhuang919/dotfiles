@@ -43,4 +43,3 @@ function pta {
 
 alias pt=/Users/derek.huang/dev/shared/pt/venv/bin/pt
 alias oncalls=~/dev/sandbox/py/get_pagerduty_oncalls
-

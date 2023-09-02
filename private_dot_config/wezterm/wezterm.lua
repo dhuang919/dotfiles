@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local c = {}
 
 c.colors = {
-  cursor_bg = "#fff"
+  cursor_bg = "#fff",
 }
 c.adjust_window_size_when_changing_font_size = false
 if string.find(wezterm.home_dir, "derek", 1, true) then

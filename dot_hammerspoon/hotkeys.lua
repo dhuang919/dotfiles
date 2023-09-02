@@ -1,12 +1,12 @@
-local o = require('open')
-local s = require('screens')
+local o = require("open")
+local s = require("screens")
 local home = false
 local work = false
 
-if s.SCREENS['HORIZONTAL'] ~= nil then
-  if s.SCREENS.HORIZONTAL:name() == 'DELL U2518D' then
+if s.SCREENS["HORIZONTAL"] ~= nil then
+  if s.SCREENS.HORIZONTAL:name() == "DELL U2518D" then
     home = true
-  elseif s.SCREENS.HORIZONTAL:name() == 'BFP100-27 (1)' then
+  elseif s.SCREENS.HORIZONTAL:name() == "BFP100-27 (1)" then
     work = true
   end
 end
@@ -80,26 +80,26 @@ local ratios = {
   },
 }
 
-hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'W', function()
-  o.moveIfOpen('Slack', 'LAPTOP', ratios.slack)
-  o.moveIfOpen('Spotify', 'LAPTOP', ratios.spotify)
-  o.moveIfOpen('bbvpn2', 'LAPTOP', ratios.bbvpn)
-  o.moveIfOpen('Calendar', 'LAPTOP', ratios.calendar)
-  o.moveIfOpen('Obsidian', 'LAPTOP', ratios.obsidian)
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
+  o.moveIfOpen("Slack", "LAPTOP", ratios.slack)
+  o.moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
+  o.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
+  o.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
+  o.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
 
-  o.moveIfOpen('iTerm2', home and 'VERTICAL' or 'LAPTOP', ratios.iterm)
-  o.moveIfOpen('WezTerm', home and 'VERTICAL' or 'LAPTOP', ratios.wezterm)
+  o.moveIfOpen("iTerm2", home and "VERTICAL" or "LAPTOP", ratios.iterm)
+  o.moveIfOpen("WezTerm", home and "VERTICAL" or "LAPTOP", ratios.wezterm)
 
   if home then
-    o.moveIfOpen('Google Chrome', 'VERTICAL', ratios.chrome_hm)
+    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_hm)
   elseif work then
-    o.moveIfOpen('Google Chrome', 'VERTICAL', ratios.chrome_wrk)
+    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_wrk)
   else
-    o.moveIfOpen('Google Chrome', 'LAPTOP', ratios.chrome_lptp)
+    o.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
   end
 end)
 
-hs.hotkey.bind({'alt', 'cmd', 'ctrl'}, 'R', function()
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "R", function()
   hs.reload()
-  hs.notify.new({title='Hammerspoon', informativeText='Config reloaded'}):send()
+  hs.notify.new({ title = "Hammerspoon", informativeText = "Config reloaded" }):send()
 end)

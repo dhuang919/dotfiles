@@ -12,7 +12,7 @@ return {
 
       local gen_hook = msj.gen_hook
 
-      local all = { brackets = { '%b()', '%b[]', '%b{}' } }
+      local all = { brackets = { "%b()", "%b[]", "%b{}" } }
       local add_trailing_comma = gen_hook.add_trailing_separator(all)
       local del_trailing_comma = gen_hook.del_trailing_separator(all)
       -- local pad_separator = gen_hook.add_trailing_separator(all)
@@ -36,15 +36,15 @@ return {
         split = {
           hooks_post = {
             add_trailing_comma,
-          }
+          },
         },
         join = {
           hooks_post = {
             del_trailing_comma,
             -- pad_separator,
-          }
+          },
         },
       }
-    end
+    end,
   },
 }
