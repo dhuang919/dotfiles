@@ -6,6 +6,14 @@ return {
       { "williamboman/mason.nvim", cmd = "Mason", build = ":MasonUpdate" },
       { "williamboman/mason-lspconfig.nvim" },
       { "SmiteshP/nvim-navic" },
+      {
+        "ray-x/go.nvim",
+        -- config = function()
+        --   require("go").setup()
+        -- end,
+        event = "CmdlineEnter",
+        ft = { "go", "gomod" },
+      },
     },
 
     config = function(_, opts)

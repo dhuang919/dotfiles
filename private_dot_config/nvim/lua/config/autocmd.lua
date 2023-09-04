@@ -20,3 +20,11 @@ autocmd("BufEnter", {
     vim.opt_local.formatoptions:remove({ "c", "o" })
   end,
 })
+
+autocmd("BufWritePre", {
+  pattern = "*.go",
+  group = augroup("GoFormat", {}),
+  callback = function()
+    require("go.format").goimport()
+  end,
+})
