@@ -3,12 +3,6 @@ require("config.lazy")
 
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
-vim.opt.formatoptions = vim.opt.formatoptions
-  + {
-    c = false,
-    o = false, -- O and o don't continue comments
-    r = true, -- Return will continue comments
-  }
 
 vim.o.expandtab = true
 vim.o.mouse = "a"
