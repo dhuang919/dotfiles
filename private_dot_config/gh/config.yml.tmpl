@@ -11,7 +11,7 @@ aliases:
     ci: pr checks
     b: browse
     pc: pr create
-    pv: pr view
+    pv: '!gh pr view $1 -w'
     als: alias list
     pls: pr list -s all -A @me
     pvh: '!gh pr view $(gh pls | head -n 1 | awk "{print \$1}") -w'
