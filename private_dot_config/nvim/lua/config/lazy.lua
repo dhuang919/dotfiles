@@ -11,12 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- https://github.com/folke/lazy.nvim#%EF%B8%8F-configuration
 require("lazy").setup("plugins", {
   install = {
     missing = true,
   },
   checker = {
-    enabled = true,
+    enabled = false,
     notify = false,
   },
   change_detection = {
