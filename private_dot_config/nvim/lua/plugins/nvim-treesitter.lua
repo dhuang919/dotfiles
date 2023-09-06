@@ -12,6 +12,8 @@ return {
     ensure_installed = {
       "bash",
       "c",
+      "cpp",
+      "csv",
       "dockerfile",
       "git_config",
       "go",
