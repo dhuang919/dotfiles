@@ -17,7 +17,9 @@ autocmd("BufEnter", {
   desc = "Don't extend comments to newlines with o/O",
   group = augroup("AutoComment", {}),
   callback = function()
-    vim.opt_local.formatoptions:remove({ "c", "o" })
+    vim.opt_local.formatoptions:append("r")
+    vim.opt_local.formatoptions:remove("c")
+    vim.opt_local.formatoptions:remove("o")
   end,
 })
 
