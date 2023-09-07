@@ -20,7 +20,7 @@ c.keys = {
   {
     key = "w",
     mods = "CMD",
-    actions = wezterm.action.CloseCurrentTab({ confirm = false }),
+    action = wezterm.action.CloseCurrentTab({ confirm = false }),
   },
 }
 
