@@ -19,4 +19,4 @@ vim.keymap.set("n", "Q", "<Nop>")
 vim.keymap.set("n", "q:", "<Nop>")
 
 -- Easily view and switch buffers
-vim.keymap.set("n", "gb", ":ls<CR>:b<Space>", { noremap = true })
+vim.keymap.set("n", "vb", ":ls<CR>:b<Space>", { noremap = true })

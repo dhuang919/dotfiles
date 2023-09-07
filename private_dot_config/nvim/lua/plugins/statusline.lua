@@ -13,6 +13,11 @@ return {
         date_format = "%r",
         display_virtual_text = 0,
       },
+
+      keys = {
+        { "<leader>co", "<cmd>GitBlameOpenCommitURL<cr>" },
+        { "<leader>fo", "<cmd>GitBlameOpenFileURL<cr>" },
+      },
     },
   },
 
