@@ -3,6 +3,7 @@ require("config.lazy")
 
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
+vim.opt.foldenable = false
 
 vim.o.expandtab = true
 vim.o.mouse = "a"
