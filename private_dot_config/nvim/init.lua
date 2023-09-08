@@ -1,3 +1,6 @@
+require("config.autocmds")
+require("config.lazy")
+
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 vim.opt.foldenable = false
