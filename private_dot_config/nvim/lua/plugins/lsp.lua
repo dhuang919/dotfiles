@@ -22,6 +22,7 @@ return {
           "gopls",
           "jsonls",
           "lua_ls",
+          "marksman",
           "pyright",
           "yamlls",
         },
