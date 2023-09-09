@@ -1,3 +1,11 @@
+{{- if eq .chezmoi.os "darwin" }}
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+{{- end }}
 export EDITOR='nvim'
 export VISUAL='nvim'
 export FZF_DIR="$HOME/.fzf"
@@ -183,9 +191,7 @@ alias htop="sudo htop"
 alias ipy=ipython
 {{- end }}
 alias cz="chezmoi"
-alias cza="cz apply"
-alias czu="cz update"
 alias ll="ls -lAh"
 alias sbx="cd $HOME/dev/sandbox"
-alias sbxc="code $HOME/dev/sandbox"
+alias sbxc="nvim $HOME/dev/sandbox"
 alias vim="nvim"
