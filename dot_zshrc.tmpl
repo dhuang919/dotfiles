@@ -36,7 +36,7 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 
 {{- if eq .chezmoi.os "darwin" }}
 # personal env vars
-export SCR="$HOME/Library/CloudStorage/Dropbox/notes/scratch"
+export SCR="$HOME/dev/notes/scratch"
 
 [[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
 [[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
@@ -54,14 +54,16 @@ function fmt_img {
 }
 
 function _get_last_md {
-  echo $(ls -l "${1}" | grep .md | awk '{print $NF}' | sort -rn | head -n 1)
+  find "${1}" -name "*.md" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 1
 }
 
-# Daily md
 function mng {
-  local -r year_month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y_%m)
+  local -r year=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y)
+  local -r month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%m)
   local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
-  local -r today_path="${SCR}/${year_month}/${today}.md"
+  local -r today_path="${SCR}/${year}/${month}/${today}.md"
+  local prev_md
+  local prev_dir
 
   if [[ -f "${today_path}" ]]
   then
@@ -70,32 +72,36 @@ function mng {
   fi
 
   # Make sure the current year month dir exists
-  mkdir -p "${SCR}/${year_month}"
+  mkdir -p "${SCR}/${year}/${month}"
 
   # Get the most recent md before today
-  local prev_md=$(_get_last_md "${SCR}/${year_month}")
+  prev_md=$(_get_last_md "${SCR}/${year}/${month}")
 
-  local prev_dir
   if [[ -z "${prev_md}" ]]
   then
-    # ensure we get the last md if it's been longer than a month since the last
+    # Make sure we get the last md if it's been longer than a month since the last
     while [[ -z "${prev_md}" ]]
     do
-      prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y_%m)
+      # Keep decrementing by a month, going back to prev years if needed
+      prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y/%m)
       prev_md=$(_get_last_md "${SCR}/${prev_dir}")
     done
   else
-    prev_dir="${year_month}"
+    prev_dir="${year}/${month}"
   fi
 
   local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|#do_it|#schedule_it)/p' "${SCR}/${prev_dir}/${prev_md}")
 
-  cat << EOF >> ${today_path}
+  cat << EOF >> "${today_path}"
 # Todo
 $unfinished_todos
 
 # Notes
+## Work
+## Personal
 EOF
+
+  return 0
 }
 
 # Connect trackpad
