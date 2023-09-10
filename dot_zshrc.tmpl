@@ -171,7 +171,8 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
-ZSH_THEME=powerlevel10k/powerlevel10k
+# Source p10k from brew
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
 plugins=(fzf git)
 
