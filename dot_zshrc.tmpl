@@ -90,7 +90,7 @@ function mng {
     prev_dir="${year}/${month}"
   fi
 
-  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|#do_it|#schedule_it)/p' "${SCR}/${prev_dir}/${prev_md}")
+  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|Next Actions|Less Important)/p' "${SCR}/${prev_dir}/${prev_md}")
 
   cat << EOF >> "${today_path}"
 # Todo
