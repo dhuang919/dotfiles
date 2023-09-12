@@ -16,7 +16,7 @@ vim.g.tmux_navigator_save_on_switch = 2
 
 -- disable stuff
 vim.keymap.set("n", "Q", "<Nop>")
-vim.keymap.set("n", "q:", "<Nop>")
+vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
 
 -- Easily view and switch buffers
 vim.keymap.set("n", "vb", ":ls<CR>:b<Space>", { noremap = true })
