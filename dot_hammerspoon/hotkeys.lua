@@ -1,14 +1,14 @@
 local o = require("open")
 local s = require("screens")
-local home = false
-local work = false
+local external_connected = false
 
+-- home horizontal U2518D
+-- home vertical U2515H
+
+-- work horizontal BFP100-27 (1)
+-- work vertical BFP100-27 (2)
 if s.SCREENS["HORIZONTAL"] ~= nil then
-  if s.SCREENS.HORIZONTAL:name() == "DELL U2518D" then
-    home = true
-  elseif s.SCREENS.HORIZONTAL:name() == "BFP100-27 (1)" then
-    work = true
-  end
+  external_connected = true
 end
 
 local ratios = {
@@ -30,29 +30,23 @@ local ratios = {
     height = 1,
     width = 0.8,
   },
-  chrome_hm = {
+  chrome_ext = {
     top = 0.19,
     left = 0,
     height = 0.378,
     width = 1,
   },
-  chrome_wrk = {
-    top = 0,
-    left = 0,
-    height = 0.66,
-    width = 0.5,
-  },
   iterm = {
-    top = home and 0.568 or 0,
-    left = home and 0 or 0,
-    height = home and 0.44 or 0.8,
-    width = home and 1 or 0.6,
+    top = external_connected and 0.568 or 0,
+    left = external_connected and 0 or 0,
+    height = external_connected and 0.44 or 0.8,
+    width = external_connected and 1 or 0.6,
   },
   wezterm = {
-    top = home and 0.568 or 0,
-    left = home and 0 or 0,
-    height = home and 0.44 or 0.8,
-    width = home and 1 or 0.6,
+    top = external_connected and 0.568 or 0,
+    left = external_connected and 0 or 0,
+    height = external_connected and 0.44 or 0.8,
+    width = external_connected and 1 or 0.6,
   },
   mail = {
     top = 0.03,
@@ -87,13 +81,11 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
   o.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
   o.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
 
-  o.moveIfOpen("iTerm2", home and "VERTICAL" or "LAPTOP", ratios.iterm)
-  o.moveIfOpen("WezTerm", home and "VERTICAL" or "LAPTOP", ratios.wezterm)
+  o.moveIfOpen("iTerm2", external_connected and "VERTICAL" or "LAPTOP", ratios.iterm)
+  o.moveIfOpen("WezTerm", external_connected and "VERTICAL" or "LAPTOP", ratios.wezterm)
 
-  if home then
-    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_hm)
-  elseif work then
-    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_wrk)
+  if external_connected then
+    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_ext)
   else
     o.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
   end
