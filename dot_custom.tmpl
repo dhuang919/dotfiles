@@ -8,7 +8,6 @@ export GOPATH=$HOME/go
 export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
 export BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
 export BPKG_TOKEN=***REMOVED_BPKG_PROD***
-export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
 export no_proxy="127.0.0.1,169.254.169.254,bcc.bloomberg.com,bcpc.bloomberg.com,bcs.bloomberg.com,bdns.bloomberg.com,cloud.bloomberg.com,dev.bloomberg.com,dx.bloomberg.com,inf.bloomberg.com,localhost,localhost,prod.bloomberg.com,guts.admin.bloomberg.com"
 
 BBID=31453293
@@ -18,7 +17,6 @@ alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bl
 alias mbs='curl -s "https://lcldev-public.dx.bloomberg.com/mac-$(uname -p)-bootstrap" -o /tmp/bootstrap && chmod +x /tmp/bootstrap && /tmp/bootstrap'
 alias scripts='cd ~/Projects/dhuang295/scripts'
 alias ts='cd ~/Projects/tssr'
-alias boug='cd ~/dev/bougie'
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -43,17 +41,13 @@ function tglpxy {
     mv ~/.{_,}npmrc
   fi
 }
-{{ else if eq .chezmoi.username "derek" }}
-export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
+{{- else if eq .chezmoi.username "derek" }}
 
-alias bb="cd ~/dev/bloomberg"
 alias bf="cd ~/dev/bradfield/derekhuang"
-alias bfc="code ~/dev/workspaces/bradfield.code-workspace"
-alias boug="cd ~/dev/bougie"
 alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
 
 function get_lc_times {
-  ag --nofilename -i 'leetcode' ~/Dropbox/notes/scratch | \
+  ag --nofilename -i 'leetcode' ~/dev/notes/scratch | \
   grep -E '[0-9]{4} - [0-9]{4}' | \
   tr -d '* leetcode ' | \
   tr , '\n' | \
