@@ -394,6 +394,8 @@ bind -r L resize-pane -R 10
 setw -g monitor-activity off
 set -g visual-activity off
 
+bind-key -n C-g send-keys -R ^M \; clear-history
+
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
 
