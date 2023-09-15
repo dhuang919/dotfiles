@@ -16,8 +16,8 @@ vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 vim.g.tmux_navigator_save_on_switch = 2
 
 -- Disable stuff
-vim.keymap.set("n", "Q", "<Nop>")
-vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
+vim.keymap.set("n", "Q", "")
+vim.keymap.set("n", "q:", "")
 
 -- Unhighlight
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
