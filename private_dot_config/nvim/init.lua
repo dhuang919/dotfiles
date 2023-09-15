@@ -3,7 +3,6 @@ require("config.lazy")
 
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
-vim.opt.foldenable = false
 
 vim.o.expandtab = true
 vim.o.mouse = "a"
@@ -12,11 +11,16 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
+
+-- Save all unwritten buffers when switching to a tmux pane
 vim.g.tmux_navigator_save_on_switch = 2
 
--- disable stuff
+-- Disable stuff
 vim.keymap.set("n", "Q", "<Nop>")
 vim.keymap.set("n", "q:", "<Nop>", { noremap = true })
 
+-- Unhighlight
+vim.keymap.set("n", "<Esc>", ":noh<cr>")
+
 -- Easily view and switch buffers
-vim.keymap.set("n", "vb", ":ls<CR>:b<Space>", { noremap = true })
+vim.keymap.set("n", "vb", ":ls<cr>:b<Space>", { noremap = true })

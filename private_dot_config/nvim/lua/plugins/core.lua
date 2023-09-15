@@ -1,10 +1,28 @@
 return {
-  "RRethy/vim-illuminate",
-  "Vimjas/vim-python-pep8-indent",
-  "christoomey/vim-tmux-navigator",
-  "nvim-pack/nvim-spectre",
-  "tpope/vim-commentary",
-  "tpope/vim-surround",
+  {
+    "RRethy/vim-illuminate",
+    event = "VeryLazy",
+  },
+  {
+    "Vimjas/vim-python-pep8-indent",
+    event = "VeryLazy",
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VeryLazy",
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-commentary",
+    event = "VeryLazy",
+  },
+  {
+    "tpope/vim-surround",
+    event = "VeryLazy",
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",

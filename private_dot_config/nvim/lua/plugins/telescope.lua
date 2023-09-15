@@ -1,11 +1,18 @@
 return {
   "nvim-telescope/telescope.nvim",
 
-  lazy = false,
+  event = "VeryLazy",
 
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    {
+      "nvim-lua/plenary.nvim",
+      event = "VeryLazy"
+    },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      event = "VeryLazy",
+    },
   },
 
   config = function(_, opts)

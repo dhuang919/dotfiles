@@ -5,9 +5,12 @@ return {
 
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
+    vim.opt.foldenable = false
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
   end,
+
+  event = "VeryLazy",
 
   opts = {
     auto_install = true,

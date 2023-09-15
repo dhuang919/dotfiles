@@ -2,10 +2,23 @@ return {
   {
     "neovim/nvim-lspconfig",
 
+    event = "VeryLazy",
+
     dependencies = {
-      { "williamboman/mason.nvim", cmd = "Mason", build = ":MasonUpdate" },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "SmiteshP/nvim-navic" },
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        cmd = "Mason",
+        event = "VeryLazy",
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        event = "VeryLazy",
+      },
+      {
+        "SmiteshP/nvim-navic",
+        event = "VeryLazy",
+      },
     },
 
     config = function(_, opts)
@@ -100,9 +113,9 @@ return {
   {
     "folke/trouble.nvim",
 
-    lazy = false,
-
     config = true,
+
+    event = "VeryLazy",
 
     keys = {
       { "<leader>xx", "<cmd>TroubleToggle<cr>" },
