@@ -19,8 +19,8 @@ vim.g.tmux_navigator_save_on_switch = 2
 vim.keymap.set("n", "Q", "")
 vim.keymap.set("n", "q:", "")
 
--- Unhighlight
+-- Unhighlight with esc
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
 -- Easily view and switch buffers
-vim.keymap.set("n", "vb", ":ls<cr>:b<Space>", { noremap = true })
+vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
