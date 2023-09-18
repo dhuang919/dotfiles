@@ -8,18 +8,25 @@ return {
     lazy = true,
   },
 
-  config = function(_, opts)
+  config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
     vim.o.termguicolors = true
-    require("nvim-tree").setup(opts)
-  end,
 
-  opts = {
-    view = {
-      width = 35,
-    },
-  },
+    local function on_attach(bufnr)
+      local api = require('nvim-tree.api')
+      api.config.mappings.default_on_attach(bufnr)
+      -- remove default ctrl-e to keep scroll down
+      vim.keymap.del('n', '<C-e>', { buffer = bufnr })
+    end
+
+    require("nvim-tree").setup({
+      on_attach = on_attach,
+      view = {
+        width = 35,
+      },
+    })
+  end,
 
   keys = {
     { "<C-n>", ":NvimTreeToggle<cr>" },
