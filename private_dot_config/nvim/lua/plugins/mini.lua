@@ -1,12 +1,14 @@
 return {
   {
     "echasnovski/mini.splitjoin",
+    event = "VeryLazy",
     version = false,
-    lazy = false,
   },
   {
     "echasnovski/mini.comment",
     version = false,
-    lazy = false,
+    config = function()
+      require("mini.comment").setup()
+    end
   },
 }

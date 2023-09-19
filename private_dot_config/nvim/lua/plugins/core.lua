@@ -21,8 +21,10 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
     version = "*",
+    config = function()
+      require("nvim-surround").setup()
+    end
   },
   {
     "folke/which-key.nvim",
@@ -31,5 +33,8 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+    config = function()
+      require("which-key").setup()
+    end
   },
 }

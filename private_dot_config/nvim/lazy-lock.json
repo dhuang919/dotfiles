@@ -10,7 +10,6 @@
   "mason.nvim": { "branch": "main", "commit": "d66c60e17dd6fd8165194b1d14d21f7eb2c1697a" },
   "mini.comment": { "branch": "main", "commit": "877acea5b2a32ff55f808fc0ebe9aa898648318c" },
   "mini.splitjoin": { "branch": "main", "commit": "5f4237ae557f255a1f1a435c76c6a715be39060a" },
-  "mini.surround": { "branch": "main", "commit": "9d1956b576d7051da3a483b251dfc778121c60db" },
   "nvim-autopairs": { "branch": "master", "commit": "7b3eb9b5813a22188c4dbb248475fcbaf9f4d195" },
   "nvim-dap": { "branch": "master", "commit": "b3d4408e29d924fe130c9397a7c3b3630b3ea671" },
   "nvim-dap-ui": { "branch": "master", "commit": "34160a7ce6072ef332f350ae1d4a6a501daf0159" },
