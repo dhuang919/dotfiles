@@ -12,15 +12,11 @@ return {
     event = "VeryLazy",
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+  },
+  {
     "nvim-pack/nvim-spectre",
-    event = "VeryLazy",
-  },
-  {
-    "tpope/vim-commentary",
-    event = "VeryLazy",
-  },
-  {
-    "tpope/vim-surround",
     event = "VeryLazy",
   },
   {
