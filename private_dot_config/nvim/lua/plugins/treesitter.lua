@@ -4,6 +4,10 @@ return {
   build = ":TSUpdate",
 
   config = function(_, opts)
+    -- TODO: make this dynamic
+    -- require("nvim-treesitter.install").command_extra_args = {
+    --   curl = {"--proxy", "http://proxy.bloomberg.com:81"}
+    -- }
     require("nvim-treesitter.configs").setup(opts)
     vim.opt.foldenable = false
     vim.opt.foldmethod = "expr"
@@ -32,7 +36,6 @@ return {
       "python",
       "query",
       "regex",
-      "rust",
       "sql",
       "tsx",
       "typescript",

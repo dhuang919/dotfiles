@@ -20,6 +20,11 @@ return {
     event = "VeryLazy",
   },
   {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    version = "*",
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     init = function()
