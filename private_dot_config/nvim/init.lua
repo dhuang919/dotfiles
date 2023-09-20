@@ -5,6 +5,7 @@ vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 vim.o.expandtab = true
+vim.o.formatoptions = "jrl"
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.splitbelow = true
