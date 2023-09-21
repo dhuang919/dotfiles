@@ -14,6 +14,7 @@ elseif string.find(wezterm.home_dir, "dhuang295", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/Projects/tssr"
 end
 
+c.default_cursor_style = "SteadyBar"
 c.enable_scroll_bar = true
 c.hide_tab_bar_if_only_one_tab = true
 c.initial_cols = 120
