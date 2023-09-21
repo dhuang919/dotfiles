@@ -11,6 +11,13 @@ autocmd("BufWritePre", {
   end,
 })
 
+autocmd("BufWritePre", {
+  desc = "Trim trailing whitespace",
+  pattern = { "*" },
+  group = augroup("TrimWhtspc", {}),
+  command = [[%s/\s\+$//e]],
+})
+
 autocmd("TextYankPost", {
   desc = "Briefly highlight yanked text",
   callback = function()
