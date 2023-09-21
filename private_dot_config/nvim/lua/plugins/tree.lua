@@ -23,6 +23,9 @@ return {
       view = {
         width = 35,
       },
+      update_focused_file = {
+        enable = true,
+      },
     })
   end,
 
