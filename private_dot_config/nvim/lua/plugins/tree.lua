@@ -21,6 +21,14 @@ return {
 
     require("nvim-tree").setup({
       on_attach = on_attach,
+      filters = {
+        git_ignored = false,
+      },
+      icons = {
+        folder = {
+          enable = true,
+        },
+      },
       view = {
         width = 35,
       },
@@ -31,6 +39,6 @@ return {
   end,
 
   keys = {
-    { "<C-n>", ":NvimTreeToggle<cr>" },
+    { "<C-n>", ":NvimTreeToggle<cr>", desc = "Toggle nvim-tree" },
   },
 }
