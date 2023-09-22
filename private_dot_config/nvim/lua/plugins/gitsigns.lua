@@ -69,9 +69,9 @@ return {
     require("gitsigns").setup({
       on_attach = on_attach,
       current_line_blame = false,
-      current_line_blame_formatter = "<author> | <author_mail> | <author_time> | <summary>",
+      current_line_blame_formatter = "<author> | <author_time:%R> | <summary>",
       current_line_blame_opts = {
-        virt_text_pos = "right_align",
+        delay = 300,
       },
     })
   end,

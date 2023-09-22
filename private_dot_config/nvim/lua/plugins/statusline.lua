@@ -28,9 +28,14 @@ return {
 
       event = "VeryLazy",
 
+      -- opts = {
+      --   enabled = false,
+      -- },
+
       config = function()
+        vim.g.gitblame_display_virtual_text = 0
         require("gitblame").setup({
-          enable = false,
+          enabled = false,
         })
       end,
 
