@@ -21,8 +21,8 @@ return {
       },
     },
 
-    config = function(_, opts)
-      require("mason").setup(opts)
+    config = function()
+      require("mason").setup()
 
       vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
