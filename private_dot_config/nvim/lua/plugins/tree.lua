@@ -1,10 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
 
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
+  lazy = false,
 
   config = function()
     vim.g.loaded_netrw = 1
@@ -24,9 +21,27 @@ return {
       filters = {
         git_ignored = false,
       },
-      icons = {
-        folder = {
-          enable = true,
+      renderer = {
+        group_empty = true,
+        highlight_diagnostics = true,
+        highlight_git = true,
+        highlight_modified = "all",
+        highlight_opened_files = "all",
+        icons = {
+          web_devicons = {
+            folder = {
+              enable = true,
+            },
+          },
+        },
+        special_files = {
+          ".pre-commit-config.yaml",
+          "Cargo.toml",
+          "Dockerfile",
+          "Makefile",
+          "README.md",
+          "pyproject.toml",
+          "readme.md",
         },
       },
       view = {
@@ -40,5 +55,10 @@ return {
 
   keys = {
     { "<C-n>", ":NvimTreeToggle<cr>", desc = "Toggle nvim-tree" },
+  },
+
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
   },
 }
