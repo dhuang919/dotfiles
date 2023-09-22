@@ -28,6 +28,12 @@ return {
 
       event = "VeryLazy",
 
+      config = function()
+        require("gitblame").setup({
+          enable = false,
+        })
+      end,
+
       keys = {
         { "<leader>co", "<cmd>GitBlameOpenCommitURL<cr>" },
         { "<leader>fo", "<cmd>GitBlameOpenFileURL<cr>" },
