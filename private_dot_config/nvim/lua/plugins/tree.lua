@@ -45,6 +45,7 @@ return {
         },
       },
       view = {
+        number = true,
         width = 35,
       },
       update_focused_file = {
