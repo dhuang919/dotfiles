@@ -14,7 +14,8 @@ return {
     local function on_attach(bufnr)
       local api = require('nvim-tree.api')
       api.config.mappings.default_on_attach(bufnr)
-      -- remove default ctrl-e to keep scroll down
+
+      -- Remove default ctrl-e to keep scroll down
       vim.keymap.del('n', '<C-e>', { buffer = bufnr })
     end
 
