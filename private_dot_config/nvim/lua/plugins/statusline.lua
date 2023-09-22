@@ -18,7 +18,7 @@ return {
 
   opts = {
     options = {
-      theme = "dracula",
+      theme = "16color",
     },
     sections = {
       lualine_c = {
