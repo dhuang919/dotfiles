@@ -11,6 +11,11 @@ vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- Use treesitter for folding
+vim.o.foldenable = false
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
 -- Save all unwritten buffers when switching to a tmux pane

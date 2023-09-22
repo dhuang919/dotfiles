@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.username "dhuang295" }}
+{{- if eq .chezmoi.username "dhuang295" }}
 export GH_NO_UPDATE_NOTIFIER=1
 export GOPRIVATE="*.dev.bloomberg.com"
 export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
@@ -8,6 +8,7 @@ export GOPATH=$HOME/go
 export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
 export BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
 export BPKG_TOKEN=***REMOVED_BPKG_PROD***
+export ALL_PROXY="http://proxy.bloomberg.com:81"
 export no_proxy="127.0.0.1,169.254.169.254,bcc.bloomberg.com,bcpc.bloomberg.com,bcs.bloomberg.com,bdns.bloomberg.com,cloud.bloomberg.com,dev.bloomberg.com,dx.bloomberg.com,inf.bloomberg.com,localhost,localhost,prod.bloomberg.com,guts.admin.bloomberg.com"
 
 BBID=31453293
@@ -53,4 +54,4 @@ function get_lc_times {
   tr , '\n' | \
   sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
 }
-{{ end }}
+{{- end }}
