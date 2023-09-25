@@ -32,11 +32,15 @@ return {
       mason_lspcfg.setup({
         ensure_installed = {
           "clangd",
+          "docker_compose_language_service",
+          "dockerls",
           "gopls",
           "jsonls",
           "lua_ls",
           "marksman",
           "pyright",
+          "sqlls",
+          "tsserver",
           "yamlls",
         },
       })
