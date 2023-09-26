@@ -17,6 +17,11 @@ return {
     end
 
     require("nvim-tree").setup({
+      actions = {
+        open_file = {
+          resize_window = true,
+        },
+      },
       on_attach = on_attach,
       filters = {
         git_ignored = false,
@@ -47,7 +52,7 @@ return {
       view = {
         number = true,
         preserve_window_proportions = true,
-        width = "15%",
+        width = "20%",
       },
       update_focused_file = {
         enable = true,
