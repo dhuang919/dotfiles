@@ -1,0 +1,4 @@
+strict-ssl=false
+registry=https://artprod.dev.bloomberg.com/artifactory/api/npm/npm-repos
+engine-strict=true
+proxy=http://proxy.bloomberg.com:81
