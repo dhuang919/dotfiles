@@ -21,28 +21,4 @@ return {
       },
     },
   },
-
-  dependencies = {
-    {
-      "f-person/git-blame.nvim",
-
-      event = "VeryLazy",
-
-      -- opts = {
-      --   enabled = false,
-      -- },
-
-      config = function()
-        vim.g.gitblame_display_virtual_text = 0
-        require("gitblame").setup({
-          enabled = false,
-        })
-      end,
-
-      keys = {
-        { "<leader>co", "<cmd>GitBlameOpenCommitURL<cr>" },
-        { "<leader>fo", "<cmd>GitBlameOpenFileURL<cr>" },
-      },
-    },
-  },
 }
