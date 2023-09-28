@@ -1,5 +1,9 @@
 return {
   {
+    "iamcco/markdown-preview.nvim",
+    event = "VeryLazy",
+  },
+  {
     "RRethy/vim-illuminate",
     event = "VeryLazy",
   },
