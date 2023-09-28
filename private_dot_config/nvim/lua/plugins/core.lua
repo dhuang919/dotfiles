@@ -2,6 +2,7 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     event = "VeryLazy",
+    build = "mkdp#util#install()",
   },
   {
     "RRethy/vim-illuminate",
