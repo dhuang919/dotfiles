@@ -9,11 +9,11 @@ return {
     vim.o.termguicolors = true
 
     local function on_attach(bufnr)
-      local api = require('nvim-tree.api')
+      local api = require("nvim-tree.api")
       api.config.mappings.default_on_attach(bufnr)
 
       -- Remove default ctrl-e to keep scroll down
-      vim.keymap.del('n', '<C-e>', { buffer = bufnr })
+      vim.keymap.del("n", "<C-e>", { buffer = bufnr })
     end
 
     require("nvim-tree").setup({
@@ -52,7 +52,7 @@ return {
       view = {
         number = true,
         preserve_window_proportions = true,
-        width = "20%",
+        width = "15%",
       },
       update_focused_file = {
         enable = true,
