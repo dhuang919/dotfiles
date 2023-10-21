@@ -1,3 +1,4 @@
+export SENDGRID_API_KEY="***REMOVED_SENDGRID***"
 {{- if eq .chezmoi.username "dhuang295" }}
 export GH_NO_UPDATE_NOTIFIER=1
 export GOPRIVATE="*.dev.bloomberg.com"
@@ -43,7 +44,6 @@ function tglpxy {
   fi
 }
 {{- else if eq .chezmoi.username "derek" }}
-
 alias bf="cd ~/dev/bradfield/derekhuang"
 alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
 
