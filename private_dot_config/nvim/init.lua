@@ -6,6 +6,7 @@ vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 vim.o.expandtab = true
 vim.o.formatoptions = "jrl"
+vim.o.linebreak = true
 vim.o.mouse = "a"
 vim.o.number = true
 vim.o.splitbelow = true
