@@ -4,6 +4,7 @@
 [branch]
     autosetupmerge = true
 [diff]
+    tool = vimdiff
     mnemonicprefix = true
     algorithm = patience
 [color]
@@ -34,7 +35,7 @@
     stp = stash pop
     sw = switch
 [merge]
-    tool = opendiff
+    tool = vimdiff
     conflictstyle = zdiff3
 [filter "lfs"]
     clean = git-lfs clean -- %f
