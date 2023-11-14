@@ -39,6 +39,7 @@ return {
           "lua_ls",
           "marksman",
           "pyright",
+          "rust_analyzer",
           "sqlls",
           "tsserver",
           "yamlls",
