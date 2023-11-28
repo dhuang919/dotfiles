@@ -32,6 +32,7 @@
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
     pum = !git pull origin main
     re = restore
+    rup = remote update origin --prune
     sm = switch main
     st = status
     sta = stash
