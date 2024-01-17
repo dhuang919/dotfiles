@@ -9,7 +9,10 @@ export GOPATH=$HOME/go
 export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
 export BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
 export BPKG_TOKEN=***REMOVED_BPKG_PROD***
-export ALL_PROXY="http://proxy.bloomberg.com:81"
+export https_proxy="http://127.0.0.1:8888"
+export HTTPS_PROXY="$https_proxy"
+export http_proxy="$https_proxy"
+export HTTP_PROXY="$https_proxy"
 export no_proxy="127.0.0.1,169.254.169.254,bcc.bloomberg.com,bcpc.bloomberg.com,bcs.bloomberg.com,bdns.bloomberg.com,cloud.bloomberg.com,dev.bloomberg.com,dx.bloomberg.com,inf.bloomberg.com,localhost,localhost,prod.bloomberg.com,guts.admin.bloomberg.com"
 export LCLDEV_ENABLE_TELEPORT=1
 
@@ -43,16 +46,5 @@ function tglpxy {
     echo "Reverting ._npmrc rename"
     mv ~/.{_,}npmrc
   fi
-}
-{{- else if eq .chezmoi.username "derek" }}
-alias bf="cd ~/dev/bradfield/derekhuang"
-alias lct="get_lc_times | python ~/dev/sandbox/py/sum_timestamps.py"
-
-function get_lc_times {
-  ag --nofilename -i 'leetcode' ~/dev/notes/scratch | \
-  grep -E '[0-9]{4} - [0-9]{4}' | \
-  tr -d '* leetcode ' | \
-  tr , '\n' | \
-  sed -E 's/([0-9]{2})([0-9]{2})-([0-9]{2})([0-9]{2})/("\1:\2", "\3:\4")/'
 }
 {{- end }}
