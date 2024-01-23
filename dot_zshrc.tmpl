@@ -44,6 +44,9 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 [[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
 export PATH
 
+function help {
+  bash -c "help $@"
+}
 
 {{- if eq .chezmoi.os "darwin" }}
 function fmt_img {
