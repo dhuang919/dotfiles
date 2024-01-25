@@ -10,3 +10,7 @@
     fileMode = false
 [url "bbgithub:"]
     insteadOf = https://bbgithub.dev.bloomberg.com/
+[http]
+    proxy = http://proxy.bloomberg.com:81
+[https]
+    proxy = http://proxy.bloomberg.com:81
