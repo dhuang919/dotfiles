@@ -44,6 +44,7 @@
     stp = stash pop
     sw = switch
     gone = "!f() { git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f"
+    fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
 [merge]
     conflictstyle = zdiff3
 [mergetool]
