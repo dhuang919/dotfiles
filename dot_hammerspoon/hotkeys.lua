@@ -1,8 +1,6 @@
 local o = require("open")
 local s = require("screens")
 local external_connected = false
-local work = false
-local main = "LAPTOP"
 
 -- home horizontal U2518D
 -- home vertical U2515H
@@ -11,15 +9,6 @@ local main = "LAPTOP"
 -- work vertical BFP100-27 (2)
 if s.SCREENS["HORIZONTAL"] ~= nil then
   external_connected = true
-end
-
-if string.find(s.SCREENS["HORIZONTAL"]:name(), "BFP100", 1, true) then
-  work = true
-end
-
-if work then
-  -- trying laptop clamshell mode for the ergonomic keyboard
-  main = "HORIZONTAL"
 end
 
 local ratios = {
@@ -86,19 +75,19 @@ local ratios = {
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
-  o.moveIfOpen("Slack", main, ratios.slack)
-  o.moveIfOpen("Spotify", main, ratios.spotify)
-  o.moveIfOpen("bbvpn2", main, ratios.bbvpn)
-  o.moveIfOpen("Calendar", main, ratios.calendar)
-  o.moveIfOpen("Obsidian", main, ratios.obsidian)
+  o.moveIfOpen("Slack", "LAPTOP", ratios.slack)
+  o.moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
+  o.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
+  o.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
+  o.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
 
-  o.moveIfOpen("iTerm2", external_connected and "VERTICAL" or main, ratios.iterm)
-  o.moveIfOpen("WezTerm", external_connected and "VERTICAL" or main, ratios.wezterm)
+  o.moveIfOpen("iTerm2", external_connected and "VERTICAL" or "LAPTOP", ratios.iterm)
+  o.moveIfOpen("WezTerm", external_connected and "VERTICAL" or "LAPTOP", ratios.wezterm)
 
   if external_connected then
     o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_ext)
   else
-    o.moveIfOpen("Google Chrome", main, ratios.chrome_lptp)
+    o.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
   end
 end)
 
