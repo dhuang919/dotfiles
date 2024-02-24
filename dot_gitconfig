@@ -7,20 +7,13 @@
     tool = difftastic
     mnemonicprefix = true
     algorithm = patience
-    external = difft
-[difftool]
-    prompt = false
-[difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
-[pager]
-    difftool = true
 [color]
     ui = auto
 [core]
     editor = vim
     autocrlf = false
     safecrlf = true
-    # pager = diff-so-fancy | less --tabs=2 -RFX
+    pager = diff-so-fancy | less --tabs=2 -RFX
     excludesfile = /Users/dhuang295/.gitignore
 [push]
     default = upstream
@@ -31,7 +24,6 @@
     br = branch
     ci = commit
     co = checkout
-    dt = difftool
     hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short
     prul = !git pull && git remote update origin --prune
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
@@ -47,8 +39,6 @@
     fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
 [merge]
     conflictstyle = zdiff3
-[mergetool]
-    prompt = false
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -57,8 +47,6 @@
 [credential]
     helper = store
 [rerere]
-    # Remember my merges
-    # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
     enabled = true
 [include]
     path = .gitconfig.work
