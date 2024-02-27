@@ -8,7 +8,6 @@ brew "clang-format"
 brew "coreutils"
 brew "cpplint"
 brew "diff-so-fancy"
-brew "difftastic"
 brew "docker", link: false
 brew "dockutil"
 brew "exercism"
@@ -40,11 +39,15 @@ brew "the_silver_searcher"
 brew "tldr"
 brew "tmux"
 brew "wget"
+{{- if eq .chezmoi.username "derek" }}
 cask "adobe-acrobat-reader"
 cask "anki"
+{{- end }}
 cask "basictex"
 cask "beardedspice"
+{{- if eq .chezmoi.username "derek" }}
 cask "cityofzion-neon"
+{{- end }}
 cask "docker"
 cask "dropbox"
 cask "firefox"
@@ -52,12 +55,16 @@ cask "font-fira-code"
 cask "google-chrome"
 cask "hammerspoon"
 cask "insomnia"
+{{- if eq .chezmoi.username "derek" }}
 cask "ledger-live"
+{{- end }}
 cask "obsidian"
 cask "slack"
 cask "spotify"
+{{- if eq .chezmoi.username "derek" }}
 cask "steam"
 cask "via"
+{{- end }}
 cask "visual-studio-code"
 cask "wezterm"
 cask "zoom"
