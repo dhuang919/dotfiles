@@ -27,10 +27,10 @@
     hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short
     prul = !git pull && git remote update origin --prune
     pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
-    pum = !git pull origin main
+    pum = pull origin main
     re = restore
     rup = remote update origin --prune
-    sm = switch main
+    sm = !git switch $(git remote show upstream | grep \"HEAD branch\" | sed 's/.*: //')
     st = status
     sta = stash
     stp = stash pop
