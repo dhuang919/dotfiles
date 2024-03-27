@@ -6,18 +6,27 @@ for k, v in ipairs(hs.screen.allScreens()) do
   end
 
   -- personal
-  if string.find(v:name(), "U2518D", 1, true) then
-    SCREENS.HORIZONTAL = v
-  end
-  if string.find(v:name(), "U2515H", 1, true) then
-    SCREENS.VERTICAL = v
-  end
+  -- if string.find(v:name(), "U2518D", 1, true) then
+  --   SCREENS.HORIZONTAL = v
+  -- end
+  -- if string.find(v:name(), "U2515H", 1, true) then
+  --   SCREENS.VERTICAL = v
+  -- end
 
   -- work
-  if string.find(v:name(), "BFP100-27", 1, true) and string.find(v:name(), "(1)", 1, true) then
+  -- if string.find(v:name(), "BFP100-27", 1, true) and string.find(v:name(), "(2)", 1, true) then
+  --   SCREENS.HORIZONTAL = v
+  -- end
+  -- if string.find(v:name(), "BFP100-27", 1, true) and string.find(v:name(), "(1)", 1, true) then
+  --   SCREENS.VERTICAL = v
+  -- end
+
+  -- trying this out
+  x, y = v:position()
+  if x == 0 and y == -1 then
     SCREENS.HORIZONTAL = v
   end
-  if string.find(v:name(), "BFP100-27", 1, true) and string.find(v:name(), "(2)", 1, true) then
+  if x == 1 and y == -1 then
     SCREENS.VERTICAL = v
   end
 end
