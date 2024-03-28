@@ -1,9 +1,9 @@
 SCREENS = {}
 
-for k, v in ipairs(hs.screen.allScreens()) do
-  if string.find(v:name(), "Retina", 1, true) then
-    SCREENS.LAPTOP = v
-  end
+for _, v in ipairs(hs.screen.allScreens()) do
+  -- if string.find(v:name(), "Retina", 1, true) then
+  --   SCREENS.LAPTOP = v
+  -- end
 
   -- personal
   -- if string.find(v:name(), "U2518D", 1, true) then
@@ -22,11 +22,16 @@ for k, v in ipairs(hs.screen.allScreens()) do
   -- end
 
   -- trying this out
-  x, y = v:position()
+  local x, y = v:position()
+  if x == 0 and y == 0 then
+    SCREENS.LAPTOP = v
+  end
+
   if x == 0 and y == -1 then
     SCREENS.HORIZONTAL = v
   end
-  if x == 1 and y == -1 then
+
+  if x == 1 and (y == -1 or y == 0) then
     SCREENS.VERTICAL = v
   end
 end
@@ -40,13 +45,13 @@ function screens.placeWindow(window, screen, ratios)
     return
   end
   window:moveToScreen(SCREENS[screen])
-  screen_height = screenObj:frame().h
-  screen_width = screenObj:frame().w
+  local screen_height = screenObj:frame().h
+  local screen_width = screenObj:frame().w
 
-  top = screen_height * ratios.top
-  left = screen_width * ratios.left
-  height = screen_height * ratios.height
-  width = screen_width * ratios.width
+  local top = screen_height * ratios.top
+  local left = screen_width * ratios.left
+  local height = screen_height * ratios.height
+  local width = screen_width * ratios.width
 
   window:setTopLeft(screenObj:localToAbsolute(hs.geometry.point(left, top)))
   window:setSize(hs.geometry.size(width, height))
