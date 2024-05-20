@@ -66,8 +66,7 @@ function mng {
   local prev_md
   local prev_dir
 
-  if [[ -f "${today_path}" ]]
-  then
+  if [[ -f "${today_path}" ]]; then
     echo "${today_path} already exists" >&2
     return 1
   fi
@@ -91,7 +90,7 @@ function mng {
     prev_dir="${year}/${month}"
   fi
 
-  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|Next Actions|Less Important)/p' "${SCR}/${prev_dir}/${prev_md}")
+  local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|Urgent & Important|Not Urgent & Important|Urgent & Not Important|Not Urgent & Not Important)/p' "${SCR}/${prev_dir}/${prev_md}")
 
   cat << EOF >> "${today_path}"
 # Todo
