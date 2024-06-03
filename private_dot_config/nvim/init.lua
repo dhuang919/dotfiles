@@ -11,6 +11,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.undofile = true
 
 -- Use treesitter for folding
 vim.o.foldenable = false
