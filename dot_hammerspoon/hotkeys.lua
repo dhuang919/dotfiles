@@ -45,8 +45,8 @@ local ratios = {
   wezterm = {
     top = external_connected and 0.568 or 0,
     left = external_connected and 0 or 0,
-    height = external_connected and 0.44 or 0.8,
-    width = external_connected and 1 or 0.6,
+    height = external_connected and 0.44 or 0.65,
+    width = external_connected and 1 or 0.58,
   },
   mail = {
     top = 0.03,
