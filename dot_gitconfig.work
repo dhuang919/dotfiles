@@ -4,7 +4,7 @@
 [init]
     defaultBranch = main
 [alias]
-    upd = !git pull upstream $(git remote show upstream | grep \"HEAD branch\" | sed 's/.*: //') && git push
+    upd = !git pull upstream $(git branch --show-current) && git push
     pm = !git sm && git upd && git rup
 [core]
     fileMode = false
