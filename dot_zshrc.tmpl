@@ -50,8 +50,8 @@ function help {
 
 {{- if eq .chezmoi.os "darwin" }}
 function fmt_img {
-  convert "$1" "$2"
-  convert -resize 30% "$2" "$2"
+  magick "$1" "$2"
+  magick "$2" -resize 30% "$2"
 }
 
 function _get_last_md {
