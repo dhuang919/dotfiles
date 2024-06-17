@@ -24,6 +24,7 @@ return {
         "make",
         "markdown",
         "markdown_inline",
+        "perl",
         "python",
         "query",
         "regex",
