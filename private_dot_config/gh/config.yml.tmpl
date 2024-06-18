@@ -18,7 +18,7 @@ aliases:
     pm: pr merge -s -d
 {{- if eq .chezmoi.username "dhuang295" }}
     rfc: '!gh repo fork $1 --clone'
-    rs: '!gh repo sync -s tssr/"$(basename $(pwd))" && git prul'
+    res: '!gh repo sync -s tssr/"$(basename $(pwd))" && git prul'
     rsd: '!cur=$(pwd); gh repo set-default "$(basename "$(dirname "$cur")")"/"$(basename "$cur")"'
 {{- end }}
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
