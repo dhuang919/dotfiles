@@ -16,6 +16,7 @@ return {
         "dockerfile",
         "git_config",
         "go",
+        "groovy",
         "html",
         "javascript",
         "jq",
