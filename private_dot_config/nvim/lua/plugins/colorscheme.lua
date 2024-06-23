@@ -1,23 +1,14 @@
 return {
   {
-    "catppuccin/nvim",
-
-    name = "catppuccin",
-
-    opts = {
-      flavour = "mocha",
-      color_overrides = {
-        mocha = {
-          base = "#000000",
-          mantle = "#000000",
-          crust = "#000000",
-        },
-      },
-    },
-
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require("tokyonight").setup({
+        style = "night",
+      })
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }
