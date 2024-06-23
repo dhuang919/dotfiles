@@ -31,6 +31,9 @@ vim.keymap.set("n", "<Esc>", ":noh<cr>")
 -- Easily view and switch buffers
 vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
 
+-- Open oil.nvim
+vim.keymap.set("n", "-", "<cmd>:Oil<cr>")
+
 -- Disabled stuff
 
 -- Command mode

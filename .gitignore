@@ -229,6 +229,7 @@ Exercism/
 *venv*
 .rustup
 private_dot_config/nvim/plugged/
+private_dot_config/nvim/lua/.luarc.json
 
 ## .config abusers
 .config/opera/
