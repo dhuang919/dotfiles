@@ -9,7 +9,7 @@ c.colors = {
 c.adjust_window_size_when_changing_font_size = false
 
 if string.find(wezterm.home_dir, "derek", 1, true) then
-  c.default_cwd = wezterm.home_dir .. "/dev/bradfield/derekhuang"
+  c.default_cwd = wezterm.home_dir .. "/dev"
 elseif string.find(wezterm.home_dir, "dhuang295", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/Projects/tssr"
 end
