@@ -49,6 +49,17 @@ function help {
 }
 
 {{- if eq .chezmoi.os "darwin" }}
+function fix_tmr {
+  # Fix tmux-resurrect
+  local -r tmr_dir=~/.local/share/tmux/resurrect
+  local -r top5=$(find "$tmr_dir" -name "*.txt" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 5)
+  # echo "$top5"
+  local -r second_most_recent=$(echo "$top5" | sed -n '2p')
+  rm "${tmr_dir}/last"
+  # echo "$second_most_recent"
+  ln -sf "${tmr_dir}/${second_most_recent}" "${tmr_dir}/last"
+}
+
 function fmt_img {
   magick "$1" "$2"
   magick "$2" -resize 30% "$2"
