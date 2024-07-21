@@ -60,6 +60,18 @@ function fix_tmr {
   ln -sf "${tmr_dir}/${second_most_recent}" "${tmr_dir}/last"
 }
 
+function ggrep {
+  # Git grep all directories in the current directory
+  for d in $(find . -type d -depth 1); do
+    git -C "$d" status 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "$d"
+      git -C "$d" grep -n "$@"
+      echo ""
+    fi
+  done
+}
+
 function fmt_img {
   magick "$1" "$2"
   magick "$2" -resize 30% "$2"
