@@ -63,11 +63,16 @@ function fix_tmr {
 function ggrep {
   # Git grep all directories in the current directory
   for d in $(find . -type d -depth 1); do
-    git -C "$d" status 2>/dev/null
+    git -C "$d" status &>/dev/null
     if [ $? -eq 0 ]; then
-      echo "$d"
-      git -C "$d" grep -n "$@"
-      echo ""
+      git --no-pager -C "$d" grep "$@" &>/dev/null
+      if [ $? -eq 0 ]; then
+        echo "######################"
+        echo "# ${d:2}"
+        echo "######################"
+        git --no-pager -C "$d" grep -C 3 -n --break --heading "$@"
+        echo ""
+      fi
     fi
   done
 }
