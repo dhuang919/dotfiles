@@ -20,6 +20,7 @@ aliases:
     rfc: '!gh repo fork $1 --clone'
     res: '!gh repo sync -s tssr/"$(basename $(pwd))" && git prul'
     rsd: '!cur=$(pwd); gh repo set-default "$(basename "$(dirname "$cur")")"/"$(basename "$cur")"'
+    prs: pr list -s all
 {{- end }}
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
