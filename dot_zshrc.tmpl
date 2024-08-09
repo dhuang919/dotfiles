@@ -77,6 +77,17 @@ function ggrep {
   done
 }
 
+function gupd {
+  for d in $(find . -type d -depth 1); do
+    git -C "$d" status &>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "Updating ${d:2}"
+      git -C "$d" upd &>/dev/null
+      echo ""
+    fi
+  done
+}
+
 function fmt_img {
   magick "$1" "$2"
   magick "$2" -resize 30% "$2"
