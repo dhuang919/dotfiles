@@ -34,6 +34,11 @@ vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
 -- Open oil.nvim
 vim.keymap.set("n", "-", "<cmd>:Oil<cr>")
 
+-- Set line number colors in gutter
+vim.api.nvim_set_hl(0, "LineNrAbove", {fg="#51B3EC", bold=true})
+vim.api.nvim_set_hl(0, "LineNr", {fg="white", bold=true})
+vim.api.nvim_set_hl(0, "LineNrBelow", {fg="#FB508F", bold=true})
+
 -- Disabled stuff
 
 -- Command mode
