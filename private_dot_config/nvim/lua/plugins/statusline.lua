@@ -12,12 +12,12 @@ return {
         { "branch" },
       },
       lualine_c = {
-        { "filename", path = 1 },
+        { "filename", path = 3 },
       },
     },
     inactive_sections = {
       lualine_c = {
-        { "filename", path = 1 },
+        { "filename", path = 3 },
       },
     },
   },
