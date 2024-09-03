@@ -88,6 +88,14 @@ function gupd {
   done
 }
 
+function gurl {
+  if [ -z "$1" ]; then
+    echo "Repo required" >&2
+    return 1
+  fi
+  echo -n $(git -C "${HOME}/Projects/tssr/${1}" config --get remote.upstream.url) | pbcopy
+}
+
 function fmt_img {
   magick "$1" "$2"
   magick "$2" -resize 30% "$2"
