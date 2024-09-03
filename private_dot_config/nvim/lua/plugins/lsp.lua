@@ -103,15 +103,11 @@ return {
             on_attach = on_attach,
             settings = {
               pyright = {
-                disableOrganizeImports = true,
+                disableOrganizeImports = true, -- use ruff
               },
               python = {
                 analysis = {
-                  ignore = { "*" }, -- using ruff
-                  typeCheckingMode = "off", -- using mypy
-                  diagnosticSeverityOverrides = {
-                    reportMissingImports = "none",
-                  },
+                  ignore = { "*" }, -- use ruff
                 },
               },
             },
