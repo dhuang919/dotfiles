@@ -48,4 +48,13 @@ function tglpxy {
 function bbid {
   echo -n $BBID | pbcopy
 }
+
+function pipconf {
+  if [ -z "$1" ]; then
+    echo "'dev' or 'prod' required" >&2
+    return 1
+  fi
+  cp ~/.pip/"${1}".conf ~/.pip/pip.conf
+  echo "${1}.conf copied"
+}
 {{- end }}

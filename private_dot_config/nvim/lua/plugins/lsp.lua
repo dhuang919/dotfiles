@@ -39,7 +39,7 @@ return {
           "lua_ls",
           "marksman",
           "pyright",
-          "rust_analyzer",
+          "ruff_lsp",
           "sqlls",
           "tsserver",
           "yamlls",
@@ -102,8 +102,13 @@ return {
           lspcfg.pyright.setup({
             on_attach = on_attach,
             settings = {
+              pyright = {
+                disableOrganizeImports = true,
+              },
               python = {
                 analysis = {
+                  ignore = { "*" }, -- using ruff
+                  typeCheckingMode = "off", -- using mypy
                   diagnosticSeverityOverrides = {
                     reportMissingImports = "none",
                   },
