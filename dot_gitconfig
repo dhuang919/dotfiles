@@ -47,3 +47,5 @@
     helper = store
 [include]
     path = .gitconfig.work
+[submodule]
+    recurse = true
