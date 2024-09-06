@@ -93,7 +93,9 @@ function gurl {
     echo "Repo required" >&2
     return 1
   fi
-  echo -n $(git -C "${HOME}/Projects/tssr/${1}" config --get remote.upstream.url) | pbcopy
+  local -r url=$(git -C "${HOME}/Projects/tssr/${1}" config --get remote.upstream.url)
+  echo -n $url | pbcopy
+  echo "Copied '${url}' to clipboard"
 }
 
 function fmt_img {
