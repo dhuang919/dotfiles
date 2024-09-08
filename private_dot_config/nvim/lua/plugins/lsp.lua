@@ -41,7 +41,7 @@ return {
           "pyright",
           "ruff_lsp",
           "sqlls",
-          "tsserver",
+          "ts_ls",
           "yamlls",
         },
       })
