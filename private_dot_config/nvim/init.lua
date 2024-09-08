@@ -12,6 +12,7 @@ vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.undofile = true
+vim.o.conceallevel = 1
 
 -- Use treesitter for folding
 vim.o.foldenable = false
@@ -35,9 +36,9 @@ vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
 vim.keymap.set("n", "-", "<cmd>:Oil<cr>")
 
 -- Set line number colors in gutter
-vim.api.nvim_set_hl(0, "LineNrAbove", {fg="#51B3EC", bold=true})
-vim.api.nvim_set_hl(0, "LineNr", {fg="white", bold=true})
-vim.api.nvim_set_hl(0, "LineNrBelow", {fg="#FB508F", bold=true})
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FB508F", bold = true })
 
 -- Disabled stuff
 
