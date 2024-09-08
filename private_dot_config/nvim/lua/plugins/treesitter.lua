@@ -21,6 +21,7 @@ return {
         "javascript",
         "jq",
         "json",
+        "latex",
         "lua",
         "make",
         "markdown",

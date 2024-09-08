@@ -1,8 +1,11 @@
 return {
   {
-    "iamcco/markdown-preview.nvim",
-    event = "VeryLazy",
-    build = "mkdp#util#install()",
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
   },
   {
     "RRethy/vim-illuminate",
