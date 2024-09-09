@@ -44,12 +44,8 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 [[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
 export PATH
 
-function help {
-  bash -c "help $@"
-}
-
 {{- if eq .chezmoi.os "darwin" }}
-function fix_tmr {
+function ftmr {
   # Fix tmux-resurrect
   local -r tmr_dir=~/.local/share/tmux/resurrect
   local -r top5=$(find "$tmr_dir" -name "*.txt" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 5)
@@ -73,17 +69,6 @@ function ggrep {
         git --no-pager -C "$d" grep -C 3 -n --break --heading "$@"
         echo ""
       fi
-    fi
-  done
-}
-
-function gupd {
-  for d in $(find . -type d -depth 1); do
-    git -C "$d" status &>/dev/null
-    if [ $? -eq 0 ]; then
-      echo "Updating ${d:2}"
-      git -C "$d" upd &>/dev/null
-      echo ""
     fi
   done
 }
@@ -126,8 +111,7 @@ function mng {
   # Get the most recent md before today
   prev_md=$(_get_last_md "${SCR}/${year}/${month}")
 
-  if [[ -z "${prev_md}" ]]
-  then
+  if [[ -z "${prev_md}" ]]; then
     # Make sure we get the last md if it's been longer than a month since the last
     while [[ -z "${prev_md}" ]]
     do
@@ -141,17 +125,15 @@ function mng {
 
   local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|Urgent & Important|Not Urgent & Important|Urgent & Not Important|Not Urgent & Not Important)/p' "${SCR}/${prev_dir}/${prev_md}")
 
-  cat << EOF >> "${today_path}"
+  echo "
 # Todo
 $unfinished_todos
 
-# Notes
-EOF
+# Notes" >> "${today_path}"
 
   return 0
 }
 
-# Connect trackpad
 function tp {
   if ! type blueutil &> /dev/null; then
     echo "blueutil not installed" >&2
@@ -176,7 +158,6 @@ function tp {
   done
 }
 
-# Work work
 function ww {
   open /Applications/Google\ Chrome.app
   open /Applications/Obsidian.app
@@ -184,13 +165,6 @@ function ww {
   open /Applications/Bitwarden.app
   open /Applications/Docker.app
   open /Applications/Spotify.app
-}
-
-# Study study
-function ss {
-  open /Applications/Google\ Chrome.app
-  open /Applications/Obsidian.app
-  open /System/Applications/Calendar.app
 }
 {{- end }}
 
@@ -243,6 +217,7 @@ alias bubu="brew update && brew upgrade && brew cleanup"
 alias htop="sudo htop"
 alias ipy=ipython
 alias tm=tmux
+alias vt="cd ~/dev/notes"
 {{- end }}
 alias cz="chezmoi"
 alias cza="chezmoi apply"
