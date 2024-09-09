@@ -38,10 +38,10 @@ function tglpxy {
   fi
 
   if [ -f "$npm" ]; then
-    echo "Renaming .npmrc to ._npmrc"
+    echo "Renaming ${HOME}/.npmrc to ${HOME}._npmrc"
     mv ~/.{,_}npmrc
   else
-    echo "Renaming ._npmrc to .npmrc"
+    echo "Renaming ${HOME}/._npmrc to ${HOME}/.npmrc"
     mv ~/.{_,}npmrc
   fi
 }
