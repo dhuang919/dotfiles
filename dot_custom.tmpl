@@ -14,6 +14,7 @@ export http_proxy="$https_proxy"
 export HTTP_PROXY="$https_proxy"
 
 BBID=31453293
+PIPDIR="${HOME}/.config/pip"
 
 alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://bproxy.tdmz1.bloomberg.com:80'
 alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81'
@@ -25,22 +26,22 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 function tglpxy {
-  local pip="${HOME}/.pip/pip.conf"
+  local pipconf="${PIPDIR}/pip.conf"
   local npm="${HOME}/.npmrc"
 
-  if [ -f "$pip" ]; then
-    echo "Renaming pip.conf to ._pip.conf"
-    mv ~/.pip/{,_}pip.conf
+  if [ -f "${pipconf}" ]; then
+    echo "Renaming ${PIPDIR}/pip.conf to ${PIPDIR}/_pip.conf"
+    mv $PIPDIR/{,_}pip.conf
   else
-    echo "Reverting _pip.conf rename"
-    mv ~/.pip/{_,}pip.conf
+    echo "Renaming ${PIPDIR}/_pip.conf to ${PIPDIR}/pip.conf"
+    mv $PIPDIR/{_,}pip.conf
   fi
 
   if [ -f "$npm" ]; then
     echo "Renaming .npmrc to ._npmrc"
     mv ~/.{,_}npmrc
   else
-    echo "Reverting ._npmrc rename"
+    echo "Renaming ._npmrc to .npmrc"
     mv ~/.{_,}npmrc
   fi
 }
@@ -50,12 +51,11 @@ function bbid {
 }
 
 function pipconf {
-  local -r pipdir="${HOME}/.config/pip"
-  if [ -z "$1" ]; then
+  if [ -z "${1}" ]; then
     echo "'dev' or 'prod' required" >&2
     return 1
   fi
-  cp "${pipdir}/${1}.conf" "${pipdir}/pip.conf"
+  cp "${PIPDIR}/${1}.conf" "${PIPDIR}/pip.conf"
   echo "${1}.conf copied"
 }
 
