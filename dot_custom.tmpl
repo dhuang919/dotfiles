@@ -50,11 +50,12 @@ function bbid {
 }
 
 function pipconf {
+  local -r pipdir="${HOME}/.config/pip"
   if [ -z "$1" ]; then
     echo "'dev' or 'prod' required" >&2
     return 1
   fi
-  cp ~/.pip/"${1}".conf ~/.pip/pip.conf
+  cp "${pipdir}/${1}.conf" "${pipdir}/pip.conf"
   echo "${1}.conf copied"
 }
 
