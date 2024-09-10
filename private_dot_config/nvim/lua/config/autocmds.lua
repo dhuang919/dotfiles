@@ -53,3 +53,26 @@ autocmd({ "BufRead", "BufNewFile" }, {
     vim.opt_local.conceallevel = 2
   end,
 })
+
+-- toggle relative line numbers based on mode
+local numtoggle_augroup = augroup("numbertoggle", {})
+autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
+  pattern = "*",
+  group = numtoggle_augroup,
+  callback = function()
+    if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
+      vim.opt.relativenumber = true
+    end
+  end,
+})
+
+autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
+  pattern = "*",
+  group = numtoggle_augroup,
+  callback = function()
+    if vim.o.nu then
+      vim.opt.relativenumber = false
+      vim.cmd("redraw")
+    end
+  end,
+})
