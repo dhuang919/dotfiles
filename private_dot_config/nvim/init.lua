@@ -12,7 +12,6 @@ vim.o.number = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.undofile = true
-vim.o.conceallevel = 1
 
 -- Use treesitter for folding
 vim.o.foldenable = false
@@ -41,7 +40,6 @@ vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FB508F", bold = true })
 
 -- Disabled stuff
-
 -- Command mode
 vim.keymap.set("n", "Q", "")
 vim.keymap.set("n", "q:", "")

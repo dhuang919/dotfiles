@@ -45,3 +45,11 @@ autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
+  desc = "Set conceallevel in Obsidian vault only",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})
