@@ -4,8 +4,9 @@ require("config.lazy")
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
+-- NOTE: formatoptions set in autocmds.lua
+-- https://neovim.discourse.group/t/options-formatoptions-not-working-when-put-in-init-lua/3746
 vim.o.expandtab = true
-vim.o.formatoptions = "jrl"
 vim.o.linebreak = true
 vim.o.mouse = "a"
 vim.o.number = true

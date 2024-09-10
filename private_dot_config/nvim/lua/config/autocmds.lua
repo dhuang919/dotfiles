@@ -4,22 +4,24 @@ local augroup = vim.api.nvim_create_augroup
 -- Auto-refresh files after changes stolen from https://unix.stackexchange.com/a/383044/517031
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
-  pattern = { "*" },
+  pattern = "*",
 })
 
 -- Notification after file change
 autocmd({ "FileChangedShellPost" }, {
   command = "echohl WarningMsg | echo 'File changed on disk. Buffer reloaded.' | echohl None",
-  pattern = { "*" },
+  pattern = "*",
 })
 
-autocmd("BufEnter", {
-  desc = "Don't extend comments to newlines with o/O",
-  group = augroup("AutoComment", {}),
+autocmd("FileType", {
+  pattern = "*",
+  desc = "Set formatoptions",
+  group = augroup("formatoptions", {}),
   callback = function()
-    vim.opt_local.formatoptions:append("r")
-    vim.opt_local.formatoptions:remove("c")
-    vim.opt_local.formatoptions:remove("o")
+    -- n: recognize numbered lists
+    -- r: continue comments with <cr> in insert mode
+    -- j: rm comment leader when it makes sense when joining lines
+    vim.opt.formatoptions = "nrj"
   end,
 })
 
@@ -34,7 +36,7 @@ autocmd("BufWritePre", {
 
 autocmd("BufWritePre", {
   desc = "Trim trailing whitespace",
-  pattern = { "*" },
+  pattern = "*",
   group = augroup("TrimWhtspc", {}),
   command = [[%s/\s\+$//e]],
 })

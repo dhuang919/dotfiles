@@ -20,6 +20,3 @@ vim.b.minisplitjoin_config = {
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
-
--- Override the lua filetype plugin
-vim.opt.formatoptions = "jrl"
