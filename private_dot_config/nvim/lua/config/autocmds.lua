@@ -3,18 +3,6 @@ local augroup = vim.api.nvim_create_augroup
 
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 
--- Auto-refresh files after changes stolen from https://unix.stackexchange.com/a/383044/517031
-autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-  command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
-  pattern = "*",
-})
-
--- Notification after file change
-autocmd({ "FileChangedShellPost" }, {
-  command = "echohl WarningMsg | echo 'File changed on disk. Buffer reloaded.' | echohl None",
-  pattern = "*",
-})
-
 autocmd("FileType", {
   pattern = "*",
   desc = "Set formatoptions",
