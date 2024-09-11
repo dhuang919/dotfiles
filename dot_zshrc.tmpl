@@ -125,7 +125,7 @@ function mng {
 
   local -r unfinished_todos=$(sed -E -ne '/(- \[ \] [\w]*|Urgent & Important|Not Urgent & Important|Urgent & Not Important|Not Urgent & Not Important)/p' "${SCR}/${prev_dir}/${prev_md}")
 
-  printf "# Todo\n$unfinished_todos\n\nNotes" >> "${today_path}"
+  printf "# Todo\n%s\n\nNotes" "$unfinished_todos" >> "${today_path}"
 
   return 0
 }

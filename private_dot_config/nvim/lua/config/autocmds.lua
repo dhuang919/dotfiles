@@ -1,6 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
+
 -- Auto-refresh files after changes stolen from https://unix.stackexchange.com/a/383044/517031
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
@@ -76,5 +78,22 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, 
       vim.opt.relativenumber = false
       vim.cmd("redraw")
     end
+  end,
+})
+
+-- Continue bulleted lists with o/O in markdown
+autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.formatoptions:append("o")
+    vim.opt_local.comments = {
+      "b:- [ ]",
+      "b:- [x]",
+      "b:- [~]",
+      "b:- [!]",
+      "b:- [>]",
+      "b:-",
+      "b:*",
+    }
   end,
 })
