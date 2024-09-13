@@ -5,7 +5,7 @@ local augroup = vim.api.nvim_create_augroup
 
 autocmd("FileType", {
   pattern = "*",
-  desc = "Set formatoptions",
+  desc = "formatoptions override because setting them in init.lua gets overwritten",
   group = augroup("formatoptions", {}),
   callback = function()
     -- n: recognize numbered lists
@@ -46,10 +46,10 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--- toggle relative line numbers based on mode
 local numtoggle_augroup = augroup("numbertoggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
   pattern = "*",
+  desc = "Turn relative line numbers on",
   group = numtoggle_augroup,
   callback = function()
     if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
@@ -60,6 +60,7 @@ autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }
 
 autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
   pattern = "*",
+  desc = "Turn relative line numbers off",
   group = numtoggle_augroup,
   callback = function()
     if vim.o.nu then
@@ -69,9 +70,9 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, 
   end,
 })
 
--- Continue bulleted lists with o/O in markdown
 autocmd("FileType", {
   pattern = "markdown",
+  desc = "Continue bulleted lists with o/O in markdown only",
   callback = function()
     vim.opt_local.formatoptions:append("o")
     vim.opt_local.comments = {
