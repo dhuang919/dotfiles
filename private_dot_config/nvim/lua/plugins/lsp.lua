@@ -1,9 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-
     event = "VeryLazy",
-
     dependencies = {
       {
         "williamboman/mason.nvim",
@@ -20,15 +18,11 @@ return {
         event = "VeryLazy",
       },
     },
-
     config = function()
       require("mason").setup()
-
       vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-
       local mason_lspcfg = require("mason-lspconfig")
       local lspcfg = require("lspconfig")
-
       mason_lspcfg.setup({
         ensure_installed = {
           "clangd",
@@ -45,7 +39,6 @@ return {
           "yamlls",
         },
       })
-
       local on_attach = function(client, bufnr)
         local key_opts = { buffer = bufnr, remap = false }
         vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, key_opts)
@@ -69,12 +62,10 @@ return {
         vim.keymap.set("n", "<space>f", function()
           vim.lsp.buf.format({ async = true })
         end, key_opts)
-
         if client.server_capabilities.documentSymbolProvider then
           require("nvim-navic").attach(client, bufnr)
         end
       end
-
       mason_lspcfg.setup_handlers({
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn"t have
@@ -84,7 +75,6 @@ return {
             on_attach = on_attach,
           })
         end,
-
         lua_ls = function()
           lspcfg.lua_ls.setup({
             on_attach = on_attach,
@@ -97,7 +87,6 @@ return {
             },
           })
         end,
-
         pyright = function()
           lspcfg.pyright.setup({
             on_attach = on_attach,
