@@ -18,6 +18,10 @@ return {
       version = "^1.0.0",
       event = "VeryLazy",
     },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      event = "VeryLazy",
+    },
   },
 
   config = function(_, opts)
@@ -25,6 +29,7 @@ return {
     telescope.setup(opts)
     telescope.load_extension("fzf")
     telescope.load_extension("live_grep_args")
+    telescope.load_extension("frecency")
   end,
 
   opts = {
@@ -37,8 +42,9 @@ return {
 
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-    { "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>" },
+    { "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", desc = "Telescope live grep args" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+    { "<leader>fc", "<cmd>Telescope frecency<cr>", desc = "Telescope frecency file finder" },
   },
 }
