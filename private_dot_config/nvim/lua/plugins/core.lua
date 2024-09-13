@@ -1,5 +1,12 @@
 return {
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+    },
+  },
+  {
     "OXY2DEV/markview.nvim",
     enabled = false,
     lazy = false,
