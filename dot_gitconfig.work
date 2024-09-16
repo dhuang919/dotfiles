@@ -6,7 +6,7 @@
 [alias]
     upd = !git pull upstream $(git branch --show-current) && git push
     pm = !git sm && git upd && git brd
-    brd = "!f() { git push -d origin $1 && git branch -d $1; }; f"
+    brd = "!f() { git branch -d $1 && git push -d origin $1; }; f"
 [core]
     fileMode = false
 [url "bbgithub:"]
