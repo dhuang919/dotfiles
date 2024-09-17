@@ -5,7 +5,7 @@
     defaultBranch = main
 [alias]
     upd = !git pull upstream $(git branch --show-current) && git push
-    pm = !git sm && git upd && git brd
+    pm = !git sm && git upd
     brd = "!f() { git branch -d $1 && git push -d origin $1; }; f"
 [core]
     fileMode = false
