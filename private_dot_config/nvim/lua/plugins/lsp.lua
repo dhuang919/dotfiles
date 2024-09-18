@@ -32,6 +32,7 @@ return {
           "jsonls",
           "lua_ls",
           "marksman",
+          "mypy",
           "pyright",
           "ruff_lsp",
           "sqlls",
