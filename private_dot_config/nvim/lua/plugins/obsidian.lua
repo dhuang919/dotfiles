@@ -42,7 +42,12 @@ return {
       -- Smart action depending on context, either follow link or toggle checkbox.
       ["<cr>"] = {
         action = function()
-          return require("obsidian").util.smart_action()
+          local smarter_action = function()
+            local util = require("obsidian").util
+            -- TODO: detect bbg url and send to terminal
+            return util.smart_action()
+          end
+          return smarter_action()
         end,
         opts = { buffer = true, expr = true },
       },
