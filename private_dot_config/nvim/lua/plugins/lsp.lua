@@ -31,7 +31,6 @@ return {
           "gopls",
           "jsonls",
           "lua_ls",
-          "marksman",
           "pyright",
           "ruff_lsp",
           "sqlls",
