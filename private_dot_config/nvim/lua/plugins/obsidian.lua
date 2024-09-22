@@ -1,34 +1,3 @@
-local cursor_on_bbg_link = function()
-  local pattern = "bbg://screens/[a-zA-Z0-9%%]+"
-  local cur_line = vim.api.nvim_get_current_line()
-  local _, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
-  cur_col = cur_col + 1 -- nvim_win_get_cursor returns 0-indexed column
-  local i, j = string.find(cur_line, pattern)
-  if i ~= nil and j ~= nil and i <= cur_col and cur_col <= j then
-    print("success")
-    return string.sub(cur_line, i, j)
-  end
-  return nil
-end
-
-local smarter_action = function()
-  local iter = require("obsidian.itertools").iter
-  local search = require("obsidian.search")
-  local util = require("obsidian.util")
-  local cur_line = vim.api.nvim_get_current_line()
-  local link = cursor_on_bbg_link()
-  if link then
-    print("success 2 " .. link)
-    -- os.execute("/usr/local/bin/prlctl exec \"Windows 10 x64\" --current-user c:/blp/Wintrv/BbgProtocolHandler.exe URL")
-    vim.fn.system{"/usr/local/bin/prlctl", "exec", "\"Windows 10 x64\"", "--current-user", "c:/blp/Wintrv/BbgProtocolHandler.exe", link}
-  end
-  return util.smart_action()
-  -- if util.cursor_on_markdown_link() then
-  --   for match in iter(search.find_refs(cur_line, {})) do
-  --   end
-  -- end
-end
-
 return {
   "epwalsh/obsidian.nvim",
   version = "*",
@@ -72,7 +41,9 @@ return {
       },
       -- Smart action depending on context, either follow link or toggle checkbox.
       ["<cr>"] = {
-        action = smarter_action,
+        action = function()
+          return require("obsidian").util.smart_action()
+        end,
         opts = { buffer = true, expr = true },
       },
     },
@@ -83,10 +54,6 @@ return {
       folder = "templates",
     },
     follow_url_func = function(url)
-      if vim.startswith(url, "bbg://") then
-        vim.fn.system{"/usr/local/bin/prlctl", "exec", "\"Windows 10 x64\"", "--current-user", "c:/blp/Wintrv/BbgProtocolHandler.exe", url}
-        return
-      end
       vim.fn.jobstart({ "open", url }) -- open in default browser (mac os)
     end,
     follow_img_func = function(img)
