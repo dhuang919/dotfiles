@@ -92,6 +92,7 @@ return {
             settings = {
               pyright = {
                 disableOrganizeImports = true, -- use ruff
+                reportMissingImports = false,
               },
               -- python = {
               --   analysis = {
