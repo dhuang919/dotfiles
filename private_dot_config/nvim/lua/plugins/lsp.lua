@@ -93,11 +93,12 @@ return {
               pyright = {
                 disableOrganizeImports = true, -- use ruff
               },
-              -- python = {
-              --   analysis = {
-              --     ignore = { "*" }, -- use ruff
-              --   },
-              -- },
+              python = {
+                analysis = {
+                  -- ignore = { "*" }, -- use ruff
+                  typeCheckingMode = "basic",
+                },
+              },
             },
           })
         end,
