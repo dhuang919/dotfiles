@@ -92,13 +92,12 @@ return {
             settings = {
               pyright = {
                 disableOrganizeImports = true, -- use ruff
-                reportMissingImports = false,
               },
-              -- python = {
-              --   analysis = {
-              --     ignore = { "*" }, -- use ruff
-              --   },
-              -- },
+              python = {
+                analysis = {
+                  ignore = { "*" }, -- use ruff
+                },
+              },
             },
           })
         end,
