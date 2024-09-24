@@ -43,13 +43,16 @@ cask "anki"
 cask "basictex"
 {{- end }}
 cask "beardedspice"
+{{- if eq .chezmoi.username "dhuang295" }}
+cask bitwarden
+{{- end }}
 {{- if eq .chezmoi.username "derek" }}
 cask "cityofzion-neon"
 {{- end }}
 cask "docker"
 cask "dropbox"
 cask "firefox"
-cask "font-fira-code"
+cask "font-jetbrains-mono"
 cask "google-chrome"
 cask "hammerspoon"
 {{- if eq .chezmoi.username "derek" }}
