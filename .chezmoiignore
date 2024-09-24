@@ -11,3 +11,4 @@
 Brewfile
 {{- end }}
 stylua.toml
+key.txt.age
