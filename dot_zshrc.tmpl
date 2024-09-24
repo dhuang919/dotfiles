@@ -162,6 +162,18 @@ function ww {
   open /Applications/Docker.app
   open /Applications/Spotify.app
 }
+
+function clean_docker {
+  for cid in $(docker ps -a | tail -n +2 | awk '{print $2}'); do
+    docker rm -f $cid
+    echo "Removed $cid"
+  done
+  echo "Pruning images..."
+  docker image prune -af
+  echo "Pruning volumes..."
+  docker volume prune -af
+  docker system df
+}
 {{- end }}
 
 function cze {
