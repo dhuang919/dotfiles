@@ -9,7 +9,7 @@ fi
 export EDITOR='nvim'
 export VISUAL='nvim'
 export FZF_DIR="$HOME/.fzf"
-export GOPATH="$HOME/go"
+export GOPATH="/opt/homebrew/bin/go"
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export KEYTIMEOUT=1
@@ -18,8 +18,7 @@ export PYTHONDONTWRITEBYTECODE=1
 export ZSH="$HOME/.oh-my-zsh"
 export SCR="$HOME/dev/notes/scratch"
 {{- if eq .chezmoi.os "darwin" }}
-export GOROOT=/usr/local/opt/go/libexec
-export GOBIN="${GOPATH}/bin"
+export GOBIN="/opt/homebrew/bin"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 {{- end }}
 
@@ -93,9 +92,9 @@ function _get_last_md {
 }
 
 function mng {
-  local -r year=$(/usr/local/opt/coreutils/libexec/gnubin/date +%Y)
-  local -r month=$(/usr/local/opt/coreutils/libexec/gnubin/date +%m)
-  local -r today=$(/usr/local/opt/coreutils/libexec/gnubin/date +%d_%a | tr '[:upper:]' '[:lower:]')
+  local -r year=$(gdate +%Y)
+  local -r month=$(gdate +%m)
+  local -r today=$(gdate +%d_%a | tr '[:upper:]' '[:lower:]')
   local -r today_path="${SCR}/${year}/${month}/${today}.md"
   local prev_md
   local prev_dir
@@ -116,7 +115,7 @@ function mng {
     while [[ -z "${prev_md}" ]]
     do
       # Keep decrementing by a month, going back to prev years if needed
-      prev_dir=$(/usr/local/opt/coreutils/libexec/gnubin/date -d "1 month ago" +%Y/%m)
+      prev_dir=$(gdate -d "1 month ago" +%Y/%m)
       prev_md=$(_get_last_md "${SCR}/${prev_dir}")
     done
   else
