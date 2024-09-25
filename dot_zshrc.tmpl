@@ -163,14 +163,16 @@ function ww {
 }
 
 function clean_docker {
-  for cid in $(docker ps -a | tail -n +2 | awk '{print $2}'); do
+  for cid in $(docker ps -a | tail -n +2 | awk '{print $1}'); do
     docker rm -f $cid
     echo "Removed $cid"
   done
-  echo "Pruning images..."
+  echo "\nPruning images..."
   docker image prune -af
-  echo "Pruning volumes..."
+  echo "\nPruning volumes..."
   docker volume prune -af
+  echo "\nPruning builder cache..."
+  docker builder prune -f
   docker system df
 }
 {{- end }}
