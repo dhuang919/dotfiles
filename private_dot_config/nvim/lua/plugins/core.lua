@@ -1,5 +1,13 @@
 return {
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
+  {
     "chrisgrieser/nvim-various-textobjs",
     event = "UIEnter",
     opts = { useDefaultKeymaps = true },
