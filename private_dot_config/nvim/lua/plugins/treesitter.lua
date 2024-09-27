@@ -29,6 +29,7 @@ return {
         "regex",
         "rust",
         "sql",
+        "toml",
         "tsx",
         "typescript",
         "vim",
