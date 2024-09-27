@@ -12,6 +12,7 @@ return {
         "csv",
         "dockerfile",
         "git_config",
+        "gitignore",
         "go",
         "groovy",
         "html",
