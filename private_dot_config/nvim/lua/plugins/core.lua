@@ -1,10 +1,10 @@
 return {
   {
-    'MeanderingProgrammer/render-markdown.nvim',
+    "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
     },
   },
   {
@@ -78,15 +78,6 @@ return {
     event = "InsertEnter",
     opts = {
       check_ts = true,
-    },
-  },
-  {
-    "OXY2DEV/markview.nvim",
-    enabled = false,
-    lazy = false,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
     },
   },
   {
