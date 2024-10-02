@@ -13,7 +13,7 @@ end
 
 local ratios = {
   bbvpn = {
-    top = 0.57,
+    top = 0.52,
     left = 0.01,
     height = 0.4,
     width = 0.25,
