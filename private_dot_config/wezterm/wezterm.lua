@@ -8,7 +8,7 @@ local c = {
   hide_tab_bar_if_only_one_tab = true,
   initial_cols = 120,
   initial_rows = 35,
-  leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 },
+  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
   keys = {
     {
       key = "w",
