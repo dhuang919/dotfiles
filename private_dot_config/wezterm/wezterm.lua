@@ -33,10 +33,6 @@ local c = {
       key = "_",
       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
     },
-    -- { mods = "CTRL", key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
-    -- { mods = "CTRL", key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-    -- { mods = "CTRL", key = "UpArrow", action = act.ActivatePaneDirection("Up") },
-    -- { mods = "CTRL", key = "DownArrow", action = act.ActivatePaneDirection("Down") },
     { mods = "CTRL", key = "h", action = act.ActivatePaneDirection("Left") },
     { mods = "CTRL", key = "l", action = act.ActivatePaneDirection("Right") },
     { mods = "CTRL", key = "k", action = act.ActivatePaneDirection("Up") },
@@ -44,15 +40,7 @@ local c = {
     { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
     { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
     { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
-    { mods = "LEADER", key = "X", action = act.CloseCurrentTab({ confirm = false }) },
-    { mods = "LEADER", key = "c", action = act.SpawnTab("CurrentPaneDomain") },
-    {
-      mods = "LEADER",
-      key = "!",
-      action = wezterm.action_callback(function(_win, pane)
-        local _tab, _ = pane:move_to_new_tab()
-      end),
-    },
+    { mods = "LEADER", key = "+", action = act.TogglePaneZoomState },
     {
       key = "H",
       mods = "LEADER",
