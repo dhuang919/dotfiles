@@ -8,12 +8,15 @@ local c = {
   hide_tab_bar_if_only_one_tab = true,
   initial_cols = 120,
   initial_rows = 35,
-  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+  use_dead_keys = false,
+  window_close_confirmation = "NeverPrompt",
+  window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW",
+  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 },
   keys = {
     {
       key = "w",
       mods = "CMD",
-      action = wezterm.action.CloseCurrentTab({ confirm = false }),
+      action = act.CloseCurrentTab({ confirm = false }),
     },
     {
       key = "k",
@@ -27,7 +30,7 @@ local c = {
     },
     {
       mods = "LEADER",
-      key = "/",
+      key = "_",
       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
     },
     -- { mods = "CTRL", key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
@@ -71,9 +74,6 @@ local c = {
       action = act.AdjustPaneSize({ "Right", 10 }),
     },
   },
-  use_dead_keys = false,
-  window_close_confirmation = "NeverPrompt",
-  window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW",
 }
 
 for i = 1, 9 do
