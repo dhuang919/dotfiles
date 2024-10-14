@@ -1,17 +1,38 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-local c = wezterm.config_builder()
-c.adjust_window_size_when_changing_font_size = false
-c.colors = { cursor_bg = "#fff" }
-c.default_cursor_style = "SteadyBar"
-c.enable_scroll_bar = true
-c.hide_tab_bar_if_only_one_tab = true
-c.initial_cols = 120
-c.initial_rows = 35
-c.use_dead_keys = false
-c.window_close_confirmation = "NeverPrompt"
-c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
-c.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
+local c = {}
+
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
+
+local function is_vi_proc(pane)
+  local prog = pane:get_user_vars()["WEZTERM_PROG"]
+  return prog:match("^nvim") or prog:match("^v")
+end
+
+local function conditional_activate_pane(window, pane, pane_direction, vim_direction)
+  if is_vi_proc(pane) then
+    -- should match nvim keybinds
+    window:perform_action(act.SendKey({ key = vim_direction, mods = "CTRL" }), pane)
+  else
+    window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
+  end
+end
+
+wezterm.on("ActivatePaneDirection-right", function(window, pane)
+  conditional_activate_pane(window, pane, "Right", "l")
+end)
+wezterm.on("ActivatePaneDirection-left", function(window, pane)
+  conditional_activate_pane(window, pane, "Left", "h")
+end)
+wezterm.on("ActivatePaneDirection-up", function(window, pane)
+  conditional_activate_pane(window, pane, "Up", "k")
+end)
+wezterm.on("ActivatePaneDirection-down", function(window, pane)
+  conditional_activate_pane(window, pane, "Down", "j")
+end)
+
 c.keys = {
   {
     key = "w",
@@ -33,10 +54,10 @@ c.keys = {
     key = "_",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
-  { mods = "CTRL", key = "h", action = act.ActivatePaneDirection("Left") },
-  { mods = "CTRL", key = "l", action = act.ActivatePaneDirection("Right") },
-  { mods = "CTRL", key = "k", action = act.ActivatePaneDirection("Up") },
-  { mods = "CTRL", key = "j", action = act.ActivatePaneDirection("Down") },
+  { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
+  { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
+  { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
+  { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
   { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
   { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
   { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
@@ -71,6 +92,18 @@ for i = 1, 9 do
     action = wezterm.action.ActivateTab(i - 1),
   })
 end
+
+c.adjust_window_size_when_changing_font_size = false
+c.colors = { cursor_bg = "#fff" }
+c.default_cursor_style = "SteadyBar"
+c.enable_scroll_bar = true
+c.hide_tab_bar_if_only_one_tab = true
+c.initial_cols = 120
+c.initial_rows = 35
+c.use_dead_keys = false
+c.window_close_confirmation = "NeverPrompt"
+c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
+c.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
 if string.find(wezterm.home_dir, "derek", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/dev"
