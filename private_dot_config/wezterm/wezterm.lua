@@ -30,14 +30,14 @@ local c = {
       key = "/",
       action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
     },
-    { mods = "LEADER", key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
-    { mods = "LEADER", key = "h", action = act.ActivatePaneDirection("Left") },
-    { mods = "LEADER", key = "RightArrow", action = act.ActivatePaneDirection("Right") },
-    { mods = "LEADER", key = "l", action = act.ActivatePaneDirection("Right") },
-    { mods = "LEADER", key = "UpArrow", action = act.ActivatePaneDirection("Up") },
-    { mods = "LEADER", key = "k", action = act.ActivatePaneDirection("Up") },
-    { mods = "LEADER", key = "DownArrow", action = act.ActivatePaneDirection("Down") },
-    { mods = "LEADER", key = "j", action = act.ActivatePaneDirection("Down") },
+    -- { mods = "CTRL", key = "LeftArrow", action = act.ActivatePaneDirection("Left") },
+    -- { mods = "CTRL", key = "RightArrow", action = act.ActivatePaneDirection("Right") },
+    -- { mods = "CTRL", key = "UpArrow", action = act.ActivatePaneDirection("Up") },
+    -- { mods = "CTRL", key = "DownArrow", action = act.ActivatePaneDirection("Down") },
+    { mods = "CTRL", key = "h", action = act.ActivatePaneDirection("Left") },
+    { mods = "CTRL", key = "l", action = act.ActivatePaneDirection("Right") },
+    { mods = "CTRL", key = "k", action = act.ActivatePaneDirection("Up") },
+    { mods = "CTRL", key = "j", action = act.ActivatePaneDirection("Down") },
     { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
     { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
     { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
@@ -53,28 +53,37 @@ local c = {
     {
       key = "H",
       mods = "LEADER",
-      action = act.AdjustPaneSize({ "Left", 5 }),
+      action = act.AdjustPaneSize({ "Left", 10 }),
     },
     {
       key = "J",
       mods = "LEADER",
-      action = act.AdjustPaneSize({ "Down", 5 }),
+      action = act.AdjustPaneSize({ "Down", 10 }),
     },
     {
       key = "K",
       mods = "LEADER",
-      action = act.AdjustPaneSize({ "Up", 5 }),
+      action = act.AdjustPaneSize({ "Up", 10 }),
     },
     {
       key = "L",
       mods = "LEADER",
-      action = act.AdjustPaneSize({ "Right", 5 }),
+      action = act.AdjustPaneSize({ "Right", 10 }),
     },
   },
   use_dead_keys = false,
   window_close_confirmation = "NeverPrompt",
   window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW",
 }
+
+for i = 1, 9 do
+  -- LEADER + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "LEADER",
+    action = wezterm.action.ActivateTab(i - 1),
+  })
+end
 
 if string.find(wezterm.home_dir, "derek", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/dev"
