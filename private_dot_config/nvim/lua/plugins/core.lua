@@ -1,5 +1,10 @@
 return {
   {
+    "numToStr/Navigator.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
     dependencies = {

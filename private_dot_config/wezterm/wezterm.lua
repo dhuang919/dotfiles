@@ -7,8 +7,8 @@ if wezterm.config_builder then
 end
 
 local function is_vi_proc(pane)
-  local prog = pane:get_user_vars()["WEZTERM_PROG"]
-  return prog:match("^nvim") or prog:match("^v")
+  return pane:get_foreground_process_name():find("n?vim") ~= nil
+    or pane:get_title():find("n?vim") ~= nil
 end
 
 local function conditional_activate_pane(window, pane, pane_direction, vim_direction)
@@ -16,7 +16,7 @@ local function conditional_activate_pane(window, pane, pane_direction, vim_direc
     -- should match nvim keybinds
     window:perform_action(act.SendKey({ key = vim_direction, mods = "CTRL" }), pane)
   else
-    window:perform_action(wezterm.action.ActivatePaneDirection(pane_direction), pane)
+    window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
   end
 end
 
@@ -54,10 +54,10 @@ c.keys = {
     key = "_",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
-  { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
-  { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
-  { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
-  { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
+  -- { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
+  -- { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
+  -- { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
+  -- { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
   { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
   { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
   { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
