@@ -1,6 +1,5 @@
 export EDITOR='nvim'
 export VISUAL='nvim'
-export FZF_DIR="$HOME/.fzf"
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export KEYTIMEOUT=1
@@ -195,7 +194,6 @@ autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
 {{- if eq .chezmoi.os "darwin" }}
 [ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
@@ -214,5 +212,6 @@ alias szsh="source ~/.zshrc"
 alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
 alias g="git"
 
-type -p zoxide &>/dev/null && eval "$(zoxide init zsh)"
+type -p fzf &>/dev/null && source <(fzf --zsh)
 type -p starship &>/dev/null && eval "$(starship init zsh)"
+type -p zoxide &>/dev/null && eval "$(zoxide init zsh)"
