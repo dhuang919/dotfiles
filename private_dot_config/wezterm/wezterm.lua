@@ -33,7 +33,7 @@ wezterm.on("ActivatePaneDirection-down", function(window, pane)
   conditional_activate_pane(window, pane, "Down", "j")
 end)
 
-c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1500 }
+c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 c.keys = {
   {
     key = "w",
@@ -52,13 +52,20 @@ c.keys = {
   },
   {
     mods = "LEADER",
-    key = "_",
+    key = "|",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
+  {
+    mods = "LEADER",
+    key = "/",
+    action = act.SplitPane({ direction = "Right", size = { Percent = 27 } }),
+  },
+  { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
   { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
   { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
   { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
   { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
+  { mods = "LEADER", key = "o", action = act.ActivateLastTab },
   { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
   { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
   { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
@@ -83,6 +90,18 @@ c.keys = {
     mods = "LEADER",
     action = act.AdjustPaneSize({ "Right", 10 }),
   },
+  {
+    key = ",",
+    mods = "LEADER",
+    action = act.PromptInputLine({
+      description = "Tab name:",
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    }),
+  },
 }
 
 -- LEADER + number to activate that tab
@@ -101,6 +120,7 @@ c.enable_scroll_bar = true
 c.hide_tab_bar_if_only_one_tab = true
 c.initial_cols = 120
 c.initial_rows = 35
+c.scrollback_lines = 5000
 c.use_dead_keys = false
 c.window_close_confirmation = "NeverPrompt"
 c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
