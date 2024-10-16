@@ -1,8 +1,9 @@
 return {
   {
     "numToStr/Navigator.nvim",
-    event = "VeryLazy",
-    config = true,
+    opts = {
+      auto_save = "all",
+    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -91,10 +92,6 @@ return {
   },
   {
     "Vimjas/vim-python-pep8-indent",
-    event = "VeryLazy",
-  },
-  {
-    "christoomey/vim-tmux-navigator",
     event = "VeryLazy",
   },
   {
