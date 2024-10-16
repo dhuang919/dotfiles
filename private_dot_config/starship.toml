@@ -1,12 +1,37 @@
+format = """
+$username\
+[](fg:#b4f9f8 bg:#769ff0)\
+$directory\
+[](fg:#769ff0 bg:#394260)\
+$git_branch\
+$git_status\
+[](fg:#394260 bg:#212736)\
+$time\
+[ ](fg:#1d2230)\
+$character"""
+
+[username]
+style_user = 'bg:#b4f9f8'
+format = '[ $user ](fg:#1f2335 bg:#b4f9f8)'
+show_always = true
+
 [directory]
-truncate_to_repo = false
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[ $path ]($style)"
+truncation_length = 4
+truncation_symbol = "…/"
 
-[docker_context]
-disabled = true
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 
-[python]
-version_format = '${major}.${minor}'
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [time]
 disabled = false
-format = '[$time]($style) '
+time_format = "%R" # Hour:Minute Format
+style = "bg:#414868"
+format = '[[ $time ](fg:#b4f9f8 bg:#1d2230)]($style)'
