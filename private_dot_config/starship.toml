@@ -1,0 +1,12 @@
+[directory]
+truncate_to_repo = false
+
+[docker_context]
+disabled = true
+
+[python]
+version_format = '${major}.${minor}'
+
+[time]
+disabled = false
+format = '[$time]($style) '
