@@ -1,13 +1,11 @@
 format = """
-$username\
-[](fg:#b4f9f8 bg:#769ff0)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
 $git_status\
-[](fg:#394260 bg:#212736)\
+[](fg:#394260 bg:#545c7e)\
 $time\
-[ ](fg:#1d2230)\
+[ ](fg:#545c7e)\
 $character"""
 
 [username]
@@ -33,5 +31,5 @@ format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#414868"
-format = '[[ $time ](fg:#b4f9f8 bg:#1d2230)]($style)'
+style = "bg:#545c7e"
+format = '[[ $time ](fg:#b4f9f8 bg:#545c7e)]($style)'
