@@ -180,6 +180,10 @@ function cze {
   chezmoi edit "$1"
 }
 
+function take {
+  mkdir -p $@ && cd ${@:$#}
+}
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
