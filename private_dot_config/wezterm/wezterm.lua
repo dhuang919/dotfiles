@@ -33,6 +33,7 @@ wezterm.on("ActivatePaneDirection-down", function(window, pane)
   conditional_activate_pane(window, pane, "Down", "j")
 end)
 
+c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1500 }
 c.keys = {
   {
     key = "w",
@@ -54,10 +55,10 @@ c.keys = {
     key = "_",
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
-  -- { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
-  -- { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
-  -- { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
-  -- { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
+  { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
+  { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
+  { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
+  { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
   { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
   { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
   { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
@@ -103,7 +104,6 @@ c.initial_rows = 35
 c.use_dead_keys = false
 c.window_close_confirmation = "NeverPrompt"
 c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
-c.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
 
 if string.find(wezterm.home_dir, "derek", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/dev"
