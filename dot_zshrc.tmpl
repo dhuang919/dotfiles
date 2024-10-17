@@ -197,10 +197,6 @@ autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
 
-## vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 ## edit line in vim buffer
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x' edit-command-line
