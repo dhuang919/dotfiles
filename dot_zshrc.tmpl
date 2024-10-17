@@ -193,7 +193,6 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 fpath=(~/.zsh/completion $fpath)
 type brew &>/dev/null && fpath+=${BREW_DIR}/share/zsh/site-functions
 
-[ -f ${BREW_DIR}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ] && source ${BREW_DIR}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
