@@ -221,16 +221,22 @@ alias szsh="source ~/.zshrc"
 alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
 alias g="git"
 
-type -p fzf &>/dev/null && source <(fzf --zsh)
+type fzf &>/dev/null && source <(fzf --zsh)
 
-if type -p starship &>/dev/null; then
+if type starship &>/dev/null; then
   eval "$(starship init zsh)"
 else
   echo "starship not found. installing..."
   curl -sS https://starship.rs/install.sh | sh
 fi
 
-if type -p zoxide &>/dev/null; then
+type starship_zle-keymap-select >/dev/null || \
+  {
+    echo "starship_zle bug. loading starship..."
+    eval "$(starship init zsh)"
+  }
+
+if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 else
   echo "zoxide not found. installing..."
