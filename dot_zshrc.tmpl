@@ -2,7 +2,6 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
-export KEYTIMEOUT=1
 export PYTHONDONTWRITEBYTECODE=1
 {{- if eq .chezmoi.os "darwin" }}
 BREW_DIR=$(brew --prefix)
@@ -185,6 +184,7 @@ function take {
   mkdir -p $@ && cd ${@:$#}
 }
 
+# zsh settings
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' special-dirs true
@@ -196,6 +196,15 @@ type brew &>/dev/null && fpath+=${BREW_DIR}/share/zsh/site-functions
 autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
+
+## vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+## edit line in vim buffer
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^x' edit-command-line
+
 setopt autocd
 
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
@@ -211,11 +220,23 @@ alias cza="chezmoi apply"
 alias czu="chezmoi update"
 alias ll="ls -lAh"
 alias sbx="cd $HOME/dev/sandbox"
-alias vim="nvim"
+alias v="nvim"
 alias szsh="source ~/.zshrc"
 alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
 alias g="git"
 
 type -p fzf &>/dev/null && source <(fzf --zsh)
-type -p starship &>/dev/null && eval "$(starship init zsh)"
-type -p zoxide &>/dev/null && eval "$(zoxide init zsh)"
+
+if type -p starship &>/dev/null; then
+  eval "$(starship init zsh)"
+else
+  echo "starship not found. installing..."
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
+if type -p zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+else
+  echo "zoxide not found. installing..."
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi

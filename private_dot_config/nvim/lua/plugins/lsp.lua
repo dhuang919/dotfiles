@@ -25,6 +25,7 @@ return {
       local lspcfg = require("lspconfig")
       mason_lspcfg.setup({
         ensure_installed = {
+          "bashls",
           "clangd",
           "docker_compose_language_service",
           "dockerls",
@@ -72,6 +73,12 @@ return {
         function(server_name) -- default handler (optional)
           lspcfg[server_name].setup({
             on_attach = on_attach,
+          })
+        end,
+        bashls = function()
+          lspcfg.bashls.setup({
+            on_attach = on_attach,
+            filetypes = { "sh", "zsh" },
           })
         end,
         lua_ls = function()
