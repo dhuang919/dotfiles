@@ -16,7 +16,8 @@
     pager = diff-so-fancy | less --tabs=2 -RFX
     sshCommand = "ssh -F ~/.ssh/personal.config"
 [push]
-    default = upstream
+    default = origin
+    autoSetupRemote = true
 [pull]
     rebase = false
 [alias]
