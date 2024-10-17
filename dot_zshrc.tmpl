@@ -5,8 +5,9 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export KEYTIMEOUT=1
 export PYTHONDONTWRITEBYTECODE=1
 {{- if eq .chezmoi.os "darwin" }}
-export GOPATH="/opt/homebrew/bin/go"
-export GOBIN="/opt/homebrew/bin"
+BREW_DIR=$(brew --prefix)
+export GOPATH="${BREW_DIR}/bin/go"
+export GOBIN="${BREW_DIR}/bin"
 {{- end }}
 
 # add color to man pages
@@ -190,10 +191,9 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
 fpath=(~/.zsh/completion $fpath)
-if type brew &>/dev/null; then
-  fpath+=$(brew --prefix)/share/zsh/site-functions
-fi
+type brew &>/dev/null && fpath+=${BREW_DIR}/share/zsh/site-functions
 
+[ -f ${BREW_DIR}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ] && source ${BREW_DIR}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
