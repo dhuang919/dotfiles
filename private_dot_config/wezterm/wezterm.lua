@@ -43,7 +43,7 @@ c.keys = {
   {
     key = "k",
     mods = "CMD",
-    action = act.ClearScrollback("ScrollbackAndViewport"),
+    action = act.ClearScrollback(),
   },
   {
     mods = "LEADER",
