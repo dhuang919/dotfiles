@@ -31,7 +31,6 @@ return {
           "gopls",
           "jsonls",
           "lua_ls",
-          "pyright",
           "ruff_lsp",
           "sqlls",
           "ts_ls",
@@ -81,21 +80,6 @@ return {
               Lua = {
                 diagnostics = {
                   globals = { "vim" },
-                },
-              },
-            },
-          })
-        end,
-        pyright = function()
-          lspcfg.pyright.setup({
-            on_attach = on_attach,
-            settings = {
-              pyright = {
-                disableOrganizeImports = true, -- use ruff
-              },
-              python = {
-                analysis = {
-                  ignore = { "*" }, -- use ruff
                 },
               },
             },
