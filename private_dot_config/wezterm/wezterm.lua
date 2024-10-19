@@ -6,6 +6,25 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+local function basename(pathname)
+  -- remove trailing slashes
+  local head = string.find(pathname, "/+$", 2)
+  if head then
+    pathname = string.sub(pathname, 1, head - 1)
+  end
+  -- extract last segment
+  head = string.find(pathname, "[^/]+$")
+  if head then
+    pathname = string.sub(pathname, head)
+  end
+  -- get rid of first word if separated with dashes
+  head = string.find(pathname, "-")
+  if head then
+    pathname = string.sub(pathname, head + 1)
+  end
+  return pathname
+end
+
 local function is_vi_proc(pane)
   return pane:get_foreground_process_name():find("n?vim") ~= nil
     or pane:get_title():find("n?vim") ~= nil
@@ -101,6 +120,13 @@ c.keys = {
         end
       end),
     }),
+  },
+  {
+    key = ".",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(win, pane)
+      win:active_tab():set_title(basename(pane:get_current_working_dir().file_path))
+    end),
   },
 }
 
