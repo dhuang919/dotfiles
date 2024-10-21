@@ -128,6 +128,14 @@ c.keys = {
       win:active_tab():set_title(basename(pane:get_current_working_dir().file_path))
     end),
   },
+  {
+    key = "g",
+    mods = "CTRL",
+    action = act.Multiple({
+      act.ClearScrollback("ScrollbackAndViewport"),
+      act.SendKey({ key = "Enter" }),
+    }),
+  },
 }
 
 -- LEADER + number to activate that tab
