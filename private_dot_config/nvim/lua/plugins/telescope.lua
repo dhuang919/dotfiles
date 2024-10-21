@@ -46,6 +46,11 @@ return {
         "--sortr=modified",
       },
     },
+    extensions = {
+      live_grep_args = {
+        auto_quoting = false,
+      },
+    },
     pickers = {
       find_files = {
         find_command = { "rg", "--files", "--color=never", "--sortr=modified" },
