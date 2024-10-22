@@ -25,9 +25,6 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
--- Save all unwritten buffers when switching to a tmux pane
-vim.g.tmux_navigator_save_on_switch = 2
-
 -- Custom stuff
 
 -- Unhighlight with esc
