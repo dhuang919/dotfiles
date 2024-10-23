@@ -50,13 +50,26 @@ function ggrep {
 }
 
 function gurl {
-  if [ -z "$1" ]; then
-    echo "Repo required" >&2
+  local browser=0
+  while getopts "b" opt; do
+    case "$opt" in
+      b) browser=1
+    esac
+  done
+  shift $((OPTIND-1))
+  if [[ -z "$1" ]]; then
+    echo "Repo required"
     return 1
   fi
-  local -r url=$(git -C "${HOME}/Projects/tssr/${1}" config --get remote.upstream.url)
+  local -r repo=$1
+  if [[ $browser -eq 1 ]]; then
+    open /Applications/Google\ Chrome.app "https://bbgithub.dev.bloomberg.com/tssr/${repo}"
+    return 0
+  fi
+  local -r url=$(git -C "${HOME}/Projects/tssr/${repo}" config --get remote.upstream.url)
   echo -n $url | pbcopy
   echo "Copied '${url}' to clipboard"
+  return 0
 }
 
 function fmt_img {
