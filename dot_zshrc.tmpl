@@ -28,6 +28,7 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 {{- end }}
 [[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
 [[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
+[[ $PATH != */opt/homebrew/opt/bde-format@11/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@11/bin"
 export PATH
 
 {{- if eq .chezmoi.os "darwin" }}
@@ -191,6 +192,11 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^x' edit-command-line
 
 setopt autocd
+
+## enable `help`
+unalias run-help
+autoload run-help
+alias help=run-help
 
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
 {{- if eq .chezmoi.os "darwin" }}
