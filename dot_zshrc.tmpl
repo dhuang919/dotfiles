@@ -50,10 +50,10 @@ function ggrep {
 }
 
 function gurl {
-  local browser=0
-  while getopts "b" opt; do
+  local copy=0
+  while getopts "c" opt; do
     case "$opt" in
-      b) browser=1
+      c) copy=1
     esac
   done
   shift $((OPTIND-1))
@@ -62,13 +62,13 @@ function gurl {
     return 1
   fi
   local -r repo=$1
-  if [[ $browser -eq 1 ]]; then
-    open /Applications/Google\ Chrome.app "https://bbgithub.dev.bloomberg.com/tssr/${repo}"
+  if [[ $copy -eq 1 ]]; then
+    local -r url=$(git -C "${HOME}/Projects/tssr/${repo}" config --get remote.upstream.url)
+    echo -n $url | pbcopy
+    echo "Copied '${url}' to clipboard"
     return 0
   fi
-  local -r url=$(git -C "${HOME}/Projects/tssr/${repo}" config --get remote.upstream.url)
-  echo -n $url | pbcopy
-  echo "Copied '${url}' to clipboard"
+  open /Applications/Google\ Chrome.app "https://bbgithub.dev.bloomberg.com/tssr/${repo}"
   return 0
 }
 
