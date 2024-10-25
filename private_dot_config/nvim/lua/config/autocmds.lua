@@ -38,18 +38,6 @@ autocmd("TextYankPost", {
   end,
 })
 
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
-  desc = "Configs specific to files in Obsidian vault",
-  callback = function()
-    -- Only set conceallevel
-    vim.opt_local.conceallevel = 2
-
-    -- Disable render-markdown
-    require("render-markdown").disable()
-  end,
-})
-
 local numtoggle_augroup = augroup("numbertoggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
   pattern = "*",
