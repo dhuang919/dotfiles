@@ -75,8 +75,8 @@ c.keys = {
     action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
-    mods = "LEADER",
     key = "/",
+    mods = "LEADER",
     action = act.SplitPane({ direction = "Right", size = { Percent = 27 } }),
   },
   { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
@@ -110,21 +110,17 @@ c.keys = {
     action = act.AdjustPaneSize({ "Right", 10 }),
   },
   {
-    key = ",",
-    mods = "LEADER",
-    action = act.PromptInputLine({
-      description = "Tab name:",
-      action = wezterm.action_callback(function(window, pane, line)
-        if line then
-          window:active_tab():set_title(line)
-        end
-      end),
-    }),
-  },
-  {
     key = ".",
     mods = "LEADER",
     action = wezterm.action_callback(function(win, pane)
+      win:active_tab():set_title(basename(pane:get_current_working_dir().file_path))
+    end),
+  },
+  {
+    key = ",",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(win, pane)
+      win:perform_action(act.SplitPane({ direction = "Right", size = { Percent = 27 } }), pane)
       win:active_tab():set_title(basename(pane:get_current_working_dir().file_path))
     end),
   },
