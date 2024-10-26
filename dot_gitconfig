@@ -3,18 +3,20 @@
     email = derekh919@gmail.com
 [branch]
     autosetupmerge = true
-[diff]
-    tool = difftastic
-    mnemonicprefix = true
-    algorithm = patience
 [color]
     ui = auto
 [core]
-    editor = vim
     autocrlf = false
+    editor = vim
+    pager = delta
     safecrlf = true
-    pager = diff-so-fancy | less --tabs=2 -RFX
     sshCommand = "ssh -F ~/.ssh/personal.config"
+[delta]
+    line-numbers = true
+    navigate = true
+    true-color = always
+[interactive]
+    diffFilter = delta --color-only
 [push]
     default = upstream
     autoSetupRemote = true
