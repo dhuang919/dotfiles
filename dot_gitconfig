@@ -31,7 +31,7 @@
     re = restore
     rup = remote update origin --prune
     sm = !git switch $(git remote show upstream | grep \"HEAD branch\" | sed 's/.*: //')
-    st = status
+    st = status -sb
     sta = stash
     stp = stash pop
     sw = switch
