@@ -36,9 +36,9 @@ function ggrep {
   # Git grep all directories in the current directory
   for d in $(find . -type d -depth 1); do
     git -C "$d" status &>/dev/null
-    if [ $? -eq 0 ]; then
+    if [[ $? -eq 0 ]]; then
       git --no-pager -C "$d" grep "$@" &>/dev/null
-      if [ $? -eq 0 ]; then
+      if [[ $? -eq 0 ]]; then
         echo "######################"
         echo "# ${d:2}"
         echo "######################"
@@ -123,7 +123,7 @@ function tp {
   if ! type blueutil &> /dev/null; then
     echo "blueutil not installed" >&2
     return 1
-  elif [ $(blueutil -p) -eq 0 ]; then
+  elif [[ $(blueutil -p) -eq 0 ]]; then
     echo "Bluetooth is off. Toggling..." >&2
     blueutil -p toggle
   fi
@@ -134,7 +134,7 @@ function tp {
   blueutil --unpair "$trackpad"
   echo "Connecting..."
   while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
-    if [ "$tries" -eq "$retries" ]; then
+    if [[ "$tries" -eq "$retries" ]]; then
       echo "stopping after $retries retries" >&2
       return 1
     fi
@@ -151,6 +151,7 @@ function ww {
   open /Applications/Docker.app
   open /Applications/Spotify.app
 }
+{{- end }}
 
 function clean_docker {
   echo "Deleting containers..."
@@ -166,10 +167,9 @@ function clean_docker {
   docker builder prune -f
   docker system df
 }
-{{- end }}
 
 function cze {
-  if [ -z "$1" ]; then
+  if [[ -z "$1" ]]; then
     echo "File required" >&2
     return 1
   fi
@@ -181,6 +181,20 @@ function cze {
   esac
 
   chezmoi edit "$1"
+}
+
+function disk_usage {
+  if [[ -z "$1" ]]; then
+    echo "Directory required" >&2
+    return 1
+  fi
+  # du
+  #   -a display an entry for each file in a file hierarchy
+  #   -h human readable
+  # sort
+  #   -r sort in reverse order
+  #   -h human numeric sort
+  du -ah "$1" | sort -rh | less
 }
 
 function take {
