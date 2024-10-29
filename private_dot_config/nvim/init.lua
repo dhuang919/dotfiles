@@ -25,6 +25,9 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
+-- Disable to allow after/ftplugin settings work
+vim.g.editorconfig = false
+
 -- Custom stuff
 
 -- Unhighlight with esc
