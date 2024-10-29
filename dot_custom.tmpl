@@ -63,5 +63,10 @@ function pipconf {
   echo "${1}.conf copied"
 }
 
+function sync_nvim_config {
+  # Copy nvim configs to dev
+  scp -r ~/.config/nvim tslgd1-tt-453:/home/dhuang295/.config/
+}
+
 source ~/.lcldevrc
 {{- end }}
