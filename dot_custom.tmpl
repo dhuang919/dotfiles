@@ -63,9 +63,13 @@ function pipconf {
   echo "${1}.conf copied"
 }
 
-function sync_nvim_config {
+function cpnvim {
+  if [[ -z "${1}" ]]; then
+    echo "Host required" >&2
+    return 1
+  fi
   # Copy nvim configs to dev
-  scp -r ~/.config/nvim tslgd1-tt-453:/home/dhuang295/.config/
+  scp -r ~/.config/nvim "${1}:/home/dhuang295/.config/"
 }
 
 source ~/.lcldevrc
