@@ -1,6 +1,22 @@
-local o = require("open")
 local s = require("screens")
 local external_connected = false
+
+function moveIfOpen(app, screen, ratios)
+  focused = hs.application.get(app)
+  if not focused then
+    return false
+  end
+  activate_success = focused:activate()
+  if not activate_success then
+    return false
+  end
+  window = focused:focusedWindow()
+  if not window then
+    return false
+  end
+  s.placeWindow(window, screen, ratios)
+  return true
+end
 
 -- home horizontal U2518D
 -- home vertical U2515H
@@ -75,23 +91,27 @@ local ratios = {
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
-  o.moveIfOpen("Slack", "LAPTOP", ratios.slack)
-  o.moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
-  o.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
-  o.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
-  o.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
+  moveIfOpen("Slack", "LAPTOP", ratios.slack)
+  moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
+  moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
+  moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
+  moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
 
-  o.moveIfOpen("iTerm2", external_connected and "VERTICAL" or "LAPTOP", ratios.iterm)
-  o.moveIfOpen("WezTerm", external_connected and "VERTICAL" or "LAPTOP", ratios.wezterm)
+  moveIfOpen("iTerm2", external_connected and "VERTICAL" or "LAPTOP", ratios.iterm)
+  moveIfOpen("WezTerm", external_connected and "VERTICAL" or "LAPTOP", ratios.wezterm)
 
   if external_connected then
-    o.moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_ext)
+    moveIfOpen("Google Chrome", "VERTICAL", ratios.chrome_ext)
   else
-    o.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
+    moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
   end
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "R", function()
   hs.reload()
   hs.notify.new({ title = "Hammerspoon", informativeText = "Config reloaded" }):send()
+end)
+
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "C", function()
+  moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
 end)
