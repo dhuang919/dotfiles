@@ -248,7 +248,7 @@ if type starship &>/dev/null; then
   eval "$(starship init zsh)"
 else
   echo "starship not found. installing..."
-  curl -sS https://starship.rs/install.sh | sh
+  curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
 type starship_zle-keymap-select >/dev/null || \
