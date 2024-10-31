@@ -5,18 +5,18 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 export GH_NO_UPDATE_NOTIFIER=1
 export GOPRIVATE="*.dev.bloomberg.com"
 export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
-export GOPATH=$HOME/go
+export GOPATH="$HOME/go"
 [[ $PATH != *${GOPATH}/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
 [[ $PATH != *${HOME}/Projects/dhuang295/scripts* ]] && PATH="${PATH}:${HOME}/Projects/dhuang295/scripts"
 [[ $PATH != *${HOME}/Projects/bde/bde-tools/bin* ]] && PATH="${PATH}:${HOME}/Projects/bde/bde-tools/bin"
 export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
-export BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
-export BPKG_TOKEN=***REMOVED_BPKG_PROD***
 export https_proxy="http://127.0.0.1:8888"
 export HTTPS_PROXY="$https_proxy"
 export http_proxy="$https_proxy"
 export HTTP_PROXY="$https_proxy"
 
+BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
+BPKG_TOKEN=***REMOVED_BPKG_PROD***
 BBID=31453293
 PIPDIR="${HOME}/.config/pip"
 
