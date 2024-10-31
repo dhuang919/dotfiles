@@ -56,12 +56,12 @@ c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 c.keys = {
   {
     key = "LeftArrow",
-    mods = "OPT",
+    mods = "ALT",
     action = act.SendKey({ key = "b", mods = "ALT" }),
   },
   {
     key = "RightArrow",
-    mods = "OPT",
+    mods = "ALT",
     action = act.SendKey({ key = "f", mods = "ALT" }),
   },
   {
