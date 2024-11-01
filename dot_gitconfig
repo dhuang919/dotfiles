@@ -7,7 +7,7 @@
     ui = auto
 [core]
     autocrlf = false
-    editor = vim
+    editor = nvim
     pager = delta
     safecrlf = true
     sshCommand = "ssh -F ~/.ssh/personal.config"
