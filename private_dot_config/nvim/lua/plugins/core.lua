@@ -22,7 +22,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "ayu_dark",
+        theme = "nord",
       },
       sections = {
         lualine_b = {
