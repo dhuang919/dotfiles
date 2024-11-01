@@ -11,6 +11,7 @@ $time\
 $character"""
 
 [username]
+style_root = "fg:red bg:#1c3144"
 style_user = "fg:#ffffff bg:#1c3144"
 format = "[ $user ]($style)"
 disabled = false
