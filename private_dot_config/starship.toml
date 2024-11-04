@@ -20,7 +20,7 @@ show_always = true
 [directory]
 style = "fg:#ffffff bg:#596f62"
 format = "[ $path ]($style)"
-truncation_length = 3
+truncation_length = 2
 truncation_symbol = "…/"
 truncate_to_repo = false
 
