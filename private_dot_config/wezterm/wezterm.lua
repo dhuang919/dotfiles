@@ -3,7 +3,7 @@ local act = wezterm.action
 local c = {}
 
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+  c = wezterm.config_builder()
 end
 
 local function basename(pathname)

@@ -19,9 +19,9 @@ vim.o.undofile = true
 vim.o.swapfile = false
 
 -- Use treesitter for folding
-vim.o.foldenable = false
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart = 99
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
