@@ -33,8 +33,13 @@ vim.g.editorconfig = false
 -- Unhighlight with esc
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
--- Easily view and switch buffers
+-- Buffers
+-- Easily view and switch
 vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
+
+-- Prev/next buffers
+vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
+vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 
 -- Open oil.nvim
 vim.keymap.set("n", "-", "<cmd>:Oil<cr>")
