@@ -88,6 +88,12 @@ local ratios = {
     height = 0.85,
     width = 0.8,
   },
+  wezterm_obsidian = {
+    top = 0.15,
+    left = 0.17,
+    height = 0.85,
+    width = 0.8,
+  },
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
@@ -114,4 +120,8 @@ end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "C", function()
   moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
+end)
+
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "O", function()
+  moveIfOpen("WezTerm", "LAPTOP", ratios.wezterm_obsidian)
 end)
