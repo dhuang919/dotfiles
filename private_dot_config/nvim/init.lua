@@ -35,7 +35,7 @@ vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
 -- Buffers
 -- Easily view and switch
-vim.keymap.set("n", "gb", ":ls<cr>:b", { noremap = true })
+vim.keymap.set("n", "gb", ":ls", { noremap = true })
 
 -- Prev/next buffers
 vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
