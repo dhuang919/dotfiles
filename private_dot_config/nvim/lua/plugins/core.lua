@@ -179,7 +179,7 @@ return {
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
-          ["<C-s>"] = {
+          ["<C-v>"] = {
             "actions.select",
             opts = { vertical = true },
             desc = "Open the entry in a vertical split",
