@@ -32,7 +32,7 @@ return {
           "jsonls",
           "lua_ls",
           "pyright",
-          "ruff_lsp",
+          "ruff",
           "sqlls",
           "ts_ls",
           "yamlls",
