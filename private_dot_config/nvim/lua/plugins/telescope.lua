@@ -1,8 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
-
   event = "VeryLazy",
-
   dependencies = {
     {
       "nvim-lua/plenary.nvim",
@@ -23,7 +21,6 @@ return {
       event = "VeryLazy",
     },
   },
-
   config = function(_, opts)
     local telescope = require("telescope")
     telescope.setup(opts)
@@ -31,10 +28,10 @@ return {
     telescope.load_extension("live_grep_args")
     telescope.load_extension("frecency")
   end,
-
   opts = {
     defaults = {
       file_ignore_patterns = { "^.git/" },
+      layout_strategy = "vertical",
       vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -58,7 +55,6 @@ return {
       },
     },
   },
-
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>" },
     {
@@ -67,7 +63,8 @@ return {
       desc = "Telescope live grep args",
     },
     { "<leader>fb", "<cmd>Telescope buffers<cr>" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+    -- disable for harpoon
+    -- { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     { "<leader>fc", "<cmd>Telescope frecency<cr>", desc = "Telescope frecency file finder" },
   },
 }
