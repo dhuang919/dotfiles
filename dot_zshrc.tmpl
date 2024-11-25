@@ -58,7 +58,7 @@ function gurl {
   done
   shift $((OPTIND-1))
   if [[ -z "$1" ]]; then
-    echo "Repo required"
+    echo "Repo required" >&2
     return 1
   fi
   local -r repo=$1
@@ -73,6 +73,10 @@ function gurl {
 }
 
 function fmt_img {
+  if [[ -z "$1" ]] || [[ -z "$2" ]]; then
+    echo "Source/destination images required" >&2
+    return 1
+  fi
   magick "$1" "$2"
   magick "$2" -resize 30% "$2"
 }
