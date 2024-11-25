@@ -42,7 +42,7 @@ return {
 
         -- ui
         {
-          "<a-h>",
+          "<M-h>",
           function()
             harpoon.ui:toggle_quick_menu(harpoon:list())
           end,
@@ -50,49 +50,49 @@ return {
         },
 
         {
-          "<a-a>",
+          "<M-a>",
           function()
             harpoon:list():add()
           end,
           desc = "Harpoon add",
         },
         {
-          "<a-p>",
+          "<M-p>",
           function()
             harpoon:list():prev()
           end,
           desc = "Harpoon prev",
         },
         {
-          "<a-n>",
+          "<M-n>",
           function()
             harpoon:list():next()
           end,
           desc = "Harpoon next",
         },
         {
-          "<a-1>",
+          "<M-1>",
           function()
             harpoon:list():select(1)
           end,
           desc = "Harpoon buf1",
         },
         {
-          "<a-2>",
+          "<M-2>",
           function()
             harpoon:list():select(2)
           end,
           desc = "Harpoon buf2",
         },
         {
-          "<a-3>",
+          "<M-3>",
           function()
             harpoon:list():select(3)
           end,
           desc = "Harpoon buf3",
         },
         {
-          "<a-4>",
+          "<M-4>",
           function()
             harpoon:list():select(4)
           end,
