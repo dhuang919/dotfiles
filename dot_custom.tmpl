@@ -94,6 +94,13 @@ function sync_configs {
 
   local remote_addr="${1}:${remote_dir}"
   echo "Copying configs to ${remote_addr}"
+  if [[ -x "$(which rsync)" ]]; then
+    echo "Using rsync"
+    # assume it's on PATH
+    rsync -rav ~/.config/nvim "${remote_addr}"
+    rsync -rav ~/.config/starship.toml "${remote_addr}"
+    return 0
+  fi
   scp -r ~/.config/nvim "${remote_addr}"
   scp ~/.config/starship.toml "${remote_addr}"
   return 0
