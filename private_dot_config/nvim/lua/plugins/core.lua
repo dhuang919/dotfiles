@@ -195,4 +195,12 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {},
   },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    event = "VeryLazy",
+    opts = {
+      disabledKeymaps = { "ai", "ii", "aq", "iq", "ao", "io" },
+      useDefaultKeymaps = true,
+    },
+  },
 }
