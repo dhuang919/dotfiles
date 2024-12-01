@@ -13,11 +13,6 @@ return {
     },
   },
   {
-    "chrisgrieser/nvim-various-textobjs",
-    event = "UIEnter",
-    opts = { useDefaultKeymaps = true },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = {
@@ -38,17 +33,6 @@ return {
         },
       },
     },
-  },
-  {
-    "echasnovski/mini.splitjoin",
-    event = "VeryLazy",
-    version = false,
-    config = true,
-  },
-  {
-    "echasnovski/mini.comment",
-    version = false,
-    config = true,
   },
   {
     "kdheepak/lazygit.nvim",
@@ -77,16 +61,10 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {
-      check_ts = true,
-    },
+    opts = { check_ts = true },
   },
   {
     "RRethy/vim-illuminate",
-    event = "VeryLazy",
-  },
-  {
-    "Vimjas/vim-python-pep8-indent",
     event = "VeryLazy",
   },
   {
@@ -149,11 +127,6 @@ return {
         desc = "Search on current file",
       },
     },
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    config = true,
   },
   {
     "folke/which-key.nvim",

@@ -41,9 +41,8 @@ return {
         "xml",
         "yaml",
       },
-      highlight = {
-        enable = true,
-      },
+      highlight = { enable = true },
+      indent = { enable = true },
     })
   end,
 }

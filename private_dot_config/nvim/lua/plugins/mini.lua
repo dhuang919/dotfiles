@@ -1,18 +1,7 @@
 return {
   {
-    "echasnovski/mini.splitjoin",
-    event = "VeryLazy",
-    version = "*",
-    config = true,
-  },
-  {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
-    version = "*",
-    config = true,
-  },
-  {
     "echasnovski/mini.ai",
+    dependencies = { "echasnovski/mini.extra", version = "*" },
     event = "VeryLazy",
     version = "*",
     config = function()
@@ -35,5 +24,23 @@ return {
         },
       })
     end,
+  },
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
+  },
+  {
+    "echasnovski/mini.splitjoin",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
+  },
+  {
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
   },
 }
