@@ -6,7 +6,7 @@ $directory\
 $git_branch\
 $git_status\
 [ ](fg:#7ea16b bg:#c3d898)\
-$time\
+$time$env_var\
 [ ](fg:#c3d898)\
 $character"""
 
@@ -39,6 +39,12 @@ disabled = false
 time_format = "%T"
 style = "fg:#000000 bg:#c3d898"
 format = '[ $time ]($style)'
+
+[env_var]
+symbol = '🏠'
+variable = 'CHEZMOI_SUBSHELL'
+style = "fg:#000000 bg:#c3d898"
+format = '[$symbol ]($style)'
 
 [character]
 success_symbol = '[\$](bold green)'
