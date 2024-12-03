@@ -2,6 +2,8 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local c = {}
 
+local RIGHT_PANE_PERCENT = 30
+
 if wezterm.config_builder then
   c = wezterm.config_builder()
 end
@@ -87,7 +89,7 @@ c.keys = {
   {
     key = "/",
     mods = "LEADER",
-    action = act.SplitPane({ direction = "Right", size = { Percent = 27 } }),
+    action = act.SplitPane({ direction = "Right", size = { Percent = RIGHT_PANE_PERCENT } }),
   },
   { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
   { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
@@ -130,7 +132,10 @@ c.keys = {
     key = ",",
     mods = "LEADER",
     action = wezterm.action_callback(function(win, pane)
-      win:perform_action(act.SplitPane({ direction = "Right", size = { Percent = 27 } }), pane)
+      win:perform_action(
+        act.SplitPane({ direction = "Right", size = { Percent = RIGHT_PANE_PERCENT } }),
+        pane
+      )
       win:active_tab():set_title(basename(pane:get_current_working_dir().file_path))
     end),
   },
