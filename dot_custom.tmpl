@@ -97,7 +97,7 @@ function sync_configs {
   if [[ -x "$(which rsync)" ]]; then
     echo "Using rsync"
     # assume it's on PATH
-    rsync -rav ~/.config/nvim "${remote_addr}"
+    rsync -rav --exclude 'obsidian.lua' ~/.config/nvim "${remote_addr}"
     rsync -rav ~/.config/starship.toml "${remote_addr}"
     return 0
   fi
