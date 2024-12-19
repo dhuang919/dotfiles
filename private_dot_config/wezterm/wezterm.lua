@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local c = {}
 
-local RIGHT_PANE_PERCENT = 30
+local RIGHT_PANE_PERCENT = 28
 
 if wezterm.config_builder then
   c = wezterm.config_builder()
