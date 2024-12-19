@@ -199,7 +199,9 @@ return {
     "chrisgrieser/nvim-various-textobjs",
     event = "VeryLazy",
     opts = {
-      disabledKeymaps = { "ai", "ii", "aq", "iq", "ao", "io" },
+      keymaps = {
+        disabledDefaults = { "ai", "ii", "aq", "iq", "ao", "io" },
+      },
       useDefaultKeymaps = true,
     },
   },
