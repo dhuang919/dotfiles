@@ -202,7 +202,6 @@ return {
       keymaps = {
         disabledDefaults = { "ai", "ii", "aq", "iq", "ao", "io" },
       },
-      useDefaultKeymaps = true,
     },
   },
   {
