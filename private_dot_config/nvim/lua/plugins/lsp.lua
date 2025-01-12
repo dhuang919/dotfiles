@@ -33,6 +33,7 @@ return {
           "lua_ls",
           "pyright",
           "ruff",
+          "rust-analyzer",
           "sqlls",
           "ts_ls",
           "yamlls",
