@@ -10,7 +10,6 @@
     editor = nvim
     pager = delta
     safecrlf = true
-    sshCommand = "ssh -F ~/.ssh/personal.config"
 [delta]
     line-numbers = true
     navigate = true
