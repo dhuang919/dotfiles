@@ -16,12 +16,3 @@
     proxy = http://proxy.bloomberg.com:81
 [https]
     proxy = http://proxy.bloomberg.com:81
-[http "https://github.com"]
-    proxy = http://proxy.bloomberg.com:81
-    sslCAinfo = ~/bb-cert/bloomberg-root-ca.crt
-[url "https://github.com/"]
-    insteadOf = github.com:
-[url "https://github.com/"]
-    insteadOf = git@github.com:
-[url "https://github.com/"]
-    insteadOf = ssh://git@github.com/

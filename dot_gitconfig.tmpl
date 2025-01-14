@@ -43,7 +43,18 @@
     conflictstyle = zdiff3
 [credential]
     helper = store
-[include]
+[includeIf "gitdir:~/Projects/"]
     path = .gitconfig.work
 [submodule]
     recurse = true
+{{- if eq .chezmoi.username "dhuang295" }}
+[http "https://github.com"]
+    proxy = http://proxy.bloomberg.com:81
+    sslCAinfo = ~/bb-cert/bloomberg-root-ca.crt
+[url "https://github.com/"]
+    insteadOf = github.com:
+[url "https://github.com/"]
+    insteadOf = git@github.com:
+[url "https://github.com/"]
+    insteadOf = ssh://git@github.com/
+{{- end }}
