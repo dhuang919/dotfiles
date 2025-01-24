@@ -13,14 +13,9 @@ return {
         "williamboman/mason-lspconfig.nvim",
         event = "VeryLazy",
       },
-      {
-        "SmiteshP/nvim-navic",
-        event = "VeryLazy",
-      },
     },
     config = function()
       require("mason").setup()
-      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
       local mason_lspcfg = require("mason-lspconfig")
       local lspcfg = require("lspconfig")
       mason_lspcfg.setup({
@@ -39,7 +34,7 @@ return {
           "yamlls",
         },
       })
-      local on_attach = function(client, bufnr)
+      local on_attach = function(_, bufnr)
         local key_opts = { buffer = bufnr, remap = false }
         vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, key_opts)
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, key_opts)
@@ -62,9 +57,6 @@ return {
         vim.keymap.set("n", "<space>f", function()
           vim.lsp.buf.format({ async = true })
         end, key_opts)
-        if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, bufnr)
-        end
       end
       mason_lspcfg.setup_handlers({
         -- The first entry (without a key) will be the default handler
