@@ -18,7 +18,7 @@ end
 local screens = {}
 screens.SCREENS = SCREENS
 
-function screens.placeWindow(window, screen, ratios)
+function screens.placeWindow(window, screen, ratios, fullscreen)
   local screenObj = screens.SCREENS[screen]
   if screenObj == nil then
     return
@@ -27,13 +27,16 @@ function screens.placeWindow(window, screen, ratios)
   local screen_height = screenObj:frame().h
   local screen_width = screenObj:frame().w
 
-  local top = screen_height * ratios.top
-  local left = screen_width * ratios.left
-  local height = screen_height * ratios.height
-  local width = screen_width * ratios.width
-
-  window:setTopLeft(screenObj:localToAbsolute(hs.geometry.point(left, top)))
-  window:setSize(hs.geometry.size(width, height))
+  if fullscreen then
+    window:setFullScreen(true)
+  else
+    local top = screen_height * ratios.top
+    local left = screen_width * ratios.left
+    local height = screen_height * ratios.height
+    local width = screen_width * ratios.width
+    window:setTopLeft(screenObj:localToAbsolute(hs.geometry.point(left, top)))
+    window:setSize(hs.geometry.size(width, height))
+  end
 end
 
 return screens

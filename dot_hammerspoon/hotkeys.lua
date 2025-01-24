@@ -1,20 +1,24 @@
 local s = require("screens")
 local external_connected = false
 
-function moveIfOpen(app, screen, ratios)
-  focused = hs.application.get(app)
+local function moveIfOpen(app, screen, ratios, fullscreen)
+  local focused = hs.application.get(app)
   if not focused then
     return false
   end
-  activate_success = focused:activate()
+  local activate_success = focused:activate()
   if not activate_success then
     return false
   end
-  window = focused:focusedWindow()
+  local window = focused:focusedWindow()
   if not window then
     return false
   end
-  s.placeWindow(window, screen, ratios)
+  if fullscreen then
+    s.placeWindow(window, screen, {}, true)
+  else
+    s.placeWindow(window, screen, ratios, false)
+  end
   return true
 end
 
@@ -113,15 +117,19 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "W", function()
   end
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "R", function()
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "r", function()
   hs.reload()
   hs.notify.new({ title = "Hammerspoon", informativeText = "Config reloaded" }):send()
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "C", function()
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "c", function()
   moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "O", function()
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "o", function()
   moveIfOpen("WezTerm", "LAPTOP", ratios.wezterm_obsidian)
+end)
+
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "s", function()
+  moveIfOpen("WezTerm", "HORIZONTAL", nil, true)
 end)
