@@ -172,6 +172,13 @@ function clean_docker {
   docker system df
 }
 
+function gtdci {
+  # get top docker container id
+  local -r container_id=$(docker ps -aq | head -n 1)
+  echo -n $container_id | pbcopy
+  echo "Copied ${container_id} to clipboard"
+}
+
 function cze {
   if [[ -z "$1" ]]; then
     echo "File required" >&2
