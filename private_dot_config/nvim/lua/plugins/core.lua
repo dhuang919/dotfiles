@@ -233,4 +233,14 @@ return {
       vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
     end,
   },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "echasnovski/mini.icons" },
+    opts = {},
+    keys = {
+      { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "fzf files" },
+      { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
+      { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
+    },
+  },
 }
