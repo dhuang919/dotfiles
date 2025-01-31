@@ -15,9 +15,7 @@ return {
   -- },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "hrsh7th/nvim-cmp",
   },
   opts = {
     workspaces = {
@@ -27,10 +25,6 @@ return {
       },
     },
     notes_subdir = "zk",
-    completion = {
-      nvim_cmp = true,
-      min_chars = 2,
-    },
     mappings = {
       -- Toggle check-boxes.
       ["<leader>ch"] = {
@@ -61,21 +55,6 @@ return {
     end,
     use_advanced_uri = false,
     open_app_foreground = false,
-    picker = {
-      name = "telescope.nvim",
-      note_mappings = {
-        -- Create a new note from your query.
-        new = "<C-x>",
-        -- Insert a link to the selected note.
-        insert_link = "<C-l>",
-      },
-      tag_mappings = {
-        -- Add tag(s) to current note.
-        tag_note = "<C-x>",
-        -- Insert a tag at the current location.
-        insert_tag = "<C-l>",
-      },
-    },
     sort_by = "modified",
     sort_reversed = true,
     search_max_lines = 1000,

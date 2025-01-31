@@ -216,11 +216,6 @@ return {
   },
   {
     "Bekaboo/dropbar.nvim",
-    -- optional, but required for fuzzy finder support
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-    },
     config = function()
       local dropbar_api = require("dropbar.api")
       vim.keymap.set("n", "<leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
@@ -236,11 +231,22 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "echasnovski/mini.icons" },
-    opts = {},
+    opts = {
+      winopts = {
+        preview = {
+          layout = "vertical",
+        },
+      },
+    },
     keys = {
       { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "fzf files" },
+      { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
       { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
       { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
     },
+  },
+  {
+    "Vimjas/vim-python-pep8-indent",
+    event = "VeryLazy",
   },
 }

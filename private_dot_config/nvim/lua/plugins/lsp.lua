@@ -14,10 +14,15 @@ return {
         event = "VeryLazy",
       },
     },
-    config = function()
+    opts = {
+      servers = {
+        lua_ls = {},
+      },
+    },
+    config = function(_, opts)
       require("mason").setup()
       local mason_lspcfg = require("mason-lspconfig")
-      local lspcfg = require("lspconfig")
+      local lspconfig = require("lspconfig")
       mason_lspcfg.setup({
         ensure_installed = {
           "clangd",
@@ -63,12 +68,12 @@ return {
         -- and will be called for each installed server that doesn"t have
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
-          lspcfg[server_name].setup({
+          lspconfig[server_name].setup({
             on_attach = on_attach,
           })
         end,
         lua_ls = function()
-          lspcfg.lua_ls.setup({
+          lspconfig.lua_ls.setup({
             on_attach = on_attach,
             settings = {
               Lua = {
@@ -80,7 +85,7 @@ return {
           })
         end,
         pyright = function()
-          lspcfg.pyright.setup({
+          lspconfig.pyright.setup({
             on_attach = on_attach,
             settings = {
               pyright = {
@@ -95,6 +100,14 @@ return {
           })
         end,
       })
+
+      -- blink.cmp setup
+      for server, config in pairs(opts.servers) do
+        -- passing config.capabilities to blink.cmp merges with the capabilities in your
+        -- `opts[server].capabilities, if you've defined it
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
+      end
     end,
   },
   {
