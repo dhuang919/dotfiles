@@ -176,7 +176,7 @@ function gtdci {
   # get top docker container id
   local -r container_id=$(docker ps -ql)
   echo -n $container_id | pbcopy
-  echo "Copied ${container_id} to clipboard"
+  echo -n $container_id
 }
 
 function cze {
