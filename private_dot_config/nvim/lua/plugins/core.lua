@@ -229,23 +229,6 @@ return {
     end,
   },
   {
-    "ibhagwan/fzf-lua",
-    dependencies = { "echasnovski/mini.icons" },
-    opts = {
-      winopts = {
-        preview = {
-          layout = "vertical",
-        },
-      },
-    },
-    keys = {
-      { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "fzf files" },
-      { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
-      { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
-      { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
-    },
-  },
-  {
     "Vimjas/vim-python-pep8-indent",
     event = "VeryLazy",
   },
