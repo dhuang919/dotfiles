@@ -1,7 +1,7 @@
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "echasnovski/mini.icons" },
-  configure = function()
+  config = function()
     local fzf_lua = require("fzf-lua")
     fzf_lua.setup({
       winopts = {
