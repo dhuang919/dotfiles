@@ -17,5 +17,6 @@ return {
     { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
     { "<leader>fl", "<cmd>FzfLua grep<cr>", desc = "fzf grep" },
     { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
+    { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" },
   },
 }
