@@ -14,7 +14,7 @@ return {
   keys = {
     { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "fzf files" },
     { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
-    { "<leader>fg", "<cmd>FzfLua live grep<cr>", desc = "fzf live grep" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
     { "<leader>fl", "<cmd>FzfLua grep<cr>", desc = "fzf grep" },
     { "<leader>gl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
     { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
