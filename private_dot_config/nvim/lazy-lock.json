@@ -4,6 +4,7 @@
   "blink.cmp": { "branch": "main", "commit": "b6f11a0aa33e601c469a126e3ed6e35208fe3ea3" },
   "dropbar.nvim": { "branch": "master", "commit": "b27bb0353cb34bded65a8911e7d232b12100568b" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
+  "fzf-lua": { "branch": "main", "commit": "e3fefd97875827e47dc4bbf1074ee464b2d8e6a8" },
   "git-blame.nvim": { "branch": "master", "commit": "2883a7460f611c2705b23f12d58d398d5ce6ec00" },
   "gitsigns.nvim": { "branch": "main", "commit": "c6fedfd0b1715ee624384b134becec0a7b0a3d28" },
   "hardtime.nvim": { "branch": "main", "commit": "198a5aae186e866eff0826ef1706c229f856f11c" },

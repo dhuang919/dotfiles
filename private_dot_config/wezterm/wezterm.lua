@@ -140,7 +140,7 @@ c.keys = {
     end),
   },
   {
-    key = "g",
+    key = "h",
     mods = "CTRL",
     action = act.Multiple({
       act.ClearScrollback("ScrollbackAndViewport"),
