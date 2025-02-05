@@ -77,8 +77,8 @@ return {
       })
     end,
     keys = {
-      { "<leader>co", "<cmd>GitBlameOpenCommitURL<cr>" },
-      { "<leader>fo", "<cmd>GitBlameOpenFileURL<cr>" },
+      { "<leader>oc", "<cmd>GitBlameOpenCommitURL<cr>" },
+      { "<leader>of", "<cmd>GitBlameOpenFileURL<cr>" },
     },
   },
   {
