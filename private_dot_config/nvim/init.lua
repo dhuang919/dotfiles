@@ -1,3 +1,6 @@
+-- space as leader
+vim.g.mapleader = " "
+
 require("config.autocmds")
 require("config.lazy")
 
@@ -18,31 +21,32 @@ vim.o.splitright = true
 vim.o.undofile = true
 vim.o.swapfile = false
 
--- Use treesitter for folding
+-- use treesitter for folding
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
--- Disable to allow after/ftplugin settings work
+-- disable to allow after/ftplugin settings work
 vim.g.editorconfig = false
 
--- Custom stuff
+-- custom stuff
 
--- Unhighlight with esc
+-- unhighlight with esc
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
--- Prev/next buffers
+-- prev/next buffers
 vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
 vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 
--- Set line number colors in gutter
+-- set line number colors in gutter
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FB508F", bold = true })
+vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
 
--- Disabled stuff
--- Command mode
+-- disabled stuff
+-- command mode
 vim.keymap.set("n", "Q", "")
 vim.keymap.set("n", "q:", "")
