@@ -21,6 +21,17 @@ return {
     "echasnovski/mini.surround",
     event = "VeryLazy",
     version = "*",
-    config = true,
+    opts = {
+      mappings = {
+        add = "ys", -- sa
+        delete = "ds", -- sd
+        find = "", -- sf
+        find_left = "", -- sF
+        highlight = "", -- sh
+        replace = "cs", -- sr
+        update_n_lines = "", -- sn
+      },
+      search_method = "cover_or_next",
+    },
   },
 }
