@@ -148,6 +148,10 @@ function tp {
 }
 
 function ww {
+  if [[ -x "$(which prlctl)" ]]; then
+    prlctl start 6e797c9b-6cce-4de1-aeb1-98513c4da60d
+  fi
+  open /Applications/Parallels\ Desktop.app
   open /Applications/Google\ Chrome.app
   open /Applications/Obsidian.app
   open /System/Applications/Calendar.app
