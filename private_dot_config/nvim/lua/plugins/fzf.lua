@@ -2,8 +2,17 @@ return {
   "ibhagwan/fzf-lua",
   dependencies = { "echasnovski/mini.icons" },
   config = function()
-    local fzf_lua = require("fzf-lua")
-    fzf_lua.setup({
+    local fzflua = require("fzf-lua")
+    local default_rgopts = fzflua.defaults.grep.rg_opts
+    fzflua.setup({
+      actions = {
+        files = {
+          ["ctrl-x"] = fzflua.actions.file_split,
+        },
+      },
+      grep = {
+        rg_opts = "--sortr=modified " .. default_rgopts,
+      },
       winopts = {
         preview = {
           layout = "vertical",
