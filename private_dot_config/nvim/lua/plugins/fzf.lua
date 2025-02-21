@@ -7,6 +7,7 @@ return {
     fzflua.setup({
       actions = {
         files = {
+          true,
           ["ctrl-x"] = fzflua.actions.file_split,
         },
       },
