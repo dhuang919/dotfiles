@@ -239,4 +239,9 @@ return {
       leap.create_default_mappings()
     end,
   },
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
