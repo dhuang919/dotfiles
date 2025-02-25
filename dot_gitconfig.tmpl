@@ -3,6 +3,9 @@
     email = derekh919@gmail.com
 [branch]
     autosetupmerge = true
+    sort = -committerdate
+[tag]
+    sort = version:refname
 [color]
     ui = auto
 [core]
@@ -10,6 +13,11 @@
     editor = nvim
     pager = delta
     safecrlf = true
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [delta]
     line-numbers = true
     navigate = true
@@ -17,10 +25,21 @@
 [interactive]
     diffFilter = delta --color-only
 [push]
-    default = upstream
+    default = simple
     autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 [pull]
     rebase = false
+[merge]
+    conflictstyle = zdiff3
+[credential]
+    helper = store
+[submodule]
+    recurse = true
 [alias]
     alias = config --get-regexp ^alias\\.
     br = branch
@@ -39,14 +58,8 @@
     sta = stash
     stp = stash pop
     sw = switch
-[merge]
-    conflictstyle = zdiff3
-[credential]
-    helper = store
 [includeIf "gitdir:~/Projects/"]
     path = .gitconfig.work
-[submodule]
-    recurse = true
 {{- if eq .chezmoi.username "dhuang295" }}
 [http "https://github.com"]
     proxy = http://proxy.bloomberg.com:81
