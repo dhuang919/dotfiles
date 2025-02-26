@@ -235,13 +235,51 @@ return {
   {
     "ggandor/leap.nvim",
     config = function()
-      local leap = require("leap")
-      leap.create_default_mappings()
+      require("leap").create_default_mappings()
     end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
+    opts = {
+      current_line_blame = false,
+      current_line_blame_formatter = "<author> | <author_time:%R> | <summary>",
+      current_line_blame_opts = { delay = 200 },
+    },
+    keys = {
+      {
+        "<leader>tb",
+        "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>",
+        desc = "Gitsigns toggle line blame",
+      },
+    },
   },
   {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
+    opts = {
+      use_icons = false,
+    },
+    keys = {
+      { "<leader>hc", "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
+      { "<leader>hh", "<cmd>DiffviewFileHistory<cr>", desc = "Repo history" },
+      { "<leader>hf", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "File history" },
+      { "<leader>hl", "<cmd>.DiffviewFileHistory --follow %<cr>", desc = "Line history" },
+      {
+        "<leader>hl",
+        "<esc><cmd>'<,'>DiffviewFileHistory --follow<cr>",
+        mode = "v",
+        desc = "Range history",
+      },
+    },
+  },
+  {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = {
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
     opts = {},
   },
 }
