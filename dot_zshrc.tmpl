@@ -247,14 +247,18 @@ alias help=run-help
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias vt="cd ~/dev/notes"
 {{- end }}
+
+# chezmoi aliases
 alias cz="chezmoi"
 alias cza="chezmoi apply"
 alias czu="chezmoi update"
+alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
+alias czd="cz cd"
+
 alias ll="ls -lah"
 alias sbx="cd $HOME/dev/sandbox"
 alias vim="nvim"
 alias szsh="source ~/.zshrc"
-alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
 alias g="git"
 alias gg="git gone"
 
