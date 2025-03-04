@@ -81,6 +81,24 @@ function fmt_img {
   magick "$2" -resize 30% "$2"
 }
 
+function fmtheics {
+  if [[ -z "$1" ]]; then
+    echo "Image file extension required" >&2
+    return 1
+  fi
+  local fn
+  local nfn
+  local new
+  for old in $(find ~/Downloads -type file -name '*.heic'); do
+    fn="$(basename "$old")"
+    new=$(echo "$old" | sed "s/heic/$1/")
+    nfn="$(basename "$new")"
+    magick "$old" "$new"
+    magick "$new" -resize 30% "$new"
+    echo "$fn -> $nfn"
+  done
+}
+
 function _get_last_md {
   find "${1}" -name "*.md" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 1
 }
