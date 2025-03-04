@@ -15,6 +15,7 @@ return {
         "dockerfile",
         "git_config",
         "git_rebase",
+        "gitcommit",
         "gitignore",
         "go",
         "groovy",
