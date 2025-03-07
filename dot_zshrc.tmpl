@@ -9,6 +9,8 @@ export GOPATH="${BREW_DIR}/bin/go"
 export GOBIN="${BREW_DIR}/bin"
 {{- end }}
 
+# use nvim for man pages
+export MANPAGER='nvim +Man!'
 # add color to man pages
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
