@@ -84,16 +84,13 @@ function fmt_img {
 }
 
 function fmtheics {
-  if [[ -z "$1" ]]; then
-    echo "Image file extension required" >&2
-    return 1
-  fi
+  local -r ext="${1:-jpg}"
   local fn
   local nfn
   local new
   for old in $(find ~/Downloads -type file -name '*.heic'); do
     fn="$(basename "$old")"
-    new=$(echo "$old" | sed "s/heic/$1/")
+    new=$(echo "$old" | sed "s/heic/$ext/")
     nfn="$(basename "$new")"
     magick "$old" "$new"
     magick "$new" -resize 30% "$new"
