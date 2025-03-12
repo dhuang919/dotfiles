@@ -14,11 +14,6 @@ return {
         event = "VeryLazy",
       },
     },
-    opts = {
-      servers = {
-        lua_ls = {},
-      },
-    },
     config = function(_, opts)
       require("mason").setup()
       local mason_lspcfg = require("mason-lspconfig")
@@ -102,7 +97,7 @@ return {
       })
 
       -- blink.cmp setup
-      for server, config in pairs(opts.servers) do
+      for server, config in pairs(opts.servers or {}) do
         -- passing config.capabilities to blink.cmp merges with the capabilities in your
         -- `opts[server].capabilities, if you've defined it
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
