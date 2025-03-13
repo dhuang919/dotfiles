@@ -41,7 +41,9 @@ return {
             lspconfig.lua_ls.setup({
               -- taken from https://lsp-zero.netlify.app/docs/guide/neovim-lua-ls.html
               settings = {
-                Lua = {},
+                Lua = {
+                  telemetry = { enable = false },
+                },
               },
               on_init = function(client)
                 local join = vim.fs.joinpath
