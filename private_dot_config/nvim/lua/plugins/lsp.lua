@@ -39,32 +39,49 @@ return {
           end,
           lua_ls = function()
             lspconfig.lua_ls.setup({
-              -- taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls
-              on_init = function(client)
-                if client.workspace_folders then
-                  local path = client.workspace_folders[1].name
-                  if
-                    path ~= vim.fn.stdpath("config")
-                    and (
-                      vim.loop.fs_stat(path .. "/.luarc.json")
-                      or vim.loop.fs_stat(path .. "/.luarc.jsonc")
-                    )
-                  then
-                    return
-                  end
-                end
-                client.config.settings.Lua =
-                  vim.tbl_deep_extend("force", client.config.settings.Lua, {
-                    runtime = { version = "LuaJIT" },
-                    workspace = {
-                      checkThirdParty = false,
-                      library = { vim.env.VIMRUNTIME },
-                    },
-                  })
-              end,
+              -- taken from https://lsp-zero.netlify.app/docs/guide/neovim-lua-ls.html
               settings = {
                 Lua = {},
               },
+              on_init = function(client)
+                local join = vim.fs.joinpath
+                local path = client.workspace_folders[1].name
+
+                -- don't do anything if there is project local config
+                if
+                  vim.uv.fs_stat(join(path, ".luarc.json"))
+                  or vim.uv.fs_stat(join(path, ".luarc.jsonc"))
+                then
+                  return
+                end
+
+                -- apply neovim specific settings
+                local runtime_path = vim.split(package.path, ";")
+                table.insert(runtime_path, join("lua", "?.lua"))
+                table.insert(runtime_path, join("lua", "?", "init.lua"))
+
+                local nvim_settings = {
+                  runtime = {
+                    version = "LuaJIT",
+                    path = runtime_path,
+                  },
+                  diagnostics = {
+                    -- get the language server to recognize the `vim` global
+                    globals = { "vim" },
+                  },
+                  workspace = {
+                    checkThirdParty = false,
+                    library = {
+                      -- make the server aware of neovim runtime files
+                      vim.env.VIMRUNTIME,
+                      vim.fn.stdpath("config"),
+                    },
+                  },
+                }
+
+                client.config.settings.Lua =
+                  vim.tbl_deep_extend("force", client.config.settings.Lua, nvim_settings)
+              end,
             })
           end,
           pyright = function()
