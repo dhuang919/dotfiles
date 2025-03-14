@@ -22,12 +22,13 @@ return {
     })
   end,
   keys = {
+    { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
     { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "fzf files" },
-    { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
     { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "fzf live grep" },
     { "<leader>fl", "<cmd>FzfLua grep<cr>", desc = "fzf grep" },
-    { "<leader>gl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
-    { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "fzf buffers" },
+    { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
+    { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "fzf resume" },
     { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" },
+    { "<leader>gl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
   },
 }
