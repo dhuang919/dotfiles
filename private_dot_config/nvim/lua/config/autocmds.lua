@@ -86,3 +86,18 @@ autocmd("FileType", {
     }
   end,
 })
+
+-- for better wezterm detection (checking proc name or pane title)
+autocmd("VimEnter", {
+  desc = "Set env var on startup",
+  callback = function()
+    vim.fn.setenv("IS_NVIM", "1")
+  end,
+})
+
+autocmd("VimLeave", {
+  desc = "Unset env var on shutdown",
+  callback = function()
+    vim.fn.setenv("IS_NVIM", nil)
+  end,
+})
