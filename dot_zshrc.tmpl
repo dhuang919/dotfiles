@@ -207,7 +207,8 @@ function cze {
   fi
 
   case "$1" in
-    nvim) chezmoi edit ~/.config/nvim; return 0;;
+    # edit file directly so that pane navigation continues to work
+    nvim) vim ~/.local/share/chezmoi/private_dot_config/nvim; return 0;;
     wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua; return 0;;
     zsh) chezmoi edit ~/.zshrc; return 0;;
   esac
