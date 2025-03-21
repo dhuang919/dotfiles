@@ -27,8 +27,7 @@ return {
           vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", lspopts)
           vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", lspopts)
           vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", lspopts)
-          -- disabling because of conflict with leap
-          -- vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", lspopts)
+          vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", lspopts)
           vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", lspopts)
           vim.keymap.set(
             { "n", "x" },
@@ -116,11 +115,11 @@ return {
                 pyright = {
                   disableOrganizeImports = true, -- use ruff
                 },
-                python = {
-                  analysis = {
-                    ignore = { "*" }, -- use ruff
-                  },
-                },
+                -- python = {
+                --   analysis = {
+                --     ignore = { "*" }, -- use ruff
+                --   },
+                -- },
               },
             })
           end,
