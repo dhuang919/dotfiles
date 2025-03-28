@@ -4,22 +4,22 @@ vim.g.mapleader = " "
 require("config.autocmds")
 require("config.lazy")
 
-vim.opt.backspace = { "indent", "eol", "start" }
-vim.opt.clipboard = { "unnamed", "unnamedplus" }
-
 -- NOTE: formatoptions set in autocmds.lua
 -- https://neovim.discourse.group/t/options-formatoptions-not-working-when-put-in-init-lua/3746
-vim.o.expandtab = true
-vim.o.wrap = true
 vim.o.breakindent = true
-vim.o.showbreak = string.rep(" ", 3) -- long lines wrap smartly
+vim.o.expandtab = true
 vim.o.linebreak = true
 vim.o.mouse = "a"
 vim.o.number = true
+vim.o.showbreak = string.rep(" ", 4) -- long lines wrap smartly
+vim.o.showmode = false
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.undofile = true
 vim.o.swapfile = false
+vim.o.undofile = true
+vim.o.wrap = true
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- use treesitter for folding
 vim.o.foldmethod = "expr"
