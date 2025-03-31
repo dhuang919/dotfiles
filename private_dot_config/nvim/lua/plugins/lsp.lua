@@ -124,20 +124,61 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
-          local lspopts = { buffer = event.buf }
-          vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", lspopts)
-          vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", lspopts)
-          vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", lspopts)
-          vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", lspopts)
-          vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", lspopts)
-          vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", lspopts)
-          vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", lspopts)
+          -- prefer lsp fold over treesitter (from :h vim.lsp.foldexpr)
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client:supports_method("textDocument/foldingRange") then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+          end
+
+          vim.keymap.set(
+            "n",
+            "K",
+            "<cmd>lua vim.lsp.buf.hover()<cr>",
+            { desc = "Lsp hover", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "gd",
+            "<cmd>lua vim.lsp.buf.definition()<cr>",
+            { desc = "Lsp definition", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "gD",
+            "<cmd>lua vim.lsp.buf.declaration()<cr>",
+            { desc = "Lsp declaration", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "gi",
+            "<cmd>lua vim.lsp.buf.implementation()<cr>",
+            { desc = "Lsp implementation", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "go",
+            "<cmd>lua vim.lsp.buf.type_definition()<cr>",
+            { desc = "Lsp type definition", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "gr",
+            "<cmd>lua vim.lsp.buf.references()<cr>",
+            { desc = "Lsp references", buffer = event.buf }
+          )
+          vim.keymap.set(
+            "n",
+            "gs",
+            "<cmd>lua vim.lsp.buf.signature_help()<cr>",
+            { desc = "Lsp signature help", buffer = event.buf }
+          )
           vim.keymap.set("n", "ge", function()
             jumpWithVirtLineDiags(1)
-          end, { desc = "Next diagnostic" })
+          end, { desc = "Lsp next diagnostic", buffer = event.buf })
           vim.keymap.set("n", "gE", function()
             jumpWithVirtLineDiags(-1)
-          end, { desc = "Prev diagnostic" })
+          end, { desc = "Lsp prev diagnostic", buffer = event.buf })
         end,
       })
 
