@@ -32,5 +32,6 @@ return {
     { "<leader>gl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
     { "<leader>gr", "<cmd>FzfLua lsp_references<cr>", desc = "fzf lsp refs" },
     { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", desc = "fzf lsp code actions" },
+    { "<leader>xx", "<cmd>FzfLua diagnostics_document<cr>", desc = "fzf document diagnostics" },
   },
 }
