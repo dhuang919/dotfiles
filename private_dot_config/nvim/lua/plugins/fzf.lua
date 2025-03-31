@@ -30,5 +30,7 @@ return {
     { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "fzf resume" },
     { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" },
     { "<leader>gl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
+    { "<leader>gr", "<cmd>FzfLua lsp_references<cr>", desc = "fzf lsp refs" },
+    { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", desc = "fzf lsp code actions" },
   },
 }

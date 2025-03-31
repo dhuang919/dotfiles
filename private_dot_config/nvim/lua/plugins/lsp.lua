@@ -131,54 +131,49 @@ return {
             vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
           end
 
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "lsp hover", buffer = event.buf })
           vim.keymap.set(
             "n",
-            "K",
-            "<cmd>lua vim.lsp.buf.hover()<cr>",
-            { desc = "Lsp hover", buffer = event.buf }
+            "<leader>rn",
+            vim.lsp.buf.rename,
+            { desc = "lsp rename", buffer = event.buf }
           )
           vim.keymap.set(
             "n",
             "gd",
-            "<cmd>lua vim.lsp.buf.definition()<cr>",
-            { desc = "Lsp definition", buffer = event.buf }
+            vim.lsp.buf.definition,
+            { desc = "lsp go to definition", buffer = event.buf }
           )
           vim.keymap.set(
             "n",
             "gD",
-            "<cmd>lua vim.lsp.buf.declaration()<cr>",
-            { desc = "Lsp declaration", buffer = event.buf }
+            vim.lsp.buf.declaration,
+            { desc = "lsp go to declaration", buffer = event.buf }
           )
           vim.keymap.set(
             "n",
             "gi",
-            "<cmd>lua vim.lsp.buf.implementation()<cr>",
-            { desc = "Lsp implementation", buffer = event.buf }
+            vim.lsp.buf.implementation,
+            { desc = "lsp go to implementation", buffer = event.buf }
           )
           vim.keymap.set(
             "n",
             "go",
-            "<cmd>lua vim.lsp.buf.type_definition()<cr>",
-            { desc = "Lsp type definition", buffer = event.buf }
-          )
-          vim.keymap.set(
-            "n",
-            "gr",
-            "<cmd>lua vim.lsp.buf.references()<cr>",
-            { desc = "Lsp references", buffer = event.buf }
+            vim.lsp.buf.type_definition,
+            { desc = "lsp go to type definition", buffer = event.buf }
           )
           vim.keymap.set(
             "n",
             "gs",
-            "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-            { desc = "Lsp signature help", buffer = event.buf }
+            vim.lsp.buf.signature_help,
+            { desc = "lsp signature help", buffer = event.buf }
           )
           vim.keymap.set("n", "ge", function()
             jumpWithVirtLineDiags(1)
-          end, { desc = "Lsp next diagnostic", buffer = event.buf })
+          end, { desc = "lsp next diagnostic", buffer = event.buf })
           vim.keymap.set("n", "gE", function()
             jumpWithVirtLineDiags(-1)
-          end, { desc = "Lsp prev diagnostic", buffer = event.buf })
+          end, { desc = "lsp prev diagnostic", buffer = event.buf })
         end,
       })
 
