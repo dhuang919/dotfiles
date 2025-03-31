@@ -211,9 +211,8 @@ function cze {
     nvim) nvim ~/.local/share/chezmoi/private_dot_config/nvim/;;
     wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua;;
     zsh) chezmoi edit ~/.zshrc;;
+    *) chezmoi edit "$1";;
   esac
-
-  chezmoi edit "$1"
 }
 
 function disk_usage {
