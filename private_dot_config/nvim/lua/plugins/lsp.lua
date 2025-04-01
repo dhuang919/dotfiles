@@ -168,10 +168,10 @@ return {
             vim.lsp.buf.signature_help,
             { desc = "lsp signature help", buffer = event.buf }
           )
-          vim.keymap.set("n", "ge", function()
+          vim.keymap.set("n", "<leader>ge", function()
             jumpWithVirtLineDiags(1)
           end, { desc = "lsp next diagnostic", buffer = event.buf })
-          vim.keymap.set("n", "gE", function()
+          vim.keymap.set("n", "<leader>gE", function()
             jumpWithVirtLineDiags(-1)
           end, { desc = "lsp prev diagnostic", buffer = event.buf })
         end,
