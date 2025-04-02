@@ -1,7 +1,11 @@
 # What protocol to use when performing git operations. Supported values: ssh, https
+{{- if eq .chezmoi.username "dhuang295" }}
+git_protocol: ssh
+{{- else }}
 git_protocol: https
+{{- end }}
 # What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
-editor: nvim
+editor:
 # When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled
 prompt: enabled
 # A pager program to send command output to, e.g. "less". Set the value to "cat" to disable the pager.
@@ -17,9 +21,9 @@ aliases:
     pvh: '!gh pr view $(gh pls | head -n 1 | awk "{print \$1}") -w'
     pm: pr merge -s -d
 {{- if eq .chezmoi.username "dhuang295" }}
-    rfc: '!gh repo fork $1 --clone'
-    res: '!gh repo sync -s tssr/"$(basename $(pwd))" && git prul'
-    rsd: '!cur=$(pwd); gh repo set-default "$(basename "$(dirname "$cur")")"/"$(basename "$cur")"'
+    rfc: '!gh repo fork "$(basename "$(pwd)")/$1" --clone'
+    res: '!gh repo sync -s tssr/"$(basename "$(pwd)")" && git prul'
+    rsd: '!gh repo set-default "$(basename "$(dirname "$(pwd)")")"/"$(basename "$(pwd)")"'
     prs: pr list -s all
 {{- end }}
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
