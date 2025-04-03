@@ -38,5 +38,6 @@ return {
       desc = "fzf lsp code actions",
     },
     { "<leader>xx", "<cmd>FzfLua diagnostics_document<cr>", desc = "fzf document diagnostics" },
+    { "<leader>xw", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "fzf workspace diagnostics" },
   },
 }
