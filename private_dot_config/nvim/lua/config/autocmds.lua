@@ -31,9 +31,20 @@ autocmd("BufWritePre", {
   command = [[%s/\s\+$//e]],
 })
 
+local prev_reg0_content = vim.fn.getreg("0")
 autocmd("TextYankPost", {
-  desc = "Briefly highlight yanked text",
+  desc = "Shift yanks through registers (yank-ring)",
   callback = function()
+    -- https://www.reddit.com/r/neovim/comments/1jv03t1/comment/mm9dndu
+    -- shift numbered registers up (1 becomes 2, etc.)
+    local ev = vim.v.event
+    if ev.operator == "y" then
+      for i = 9, 2, -1 do
+        vim.fn.setreg(tostring(i), vim.fn.getreg(tostring(i - 1)))
+      end
+      vim.fn.setreg("1", prev_reg0_content)
+      prev_reg0_content = vim.fn.getreg("0")
+    end
     vim.highlight.on_yank()
   end,
 })

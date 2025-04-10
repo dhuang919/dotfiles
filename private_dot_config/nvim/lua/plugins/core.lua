@@ -88,36 +88,16 @@ return {
     config = true,
   },
   {
-    "nvim-pack/nvim-spectre",
-    event = "VeryLazy",
-    config = function()
-      require("spectre").setup({
-        replace_engine = {
-          ["sed"] = { cmd = "sed", args = { "-i", "", "-E" } },
-        },
-      })
-    end,
+    "MagicDuck/grug-far.nvim",
+    opts = {},
     keys = {
       {
-        "<leader>S",
-        '<cmd>lua require("spectre").toggle()<CR>',
-        desc = "Toggle Spectre",
-      },
-      {
-        "<leader>sw",
-        '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
-        desc = "Search current word",
-      },
-      {
-        "<leader>sw",
-        '<esc><cmd>lua require("spectre").open_visual()<CR>',
-        "v",
-        desc = "Search current word",
-      },
-      {
-        "<leader>sp",
-        '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
-        desc = "Search on current file",
+        "<leader>gr",
+        function()
+          require("grug-far").open({ transient = true })
+        end,
+        mode = { "n", "v" },
+        desc = "Search and Replace",
       },
     },
   },
@@ -215,7 +195,7 @@ return {
     },
     config = function()
       vim.o.sessionoptions =
-        "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+        "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
       require("auto-session").setup({
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       })
