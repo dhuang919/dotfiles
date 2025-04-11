@@ -28,7 +28,6 @@ return {
     { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "fzf old files" },
     { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "fzf resume" },
     { "<leader>fc", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" },
-    { "<leader>fgl", "<cmd>FzfLua grep last<cr>", desc = "fzf grep last" },
     { "<leader>flr", "<cmd>FzfLua lsp_references<cr>", desc = "fzf lsp refs" },
     {
       "<leader>fca",
