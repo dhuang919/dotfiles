@@ -1,4 +1,4 @@
-local notes = vim.fn.expand("~") .. "/dev/notes/*.md"
+local notes = vim.fn.expand("~") .. "/dev/notes/**.md"
 
 return {
   "obsidian-nvim/obsidian.nvim",
