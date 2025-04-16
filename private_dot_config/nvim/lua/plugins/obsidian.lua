@@ -1,21 +1,23 @@
+local notes = vim.fn.expand("~/dev/notes/*.md")
+
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*",
   lazy = true,
-  ft = "markdown",
+  -- ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre "
-  --     .. vim.fn.expand("~")
-  --     .. "/dev/notes/*.md",
-  --   "BufNewFile " .. vim.fn.expand("~") .. "/dev/notes/*.md",
-  -- },
+  event = {
+    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+    -- refer to `:h file-pattern` for more examples
+    "BufReadPre " .. notes,
+    "BufNewFile " .. notes,
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
+    "saghen/blink.cmp",
+    "ibhagwan/fzf-lua",
   },
   opts = {
     workspaces = {
@@ -23,6 +25,14 @@ return {
         name = "notes",
         path = "~/dev/notes",
       },
+    },
+    completion = {
+      nvim_cmp = false,
+      blink = true,
+      min_chars = 2,
+    },
+    picker = {
+      name = "fzf-lua",
     },
     notes_subdir = "zk",
     mappings = {
@@ -63,7 +73,8 @@ return {
       img_folder = "assets",
     },
     callbacks = {
-      post_setup = function(_)
+      --@param client obsidian.Client
+      post_setup = function()
         local util = require("obsidian.util")
         local old_is_url = util.is_url
         -- override to treat bb urls as urls
