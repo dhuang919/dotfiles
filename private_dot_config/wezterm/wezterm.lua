@@ -171,6 +171,7 @@ c.adjust_window_size_when_changing_font_size = false
 c.colors = { cursor_bg = "#fff" }
 c.default_cursor_style = "SteadyBar"
 c.enable_scroll_bar = true
+c.font = wezterm.font("0xProto")
 c.font_size = 13
 c.hide_tab_bar_if_only_one_tab = true
 c.initial_cols = 120
