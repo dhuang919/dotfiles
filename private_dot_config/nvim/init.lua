@@ -40,6 +40,8 @@ vim.keymap.set("n", "<Esc>", ":noh<cr>")
 vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
 vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 
+vim.cmd.colorscheme("moonfly")
+
 -- set line number colors in gutter
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
