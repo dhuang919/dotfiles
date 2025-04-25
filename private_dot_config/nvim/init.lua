@@ -43,9 +43,9 @@ vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 vim.cmd.colorscheme("moonfly")
 
 -- set line number colors in gutter
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#51B3EC", bold = true })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "white", bold = true })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FB508F", bold = true })
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
 vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
 
 -- disabled stuff
