@@ -1,25 +1,21 @@
 prSections:
   - title: My Pull Requests
     filters: is:open author:@me
-    type: null
+    layout:
+      author:
+        hidden: true
   - title: Needs My Review
     filters: is:open review-requested:@me
-    type: null
   - title: Involved
     filters: is:open involves:@me -author:@me
-    type: null
   - title: Matias
     filters: is:open author:mlopez203
-    type: null
   - title: Leo
     filters: is:open author:lkuritsyn
-    type: null
   - title: James
-    filters: is:open author:jluttrell
-    type: null
+    filters: is:open author:jluttrel
   - title: Karthik
     filters: is:open author:kelango1
-    type: null
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
@@ -78,7 +74,8 @@ keybindings:
   issues: []
   prs: []
   branches: []
-repoPaths: {}
+repoPaths:
+  tssr/*: ~/Projects/tssr/*
 theme:
   ui:
     sectionsShowCount: true
@@ -86,7 +83,7 @@ theme:
       showSeparator: true
       compact: false
 pager:
-  diff: ""
+  diff: delta
 confirmQuit: false
 showAuthorIcons: true
 smartFilteringAtLaunch: true
