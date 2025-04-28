@@ -16,6 +16,8 @@ prSections:
     filters: is:open author:jluttrel
   - title: Karthik
     filters: is:open author:kelango1
+  - title: Dheeraj
+    filters: is:open author:dkota
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
