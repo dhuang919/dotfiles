@@ -25,7 +25,6 @@
   "mini.surround": { "branch": "main", "commit": "aa5e245829dd12d8ff0c96ef11da28681d6049aa" },
   "moonfly": { "branch": "master", "commit": "bfa6b2486a72784b7546d0d3e9322aef70e07b03" },
   "nui.nvim": { "branch": "main", "commit": "8d3bce9764e627b62b07424e0df77f680d47ffdb" },
-  "nvim-autopairs": { "branch": "master", "commit": "4d74e75913832866aa7de35e4202463ddf6efd1b" },
   "nvim-lspconfig": { "branch": "master", "commit": "c40a2dca6e4a4f4af262375dcb71692882b6122c" },
   "nvim-treesitter": { "branch": "master", "commit": "684eeac91ed8e297685a97ef70031d19ac1de25a" },
   "nvim-various-textobjs": { "branch": "main", "commit": "2d32252b718b24a2b496ec270f00fbd0ad730bb2" },
