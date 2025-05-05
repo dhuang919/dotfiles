@@ -6,11 +6,6 @@ return {
       -- when there's only one match
       autojump = true,
     },
-    modes = {
-      char = {
-        enabled = false,
-      },
-    },
   },
   keys = {
     {

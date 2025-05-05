@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     enabled = false,
-    message_template = "<committer> | <committer-date> | <summary>",
+    message_template = "<author> | <date> | <summary>",
     date_format = "%m-%d-%y %H:%M:%S",
   },
   keys = {
