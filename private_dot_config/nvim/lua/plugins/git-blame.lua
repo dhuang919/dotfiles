@@ -1,14 +1,16 @@
 return {
   "f-person/git-blame.nvim",
   event = "VeryLazy",
-  config = function()
-    vim.g.gitblame_display_virtual_text = 0
-    require("gitblame").setup({
-      enabled = false,
-    })
-  end,
+  opts = {
+    enabled = false,
+    message_template = "<committer> | <committer-date> | <summary>",
+    date_format = "%m-%d-%y %H:%M:%S",
+  },
   keys = {
-    { "<leader>oc", "<cmd>GitBlameOpenCommitURL<cr>" },
-    { "<leader>of", "<cmd>GitBlameOpenFileURL<cr>" },
+    { "<leader>tb", "<cmd>GitBlameToggle<cr>" },
+    { "<leader>gboc", "<cmd>GitBlameOpenCommitURL<cr>" },
+    { "<leader>gbcc", "<cmd>GitBlameOpenCommitURL<cr>" },
+    { "<leader>gbof", "<cmd>GitBlameOpenFileURL<cr>" },
+    { "<leader>gbcf", "<cmd>GitBlameCopyFileURL<cr>" },
   },
 }
