@@ -6,6 +6,12 @@ return {
       -- when there's only one match
       autojump = true,
     },
+    modes = {
+      char = {
+        -- exclude ; and ,
+        keys = { "f", "F", "t", "T" },
+      },
+    },
   },
   keys = {
     {
