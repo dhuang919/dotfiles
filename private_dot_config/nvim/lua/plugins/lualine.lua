@@ -3,12 +3,12 @@ return {
   event = "VeryLazy",
   opts = {
     options = {
-      theme = "nord",
+      theme = "auto",
+      globalstatus = vim.o.laststatus == 3,
     },
     sections = {
-      lualine_b = {
-        { "branch" },
-      },
+      lualine_a = { "mode" },
+      lualine_b = { "branch" },
       lualine_c = {
         { "filename", path = 3 },
       },
