@@ -13,7 +13,7 @@ repos:
     hooks:
       - id: prettier
         types_or: [json, toml, yaml]
-        exclude: '(^|/)(lazy-lock|karabiner)\.json$'
+        exclude: '(^|/)(lazy-lock|.*karabiner)\.json$'
 
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.1.0
