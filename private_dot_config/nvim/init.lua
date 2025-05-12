@@ -33,12 +33,19 @@ vim.g.editorconfig = false
 
 -- custom stuff
 
+-- disabled
+-- command mode
+vim.keymap.set("n", "Q", "")
+vim.keymap.set("n", "q:", "")
+
 -- unhighlight with esc
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
 -- prev/next buffers
 vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
 vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
+
+vim.keymap.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
 
 vim.cmd.colorscheme("moonfly")
 
@@ -47,8 +54,3 @@ vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
 vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
-
--- disabled stuff
--- command mode
-vim.keymap.set("n", "Q", "")
-vim.keymap.set("n", "q:", "")
