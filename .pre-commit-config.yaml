@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: check-yaml
@@ -13,9 +13,9 @@ repos:
     hooks:
       - id: prettier
         types_or: [json, toml, yaml]
-        exclude: lazy-lock.json$
+        exclude: '(^|/)(lazy-lock|karabiner)\.json$'
 
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v0.20.0
+    rev: v2.1.0
     hooks:
       - id: stylua
