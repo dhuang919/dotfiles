@@ -53,7 +53,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
   pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
   desc = "Configs specific to files in Obsidian vault",
   callback = function()
-    vim.opt_local.conceallevel = 2
+    vim.opt_local.conceallevel = 1
   end,
 })
 
