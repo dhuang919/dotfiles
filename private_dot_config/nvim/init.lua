@@ -59,11 +59,10 @@ vim.keymap.set("n", "<leader>h2", function()
   }
   local date = os.date("%m/%d/%y")
   local weekday = days[os.date("%A")]
+  -- 01/01/25 mon
   local lines = { "## " .. date .. " " .. weekday, "" }
   vim.api.nvim_put(lines, "l", true, true)
 end, { desc = "Insert H2 markdown header with date and day of week" })
-
-vim.cmd.colorscheme("moonfly")
 
 -- set line number colors in gutter
 vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
