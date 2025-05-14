@@ -47,6 +47,21 @@ vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 
 vim.keymap.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
 vim.keymap.set("n", "<leader>w", ":w<cr>", { desc = "Write buffer", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>h2", function()
+  local days = {
+    Sunday = "sun",
+    Monday = "mon",
+    Tuesday = "tues",
+    Wednesday = "wed",
+    Thursday = "thurs",
+    Friday = "fri",
+    Saturday = "sat",
+  }
+  local date = os.date("%m/%d/%y")
+  local weekday = days[os.date("%A")]
+  local lines = { "## " .. date .. " " .. weekday, "" }
+  vim.api.nvim_put(lines, "l", true, true)
+end, { desc = "Insert H2 markdown header with date and day of week" })
 
 vim.cmd.colorscheme("moonfly")
 
