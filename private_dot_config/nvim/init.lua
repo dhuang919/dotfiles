@@ -46,7 +46,12 @@ vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
 vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
 
 vim.keymap.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
-vim.keymap.set("n", "<leader>w", ":w<cr>", { desc = "Write buffer", noremap = true, silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>w",
+  ":wa<cr>",
+  { desc = "Write all buffers", noremap = true, silent = true }
+)
 vim.keymap.set("n", "<leader>h2", function()
   local days = {
     Sunday = "sun",
