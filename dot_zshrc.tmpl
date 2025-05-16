@@ -207,6 +207,7 @@ function cze {
 
   case "$1" in
     # edit file directly so that pane navigation continues to work
+    hs) nvim ~/.local/share/chezmoi/dot_hammerspoon/;;
     nvim) nvim ~/.local/share/chezmoi/private_dot_config/nvim/;;
     wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua;;
     zsh) chezmoi edit ~/.zshrc;;
