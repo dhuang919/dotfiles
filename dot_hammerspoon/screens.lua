@@ -10,8 +10,8 @@ local personal = {
 -- work horizontal BFP100-27 (1)
 -- work vertical BFP100-27 (2)
 local work = {
-  horizontal = "BFP100-27.*%(1%)",
-  vertical = "BFP100-27.*%(2%)",
+  horizontal = "BFP100.*%(1%)",
+  vertical = "BFP100.*%(2%)",
 }
 
 for _, screen in ipairs(hs.screen.allScreens()) do
