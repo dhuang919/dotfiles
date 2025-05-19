@@ -97,3 +97,10 @@ autocmd("FileType", {
     }
   end,
 })
+
+autocmd("CursorHold", {
+  desc = "Show errors and warnings in a floating window",
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+  end,
+})
