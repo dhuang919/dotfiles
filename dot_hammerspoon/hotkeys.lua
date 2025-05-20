@@ -15,8 +15,7 @@ local ratios = {
   mail = { top = 0.03, left = 0.004, height = 0.77, width = 0.8 },
   slack = { top = 0.063, left = 0.02, height = 0.85, width = 0.85 },
   spotify = { top = 0.21, left = 0.01, height = 0.77, width = 0.7 },
-  obsidian = { top = 0.15, left = 0.17, height = 0.85, width = 0.8 },
-  wezterm_obsidian = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
+  obsidian = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
@@ -43,7 +42,7 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "c", function()
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "o", function()
-  s.moveIfOpen("WezTerm", "LAPTOP", ratios.wezterm_obsidian)
+  s.moveIfOpen("WezTerm", "LAPTOP", ratios.obsidian)
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "s", function()
