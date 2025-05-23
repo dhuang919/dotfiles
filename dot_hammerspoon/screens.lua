@@ -73,4 +73,22 @@ function S.isLocked(win)
   return win and S.locked[win:id()]
 end
 
+function S.printFocusedWindowRatios()
+  local win = hs.window.focusedWindow()
+  if not win then
+    hs.alert.show("No focused window")
+    return
+  end
+  local screenFrame = win:screen():fullFrame()
+  local winFrame = win:frame()
+  local top = (winFrame.y - screenFrame.y) / screenFrame.h
+  local left = (winFrame.x - screenFrame.x) / screenFrame.w
+  local height = winFrame.h / screenFrame.h
+  local width = winFrame.w / screenFrame.w
+  local msg =
+    string.format("top = %.3f, left = %.3f, height = %.3f, width = %.3f", top, left, height, width)
+  print(msg)
+  hs.alert.show("Ratios printed to console")
+end
+
 return S

@@ -16,6 +16,7 @@ local ratios = {
   slack = { top = 0.063, left = 0.02, height = 0.85, width = 0.85 },
   spotify = { top = 0.21, left = 0.01, height = 0.77, width = 0.7 },
   obsidian = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
+  messages = { top = 0.08, left = 0.017, height = 0.535, width = 0.544 },
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
@@ -24,6 +25,7 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
   s.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
   s.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
   s.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
+  s.moveIfOpen("Messages", "LAPTOP", ratios.messages)
   s.moveIfOpen(
     "WezTerm",
     external_connected and "VERTICAL" or "LAPTOP",
@@ -55,4 +57,8 @@ end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "s", function()
   s.moveIfOpen("WezTerm", "HORIZONTAL", nil, true)
+end)
+
+hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "x", function()
+  s.printFocusedWindowRatios()
 end)
