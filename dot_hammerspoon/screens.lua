@@ -1,4 +1,4 @@
-local S = { screens = {} }
+local S = { screens = {}, locked = {} }
 
 for _, screen in ipairs(hs.screen.allScreens()) do
   local x, y = screen:position()
@@ -46,7 +46,8 @@ function S._moveWindow(window, screenObj, ratios, fullscreen)
   window:move(f, screenObj, false)
 end
 
-function S.moveIfOpen(appName, screenKey, ratios, fullscreen)
+function S.moveIfOpen(appName, screenKey, ratios, fullscreen, lock)
+  lock = lock or false
   local app = hs.application.get(appName)
   if not app then
     return false
@@ -54,10 +55,22 @@ function S.moveIfOpen(appName, screenKey, ratios, fullscreen)
   app:activate()
   local win = app:focusedWindow()
   if not win then
+    hs.alert.show("Window for app " .. appName .. " not found")
     return false
+  end
+  if S.isLocked(win) then
+    hs.alert.show(appName .. " window locked")
+    return false
+  end
+  if lock then
+    S.locked[win:id()] = true
   end
   S.placeWindow(win, screenKey, ratios, fullscreen)
   return true
+end
+
+function S.isLocked(win)
+  return win and S.locked[win:id()]
 end
 
 return S

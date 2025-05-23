@@ -24,17 +24,25 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
   s.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
   s.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
   s.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
-  s.moveIfOpen("WezTerm", external_connected and "VERTICAL" or "LAPTOP", ratios.wezterm)
+  s.moveIfOpen(
+    "WezTerm",
+    external_connected and "VERTICAL" or "LAPTOP",
+    ratios.wezterm,
+    false,
+    true
+  )
   s.moveIfOpen(
     "Google Chrome",
     external_connected and "VERTICAL" or "LAPTOP",
-    external_connected and ratios.chrome_ext or ratios.chrome_lptp
+    external_connected and ratios.chrome_ext or ratios.chrome_lptp,
+    false,
+    true
   )
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "r", function()
   hs.reload()
-  hs.notify.new({ title = "Hammerspoon", informativeText = "Config reloaded" }):send()
+  hs.alert.show("Hammerspoon config reloaded")
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "c", function()
