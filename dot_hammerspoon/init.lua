@@ -20,7 +20,6 @@ local ratios = {
 }
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
-  s.moveIfOpen("Slack", "LAPTOP", ratios.slack)
   s.moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
   s.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
   s.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
