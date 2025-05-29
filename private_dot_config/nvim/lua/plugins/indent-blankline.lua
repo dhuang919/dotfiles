@@ -3,4 +3,5 @@ return {
   main = "ibl",
   event = "VeryLazy",
   config = true,
+  enabled = false,
 }
