@@ -165,9 +165,10 @@ function tp {
 }
 
 function ww {
+  open /System/Applications/Calendar.app
+  open /System/Applications/Messages.app
   open /Applications/Google\ Chrome.app
   open /Applications/Obsidian.app
-  open /System/Applications/Calendar.app
   open /Applications/Docker.app
   open /Applications/Spotify.app
   if [[ -x "$(which prlctl)" ]]; then
@@ -206,7 +207,7 @@ function cze {
   fi
 
   case "$1" in
-    # edit file directly so that pane navigation continues to work
+    # edit directories directly since nvim pane navigation doesn't work w chezmoi edit
     hs) nvim ~/.local/share/chezmoi/dot_hammerspoon/;;
     nvim) nvim ~/.local/share/chezmoi/private_dot_config/nvim/;;
     wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua;;
