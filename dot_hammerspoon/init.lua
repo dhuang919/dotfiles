@@ -47,7 +47,7 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "r", function()
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "c", function()
-  s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp)
+  s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp, false, true)
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "o", function()
@@ -55,7 +55,7 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "o", function()
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "s", function()
-  s.moveIfOpen("WezTerm", "HORIZONTAL", nil, true)
+  s.moveIfOpen("WezTerm", "HORIZONTAL", nil, true, true)
 end)
 
 hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "x", function()
