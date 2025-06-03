@@ -100,7 +100,7 @@ c.keys = {
   { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
   { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
   { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
-  { mods = "LEADER", key = "+", action = act.TogglePaneZoomState },
+  { mods = "LEADER", key = "z", action = act.TogglePaneZoomState },
   {
     key = "H",
     mods = "LEADER",
