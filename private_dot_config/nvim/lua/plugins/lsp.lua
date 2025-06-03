@@ -57,11 +57,13 @@ local servers = {
       pyright = {
         disableOrganizeImports = true, -- use ruff
       },
-      -- python = {
-      --   analysis = {
-      --     ignore = { * = {}, }, -- use ruff
-      --   },
-      -- },
+      python = {
+        analysis = {
+          diagnosticSeverityOverrides = {
+            reportMissingImports = "none",
+          },
+        },
+      },
     },
   },
   ruff = {
