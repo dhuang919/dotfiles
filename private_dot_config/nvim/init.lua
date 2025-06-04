@@ -9,7 +9,7 @@ require("config.lazy")
 vim.o.breakindent = true
 vim.o.expandtab = true
 vim.o.linebreak = true
-vim.o.mouse = "a"
+vim.o.mouse = ""
 vim.o.number = true
 vim.o.showbreak = string.rep(" ", 2) -- long lines wrap smartly
 vim.o.showmode = false
