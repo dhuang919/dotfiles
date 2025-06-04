@@ -33,7 +33,7 @@ return {
       mode = { "n", "v" },
       desc = "fzf lsp code actions",
     },
-    { "<leader>fgc", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" },
+    { "<leader>fco", "<cmd>FzfLua git_commits<cr>", desc = "fzf git commit log" }, -- not fgc to keep fg fast
     { "<leader>flr", "<cmd>FzfLua lsp_references<cr>", desc = "fzf lsp refs" },
     { "<leader>fls", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "fzf lsp symbol search" },
     { "<leader>xx", "<cmd>FzfLua diagnostics_document<cr>", desc = "fzf document diagnostics" },
