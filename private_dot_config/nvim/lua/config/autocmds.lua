@@ -83,8 +83,9 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, 
 
 autocmd("FileType", {
   pattern = "markdown",
-  desc = "Continue bulleted lists with o/O in markdown only",
+  desc = "Markdown-specific settings",
   callback = function()
+    -- continue bulleted lists with o/O in markdown only
     vim.opt_local.formatoptions:append("o")
     vim.opt_local.comments = {
       "b:- [ ]",
@@ -95,6 +96,24 @@ autocmd("FileType", {
       "b:-",
       "b:*",
     }
+    -- key binding for scratch headers
+    vim.keymap.set("n", "<leader>h2", function()
+      local days = {
+        Sunday = "sun",
+        Monday = "mon",
+        Tuesday = "tues",
+        Wednesday = "wed",
+        Thursday = "thurs",
+        Friday = "fri",
+        Saturday = "sat",
+      }
+      local date = os.date("%m/%d/%y")
+      local weekday = days[os.date("%A")]
+      -- 01/01/25 mon w newline after
+      local lines = { "## " .. date .. " " .. weekday, "" }
+      vim.api.nvim_put(lines, "l", true, true)
+      vim.api.nvim_feedkeys("kO", "n", false)
+    end, { desc = "Insert H2 markdown header with date and day of week" })
   end,
 })
 
