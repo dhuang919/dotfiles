@@ -5,15 +5,15 @@ return {
     use_icons = false,
   },
   keys = {
-    { "<leader>hc", "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
-    { "<leader>hh", "<cmd>DiffviewFileHistory<cr>", desc = "Repo history" },
-    { "<leader>hf", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "File history" },
-    { "<leader>hl", "<cmd>.DiffviewFileHistory --follow %<cr>", desc = "Line history" },
+    { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
+    { "<leader>dr", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview repo history" },
+    { "<leader>df", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "Diffview file history" },
+    { "<leader>dl", "<cmd>.DiffviewFileHistory --follow %<cr>", desc = "Diffview line history" },
     {
-      "<leader>hl",
+      "<leader>dl",
       "<esc><cmd>'<,'>DiffviewFileHistory --follow<cr>",
       mode = "v",
-      desc = "Range history",
+      desc = "Diffview range history",
     },
   },
 }
