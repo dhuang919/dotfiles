@@ -102,7 +102,7 @@ function _get_last_md {
   find "${1}" -name "*.md" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 1
 }
 
-function mng {
+function todo {
   local -r scratch="${HOME}/dev/notes/scratch"
   local -r year=$(gdate +%Y)
   local -r month=$(gdate +%m)
@@ -280,6 +280,7 @@ alias szsh="source ~/.zshrc"
 alias g="git"
 alias gg="git gone"
 alias gd="gh dash"
+alias mng="todo && vt && vim"
 
 type fzf &>/dev/null && source <(fzf --zsh)
 
