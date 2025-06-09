@@ -126,13 +126,6 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
         callback = function(event)
-          -- prefer lsp fold over treesitter (from :h vim.lsp.foldexpr)
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client:supports_method("textDocument/foldingRange") then
-            local win = vim.api.nvim_get_current_win()
-            vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-          end
-
           vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "lsp hover", buffer = event.buf })
           vim.keymap.set(
             "n",

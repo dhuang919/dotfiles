@@ -23,8 +23,8 @@ vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- use treesitter for folding
 vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
