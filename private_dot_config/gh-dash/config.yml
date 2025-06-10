@@ -17,10 +17,6 @@ prSections:
     filters: is:open author:mlopez203
   - title: Leo
     filters: is:open author:lkuritsyn
-  - title: James
-    filters: is:open author:jluttrel
-  - title: Karthik
-    filters: is:open author:kelango1
   - title: Dheeraj
     filters: is:open author:dkota
 issuesSections:
