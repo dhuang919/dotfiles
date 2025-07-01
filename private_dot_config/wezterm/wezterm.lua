@@ -140,6 +140,18 @@ c.keys = {
     end),
   },
   {
+    key = "r",
+    mods = "LEADER",
+    action = wezterm.action.PromptInputLine({
+      description = "Rename tab",
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    }),
+  },
+  {
     key = "g",
     mods = "CTRL",
     action = wezterm.action_callback(function(win, pane)
