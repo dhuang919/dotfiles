@@ -1,3 +1,4 @@
+-- https://cmp.saghen.dev
 return {
   "saghen/blink.cmp",
   dependencies = "rafamadriz/friendly-snippets",
@@ -10,7 +11,7 @@ return {
     keymap = { preset = "enter" },
     completion = {
       list = {
-        selection = { preselect = false, auto_insert = false },
+        selection = { preselect = true, auto_insert = false },
       },
     },
     appearance = {
