@@ -11,7 +11,7 @@ return {
     keymap = { preset = "enter" },
     completion = {
       list = {
-        selection = { preselect = true, auto_insert = false },
+        selection = { preselect = false, auto_insert = false },
       },
     },
     appearance = {
