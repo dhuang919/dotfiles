@@ -19,7 +19,7 @@ local ratios = {
   messages = { top = 0.08, left = 0.017, height = 0.535, width = 0.544 },
 }
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
+hs.hotkey.bind({ "alt", "cmd" }, "w", function()
   s.moveIfOpen("Spotify", "LAPTOP", ratios.spotify)
   s.moveIfOpen("bbvpn2", "LAPTOP", ratios.bbvpn)
   s.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
@@ -41,23 +41,23 @@ hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "w", function()
   )
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "r", function()
+hs.hotkey.bind({ "alt", "cmd" }, "r", function()
   hs.reload()
   hs.alert.show("Hammerspoon config reloaded")
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "c", function()
+hs.hotkey.bind({ "alt", "cmd" }, "c", function()
   s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp, false, true)
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "o", function()
+hs.hotkey.bind({ "alt", "cmd" }, "o", function()
   s.moveIfOpen("WezTerm", "LAPTOP", ratios.obsidian)
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "s", function()
+hs.hotkey.bind({ "alt", "cmd" }, "s", function()
   s.moveIfOpen("WezTerm", "HORIZONTAL", nil, true, true)
 end)
 
-hs.hotkey.bind({ "alt", "cmd", "ctrl" }, "x", function()
+hs.hotkey.bind({ "alt", "cmd" }, "x", function()
   s.printFocusedWindowRatios()
 end)
