@@ -11,6 +11,7 @@ return {
     keymap = { preset = "enter" },
     completion = {
       list = {
+        max_items = 10,
         selection = { preselect = false, auto_insert = false },
       },
     },
