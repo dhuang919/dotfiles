@@ -51,6 +51,10 @@ return {
         opts = { buffer = true, expr = true },
       },
     },
+    open = {
+      use_advanced_uri = false,
+      func = vim.ui.open,
+    },
     new_notes_location = "notes_subdir",
     preferred_link_style = "wiki",
     disable_frontmatter = true,
@@ -63,8 +67,6 @@ return {
     follow_img_func = function(img)
       vim.fn.jobstart({ "qlmanage", "-p", img }) -- mac os quick look preview
     end,
-    use_advanced_uri = false,
-    open_app_foreground = false,
     sort_by = "modified",
     sort_reversed = true,
     search_max_lines = 1000,
