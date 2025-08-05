@@ -13,12 +13,14 @@ prSections:
     filters: is:open review-requested:@me
   - title: Involved
     filters: is:open involves:@me -author:@me
-  - title: Matias
-    filters: is:open author:mlopez203
-  - title: Leo
-    filters: is:open author:lkuritsyn
-  - title: Dheeraj
-    filters: is:open author:dkota
+  - title: Peter
+    filters: is:open author:pmartini
+  - title: Vinit
+    filters: is:open author:vshah178
+  - title: Steven
+    filters: is:open author:spackard
+  - title: Yudhishthir
+    filtrers: is:open author:ydeshpande1
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
