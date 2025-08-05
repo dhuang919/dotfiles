@@ -197,7 +197,7 @@ c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
 if string.find(wezterm.home_dir, "derek", 1, true) then
   c.default_cwd = wezterm.home_dir .. "/dev"
 elseif string.find(wezterm.home_dir, "dhuang295", 1, true) then
-  c.default_cwd = wezterm.home_dir .. "/Projects/tssr"
+  c.default_cwd = wezterm.home_dir .. "/Projects/bbenv"
 end
 
 return c
