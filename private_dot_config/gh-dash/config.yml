@@ -22,7 +22,7 @@ prSections:
   - title: Steven
     filters: is:open -is:draft author:spackard
   - title: Yudhishthir
-    filtrers: is:open -is:draft author:ydeshpande1
+    filters: is:open -is:draft author:ydeshpande1
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
