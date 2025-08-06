@@ -23,6 +23,8 @@ prSections:
     filters: is:open -is:draft author:spackard
   - title: Yudhishthir
     filters: is:open -is:draft author:ydeshpande1
+  - title: Nhuja
+    filters: is:open -is:draft author:nmaharjan2
 issuesSections:
   - title: My Issues
     filters: is:open author:@me
