@@ -26,11 +26,7 @@ hs.hotkey.bind({ "alt", "cmd" }, "w", function()
   s.moveIfOpen("Calendar", "LAPTOP", ratios.calendar)
   s.moveIfOpen("Obsidian", "LAPTOP", ratios.obsidian)
   s.moveIfOpen("Messages", "LAPTOP", ratios.messages)
-  s.moveIfOpen(
-    "Slack",
-    external_connected and "HORIZONTAL" or "LAPTOP",
-    external_connected and ratios.slack_ext or ratios.slack_lptp
-  )
+  s.moveIfOpen("Slack", "LAPTOP", ratios.slack_lptp)
   s.moveIfOpen(
     "WezTerm",
     external_connected and "VERTICAL" or "LAPTOP",
