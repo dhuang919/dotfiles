@@ -17,7 +17,7 @@ local ratios = {
   slack_lptp = { top = 0.063, left = 0.02, height = 0.85, width = 0.85 },
   spotify = { top = 0.21, left = 0.01, height = 0.77, width = 0.7 },
   obsidian = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
-  messages = { top = 0.08, left = 0.017, height = 0.535, width = 0.544 },
+  messages = { top = 0.450, left = 0.439, height = 0.535, width = 0.544 },
 }
 
 hs.hotkey.bind({ "alt", "cmd" }, "w", function()
