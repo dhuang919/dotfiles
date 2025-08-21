@@ -23,26 +23,21 @@ brew "libxml2"
 brew "libxslt"
 brew "lua"
 brew "neovim"
-brew "pandoc"
 brew "pipx"
 brew "pre-commit"
-brew "pyenv"
 brew "ripgrep"
-brew "ruff"
 brew "starship"
 brew "tree"
 brew "tldr"
 brew "wget"
 brew "zoxide"
+cask "beardedspice"
 {{- if eq .chezmoi.username "derek" }}
 cask "basictex"
-{{- end }}
-cask "beardedspice"
-{{- if eq .chezmoi.username "dhuang295" }}
-cask bitwarden
-{{- end }}
-{{- if eq .chezmoi.username "derek" }}
 cask "cityofzion-neon"
+cask "ledger-live"
+cask "steam"
+cask "via"
 {{- end }}
 cask "docker"
 cask "dropbox"
@@ -51,15 +46,8 @@ cask "font-0xproto"
 cask "google-chrome"
 cask "hammerspoon"
 cask "karabiner-elements"
-{{- if eq .chezmoi.username "derek" }}
-cask "ledger-live"
-{{- end }}
 cask "obsidian"
 cask "slack"
 cask "spotify"
-{{- if eq .chezmoi.username "derek" }}
-cask "steam"
-cask "via"
-{{- end }}
 cask "wezterm"
 cask "zoom"
