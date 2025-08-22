@@ -15,8 +15,6 @@ export HTTPS_PROXY="$https_proxy"
 export http_proxy="$https_proxy"
 export HTTP_PROXY="$https_proxy"
 
-BPKG_TOKEN_DEV=***REMOVED_BPKG_DEV***
-BPKG_TOKEN=***REMOVED_BPKG_PROD***
 BBID=31453293
 PIPDIR="${HOME}/.config/pip"
 
@@ -43,6 +41,7 @@ function tglpxy {
 
 function bbid {
   echo -n $BBID | pbcopy
+  echo "Copied $BBID to clipboard"
 }
 
 function pipconf {
