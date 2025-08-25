@@ -58,3 +58,12 @@ vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
 vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
+
+-- dynamically enable lsps
+local servers = require("lsp.servers")
+
+for name, opts in pairs(servers) do
+  vim.lsp.config(name, opts)
+end
+
+vim.lsp.enable(vim.tbl_keys(servers))

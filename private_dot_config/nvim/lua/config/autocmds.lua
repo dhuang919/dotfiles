@@ -16,15 +16,6 @@ autocmd("FileType", {
 })
 
 autocmd("BufWritePre", {
-  desc = "Auto-format go",
-  pattern = "*.go",
-  group = augroup("GoFormat", {}),
-  callback = function()
-    require("go.format").goimport()
-  end,
-})
-
-autocmd("BufWritePre", {
   desc = "Trim trailing whitespace",
   pattern = "*",
   group = augroup("TrimWhtspc", {}),
@@ -51,7 +42,7 @@ autocmd("TextYankPost", {
 
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
-  desc = "Configs specific to files in Obsidian vault",
+  desc = "Conceal level specifically for Obsidian markdown files",
   callback = function()
     vim.opt_local.conceallevel = 2
   end,
