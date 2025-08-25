@@ -41,10 +41,6 @@ vim.keymap.set("n", "q:", "")
 -- unhighlight with esc
 vim.keymap.set("n", "<Esc>", ":noh<cr>")
 
--- prev/next buffers
-vim.keymap.set("n", "[b", ":bprev<cr>", { noremap = true })
-vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true })
-
 vim.keymap.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
 vim.keymap.set(
   "n",
