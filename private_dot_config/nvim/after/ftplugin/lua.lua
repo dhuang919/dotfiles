@@ -14,9 +14,9 @@ local pad_curly = gen_hook.pad_brackets(all_bracks)
 
 vim.b.minisplitjoin_config = {
   split = { hooks_post = { add_comma_curly } },
-  join  = { hooks_post = { del_comma_curly, pad_curly } },
+  join = { hooks_post = { del_comma_curly, pad_curly } },
 }
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt_local.tabstop = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.shiftwidth = 2

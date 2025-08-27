@@ -11,9 +11,9 @@ local del_comma_curly = gen_hook.del_trailing_separator(all_bracks)
 
 vim.b.minisplitjoin_config = {
   split = { hooks_post = { add_comma_curly } },
-  join  = { hooks_post = { del_comma_curly } },
+  join = { hooks_post = { del_comma_curly } },
 }
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt_local.tabstop = 4
+vim.opt_local.softtabstop = 4
+vim.opt_local.shiftwidth = 4
