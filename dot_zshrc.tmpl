@@ -185,14 +185,20 @@ function clean_docker {
     docker rm -f $cid
     echo "  > $cid"
   done
+
   echo "\nPruning images..."
   docker image prune -af
+
   echo "\nPruning volumes..."
   docker volume prune -af
+
   echo "\nPruning builder cache..."
   docker builder prune -f
+
   echo "\nPruning networks..."
   docker network prune -f
+
+  echo "\nPrinting disk usage..."
   docker system df
 }
 
