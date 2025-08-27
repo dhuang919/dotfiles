@@ -55,6 +55,16 @@ vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
 vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
 vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
 
+-- filetype mappings for docker compose files expected by lsps
+vim.filetype.add({
+  filename = {
+    ["compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
+  },
+})
+
 -- dynamically enable lsps
 local servers = require("lsp.servers")
 

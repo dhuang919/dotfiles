@@ -1,7 +1,6 @@
 return {
   clangd = {},
-  docker_compose_language_service = {},
-  dockerls = {},
+  docker_language_server = {},
   gopls = {},
   jsonls = {},
   lua_ls = {
