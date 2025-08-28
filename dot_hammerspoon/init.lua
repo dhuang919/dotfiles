@@ -4,7 +4,7 @@ local external_connected = s.screens["HORIZONTAL"] ~= nil or s.screens["VERTICAL
 local ratios = {
   bbvpn = { top = 0.647, left = 0.008, height = 0.341, width = 0.160 },
   calendar = { top = 0.046, left = 0.603, height = 0.378, width = 0.383 },
-  chrome_horizontal = { top = 0.078, left = 0.506, height = 0.720, width = 0.472 },
+  chrome_horizontal = { top = 0.078, left = 0.506, height = 0.786, width = 0.472 },
   chrome_vertical = { top = 0.19, left = 0, height = 0.378, width = 1 },
   wezterm = {
     top = external_connected and 0.568 or 0,
@@ -15,7 +15,7 @@ local ratios = {
   mail = { top = 0.03, left = 0.004, height = 0.77, width = 0.8 },
   slack_horizontal = { top = 0.071, left = 0.021, height = 0.871, width = 0.467 },
   spotify = { top = 0.463, left = 0.013, height = 0.500, width = 0.426 },
-  obsidian = { top = 0.040, left = 0.438, height = 0.960, width = 0.370 },
+  obsidian = { top = 0.431, left = 0.500, height = 0.552, width = 0.483 },
   messages = { top = 0.595, left = 0.668, height = 0.365, width = 0.321 },
 }
 
