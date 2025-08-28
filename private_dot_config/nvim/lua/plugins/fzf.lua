@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "echasnovski/mini.icons" },
+  dependencies = { "nvim-mini/mini.icons" },
   config = function()
     local fzflua = require("fzf-lua")
     local default_rgopts = fzflua.defaults.grep.rg_opts

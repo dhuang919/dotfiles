@@ -81,7 +81,7 @@ return {
         local old_is_url = util.is_url
         -- override to treat bb urls as urls
         local _is_url = function(s)
-          if string.match(util.strip_whitespace(s), "^bbg://screens/[a-zA-Z0-9%%]+$") then
+          if string.match(util.rstrip_whitespace(s), "^bbg://screens/[a-zA-Z0-9%%]+$") then
             return true
           end
           return old_is_url(s)
