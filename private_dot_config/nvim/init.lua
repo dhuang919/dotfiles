@@ -1,59 +1,59 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+local a = vim.api
+local k = vim.keymap
+local g = vim.g
+local o = vim.opt
+
+g.mapleader = " "
+g.maplocalleader = "\\"
 
 require("config.autocmds")
 require("config.lazy")
 
 -- NOTE: formatoptions set in autocmds.lua
 -- https://neovim.discourse.group/t/options-formatoptions-not-working-when-put-in-init-lua/3746
-vim.o.breakindent = true
-vim.o.expandtab = true
-vim.o.linebreak = true
-vim.o.mouse = ""
-vim.o.number = true
-vim.o.showbreak = string.rep(" ", 2) -- long lines wrap smartly
-vim.o.showmode = false
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.swapfile = false
-vim.o.undofile = true
-vim.o.wrap = true
-vim.opt.backspace = { "indent", "eol", "start" }
-vim.opt.clipboard = { "unnamed", "unnamedplus" }
+o.copyindent = true
+o.breakindent = true
+o.showbreak = string.rep(" ", 2) -- indent second line when wrapping
+o.expandtab = true
+o.linebreak = true
+o.mouse = ""
+o.number = true
+o.showmode = false
+o.splitbelow = true
+o.splitright = true
+o.swapfile = false
+o.undofile = true -- persistent undo
+o.wrap = true
+o.backspace = { "indent", "eol", "start" }
+o.clipboard = { "unnamed", "unnamedplus" }
+o.scrolloff = 3 -- always keep 3 lines above/below the cursor
+o.cursorline = true
 
 -- use treesitter for folding
-vim.o.foldmethod = "expr"
-vim.o.foldlevelstart = 99
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldmethod = "expr"
+o.foldlevelstart = 99
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-vim.g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
+g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 
--- disable to allow after/ftplugin settings work
-vim.g.editorconfig = false
+-- prefer after/ftplugin over built-in editorconfig
+g.editorconfig = false
 
--- custom stuff
-
--- disabled
--- command mode
-vim.keymap.set("n", "Q", "")
-vim.keymap.set("n", "q:", "")
+-- disable command mode
+k.set("n", "Q", "")
+k.set("n", "q:", "")
 
 -- unhighlight with esc
-vim.keymap.set("n", "<Esc>", ":noh<cr>")
+k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
 
-vim.keymap.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
-vim.keymap.set(
-  "n",
-  "<leader>w",
-  ":wa<cr>",
-  { desc = "Write all buffers", noremap = true, silent = true }
-)
+k.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
+k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
 
 -- set line number colors in gutter
-vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
-vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
-vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
+a.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
+a.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
+a.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
+a.nvim_set_hl(0, "Cursor", { reverse = true })
 
 -- filetype mappings for docker compose files expected by lsps
 vim.filetype.add({

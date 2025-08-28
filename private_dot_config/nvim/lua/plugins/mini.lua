@@ -12,6 +12,12 @@ return {
     config = true,
   },
   {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
+  },
+  {
     "echasnovski/mini.splitjoin",
     event = "VeryLazy",
     version = "*",
