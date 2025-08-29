@@ -13,7 +13,7 @@ local ratios = {
     width = external_connected and 1 or 0.58,
   },
   mail = { top = 0.03, left = 0.004, height = 0.77, width = 0.8 },
-  slack_horizontal = { top = 0.071, left = 0.021, height = 0.871, width = 0.467 },
+  slack_horizontal = { top = 0.038, left = 0.020, height = 0.871, width = 0.467 },
   spotify = { top = 0.463, left = 0.013, height = 0.500, width = 0.426 },
   obsidian = { top = 0.431, left = 0.500, height = 0.552, width = 0.483 },
   messages = { top = 0.595, left = 0.668, height = 0.365, width = 0.321 },
