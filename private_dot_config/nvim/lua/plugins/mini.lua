@@ -15,7 +15,32 @@ return {
     "nvim-mini/mini.pairs",
     event = "VeryLazy",
     version = "*",
-    config = true,
+    opts = {
+      mappings = {
+        -- only auto-insert close when neighbor is newline
+        ["("] = { action = "open", pair = "()", neigh_pattern = ".\n" },
+        ["["] = { action = "open", pair = "[]", neigh_pattern = ".\n" },
+        ["{"] = { action = "open", pair = "{}", neigh_pattern = ".\n" },
+        ['"'] = {
+          action = "closeopen",
+          pair = '""',
+          neigh_pattern = ".\n",
+          register = { cr = false },
+        },
+        ["'"] = {
+          action = "closeopen",
+          pair = "''",
+          neigh_pattern = "[^%a].\n",
+          register = { cr = false },
+        },
+        ["`"] = {
+          action = "closeopen",
+          pair = "``",
+          neigh_pattern = ".\n",
+          register = { cr = false },
+        },
+      },
+    },
   },
   {
     "nvim-mini/mini.splitjoin",
