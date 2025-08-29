@@ -20,6 +20,7 @@ return {
     "ibhagwan/fzf-lua",
   },
   opts = {
+    legacy_commands = false,
     workspaces = {
       {
         name = "notes",
@@ -35,22 +36,6 @@ return {
       name = "fzf-lua",
     },
     notes_subdir = "zk",
-    mappings = {
-      -- Toggle check-boxes.
-      ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
-      -- Smart action depending on context, either follow link or toggle checkbox.
-      ["<cr>"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-    },
     open = {
       use_advanced_uri = false,
       func = vim.ui.open,
@@ -75,6 +60,25 @@ return {
       img_folder = "assets",
     },
     callbacks = {
+      enter_note = function(_, note)
+        vim.keymap.set("n", "<leader>ch", function()
+          local line = vim.api.nvim_get_current_line()
+          -- If it's unchecked, mark it checked
+          local before, after = line:match("^(%s*%- %[)%s%](.*)$")
+          if before then
+            vim.api.nvim_set_current_line(before .. "x]" .. after)
+            return
+          end
+
+          -- If it's checked, mark it unchecked
+          before, after = line:match("^(%s*%- %[)x](.*)$")
+          if before then
+            vim.api.nvim_set_current_line(before .. " ]" .. after)
+            return
+          end
+        end, { buffer = note.bufnr, desc = "Obsidian: check checkbox" })
+      end,
+
       --@param client obsidian.Client
       post_setup = function()
         local util = require("obsidian.util")
@@ -93,8 +97,8 @@ return {
   keys = {
     {
       "<leader>qs",
-      ":ObsidianQuickSwitch<cr>",
-      { silent = true, noremap = true, description = "Obsidian [Q]uick[S]witch" },
+      "<cmd>Obsidian quick_switch<cr>",
+      { silent = true, noremap = true, description = "Obsidian Quick Switch" },
     },
   },
 }
