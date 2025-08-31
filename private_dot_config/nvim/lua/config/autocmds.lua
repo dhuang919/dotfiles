@@ -114,3 +114,15 @@ autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
   end,
 })
+
+autocmd("LspAttach", {
+  desc = "LSP key bindings",
+  callback = function(event)
+    vim.keymap.set(
+      "n",
+      "<leader>rn",
+      "<cmd>lua vim.lsp.buf.rename()<cr>",
+      { desc = "LSP Rename", buffer = event.buf }
+    )
+  end,
+})
