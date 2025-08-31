@@ -1,3 +1,7 @@
+-- only auto-close if right neighbor is nothing (eol) or close
+-- for example: (cursor = |) |print -> "|print, *not* "|"print
+local right_eol_or_close = "[\n%)%]}'\"`]"
+
 return {
   {
     "nvim-mini/mini.ai",
@@ -17,26 +21,25 @@ return {
     version = "*",
     opts = {
       mappings = {
-        -- only auto-insert close when neighbor is newline
-        ["("] = { action = "open", pair = "()", neigh_pattern = ".\n" },
-        ["["] = { action = "open", pair = "[]", neigh_pattern = ".\n" },
-        ["{"] = { action = "open", pair = "{}", neigh_pattern = ".\n" },
+        ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]" .. right_eol_or_close },
+        ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]" .. right_eol_or_close },
+        ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]" .. right_eol_or_close },
         ['"'] = {
           action = "closeopen",
           pair = '""',
-          neigh_pattern = ".\n",
+          neigh_pattern = "[^\\]" .. right_eol_or_close,
           register = { cr = false },
         },
         ["'"] = {
           action = "closeopen",
           pair = "''",
-          neigh_pattern = "[^%a].\n",
+          neigh_pattern = "[^%a\\]" .. right_eol_or_close,
           register = { cr = false },
         },
         ["`"] = {
           action = "closeopen",
           pair = "``",
-          neigh_pattern = ".\n",
+          neigh_pattern = "[^\\]" .. right_eol_or_close,
           register = { cr = false },
         },
       },
