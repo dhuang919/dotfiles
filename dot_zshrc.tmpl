@@ -134,13 +134,12 @@ function todo {
   fi
 
   local -r unfinished_todos=$(
-    sed -E -ne '
-      /(- \[[ >]\] [[:alnum:]_]*|
-      ^## Urgent & Important|
-      ^## Not Urgent & Important|
-      ^## Urgent & Not Important|
-      ^## Not Urgent & Not Important)/p
-    ' "${scratch}/${prev_dir}/${prev_md}"
+    sed -E -ne '/- \[[ >]\] [[:alnum:]_]*/p' \
+      -e '/^## Urgent & Important/p' \
+      -e '/^## Not Urgent & Important/p' \
+      -e '/^## Urgent & Not Important/p' \
+      -e '/^## Not Urgent & Not Important/p' \
+    "${scratch}/${prev_dir}/${prev_md}"
   )
 
   printf "# Todo\n%s\n\n# Notes" "$unfinished_todos" >> "${today_path}"
