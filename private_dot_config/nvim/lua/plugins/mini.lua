@@ -27,7 +27,7 @@ return {
         ['"'] = {
           action = "closeopen",
           pair = '""',
-          neigh_pattern = "[^\\]" .. right_eol_or_close,
+          neigh_pattern = "[^%a\\]" .. right_eol_or_close,
           register = { cr = false },
         },
         ["'"] = {
@@ -39,7 +39,7 @@ return {
         ["`"] = {
           action = "closeopen",
           pair = "``",
-          neigh_pattern = "[^\\]" .. right_eol_or_close,
+          neigh_pattern = "[^%a\\]" .. right_eol_or_close,
           register = { cr = false },
         },
       },
