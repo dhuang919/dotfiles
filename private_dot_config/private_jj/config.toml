@@ -1,0 +1,18 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Derek Huang"
+email = "dhuang295@bloomberg.net"
+
+[diff]
+tool = "delta"
+
+[ui]
+pager = ["delta", "--pager", "less -FRX"]
+diff-formatter = ":git"
+
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+pager = "delta"
