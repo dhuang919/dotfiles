@@ -123,8 +123,7 @@ function todo {
   prev_md=$(_get_last_md "${scratch}/${year}/${month}")
   if [[ -z "${prev_md}" ]]; then
     # Make sure we get the last md if it's been longer than a month since the last
-    while [[ -z "${prev_md}" ]]
-    do
+    while [[ -z "${prev_md}" ]]; do
       # Keep decrementing by a month, going back to prev years if needed
       prev_dir=$(gdate -d "1 month ago" +%Y/%m)
       prev_md=$(_get_last_md "${scratch}/${prev_dir}")
@@ -133,16 +132,49 @@ function todo {
     prev_dir="${year}/${month}"
   fi
 
-  local -r unfinished_todos=$(
-    sed -E -ne '/- \[[ >]\] [[:alnum:]_]*/p' \
-      -e '/^## Urgent & Important/p' \
-      -e '/^## Not Urgent & Important/p' \
-      -e '/^## Urgent & Not Important/p' \
-      -e '/^## Not Urgent & Not Important/p' \
-    "${scratch}/${prev_dir}/${prev_md}"
-  )
+  local -r prev_path="${scratch}/${prev_dir}/${prev_md}"
 
-  printf "# Todo\n%s\n\n# Notes" "$unfinished_todos" >> "${today_path}"
+  # Carry over front matter
+  local meta="$(awk '
+    NR==1 && $0 ~ /^---[ \t]*$/ {in_meta=1; print; next}
+    in_meta { print; if ($0 ~ /^---[ \t]*$/) exit }
+  ' "${prev_path}")"
+
+  # Carry over todos, keeping h2s and unchecked/in-progress items
+  local todo_block="$(awk '
+  BEGIN { in_todo=0; printed_any_section=0 }
+    # Enter Todo section
+    /^# +Todo[ \t]*$/ { in_todo=1; next }
+    # Leave Todo section on the next top-level header (e.g., "# Notes" or any "# ...")
+    in_todo && /^# +/ { in_todo=0 }
+    !in_todo { next }
+
+    # Inside Todo:
+    # H2 headings: ensure a blank line before each H2 except the first we print
+    /^## +/ {
+      if (printed_any_section) print "";
+      print $0;
+      printed_any_section=1;
+      next
+    }
+
+    # Unchecked or in-progress tasks (including nested ones):
+    /^[ \t]*- \[[ >]\]/ { print $0 }
+  ' "${prev_path}")"
+
+  # Write the new file
+  {
+    if [[ -n "${meta}" ]]; then
+      printf "%s\n" "${meta}"
+    fi
+
+    printf "# Todo\n"
+    if [[ -n "${todo_block}" ]]; then
+      printf "%s\n" "${todo_block}"
+    fi
+
+    printf "\n# Notes\n"
+  } > "${today_path}"
 
   return 0
 }
