@@ -63,17 +63,17 @@ return {
       enter_note = function(_, note)
         vim.keymap.set("n", "<leader>ch", function()
           local line = vim.api.nvim_get_current_line()
-          -- If it's unchecked, mark it checked
-          local before, after = line:match("^(%s*%- %[)%s%](.*)$")
+          -- Check if unchecked (- [ ]) or in progress (- [>])
+          local before, after = line:match("^(%s*%- %[)[ >]?(%].*)$")
           if before then
-            vim.api.nvim_set_current_line(before .. "x]" .. after)
+            vim.api.nvim_set_current_line(before .. "x" .. after)
             return
           end
 
-          -- If it's checked, mark it unchecked
-          before, after = line:match("^(%s*%- %[)x](.*)$")
+          -- Uncheck if checked
+          before, after = line:match("^(%s*%- %[)x(].*)$")
           if before then
-            vim.api.nvim_set_current_line(before .. " ]" .. after)
+            vim.api.nvim_set_current_line(before .. " " .. after)
             return
           end
         end, { buffer = note.bufnr, desc = "Obsidian: check checkbox" })
