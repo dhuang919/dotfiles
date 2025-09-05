@@ -5,7 +5,10 @@ prSections:
       author:
         hidden: true
   - title: My Closed PRs
-    filters: is:closed author:@me
+    filters: >-
+      is:closed
+      author:@me
+      updated:>={{ nowModify "-3mo" }}
     layout:
       author:
         hidden: true
@@ -14,27 +17,64 @@ prSections:
   - title: Involved
     filters: is:open involves:@me -author:@me
   - title: Runtime platform
-    filters: is:open is:pr archived:false org:bbenv org:systems-core-environment org:prqsex org:systems-libraries org:systems org:systems-utils org:svcm org:bbfilexfer org:rtcpu org:bbrc org:cores org:svcm
+    filters: >-
+      is:open
+      is:pr
+      archived:false
+      org:bbenv
+      org:systems-core-environment
+      org:prqsex
+      org:systems-libraries
+      org:systems
+      org:systems-utils
+      org:svcm
+      org:bbfilexfer
+      org:rtcpu
+      org:bbrc
+      org:cores
+      org:svcm
   - title: Peter
-    filters: is:open -is:draft author:pmartini
+    filters: >-
+      is:open
+      -is:draft
+      author:pmartini
   - title: Vinit
-    filters: is:open -is:draft author:vshah178
+    filters: >-
+      is:open
+      -is:draft
+      author:vshah178
   - title: Steven
-    filters: is:open -is:draft author:spackard
+    filters: >-
+      is:open
+      -is:draft
+      author:spackard
   - title: Yudhi
-    filters: is:open -is:draft author:ydeshpande1
+    filters: >-
+      is:open
+      -is:draft
+      author:ydeshpande1
   - title: Nhuja
-    filters: is:open -is:draft author:nmaharjan2
+    filters: >-
+      is:open
+      -is:draft
+      author:nmaharjan2
 issuesSections:
   - title: My Issues
-    filters: is:open author:@me
+    filters: >-
+      is:open
+      author:@me
   - title: Assigned
-    filters: is:open assignee:@me
+    filters: >-
+      is:open
+      assignee:@me
   - title: Involved
-    filters: is:open involves:@me -author:@me
+    filters: >-
+      is:open
+      involves:@me
+      -author:@me
 repo:
-  branchesRefetchIntervalSeconds: 30
-  prsRefetchIntervalSeconds: 60
+  branchesRefetchIntervalSeconds: 60
+  prsRefetchIntervalSeconds: 120
 defaults:
   preview:
     open: true
@@ -83,8 +123,6 @@ keybindings:
   issues: []
   prs: []
   branches: []
-repoPaths:
-  tssr/*: ~/Projects/tssr/*
 theme:
   ui:
     sectionsShowCount: true
