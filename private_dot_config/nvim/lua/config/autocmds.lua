@@ -40,13 +40,13 @@ autocmd("TextYankPost", {
   end,
 })
 
-autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
-  desc = "Conceal level specifically for Obsidian markdown files",
-  callback = function()
-    vim.opt_local.conceallevel = 2
-  end,
-})
+-- autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
+--   desc = "Conceal level specifically for Obsidian markdown files",
+--   callback = function()
+--     vim.opt_local.conceallevel = 2
+--   end,
+-- })
 
 local numtoggle_augroup = augroup("numbertoggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
