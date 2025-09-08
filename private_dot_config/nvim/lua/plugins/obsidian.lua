@@ -20,6 +20,9 @@ return {
     "ibhagwan/fzf-lua",
   },
   opts = {
+    ui = {
+      enable = false,
+    },
     legacy_commands = false,
     workspaces = {
       {
