@@ -12,7 +12,7 @@ return {
           function()
             harpoon:list():add()
           end,
-          desc = "Harpoon file",
+          desc = "Harpoon add",
         },
 
         {
