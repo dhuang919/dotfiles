@@ -51,29 +51,6 @@ function ggrep {
   done
 }
 
-function gurl {
-  local copy=0
-  while getopts "c" opt; do
-    case "$opt" in
-      c) copy=1
-    esac
-  done
-  shift $((OPTIND-1))
-  if [[ -z "$1" ]]; then
-    echo "Repo required" >&2
-    return 1
-  fi
-  local -r repo=$1
-  if [[ $copy -eq 1 ]]; then
-    local -r url=$(git -C "${HOME}/Projects/tssr/${repo}" config --get remote.upstream.url)
-    echo -n $url | pbcopy
-    echo "Copied '${url}' to clipboard"
-    return 0
-  fi
-  open /Applications/Google\ Chrome.app "https://bbgithub.dev.bloomberg.com/tssr/${repo}"
-  return 0
-}
-
 function fmt_img {
   if [[ -z "$1" ]] || [[ -z "$2" ]]; then
     echo "Source/destination images required" >&2
