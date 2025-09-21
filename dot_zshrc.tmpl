@@ -65,9 +65,9 @@ function fmtheics {
   local fn
   local nfn
   local new
-  for old in $(find ~/Downloads -type file -name '*.heic'); do
+  for old in $(find ~/Downloads -type file -iname '*.heic'); do
     fn="$(basename "$old")"
-    new=$(echo "$old" | sed "s/heic/$ext/")
+    new=$(echo "$old" | sed -E "s/\.heic$/\.$ext/I")
     nfn="$(basename "$new")"
     magick "$old" "$new"
     magick "$new" -resize 30% "$new"
