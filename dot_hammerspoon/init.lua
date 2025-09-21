@@ -67,7 +67,12 @@ hs.hotkey.bind(bind_keys, "l", function()
 end)
 
 hs.hotkey.bind(bind_keys, "o", function()
-  s.moveIfOpen("WezTerm", "LAPTOP", external_connected and nil or ratios.obsidian_lptp, true)
+  s.moveIfOpen(
+    "WezTerm",
+    "LAPTOP",
+    external_connected and nil or ratios.obsidian_lptp,
+    external_connected and true or false
+  )
 end)
 
 hs.hotkey.bind(bind_keys, "s", function()
