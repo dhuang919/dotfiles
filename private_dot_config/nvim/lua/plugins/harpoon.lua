@@ -8,7 +8,7 @@ return {
       harpoon:setup()
       local keys = {
         {
-          "<leader>H",
+          "<leader>a",
           function()
             harpoon:list():add()
           end,
