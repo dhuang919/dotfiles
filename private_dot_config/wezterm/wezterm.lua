@@ -170,6 +170,28 @@ c.keys = {
   },
 }
 
+-- Disable scrolling in nvim only
+c.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = "NONE",
+    action = wezterm.action_callback(function(window, pane)
+      if not pane:get_foreground_process_name():match("nvim$") then
+        window:perform_action(wezterm.action.ScrollByLine(-3), pane)
+      end
+    end),
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = "NONE",
+    action = wezterm.action_callback(function(window, pane)
+      if not pane:get_foreground_process_name():match("nvim$") then
+        window:perform_action(wezterm.action.ScrollByLine(3), pane)
+      end
+    end),
+  },
+}
+
 -- LEADER + number to activate that tab
 for i = 1, 9 do
   table.insert(c.keys, {
