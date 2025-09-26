@@ -8,7 +8,7 @@ prSections:
     filters: >-
       is:closed
       author:@me
-      updated:>={{ nowModify "-3mo" }}
+      updated:>={{ nowModify "-6mo" }}
     layout:
       author:
         hidden: true
