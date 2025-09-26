@@ -101,7 +101,8 @@ return {
     {
       "<leader>qs",
       "<cmd>Obsidian quick_switch<cr>",
-      { silent = true, noremap = true, description = "Obsidian Quick Switch" },
+      desc = "Obsidian Quick Switch",
+      { silent = true, noremap = true },
     },
   },
 }
