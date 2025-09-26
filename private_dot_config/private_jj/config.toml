@@ -10,6 +10,7 @@ tool = "delta"
 [ui]
 pager = ["delta", "--pager", "less -FRX"]
 diff-formatter = ":git"
+diff-editor = ":builtin"
 
 [[--scope]]
 --when.commands = ["diff", "show"]
