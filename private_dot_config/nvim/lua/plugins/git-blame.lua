@@ -9,7 +9,7 @@ return {
   keys = {
     { "<leader>tb", "<cmd>GitBlameToggle<cr>" },
     { "<leader>gboc", "<cmd>GitBlameOpenCommitURL<cr>" },
-    { "<leader>gbcc", "<cmd>GitBlameOpenCommitURL<cr>" },
+    { "<leader>gbcc", "<cmd>GitBlameCopyCommitURL<cr>" },
     { "<leader>gbof", "<cmd>GitBlameOpenFileURL<cr>" },
     { "<leader>gbcf", "<cmd>GitBlameCopyFileURL<cr>" },
   },
