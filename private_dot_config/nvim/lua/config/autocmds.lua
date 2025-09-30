@@ -126,3 +126,11 @@ autocmd("LspAttach", {
     )
   end,
 })
+
+autocmd("BufWritePre", {
+  desc = "Format go files",
+  pattern = "*.go",
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
