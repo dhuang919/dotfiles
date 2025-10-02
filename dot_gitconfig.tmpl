@@ -60,7 +60,6 @@
     sw = switch
 [includeIf "gitdir:~/Projects/"]
     path = .gitconfig.work
-{{- if eq .chezmoi.username "dhuang295" }}
 [url "https://github.com/"]
     insteadOf = github.com:
 [url "https://github.com/"]
@@ -69,5 +68,4 @@
     insteadOf = ssh://git@github.com/
 [http "https://github.com"]
     proxy = http://proxy.bloomberg.com:81
-    sslCAinfo = ~/bb-cert/bloomberg-root-ca.crt
-{{- end }}
+    sslCAInfo = ~/bb-cert/bloomberg-root-ca.crt
