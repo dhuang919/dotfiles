@@ -40,14 +40,6 @@ autocmd("TextYankPost", {
   end,
 })
 
--- autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = vim.fn.expand("~") .. "/dev/notes/*.md",
---   desc = "Conceal level specifically for Obsidian markdown files",
---   callback = function()
---     vim.opt_local.conceallevel = 2
---   end,
--- })
-
 local numtoggle_augroup = augroup("numbertoggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
   pattern = "*",
@@ -196,13 +188,5 @@ autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>gE", function()
       jumpWithVirtLineDiags(-1)
     end, { desc = "LSP Prev Diagnostic", buffer = event.buf })
-  end,
-})
-
-autocmd("BufWritePre", {
-  desc = "Format go files",
-  pattern = "*.go",
-  callback = function()
-    vim.lsp.buf.format({ async = false })
   end,
 })

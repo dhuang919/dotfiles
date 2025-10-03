@@ -1,7 +1,36 @@
 return {
   clangd = {},
   docker_language_server = {},
-  gopls = {},
+  golangci_lint_ls = {},
+  gopls = {
+    -- chatgpt recommendations
+    on_attach = function(_, bufnr)
+      local grp = vim.api.nvim_create_augroup("GoLspFormat", { clear = false })
+      vim.api.nvim_clear_autocmds({ group = grp, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = grp,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ async = false, timeout_ms = 2000 })
+        end,
+      })
+    end,
+    settings = {
+      gopls = {
+        staticcheck = false,
+        gofumpt = true,
+        directoryFilters = {
+          "-**/node_modules",
+          "-**/vendor",
+          "-**/dist",
+          "-**/bazel-out",
+          "-**/.git",
+        },
+        usePlaceholders = true,
+        analyses = { unusedparams = true },
+      },
+    },
+  },
   jsonls = {},
   lua_ls = {
     on_init = function(client)
