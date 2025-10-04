@@ -272,6 +272,10 @@ autoload -Uz compinit && compinit -i
 autoload bashcompinit && bashcompinit
 zmodload -i zsh/complist
 
+if command -v jj >/dev/null 2>&1; then
+  source <(jj util completion zsh)
+fi
+
 ## edit line in vim buffer
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x' edit-command-line
