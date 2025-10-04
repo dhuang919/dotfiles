@@ -1,4 +1,5 @@
 return {
+  bashls = {},
   clangd = {},
   docker_language_server = {},
   golangci_lint_ls = {},
