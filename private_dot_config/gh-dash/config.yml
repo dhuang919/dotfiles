@@ -48,6 +48,11 @@ prSections:
       is:open
       -is:draft
       author:spackard
+  - title: Jim
+    filters: >-
+      is:open
+      -is:draft
+      author:jmahood
   - title: Yudhi
     filters: >-
       is:open
