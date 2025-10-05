@@ -11,6 +11,7 @@ tool = "delta"
 pager = ["delta", "--pager", "less -FRX"]
 diff-formatter = ":git"
 diff-editor = ":builtin"
+default-command = "log"
 
 [[--scope]]
 --when.commands = ["diff", "show"]
