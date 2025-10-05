@@ -50,6 +50,11 @@ function S.moveIfOpen(appName, screenKey, ratios, fullscreen, lock)
   lock = lock or false
   local app = hs.application.get(appName)
   if not app then
+    print("No app found for " .. appName)
+    return false
+  end
+  if type(app.activate) ~= "function" then
+    print(appName .. " doesn't have an activate() method")
     return false
   end
   app:activate()
