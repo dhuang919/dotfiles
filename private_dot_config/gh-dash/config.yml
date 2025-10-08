@@ -1,10 +1,18 @@
 prSections:
   - title: My Open PRs
-    filters: is:open author:@me
+    filters: >-
+      is:open
+      author:@me
     layout:
       author:
         hidden: true
-  - title: My Closed PRs
+  - title: My Assigned
+    filters: >-
+      assignee:@me
+    layout:
+      author:
+        hidden: true
+  - title: My Closed PRs (6mo)
     filters: >-
       is:closed
       author:@me
