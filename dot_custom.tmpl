@@ -89,10 +89,13 @@ function sync_configs {
     # assume it's on PATH
     rsync -rav --exclude 'obsidian.lua' ~/.config/nvim "${remote_addr}"
     rsync -rav ~/.config/starship.toml "${remote_addr}"
+    rsync -rav ~/.config/jj "${remote_addr}"
     return 0
   fi
+  echo "Using scp"
   scp -r ~/.config/nvim "${remote_addr}"
   scp ~/.config/starship.toml "${remote_addr}"
+  scp -r ~/.config/jj "${remote_addr}"
   return 0
 }
 
