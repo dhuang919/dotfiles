@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local a = vim.api
 local k = vim.keymap
 local g = vim.g
@@ -73,3 +75,8 @@ for name, opts in pairs(servers) do
 end
 
 vim.lsp.enable(vim.tbl_keys(servers))
+
+-- make sure yanking works through ssh
+if utils.is_ssh() then
+  vim.g.clipboard = "osc52"
+end
