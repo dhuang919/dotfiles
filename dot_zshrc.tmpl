@@ -182,13 +182,13 @@ function tp {
 }
 
 function ww {
-  open /System/Applications/Calendar.app
-  open /System/Applications/Messages.app
-  open /Applications/Google\ Chrome.app
-  open /Applications/Obsidian.app
-  open /Applications/Docker.app
-  open /Applications/Spotify.app
-  open /Applications/Slack.app
+  open -a /System/Applications/Calendar.app
+  open -a /System/Applications/Messages.app
+  open -a /Applications/Google\ Chrome.app "https://bba.bloomberg.com"
+  open -a /Applications/Obsidian.app
+  open -a /Applications/Docker.app
+  open -a /Applications/Spotify.app
+  open -a /Applications/Slack.app
   # if [[ -x "$(which prlctl)" ]]; then
   #   prlctl start c1f2e698-0d26-4dd3-85a7-03bdb9b7cc1a
   #   open /Applications/Parallels\ Desktop.app
