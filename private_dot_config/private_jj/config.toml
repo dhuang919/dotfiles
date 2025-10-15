@@ -6,6 +6,7 @@ email = "dhuang295@bloomberg.net"
 
 [aliases]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+gfa = ["git", "fetch", "--all-remotes"]
 
 [diff]
 tool = "delta"
