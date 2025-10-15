@@ -16,10 +16,22 @@ autocmd("FileType", {
 })
 
 autocmd("BufWritePre", {
-  desc = "Trim trailing whitespace",
-  pattern = "*",
-  group = augroup("TrimWhtspc", {}),
-  command = [[%s/\s\+$//e]],
+  group = augroup("TrimWhtspc", { clear = true }),
+  desc = "Trim trailing whitespace (files only)",
+  callback = function(args)
+    local buf = args.buf
+
+    -- skip unmodifiable/readonly
+    if vim.bo[buf].buftype ~= "" or vim.bo[buf].filetype == "oil"
+       or not vim.bo[buf].modifiable or vim.bo[buf].readonly then
+      return
+    end
+
+    -- preserve cursor/view; don't clobber jumplist or search register
+    local view = vim.fn.winsaveview()
+    vim.cmd([[silent! keepjumps keeppatterns %s/\s\+$//e]])
+    vim.fn.winrestview(view)
+  end,
 })
 
 local prev_reg0_content = vim.fn.getreg("0")
