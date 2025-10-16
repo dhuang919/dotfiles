@@ -20,10 +20,13 @@ autocmd("BufWritePre", {
   desc = "Trim trailing whitespace (files only)",
   callback = function(args)
     local buf = args.buf
+    local bufname = vim.api.nvim_buf_get_name(buf)
+
+    -- skip oil buffers
+    if bufname:match("^oil://") then return end
 
     -- skip unmodifiable/readonly
-    if vim.bo[buf].buftype ~= "" or vim.bo[buf].filetype == "oil"
-       or not vim.bo[buf].modifiable or vim.bo[buf].readonly then
+    if vim.bo[buf].buftype ~= "" or not vim.bo[buf].modifiable or vim.bo[buf].readonly then
       return
     end
 
