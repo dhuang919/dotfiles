@@ -5,7 +5,6 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export PYTHONDONTWRITEBYTECODE=1
 {{- if eq .chezmoi.os "darwin" }}
 BREW_DIR=$(brew --prefix)
-export GOPATH="${BREW_DIR}/bin/go"
 export GOBIN="${BREW_DIR}/bin"
 {{- end }}
 
