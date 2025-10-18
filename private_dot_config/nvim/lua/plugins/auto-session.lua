@@ -9,6 +9,7 @@ return {
   config = function()
     vim.o.sessionoptions = "blank,buffers,curdir,help,tabpages,winsize,winpos,terminal,localoptions"
     require("auto-session").setup({
+      auto_save = false,
       suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
     })
   end,
