@@ -232,8 +232,9 @@ function cze {
   fi
 
   case "$1" in
-    # edit directories directly since nvim pane navigation doesn't work w chezmoi edit
+    # edit directories directly since nvim pane navigation doesn't work w `chezmoi edit`
     hs) nvim ~/.local/share/chezmoi/dot_hammerspoon/;;
+    jj) chezmoi edit ~/.config/jj/config.toml;;
     nvim) nvim ~/.local/share/chezmoi/private_dot_config/nvim/;;
     wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua;;
     zsh) chezmoi edit ~/.zshrc;;
