@@ -51,12 +51,6 @@ k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
 k.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
 k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
 
--- set line number colors in gutter
-a.nvim_set_hl(0, "LineNrAbove", { fg = "#98d2f4" })
-a.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
-a.nvim_set_hl(0, "LineNrBelow", { fg = "#fd9dc0" })
-a.nvim_set_hl(0, "Cursor", { reverse = true })
-
 -- filetype mappings for docker compose files expected by lsps
 vim.filetype.add({
   filename = {
