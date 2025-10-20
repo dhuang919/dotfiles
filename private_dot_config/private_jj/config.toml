@@ -5,8 +5,9 @@ name = "Derek Huang"
 email = "dhuang295@bloomberg.net"
 
 [aliases]
-tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+e = ["edit"]
 gfa = ["git", "fetch", "--all-remotes"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 
 [diff]
 tool = "delta"
