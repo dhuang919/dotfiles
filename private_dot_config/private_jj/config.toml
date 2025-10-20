@@ -11,6 +11,9 @@ gfa = ["git", "fetch", "--all-remotes"]
 [diff]
 tool = "delta"
 
+[git]
+push-new-bookmarks = true
+
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
