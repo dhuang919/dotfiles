@@ -6,8 +6,9 @@ email = "dhuang295@bloomberg.net"
 
 [aliases]
 e = ["edit"]
-n = ["new"]
 gfa = ["git", "fetch", "--all-remotes"]
+gp = ["git", "push"]
+n = ["new"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 
 [diff]
