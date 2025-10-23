@@ -9,6 +9,7 @@ e = ["edit"]
 gfa = ["git", "fetch", "--all-remotes"]
 gp = ["git", "push"]
 gpo = ["git", "push", "-b", "main", "--remote", "origin"]
+la = ["log", "-r", "all()"]
 n = ["new"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
 
