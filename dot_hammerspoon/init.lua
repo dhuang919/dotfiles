@@ -6,7 +6,7 @@ local ratios = {
   calendar = { top = 0.046, left = 0.603, height = 0.378, width = 0.383 },
   chrome_lptp = { top = 0, left = 0.1, height = 1, width = 0.8 },
   chrome_horizontal = { top = 0.078, left = 0.506, height = 0.786, width = 0.472 },
-  chrome_vertical = { top = 0.19, left = 0, height = 0.378, width = 1 },
+  chrome_vertical = { top = 0.01, left = 0, height = 0.558, width = 1 },
   wezterm = {
     top = external_connected and 0.568 or 0,
     left = 0,
