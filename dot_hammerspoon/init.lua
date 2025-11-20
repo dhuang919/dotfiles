@@ -20,6 +20,11 @@ local ratios = {
   obsidian_lptp = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
   obsidian_horizontal = { top = 0.353, left = 0.500, height = 0.628, width = 0.483 },
   messages = { top = 0.595, left = 0.668, height = 0.365, width = 0.321 },
+  citrix = {
+    msg = { top = 0.078, left = 0.007, height = 0.656, width = 0.486 },
+    appt = { top = 0.078, left = 0.5, height = 0.578, width = 0.489 },
+    ib = { top = 0.333, left = 0.504, height = 0.656, width = 0.481 },
+  },
 }
 
 local bind_keys = { "alt", "cmd" }
@@ -52,6 +57,7 @@ hs.hotkey.bind(bind_keys, "r", function()
   hs.alert.show("Hammerspoon config reloaded")
 end)
 
+-- Size and place chrome (llm) on external monitor
 hs.hotkey.bind(bind_keys, "c", function()
   s.moveIfOpen(
     "Google Chrome",
@@ -62,10 +68,12 @@ hs.hotkey.bind(bind_keys, "c", function()
   )
 end)
 
+-- Size and place chrome on laptop
 hs.hotkey.bind(bind_keys, "l", function()
   s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp, false, true)
 end)
 
+-- Fullscreen terminal for note taking on laptop
 hs.hotkey.bind(bind_keys, "o", function()
   s.moveIfOpen(
     "WezTerm",
@@ -75,10 +83,27 @@ hs.hotkey.bind(bind_keys, "o", function()
   )
 end)
 
+-- Fullscreen terminal for text editing on external monitor
 hs.hotkey.bind(bind_keys, "s", function()
   s.moveIfOpen("WezTerm", "HORIZONTAL", nil, true, true)
 end)
 
+-- Print app name and top/left/height/width of the focused window to console
 hs.hotkey.bind(bind_keys, "x", function()
   s.printFocusedWindowRatios()
+end)
+
+-- Size and place window with MSG
+hs.hotkey.bind(bind_keys, "m", function()
+  s.moveIfOpen("Citrix Viewer", "HORIZONTAL", ratios.citrix.msg, false, false)
+end)
+
+-- Size and place window with APPT
+hs.hotkey.bind(bind_keys, "a", function()
+  s.moveIfOpen("Citrix Viewer", "HORIZONTAL", ratios.citrix.appt, false, false)
+end)
+
+-- Size and place window with IB
+hs.hotkey.bind(bind_keys, "i", function()
+  s.moveIfOpen("Citrix Viewer", "HORIZONTAL", ratios.citrix.ib, false, false)
 end)
