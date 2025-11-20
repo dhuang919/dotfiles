@@ -90,8 +90,15 @@ function S.printFocusedWindowRatios()
   local left = (winFrame.x - screenFrame.x) / screenFrame.w
   local height = winFrame.h / screenFrame.h
   local width = winFrame.w / screenFrame.w
-  local msg =
-    string.format("top = %.3f, left = %.3f, height = %.3f, width = %.3f", top, left, height, width)
+  -- Space-padded equals and commas for easy copy pasting into `ratios` dict
+  local msg = string.format(
+    "app_name = %s top = %.3f, left = %.3f, height = %.3f, width = %.3f",
+    win:application():name(),
+    top,
+    left,
+    height,
+    width
+  )
   print(msg)
   hs.alert.show("Ratios printed to console")
 end
