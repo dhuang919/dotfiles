@@ -71,6 +71,11 @@ prSections:
       is:open
       -is:draft
       author:nmaharjan2
+  - title: Eric
+    filters: >-
+      is:open
+      -is:draft
+      author:eadamson7
 issuesSections:
   - title: My Issues
     filters: >-
