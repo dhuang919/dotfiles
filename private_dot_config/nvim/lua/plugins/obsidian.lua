@@ -45,7 +45,9 @@ return {
     },
     new_notes_location = "notes_subdir",
     preferred_link_style = "wiki",
-    disable_frontmatter = true,
+    frontmatter = {
+      enabled = false,
+    },
     templates = {
       folder = "templates",
     },
@@ -55,15 +57,17 @@ return {
     follow_img_func = function(img)
       vim.fn.jobstart({ "qlmanage", "-p", img }) -- mac os quick look preview
     end,
-    sort_by = "modified",
-    sort_reversed = true,
-    search_max_lines = 1000,
+    search = {
+      sort_by = "modified",
+      sort_reversed = true,
+      max_lines = 1000,
+    },
     open_notes_in = "vsplit",
     attachments = {
       img_folder = "assets",
     },
     callbacks = {
-      enter_note = function(_, note)
+      enter_note = function(note)
         vim.keymap.set("n", "<leader>ch", function()
           local line = vim.api.nvim_get_current_line()
           -- Check if unchecked (- [ ]) or in progress (- [>])
