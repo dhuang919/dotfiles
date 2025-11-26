@@ -5,8 +5,10 @@ name = "Derek Huang"
 email = "dhuang295@bloomberg.net"
 
 [aliases]
+btm = ["bookmark", "track", "main@origin", "main@upstream"]
 e = ["edit"]
 gfa = ["git", "fetch", "--all-remotes"]
+gi = ["git", "init"]
 gp = ["git", "push"]
 gpo = ["git", "push", "-b", "main", "--remote", "origin"]
 la = ["log", "-r", "all()"]
