@@ -15,7 +15,7 @@ local ratios = {
   },
   mail = { top = 0.03, left = 0.004, height = 0.77, width = 0.8 },
   slack_lptp = { top = 0.063, left = 0.02, height = 0.85, width = 0.85 },
-  slack_horizontal = { top = 0.038, left = 0.020, height = 0.871, width = 0.467 },
+  slack_horizontal = { top = 0.037, left = 0.028, height = 0.871, width = 0.459 },
   spotify = { top = 0.463, left = 0.013, height = 0.500, width = 0.426 },
   obsidian_lptp = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
   obsidian_horizontal = { top = 0.353, left = 0.500, height = 0.628, width = 0.483 },
