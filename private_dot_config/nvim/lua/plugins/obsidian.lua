@@ -14,7 +14,6 @@ return {
     "BufNewFile " .. notes,
   },
   dependencies = {
-    "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "saghen/blink.cmp",
     "ibhagwan/fzf-lua",
@@ -30,37 +29,13 @@ return {
         path = "~/dev/notes",
       },
     },
-    completion = {
-      nvim_cmp = false,
-      blink = true,
-      min_chars = 2,
-    },
     picker = {
       name = "fzf-lua",
     },
     notes_subdir = "zk",
-    open = {
-      use_advanced_uri = false,
-      func = vim.ui.open,
-    },
     new_notes_location = "notes_subdir",
-    preferred_link_style = "wiki",
     frontmatter = {
       enabled = false,
-    },
-    templates = {
-      folder = "templates",
-    },
-    follow_url_func = function(url)
-      vim.fn.jobstart({ "open", url }) -- open in default browser (mac os)
-    end,
-    follow_img_func = function(img)
-      vim.fn.jobstart({ "qlmanage", "-p", img }) -- mac os quick look preview
-    end,
-    search = {
-      sort_by = "modified",
-      sort_reversed = true,
-      max_lines = 1000,
     },
     open_notes_in = "vsplit",
     attachments = {

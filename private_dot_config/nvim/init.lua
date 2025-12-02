@@ -1,6 +1,5 @@
 local utils = require("utils")
 
-local a = vim.api
 local k = vim.keymap
 local g = vim.g
 local o = vim.opt
@@ -48,7 +47,6 @@ k.set("n", "q:", "")
 -- unhighlight with esc
 k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
 
-k.set("n", "<leader>o", "o<esc>>>A ", { desc = "New indented line" })
 k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
 
 -- copy file path to clipboard
