@@ -19,9 +19,7 @@ return {
     "ibhagwan/fzf-lua",
   },
   opts = {
-    ui = {
-      enable = false,
-    },
+    ui = { enable = false },
     legacy_commands = false,
     workspaces = {
       {
@@ -29,18 +27,8 @@ return {
         path = "~/dev/notes",
       },
     },
-    picker = {
-      name = "fzf-lua",
-    },
-    notes_subdir = "zk",
-    new_notes_location = "notes_subdir",
-    frontmatter = {
-      enabled = false,
-    },
-    open_notes_in = "vsplit",
-    attachments = {
-      img_folder = "assets",
-    },
+    picker = { name = "fzf-lua" },
+    frontmatter = { enabled = false },
     callbacks = {
       enter_note = function(note)
         vim.keymap.set("n", "<leader>ch", function()
@@ -61,18 +49,11 @@ return {
         end, { buffer = note.bufnr, desc = "Obsidian: check checkbox" })
       end,
 
-      --@param client obsidian.Client
       post_setup = function()
-        local util = require("obsidian.util")
-        local old_is_url = util.is_url
-        -- override to treat bb urls as urls
-        local _is_url = function(s)
-          if string.match(util.rstrip_whitespace(s), "^bbg://screens/[a-zA-Z0-9%%]+$") then
-            return true
-          end
-          return old_is_url(s)
-        end
-        util.is_url = _is_url
+        -- hack NakedUrl so it takes bbg://screens into account
+        -- remove after https://github.com/obsidian-nvim/obsidian.nvim/pull/328
+        local search = require("obsidian.search")
+        search.Patterns.NakedUrl = "[a-zA-Z][a-zA-Z0-9+.-]*://[a-zA-Z0-9._-]+[a-zA-Z0-9._#/=&?:+%%-]*[a-zA-Z0-9/]"
       end,
     },
   },
