@@ -1,24 +1,24 @@
 format = """
 $username\
-[](fg:#1c3144 bg:#596f62)\
+[](fg:#0e1a40 bg:#222f5b)\
 $directory\
-[](fg:#596f62 bg:#7ea16b)\
+[](fg:#222f5b bg:#5d5d5d)\
 $git_branch\
 $git_status\
-[ ](fg:#7ea16b bg:#c3d898)\
+[ ](fg:#5d5d5d bg:#946b2d)\
 $time$env_var\
-[ ](fg:#c3d898)\
+[ ](fg:#946b2d)\
 $character"""
 
 [username]
-style_root = "fg:red bg:#1c3144"
-style_user = "fg:#ffffff bg:#1c3144"
+style_root = "fg:red bg:#0e1a40"
+style_user = "fg:#ffffff bg:#0e1a40"
 format = "[ $user ]($style)"
 disabled = false
 show_always = true
 
 [directory]
-style = "fg:#ffffff bg:#596f62"
+style = "fg:#ffffff bg:#222f5b"
 format = "[ $path ]($style)"
 truncation_length = 2
 truncation_symbol = "…/"
@@ -26,24 +26,24 @@ truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "fg:#ffffff bg:#7ea16b"
+style = "fg:#ffffff bg:#5d5d5d"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "fg:#ffffff bg:#7ea16b"
+style = "fg:#ffffff bg:#5d5d5d"
 modified = "*"
 format = '[($all_status$ahead_behind )]($style)'
 
 [time]
 disabled = false
 time_format = "%T"
-style = "fg:#000000 bg:#c3d898"
+style = "fg:#ffffff bg:#946b2d"
 format = '[ $time ]($style)'
 
 [env_var]
 symbol = '🏠'
 variable = 'CHEZMOI_SUBSHELL'
-style = "fg:#000000 bg:#c3d898"
+style = "fg:#000000 bg:#946b2d"
 format = '[$symbol ]($style)'
 
 [character]
