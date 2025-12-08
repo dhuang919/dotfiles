@@ -38,7 +38,7 @@ format = '[($all_status$ahead_behind )]($style)'
 disabled = false
 time_format = "%T"
 style = "fg:#ffffff bg:#946b2d"
-format = '[ $time ]($style)'
+format = '[$time ]($style)'
 
 [env_var]
 symbol = '🏠'
