@@ -18,6 +18,7 @@ local ratios = {
   slack_horizontal = { top = 0.037, left = 0.028, height = 0.871, width = 0.459 },
   spotify = { top = 0.463, left = 0.013, height = 0.500, width = 0.426 },
   obsidian_lptp = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
+  obsidian_lptp_ext = { top = 0.042, left = 0.007, height = 0.941, width = 0.978 },
   obsidian_horizontal = { top = 0.353, left = 0.500, height = 0.628, width = 0.483 },
   messages = { top = 0.595, left = 0.668, height = 0.365, width = 0.321 },
   citrix = {
@@ -73,13 +74,13 @@ hs.hotkey.bind(bind_keys, "l", function()
   s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp, false, true)
 end)
 
--- Fullscreen terminal for note taking on laptop
+-- Terminal for notes on laptop
 hs.hotkey.bind(bind_keys, "o", function()
   s.moveIfOpen(
     "WezTerm",
     "LAPTOP",
-    external_connected and nil or ratios.obsidian_lptp,
-    external_connected and true or false
+    external_connected and ratios.obsidian_lptp_ext or ratios.obsidian_lptp,
+    false
   )
 end)
 
