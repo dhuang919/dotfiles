@@ -21,8 +21,11 @@ tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pus
 [diff]
 tool = "delta"
 
-[git]
-push-new-bookmarks = true
+[remotes.origin]
+auto-track-bookmarks = "main"
+
+[remotes.upstream]
+auto-track-bookmarks = "main"
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
