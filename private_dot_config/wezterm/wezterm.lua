@@ -19,11 +19,6 @@ local function basename(pathname)
   if head then
     pathname = string.sub(pathname, head)
   end
-  -- get rid of first word if separated with dashes
-  head = string.find(pathname, "-")
-  if head then
-    pathname = string.sub(pathname, head + 1)
-  end
   return pathname
 end
 
