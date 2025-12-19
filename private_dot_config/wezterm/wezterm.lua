@@ -146,23 +146,23 @@ c.keys = {
       end),
     }),
   },
-  {
-    key = "g",
-    mods = "CTRL",
-    action = wezterm.action_callback(function(win, pane)
-      if is_vi_proc(pane) then
-        win:perform_action(act.SendKey({ key = "g", mods = "CTRL" }), pane)
-      else
-        win:perform_action(
-          act.Multiple({
-            act.ClearScrollback("ScrollbackAndViewport"),
-            act.SendKey({ key = "Enter" }),
-          }),
-          pane
-        )
-      end
-    end),
-  },
+  -- {
+  --   key = "g",
+  --   mods = "CTRL",
+  --   action = wezterm.action_callback(function(win, pane)
+  --     if is_vi_proc(pane) then
+  --       win:perform_action(act.SendKey({ key = "g", mods = "CTRL" }), pane)
+  --     else
+  --       win:perform_action(
+  --         act.Multiple({
+  --           act.ClearScrollback("ScrollbackAndViewport"),
+  --           act.SendKey({ key = "Enter" }),
+  --         }),
+  --         pane
+  --       )
+  --     end
+  --   end),
+  -- },
 }
 
 -- Disable scrolling in nvim only
