@@ -49,7 +49,7 @@ wezterm.on("ActivatePaneDirection-down", function(window, pane)
   conditional_activate_pane(window, pane, "Down", "j")
 end)
 
-c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
+-- c.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 c.keys = {
   {
     key = "LeftArrow",
@@ -71,51 +71,51 @@ c.keys = {
     mods = "CMD",
     action = act.ClearScrollback("ScrollbackAndViewport"),
   },
-  {
-    mods = "LEADER",
-    key = "-",
-    action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
-  },
-  {
-    mods = "LEADER",
-    key = "|",
-    action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-  },
-  {
-    key = "/",
-    mods = "LEADER",
-    action = act.SplitPane({ direction = "Right", size = { Percent = RIGHT_PANE_PERCENT } }),
-  },
-  { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
-  { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
-  { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
-  { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
-  { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
-  { mods = "LEADER", key = "o", action = act.ActivateLastTab },
-  { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
-  { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
-  { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
-  { mods = "LEADER", key = "z", action = act.TogglePaneZoomState },
-  {
-    key = "H",
-    mods = "LEADER",
-    action = act.AdjustPaneSize({ "Left", 10 }),
-  },
-  {
-    key = "J",
-    mods = "LEADER",
-    action = act.AdjustPaneSize({ "Down", 10 }),
-  },
-  {
-    key = "K",
-    mods = "LEADER",
-    action = act.AdjustPaneSize({ "Up", 10 }),
-  },
-  {
-    key = "L",
-    mods = "LEADER",
-    action = act.AdjustPaneSize({ "Right", 10 }),
-  },
+  -- {
+  --   mods = "LEADER",
+  --   key = "-",
+  --   action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+  -- },
+  -- {
+  --   mods = "LEADER",
+  --   key = "|",
+  --   action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+  -- },
+  -- {
+  --   key = "/",
+  --   mods = "LEADER",
+  --   action = act.SplitPane({ direction = "Right", size = { Percent = RIGHT_PANE_PERCENT } }),
+  -- },
+  -- { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+  -- { mods = "CTRL", key = "h", action = act.EmitEvent("ActivatePaneDirection-left") },
+  -- { mods = "CTRL", key = "l", action = act.EmitEvent("ActivatePaneDirection-right") },
+  -- { mods = "CTRL", key = "k", action = act.EmitEvent("ActivatePaneDirection-up") },
+  -- { mods = "CTRL", key = "j", action = act.EmitEvent("ActivatePaneDirection-down") },
+  -- { mods = "LEADER", key = "o", action = act.ActivateLastTab },
+  -- { mods = "LEADER", key = "p", action = act.ActivateTabRelative(-1) },
+  -- { mods = "LEADER", key = "n", action = act.ActivateTabRelative(1) },
+  -- { mods = "LEADER", key = "x", action = act.CloseCurrentPane({ confirm = false }) },
+  -- { mods = "LEADER", key = "z", action = act.TogglePaneZoomState },
+  -- {
+  --   key = "H",
+  --   mods = "LEADER",
+  --   action = act.AdjustPaneSize({ "Left", 10 }),
+  -- },
+  -- {
+  --   key = "J",
+  --   mods = "LEADER",
+  --   action = act.AdjustPaneSize({ "Down", 10 }),
+  -- },
+  -- {
+  --   key = "K",
+  --   mods = "LEADER",
+  --   action = act.AdjustPaneSize({ "Up", 10 }),
+  -- },
+  -- {
+  --   key = "L",
+  --   mods = "LEADER",
+  --   action = act.AdjustPaneSize({ "Right", 10 }),
+  -- },
   {
     key = ".",
     mods = "LEADER",
