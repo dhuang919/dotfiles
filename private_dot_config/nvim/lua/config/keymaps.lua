@@ -19,3 +19,6 @@ k.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy plugin manager" })
 k.set("n", "<leader>d", function()
   vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
 end, { desc = "Show diagnostics in float" })
+
+-- mason ui
+k.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
