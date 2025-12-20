@@ -115,13 +115,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("CursorHold", {
-  desc = "Show errors and warnings in a floating window",
-  callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
-  end,
-})
-
 local function jumpWithVirtLineDiags(jumpCount)
   -- https://www.reddit.com/r/neovim/comments/1jm5atz/comment/mk9w6v0
   pcall(vim.api.nvim_del_augroup_by_name, "jumpWithVirtLineDiags") -- prevent autocmd for repeated jumps

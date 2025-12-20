@@ -1,6 +1,5 @@
 local utils = require("utils")
 
-local k = vim.keymap
 local g = vim.g
 local o = vim.opt
 
@@ -8,6 +7,7 @@ g.mapleader = " "
 g.maplocalleader = "\\"
 
 require("config.autocmds")
+require("config.keymaps")
 require("config.lazy")
 
 -- NOTE: formatoptions set in autocmds.lua
@@ -40,19 +40,6 @@ g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
 -- prefer after/ftplugin over built-in editorconfig
 g.editorconfig = false
 
--- disable command mode
-k.set("n", "Q", "")
-k.set("n", "q:", "")
-
--- unhighlight with esc
-k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
-
-k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
-
--- copy file path to clipboard
-k.set("n", "<leader>yp", ":let @+=expand('%:.')<cr>", { desc = "Copy relative path" })
-k.set("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
-
 -- filetype mappings for docker compose files expected by lsps
 vim.filetype.add({
   filename = {
@@ -74,5 +61,15 @@ vim.lsp.enable(vim.tbl_keys(servers))
 
 -- make sure yanking works through ssh
 if utils.is_ssh() then
-  vim.g.clipboard = "osc52"
+  vim.g.clipboard = {
+    name = "OSC52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
+      ["*"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
+    },
+  }
 end
