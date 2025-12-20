@@ -81,18 +81,18 @@ return {
       Lua = {},
     },
   },
-  pyright = {
-    settings = {
-      python = {
-        analysis = {
-          diagnosticSeverityOverrides = {
-            reportMissingImports = "none",
-          },
-        },
-        organizeImports = false, -- use ruff
-      },
-    },
-  },
+  -- pyright = {
+  --   settings = {
+  --     python = {
+  --       analysis = {
+  --         diagnosticSeverityOverrides = {
+  --           reportMissingImports = "none",
+  --         },
+  --       },
+  --       organizeImports = false, -- use ruff
+  --     },
+  --   },
+  -- },
   ruff = {
     capabilities = {
       general = {
@@ -104,5 +104,6 @@ return {
   },
   sqlls = {},
   ts_ls = {},
+  ty = {},
   yamlls = {},
 }

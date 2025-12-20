@@ -51,13 +51,13 @@ vim.filetype.add({
 })
 
 -- dynamically enable lsps
-local servers = require("lsp.servers")
+local lsps = require("config.lsps")
 
-for name, opts in pairs(servers) do
+for name, opts in pairs(lsps) do
   vim.lsp.config(name, opts)
 end
 
-vim.lsp.enable(vim.tbl_keys(servers))
+vim.lsp.enable(vim.tbl_keys(lsps))
 
 -- make sure yanking works through ssh
 if utils.is_ssh() then
