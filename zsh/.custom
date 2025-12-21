@@ -1,7 +1,4 @@
-{{- if eq .chezmoi.username "dhuang295" }}
-{{- if eq .chezmoi.arch "arm64" }}
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
-{{- end }}
 export GH_NO_UPDATE_NOTIFIER=1
 export GOPRIVATE="*.dev.bloomberg.com"
 export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
@@ -108,4 +105,3 @@ alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://b
 alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81'
 alias brew='epxy brew'
 alias r3t='docker run --rm -v "$(pwd -P):/workarea" -e USER=${USER} -it artprod.dev.bloomberg.com/training/rapi3tool:latest bash'
-{{- end }}

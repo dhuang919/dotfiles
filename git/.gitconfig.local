@@ -1,0 +1,3 @@
+[http "https://github.com"]
+	proxy = http://proxy.bloomberg.com:81
+	sslCAInfo = ~/bb-cert/bloomberg-root-ca.crt

@@ -32,13 +32,6 @@ brew "tldr"
 brew "wget"
 brew "zoxide"
 cask "beardedspice"
-{{- if eq .chezmoi.username "derek" }}
-cask "basictex"
-cask "cityofzion-neon"
-cask "ledger-live"
-cask "steam"
-cask "via"
-{{- end }}
 cask "docker"
 cask "dropbox"
 cask "firefox"

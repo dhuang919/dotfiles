@@ -3,10 +3,8 @@ export VISUAL='nvim'
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PYTHONDONTWRITEBYTECODE=1
-{{- if eq .chezmoi.os "darwin" }}
 BREW_DIR=$(brew --prefix)
 export GOBIN="${BREW_DIR}/bin"
-{{- end }}
 
 # use nvim for man pages
 export MANPAGER='nvim +Man!'
@@ -21,19 +19,11 @@ export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
 export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
-
-{{- if eq .chezmoi.hostname "mbp13-personal" }}
-[[ $PATH != */usr/local/opt/findutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/findutils/libexec/gnubin"
-[[ $PATH != */usr/local/opt/coreutils/libexec/gnubin* ]] && PATH="${PATH}:/usr/local/opt/coreutils/libexec/gnubin"
-[[ $PATH != */usr/local/texlive/2022basic/bin/universal-darwin* ]] && PATH="${PATH}:/usr/local/texlive/2022basic/bin/universal-darwin"
-{{- end }}
 [[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
 [[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
 [[ $PATH != */opt/homebrew/opt/bde-format@18/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@18/bin"
 [[ $PATH != */opt/homebrew/opt/node@22/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/node@22/bin"
 export PATH
-
-{{- if eq .chezmoi.os "darwin" }}
 function ftmr {
   # Fix tmux-resurrect
   local -r tmr_dir=~/.local/share/tmux/resurrect
@@ -204,7 +194,6 @@ function ww {
   #   open /Applications/Parallels\ Desktop.app
   # fi
 }
-{{- end }}
 
 function clean_docker {
   echo "Deleting containers..."
@@ -301,12 +290,10 @@ autoload run-help
 alias help=run-help
 
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
-{{- if eq .chezmoi.os "darwin" }}
 [ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
 
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias vt="cd ~/dev/notes"
-{{- end }}
 
 alias cz="chezmoi"
 alias cza="chezmoi apply"
