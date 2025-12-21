@@ -58,13 +58,12 @@
     sta = stash
     stp = stash pop
     sw = switch
-[includeIf "gitdir:~/Projects/"]
-    path = .gitconfig.work
 [url "https://github.com/"]
     insteadOf = github.com:
-[url "https://github.com/"]
     insteadOf = git@github.com:
-[url "https://github.com/"]
     insteadOf = ssh://git@github.com/
-[include]
-    path = ~/.gitconfig.local
+[http "https://github.com"]
+    proxy = http://proxy.bloomberg.com:81
+    sslCAInfo = ~/bb-cert/bloomberg-root-ca.crt
+[includeIf "gitdir:~/Projects/"]
+    path = .gitconfig.work

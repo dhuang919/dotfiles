@@ -3,11 +3,13 @@ export VISUAL='nvim'
 export GPG_TTY=$(tty)
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PYTHONDONTWRITEBYTECODE=1
+
 BREW_DIR=$(brew --prefix)
 export GOBIN="${BREW_DIR}/bin"
 
 # use nvim for man pages
 export MANPAGER='nvim +Man!'
+
 # add color to man pages
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
@@ -19,11 +21,13 @@ export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
 export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+
 [[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
 [[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
 [[ $PATH != */opt/homebrew/opt/bde-format@18/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@18/bin"
 [[ $PATH != */opt/homebrew/opt/node@22/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/node@22/bin"
 export PATH
+
 function ftmr {
   # Fix tmux-resurrect
   local -r tmr_dir=~/.local/share/tmux/resurrect
@@ -218,45 +222,6 @@ function clean_docker {
   docker system df
 }
 
-function gtdci {
-  # get top docker container id
-  local -r container_id=$(docker ps -ql)
-  echo -n $container_id | pbcopy
-  echo -n $container_id
-}
-
-function cze {
-  if [[ -z "$1" ]]; then
-    echo "File/dir required" >&2
-    return 1
-  fi
-
-  case "$1" in
-    # edit directories directly since nvim pane navigation doesn't work w `chezmoi edit`
-    hs) nvim ~/.local/share/chezmoi/dot_hammerspoon/;;
-    jj) chezmoi edit ~/.config/jj/config.toml;;
-    nvim) nvim ~/.local/share/chezmoi/private_dot_config/nvim/;;
-    tmux) nvim ~/.local/share/chezmoi/private_dot_config/tmux/tmux.conf;;
-    wezterm) chezmoi edit ~/.config/wezterm/wezterm.lua;;
-    zsh) chezmoi edit ~/.zshrc;;
-    *) chezmoi edit "$1";;
-  esac
-}
-
-function disk_usage {
-  if [[ -z "$1" ]]; then
-    echo "Directory required" >&2
-    return 1
-  fi
-  # du
-  #   -a display an entry for each file in a file hierarchy
-  #   -h human readable
-  # sort
-  #   -r sort in reverse order
-  #   -h human numeric sort
-  du -ah "$1" | sort -rh | less
-}
-
 function take {
   mkdir -p $@ && cd ${@:$#}
 }
@@ -278,7 +243,7 @@ if command -v jj >/dev/null 2>&1; then
   source <(jj util completion zsh)
 fi
 
-## edit line in vim buffer
+# Shortcut to edit using vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x' edit-command-line
 
@@ -294,11 +259,6 @@ alias help=run-help
 
 alias bubu="brew update && brew upgrade && brew cleanup"
 alias vt="cd ~/dev/notes"
-
-alias cz="chezmoi"
-alias cza="chezmoi apply"
-alias czu="chezmoi update"
-alias czanvl="cz add ~/.config/nvim/lazy-lock.json"
 alias ll="ls -lAh"
 alias vim="nvim"
 alias szsh="source ~/.zshrc"
