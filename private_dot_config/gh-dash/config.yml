@@ -12,11 +12,11 @@ prSections:
     layout:
       author:
         hidden: true
-  - title: My Closed PRs (6mo)
+  - title: My Closed PRs (3mo)
     filters: >-
       is:closed
       author:@me
-      updated:>={{ nowModify "-6mo" }}
+      updated:>={{ nowModify "-3mo" }}
     layout:
       author:
         hidden: true
