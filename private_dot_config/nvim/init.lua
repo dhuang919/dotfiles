@@ -60,16 +60,16 @@ end
 vim.lsp.enable(vim.tbl_keys(lsps))
 
 -- make sure yanking works through ssh
-if utils.is_ssh() then
-  vim.g.clipboard = {
-    name = "OSC52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
-      ["*"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
-    },
-  }
-end
+-- if utils.is_ssh() then
+--   vim.g.clipboard = {
+--     name = "OSC52",
+--     copy = {
+--       ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+--       ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+--     },
+--     paste = {
+--       ["+"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
+--       ["*"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
+--     },
+--   }
+-- end
