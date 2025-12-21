@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
 brew "blueutil"
-brew "coreutils"
 brew "docker", link: false
 brew "findutils"
 brew "fzf"

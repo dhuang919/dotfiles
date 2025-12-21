@@ -86,9 +86,9 @@ function _get_last_md {
 
 function todo {
   local -r scratch="${HOME}/dev/notes/scratch"
-  local -r year=$(gdate +%Y)
-  local -r month=$(gdate +%m)
-  local -r today=$(gdate +%d_%a | tr '[:upper:]' '[:lower:]')
+  local -r year=$(date +%Y)
+  local -r month=$(date +%m)
+  local -r today=$(date +%d_%a | tr '[:upper:]' '[:lower:]')
   local -r today_path="${scratch}/${year}/${month}/${today}.md"
   local prev_md
   local prev_dir
@@ -107,7 +107,7 @@ function todo {
     # Make sure we get the last md if it's been longer than a month since the last
     while [[ -z "${prev_md}" ]]; do
       # Keep decrementing by a month, going back to prev years if needed
-      prev_dir=$(gdate -d "1 month ago" +%Y/%m)
+      prev_dir=$(date -v-1m +%Y/%m)
       prev_md=$(_get_last_md "${scratch}/${prev_dir}")
     done
   else
