@@ -1,46 +1,59 @@
+# Default editors for CLI and GUI contexts
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+# Required for GPG signing (e.g., git commits) to prompt for passphrase correctly
 export GPG_TTY=$(tty)
+
+# Show timestamps in shell history (format: DD/MM/YY HH:MM:SS)
 export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# Prevent Python from creating .pyc bytecode cache files
 export PYTHONDONTWRITEBYTECODE=1
 
+# Homebrew paths - cache prefix to avoid repeated calls
 BREW_DIR=$(brew --prefix)
+
+# Install Go binaries to Homebrew's bin directory for consistent PATH access
 export GOBIN="${BREW_DIR}/bin"
 
-# use nvim for man pages
+# Use nvim as the pager for man pages (enables syntax highlighting, search, etc.)
 export MANPAGER='nvim +Man!'
 
-# add color to man pages
-export MANROFFOPT='-c'
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+# Colorized man pages using LESS_TERMCAP escape sequences
+# These work when viewing man pages through less (fallback if MANPAGER isn't used)
+export MANROFFOPT='-c'                                           # Force color output from groff
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)                # Begin blinking (green)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)                # Begin bold (cyan) - headings
+export LESS_TERMCAP_me=$(tput sgr0)                              # End mode
+export LESS_TERMCAP_mh=$(tput dim)                               # Begin dim
+export LESS_TERMCAP_mr=$(tput rev)                               # Begin reverse video
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)                   # End standout mode
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)  # Begin standout (yellow on blue) - search highlights
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)                   # End underline
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)     # Begin underline (white) - keywords
 
-[[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
-[[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"
-[[ $PATH != */opt/homebrew/opt/bde-format@18/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@18/bin"
-[[ $PATH != */opt/homebrew/opt/node@22/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/node@22/bin"
+# PATH additions - use pattern matching to avoid duplicates when re-sourcing
+[[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"    # Go binaries installed via 'go install'
+[[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"    # Go toolchain binaries
+[[ $PATH != */opt/homebrew/opt/bde-format@18/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@18/bin"  # BDE code formatter
+[[ $PATH != */opt/homebrew/opt/node@22/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/node@22/bin"  # Node.js v22 (keg-only, not linked)
 export PATH
 
+# Fix tmux-resurrect when the 'last' symlink points to a corrupted session file.
+# Relinks 'last' to the second most recent session backup so tmux can restore.
 function ftmr {
-  # Fix tmux-resurrect
   local -r tmr_dir=~/.local/share/tmux/resurrect
   local -r top5=$(find "$tmr_dir" -name "*.txt" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 5)
-  # echo "$top5"
   local -r second_most_recent=$(echo "$top5" | sed -n '2p')
   rm "${tmr_dir}/last"
-  # echo "$second_most_recent"
   ln -sf "${tmr_dir}/${second_most_recent}" "${tmr_dir}/last"
 }
 
+# Search across multiple git repos in the current directory.
+# Useful for monorepo-style project layouts where each subdirectory is its own repo.
+# Usage: ggrep <pattern> [git-grep-options]
 function ggrep {
-  # Git grep all directories in the current directory
   for d in $(find . -type d -depth 1); do
     git -C "$d" status &>/dev/null
     if [[ $? -eq 0 ]]; then
@@ -56,6 +69,8 @@ function ggrep {
   done
 }
 
+# Convert image format and resize to 30% (for reducing file size before sharing).
+# Usage: fmt_img source.heic destination.jpg
 function fmt_img {
   if [[ -z "$1" ]] || [[ -z "$2" ]]; then
     echo "Source/destination images required" >&2
@@ -65,6 +80,9 @@ function fmt_img {
   magick "$2" -resize 30% "$2"
 }
 
+# Batch convert all HEIC files in ~/Downloads to another format (default: jpg).
+# Also resizes to 30%. Useful for iPhone photos that need to be shared.
+# Usage: fmtheics [extension]
 function fmtheics {
   local -r ext="${1:-jpg}"
   local fn
@@ -80,10 +98,14 @@ function fmtheics {
   done
 }
 
+# Helper: find the most recent .md file in a directory (by filename sort)
 function _get_last_md {
   find "${1}" -name "*.md" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 1
 }
 
+# Create today's scratch/todo markdown file, carrying over uncompleted tasks from previous day.
+# Files are organized by year/month in ~/dev/notes/scratch/
+# Preserves front matter and incomplete todo items ([ ] or [>]) from the last file.
 function todo {
   local -r scratch="${HOME}/dev/notes/scratch"
   local -r year=$(date +%Y)
@@ -161,6 +183,9 @@ function todo {
   return 0
 }
 
+# Reconnect Bluetooth Magic Trackpad by unpairing and re-pairing.
+# Fixes intermittent connection issues without going to System Preferences.
+# Requires: blueutil (brew install blueutil)
 function tp {
   if ! type blueutil &> /dev/null; then
     echo "blueutil not installed" >&2
@@ -185,6 +210,7 @@ function tp {
   done
 }
 
+# "Work work" - open all apps needed to start the workday
 function ww {
   open -a /System/Applications/Calendar.app
   open -a /System/Applications/Messages.app
@@ -192,12 +218,15 @@ function ww {
   open -a /Applications/Docker.app
   open -a /Applications/Spotify.app
   open -a /Applications/Slack.app
+  # Parallels VM (commented out - no longer using)
   # if [[ -x "$(which prlctl)" ]]; then
   #   prlctl start c1f2e698-0d26-4dd3-85a7-03bdb9b7cc1a
   #   open /Applications/Parallels\ Desktop.app
   # fi
 }
 
+# Nuclear option for Docker cleanup - removes ALL containers, images, volumes, and caches.
+# Useful when Docker Desktop is eating too much disk space.
 function clean_docker {
   echo "Deleting containers..."
   for cid in $(docker ps -a | tail -n +2 | awk '{print $1}'); do
@@ -221,38 +250,64 @@ function clean_docker {
   docker system df
 }
 
+# Create directory and cd into it in one command (like mkdir + cd combined)
 function take {
   mkdir -p $@ && cd ${@:$#}
 }
 
-# zsh settings
+# ============================================================================
+# ZSH Completion Settings
+# ============================================================================
+
+# Cache completions for faster load times
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Show . and .. in completion menus
 zstyle ':completion:*' special-dirs true
+
+# Use bash's git completion script (more comprehensive than zsh's built-in)
 zstyle ':completion:*:*:git:*' script ~/.zsh/completion/git-completion.bash
 
+# Add custom completions to function path
 fpath=(~/.zsh/completion $fpath)
 type brew &>/dev/null && fpath+=${BREW_DIR}/share/zsh/site-functions
 
+# Initialize completion system (-i ignores insecure directories)
 autoload -Uz compinit && compinit -i
-autoload bashcompinit && bashcompinit
-zmodload -i zsh/complist
+autoload bashcompinit && bashcompinit   # Enable bash completion compatibility
+zmodload -i zsh/complist                 # Load completion list module for menu selection
 
+# Jujutsu (jj) version control completions
 if command -v jj >/dev/null 2>&1; then
   source <(jj util completion zsh)
 fi
 
-# Shortcut to edit using vim
+# Ctrl+X opens current command line in $EDITOR for complex edits
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x' edit-command-line
 
+# cd into directories just by typing the directory name (no cd required)
 setopt autocd
 
+# ============================================================================
+# External Configuration Sources
+# ============================================================================
+
+# Machine-specific overrides (work credentials, local paths, etc.)
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
+
+# WezTerm shell integration (enables features like clickable links, cwd tracking)
 [ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
 
+# ============================================================================
+# Tool Initializations (fzf, starship, zoxide)
+# ============================================================================
+
+# fzf: fuzzy finder for files, history, etc. (Ctrl+R for history, Ctrl+T for files)
 type fzf &>/dev/null && source <(fzf --zsh)
 
+# starship: cross-shell prompt with git status, language versions, etc.
 if type starship &>/dev/null; then
   eval "$(starship init zsh)"
 else
@@ -260,12 +315,14 @@ else
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
+# Workaround for starship vim mode indicator bug - reload if widget missing
 type starship_zle-keymap-select >/dev/null || \
   {
     echo "starship_zle bug. loading starship..."
     eval "$(starship init zsh)"
   }
 
+# zoxide: smarter cd that learns your most-used directories (use 'z' instead of 'cd')
 if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 else
@@ -273,17 +330,24 @@ else
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
-## enable `help`
+# ============================================================================
+# Aliases
+# ============================================================================
+
+# Enable zsh's built-in help system (like bash's 'help' command)
 [ alias run-help &>/dev/null ] && unalias run-help
 autoload run-help
 alias help=run-help
 
+# Homebrew maintenance - update, upgrade all packages, remove old versions
 alias bubu="brew update && brew upgrade && brew cleanup"
+
+# Short aliases for frequently used commands
 alias g="git"
-alias gd="gh dash"
-alias j="jj"
-alias ll="ls -lAh"
-alias mng="todo && vt && vim"
+alias gd="gh dash"          # GitHub dashboard TUI
+alias j="jj"                # Jujutsu version control
+alias ll="ls -lAh"          # Long listing with hidden files
+alias mng="todo && vt && vim"  # "Morning" routine: create todo, cd to notes, open vim
 alias tm="tmux"
 alias vim="nvim"
-alias vt="cd ~/dev/notes"
+alias vt="cd ~/dev/notes"   # Jump to notes directory
