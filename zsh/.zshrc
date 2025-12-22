@@ -189,7 +189,6 @@ function ww {
   open -a /System/Applications/Calendar.app
   open -a /System/Applications/Messages.app
   open -a /Applications/Google\ Chrome.app "https://bba.bloomberg.com"
-  open -a /Applications/Obsidian.app
   open -a /Applications/Docker.app
   open -a /Applications/Spotify.app
   open -a /Applications/Slack.app
