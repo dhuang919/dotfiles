@@ -307,20 +307,8 @@ setopt autocd
 # fzf: fuzzy finder for files, history, etc. (Ctrl+R for history, Ctrl+T for files)
 type fzf &>/dev/null && source <(fzf --zsh)
 
-# starship: cross-shell prompt with git status, language versions, etc.
-if type starship &>/dev/null; then
-  eval "$(starship init zsh)"
-else
-  echo "starship not found. installing..."
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
-fi
-
-# Workaround for starship vim mode indicator bug - reload if widget missing
-type starship_zle-keymap-select >/dev/null || \
-  {
-    echo "starship_zle bug. loading starship..."
-    eval "$(starship init zsh)"
-  }
+# Custom prompt configuration (username, directory, git status)
+[ -f ~/.prompt.sh ] && source ~/.prompt.sh
 
 # zoxide: smarter cd that learns your most-used directories (use 'z' instead of 'cd')
 if type zoxide &>/dev/null; then
@@ -344,10 +332,10 @@ alias bubu="brew update && brew upgrade && brew cleanup"
 
 # Short aliases for frequently used commands
 alias g="git"
-alias gd="gh dash"          # GitHub dashboard TUI
-alias j="jj"                # Jujutsu version control
-alias ll="ls -lAh"          # Long listing with hidden files
-alias mng="todo && vt && vim"  # "Morning" routine: create todo, cd to notes, open vim
+alias gd="gh dash"               # Github dashboard TUI
+alias j="jj"                     # Jujutsu version control
+alias ll="ls -lAh --color=auto"  # Long listing with hidden files
+alias mng="todo && vt && vim"    # "Morning" routine: create todo, cd to notes, open vim
 alias tm="tmux"
 alias vim="nvim"
-alias vt="cd ~/dev/notes"   # Jump to notes directory
+alias vt="cd ~/dev/notes"        # Jump to notes directory
