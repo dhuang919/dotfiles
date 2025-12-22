@@ -32,25 +32,6 @@ function clean_docker {
   docker system df
 }
 
-function gen_cc {
-  if [[ -d /build ]]; then
-    echo "Removing /build"
-    rm -rf /build
-  fi
-  if [[ -L compile_comands.json ]]; then
-    echo "Removing compile_commands.json symlink"
-    rm compile_commands.json
-  fi
-  /opt/bb/bin/cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_TOOLCHAIN_FILE:FILEPATH=/opt/bb/share/cmake/BBFastToolchain/BBFastToolchain64.cmake --no-warn-unused-cli -S . -B/build -G Ninja
-  if [[ $? -eq 0 ]]; then
-    ln -sf /build/compile_commands.json .
-    echo "successfully symlinked compile_commands.json"
-    return 0
-  fi
-  echo "failed to generate compile_commands.json" >&2
-  return 1
-}
-
 function take {
   mkdir -p "$@" && cd "${@:$#}"
 }
