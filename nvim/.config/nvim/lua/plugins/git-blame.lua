@@ -2,6 +2,7 @@ return {
   "f-person/git-blame.nvim",
   event = "VeryLazy",
   opts = {
+    enable = false,  -- disable by default and toggle with tb binding defined below
     message_template = "<author> | <date> | <summary>",
     date_format = "%m-%d-%y %H:%M:%S",
   },
