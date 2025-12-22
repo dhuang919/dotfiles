@@ -248,22 +248,8 @@ bindkey '^x' edit-command-line
 
 setopt autocd
 
-## enable `help`
-[ alias run-help &>/dev/null ] && unalias run-help
-autoload run-help
-alias help=run-help
-
 [ -f ~/.custom ] && source ~/.custom 2>& /dev/null
 [ -f ~/.config/wezterm/wezterm.sh ] && source ~/.config/wezterm/wezterm.sh
-
-alias bubu="brew update && brew upgrade && brew cleanup"
-alias vt="cd ~/dev/notes"
-alias ll="ls -lAh"
-alias vim="nvim"
-alias szsh="source ~/.zshrc"
-alias g="git"
-alias gd="gh dash"
-alias mng="todo && vt && vim"
 
 type fzf &>/dev/null && source <(fzf --zsh)
 
@@ -286,3 +272,18 @@ else
   echo "zoxide not found. installing..."
   curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
+
+## enable `help`
+[ alias run-help &>/dev/null ] && unalias run-help
+autoload run-help
+alias help=run-help
+
+alias bubu="brew update && brew upgrade && brew cleanup"
+alias g="git"
+alias gd="gh dash"
+alias j="jj"
+alias ll="ls -lAh"
+alias mng="todo && vt && vim"
+alias tm="tmux"
+alias vim="nvim"
+alias vt="cd ~/dev/notes"
