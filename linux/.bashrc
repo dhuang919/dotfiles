@@ -87,3 +87,4 @@ alias ll="ls -lAh --color=auto"
 alias vim="nvim"
 alias g="git"
 alias j="jj"
+alias jp="jj tug && jj gp"       # jj update the closest branch and push it - *depends on jj aliases*

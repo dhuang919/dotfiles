@@ -334,6 +334,7 @@ alias bubu="brew update && brew upgrade && brew cleanup"
 alias g="git"
 alias gd="gh dash"               # Github dashboard TUI
 alias j="jj"                     # Jujutsu version control
+alias jp="jj tug && jj gp"       # jj update the closest branch and push it - *depends on jj aliases*
 alias ll="ls -lAh --color=auto"  # Long listing with hidden files
 alias mng="todo && vt && vim"    # "Morning" routine: create todo, cd to notes, open vim
 alias tm="tmux"
