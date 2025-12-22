@@ -10,8 +10,6 @@ export LC_ALL=en_US.UTF-8
 [[ $PATH != *${HOME}/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
 export PATH
 
-eval "$(zoxide init bash)"
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Setup custom prompt
@@ -79,6 +77,9 @@ function setup_cc {
   claude plugin marketplace add git@bbgithub.dev.bloomberg.com:devx-ai-tooling/claude-skills.git
   claude plugin install bloomberg-engineering-skills
 }
+
+# Init zoxide at the end otherwise it complains
+eval "$(zoxide init bash)"
 
 alias dpxy="http_proxy=http://devproxy.bloomberg.com:82 https_proxy=http://devproxy.bloomberg.com:82"
 alias epxy="http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81"
