@@ -50,54 +50,6 @@ function pipconf {
   echo "${1}.conf copied"
 }
 
-function sync_configs {
-  # Usage:
-  # sync_configs dhuang295_d5c437.spaces syncs to /root/.config/
-  # sync_configs -d dhuang295@tslgd2-tt-342 syncs to /home/dhuang295/.config/
-
-  local dev=0
-  while getopts "d" opt; do
-    case "$opt" in
-      d) dev=1
-    esac
-  done
-  shift $((OPTIND-1))
-
-  if [[ -z "${1}" ]]; then
-    echo "Host required" >&2
-    return 1
-  fi
-  local -r host="$1"
-
-  # default to spaces where ~ is /root
-  local remote_dir="/root/.config/"
-  if [[ $dev -eq 1 ]]; then
-    if [[ $host != *"@"* ]]; then
-      echo "Copying to dev but host '$host' doesn't look right so aborting" >&2
-      return 1
-    fi
-    remote_dir="/home/dhuang295/.config/"
-  fi
-
-  local remote_addr="${1}:${remote_dir}"
-  echo "Copying configs to ${remote_addr}"
-  if [[ -x "$(which rsync)" ]]; then
-    echo "Using rsync"
-    # assume it's on PATH
-    rsync -rav --exclude 'obsidian.lua' ~/.config/nvim "${remote_addr}"
-    rsync -rav ~/.config/starship.toml "${remote_addr}"
-    rsync -av ~/.config/tmux/tmux.conf "${1}:~/.config/tmux/"
-    rsync -rav ~/.config/jj "${remote_addr}"
-    return 0
-  fi
-  echo "Using scp"
-  scp -r ~/.config/nvim "${remote_addr}"
-  scp ~/.config/starship.toml "${remote_addr}"
-  scp -r ~/.config/tmux/tmux.conf "${remote_addr}"
-  scp -r ~/.config/jj "${remote_addr}"
-  return 0
-}
-
 source ~/.lcldevrc
 ssh-add ~/.ssh/bbgithub/id_ed25519
 
