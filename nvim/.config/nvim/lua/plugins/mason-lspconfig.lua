@@ -1,9 +1,7 @@
-local lsps = require("config.lsps")
-
 return {
   "mason-org/mason-lspconfig.nvim",
   opts = {
-    ensure_installed = vim.tbl_keys(lsps),
+    automatic_installation = true,  -- installs LSP when you open a matching filetype
   },
   dependencies = {
     { "mason-org/mason.nvim", opts = {} },
