@@ -1,8 +1,10 @@
 local notes = vim.fn.expand("~") .. "/dev/notes/**.md"
+local utils = require("utils")
 
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
+  cond = not utils.is_ssh(),  -- don't install on spaces
   lazy = true,
   -- ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
