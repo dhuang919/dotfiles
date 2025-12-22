@@ -1,0 +1,55 @@
+[user]
+    name = dhuang295
+    email = dhuang295@bloomberg.net
+[init]
+    defaultBranch = main
+[diff]
+    mnemonicprefix = true
+    algorithm = patience
+[color]
+    ui = auto
+[core]
+    autocrlf = false
+    editor = nvim
+    pager = delta
+    fileMode = false
+    safecrlf = true
+[delta]
+    line-numbers = true
+    navigate = true
+    true-color = always
+[interactive]
+    diffFilter = delta --color-only
+[push]
+    default = upstream
+    autoSetupRemote = true
+[pull]
+    rebase = false
+[alias]
+    alias = config --get-regexp ^alias\\.
+    br = branch
+    ci = commit
+    co = checkout
+    hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short
+    re = restore
+    sm = switch main
+    st = status -sb
+    sta = stash
+    stp = stash pop
+    sw = switch
+    gone = "!f() { git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f"
+[merge]
+    tool = opendiff
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[rerere]
+    # Remember my merges
+    # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
+    enabled = true
+[url "bbgithub:"]
+    insteadOf = https://bbgithub.dev.bloomberg.com/
+[submodule]
+    recurse = true
