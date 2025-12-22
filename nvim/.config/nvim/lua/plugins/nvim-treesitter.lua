@@ -5,35 +5,18 @@ return {
   config = function()
     require("nvim-treesitter.install").prefer_git = true
     require("nvim-treesitter.configs").setup({
-      auto_install = true,
-      ensure_installed = {
-        "bash",
-        "c",
-        "cpp",
-        "diff",
-        "dockerfile",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "gitignore",
-        "go",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "make",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "sql",
-        "toml",
-        "tsx",
-        "typescript",
-        "xml",
-        "yaml",
-      },
+      auto_install = true,  -- installs parser when you open a matching filetype
       highlight = { enable = true },
       indent = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          node_decremental = "<BS>",
+          scope_incremental = "<TAB>",
+        },
+      },
     })
   end,
 }
