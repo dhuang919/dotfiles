@@ -21,6 +21,7 @@ c.enable_scroll_bar = true
 c.font = wezterm.font("0xProto")
 c.font_size = 13
 c.hide_tab_bar_if_only_one_tab = true
+c.hyperlink_rules = wezterm.default_hyperlink_rules()
 c.initial_cols = 120
 c.initial_rows = 35
 c.scrollback_lines = 10000
