@@ -31,7 +31,7 @@ _pc_git=$'%{\e['"${COLOR_GIT}"$'m%}'
 _pc_reset=$'%{\e[0m%}'
 
 PROMPT=''
-PROMPT+="${_pc_time}"'[%*]'"${_pc_reset}"' '                    # time (HH:MM:SS)
+PROMPT+="${_pc_time}"'[%D{%H:%M:%S}]'"${_pc_reset}"' '          # time (HH:MM:SS)
 PROMPT+='%(#.'"${_pc_root}"'.'"${_pc_user}"')%n'"${_pc_reset}"  # user
 PROMPT+=':'"${_pc_dir}"'%~'"${_pc_reset}"                       # directory
 PROMPT+="${_pc_git}"'$(parse_git)'"${_pc_reset}"                # git status
