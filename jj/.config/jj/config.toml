@@ -12,7 +12,6 @@ email = "derekh919@gmail.com"
 email = "dhuang295@bloomberg.net"
 
 [aliases]
-btm = ["bookmark", "track", "main@origin", "main@upstream"]
 de = ["describe", "--editor"]
 e = ["edit"]
 gfa = ["git", "fetch", "--all-remotes"]
