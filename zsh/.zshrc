@@ -256,7 +256,7 @@ function take {
 }
 
 # ============================================================================
-# ZSH Completion Settings
+# ZSH Settings
 # ============================================================================
 
 # Cache completions for faster load times
@@ -282,6 +282,9 @@ zmodload -i zsh/complist                 # Load completion list module for menu 
 if command -v jj >/dev/null 2>&1; then
   source <(jj util completion zsh)
 fi
+
+# Use emacs keybindings for line editing (ctrl+a/e for beginning/end of line, etc)
+bindkey -e
 
 # Ctrl+X opens current command line in $EDITOR for complex edits
 autoload edit-command-line; zle -N edit-command-line
