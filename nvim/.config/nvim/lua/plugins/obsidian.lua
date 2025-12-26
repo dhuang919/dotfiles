@@ -1,20 +1,10 @@
-local notes = vim.fn.expand("~") .. "/dev/notes/**.md"
 local utils = require("utils")
 
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
   cond = not utils.is_ssh(),  -- don't install on spaces
-  lazy = true,
-  -- ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  event = {
-    -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    -- refer to `:h file-pattern` for more examples
-    "BufReadPre " .. notes,
-    "BufNewFile " .. notes,
-  },
+  ft = "markdown",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "saghen/blink.cmp",
@@ -32,23 +22,10 @@ return {
     picker = { name = "fzf-lua" },
     frontmatter = { enabled = false },
     callbacks = {
-      enter_note = function(note)
+      enter_note = function(_)
         vim.keymap.set("n", "<leader>ch", function()
-          local line = vim.api.nvim_get_current_line()
-          -- Check if unchecked (- [ ]) or in progress (- [>])
-          local before, after = line:match("^(%s*%- %[)[ >]?(%].*)$")
-          if before then
-            vim.api.nvim_set_current_line(before .. "x" .. after)
-            return
-          end
-
-          -- Uncheck if checked
-          before, after = line:match("^(%s*%- %[)x(].*)$")
-          if before then
-            vim.api.nvim_set_current_line(before .. " " .. after)
-            return
-          end
-        end, { buffer = note.bufnr, desc = "Obsidian: check checkbox" })
+          require("obsidian.api").toggle_checkbox()
+        end, { buffer = true, desc = "Toggle checkbox" })
       end,
 
       post_setup = function()
