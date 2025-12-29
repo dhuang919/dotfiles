@@ -10,6 +10,7 @@ return {
           LineNrAbove = { fg = "#98d2f4" },
           LineNrBelow = { fg = "#fd9dc0" },
           CursorLineNr = { fg = "#ffffff" },
+          WinSeparator = { fg = "#ffffff" },
         }
       end,
     })

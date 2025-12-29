@@ -12,30 +12,31 @@ require("config.lazy")
 
 -- NOTE: formatoptions set in autocmds.lua
 -- https://neovim.discourse.group/t/options-formatoptions-not-working-when-put-in-init-lua/3746
-o.copyindent = true
-o.breakindent = true
-o.showbreak = string.rep(" ", 2) -- indent second line when wrapping
-o.expandtab = true
-o.linebreak = true
-o.mouse = ""
-o.number = true
-o.showmode = false
-o.splitbelow = true
-o.splitright = true
-o.swapfile = false
-o.undofile = true -- persistent undo
-o.wrap = true
-o.backspace = { "indent", "eol", "start" }
-o.clipboard = { "unnamed", "unnamedplus" }
-o.scrolloff = 3 -- always keep 3 lines above/below the cursor
-o.cursorline = true
+o.copyindent = true -- preserve indent structure when auto-indenting
+o.breakindent = true -- wrapped lines continue visually indented
+o.showbreak = string.rep(" ", 2) -- indent wrapped lines by 2 spaces
+o.expandtab = true -- use spaces instead of tabs
+o.linebreak = true -- wrap at word boundaries, not mid-word
+o.mouse = "" -- disable mouse support
+o.number = true -- show line numbers
+o.showmode = false -- hide mode indicator (shown in statusline)
+o.splitbelow = true -- horizontal splits open below
+o.splitright = true -- vertical splits open to the right
+o.swapfile = false -- disable swap files
+o.undofile = true -- persistent undo across sessions
+o.wrap = true -- wrap long lines
+o.backspace = { "indent", "eol", "start" } -- allow backspace over everything
+o.clipboard = { "unnamed", "unnamedplus" } -- use system clipboard
+o.scrolloff = 3 -- keep 3 lines visible above/below cursor
+o.cursorline = true -- highlight current line
+o.laststatus = 3 -- global statusline; required for horizontal pane separators
 
 -- use treesitter for folding
 o.foldmethod = "expr"
-o.foldlevelstart = 99
+o.foldlevelstart = 99 -- start with all folds open
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python")
+g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python") -- python provider for plugins
 
 -- prefer after/ftplugin over built-in editorconfig
 g.editorconfig = false
