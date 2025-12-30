@@ -95,8 +95,9 @@ eval "$(zoxide init bash)"
 
 alias dpxy="http_proxy=http://devproxy.bloomberg.com:82 https_proxy=http://devproxy.bloomberg.com:82"
 alias epxy="http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81"
-alias ll="ls -lAh --color=auto"
-alias vim="nvim"
 alias g="git"
 alias j="jj"
 alias jp="jj tug && jj gp"       # jj update the closest branch and push it - *depends on jj aliases*
+alias ll="ls -lAh --color=auto"
+alias tm="tmux"
+alias vim="nvim"
