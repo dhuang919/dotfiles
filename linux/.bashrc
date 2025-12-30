@@ -78,6 +78,18 @@ function setup_cc {
   claude plugin install bloomberg-engineering-skills
 }
 
+function setup_chef {
+  docker pull artprod.dev.bloomberg.com/chef-workstation:latest
+  docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-chef.sh > /usr/bin/chef
+  chmod +x /usr/bin/chef
+  docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-kitchen.sh > /usr/bin/kitchen
+  chmod +x /usr/bin/kitchen
+  docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-knife.sh > /usr/bin/knife
+  chmod +x /usr/bin/knife
+  docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-irb.sh > /usr/bin/irb
+  chmod +x /usr/bin/irb
+}
+
 # Init zoxide at the end otherwise it complains
 eval "$(zoxide init bash)"
 
