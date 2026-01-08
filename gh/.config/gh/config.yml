@@ -8,18 +8,13 @@ prompt: enabled
 pager: less
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    ci: pr checks
-    b: browse
-    pc: pr create -w
-    pv: '!gh pr view $1 -w'
-    als: alias list
-    pls: pr list -s all -A @me
-    pvh: '!gh pr view $(gh pls | head -n 1 | awk "{print \$1}") -w'
-    pm: pr merge -s -d
-    rfc: '!gh repo fork "$(basename "$(pwd)")/$1" --clone'
-    res: '!gh repo sync -s tssr/"$(basename "$(pwd)")" && git prul'
-    rsd: '!gh repo set-default "$(basename "$(dirname "$(pwd)")")"/"$(basename "$(pwd)")"'
-    prs: pr list -s all
+  # gh -h shows this list
+  b: browse
+  rfc: '!gh repo fork "$(basename "$(pwd)")/$1" --clone'
+  rsd: '!gh repo set-default "$(basename "$(dirname "$(pwd)")")"/"$(basename "$(pwd)")"'
+  myprs: pr list -s all -A @me
+  prs: pr list -s all
+  url: "!gh repo view --json url -q .url | tr -d '\n' | pbcopy"
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
