@@ -106,6 +106,7 @@ function _get_last_md {
 # Create today's scratch/todo markdown file, carrying over uncompleted tasks from previous day.
 # Files are organized by year/month in ~/dev/notes/scratch/
 # Preserves front matter and incomplete todo items ([ ] or [>]) from the last file.
+# icloud notes: ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/notes
 function todo {
   local -r scratch="${HOME}/dev/notes/scratch"
   local -r year=$(date +%Y)

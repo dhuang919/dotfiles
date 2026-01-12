@@ -5,7 +5,7 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.install").prefer_git = true
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter.config").setup({
       auto_install = true,  -- installs parser when you open a matching filetype
       highlight = { enable = true },
       indent = { enable = true },
