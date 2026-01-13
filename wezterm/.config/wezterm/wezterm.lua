@@ -26,6 +26,7 @@ c.initial_cols = 120
 c.initial_rows = 35
 c.scrollback_lines = 10000
 c.tab_bar_at_bottom = true
+c.term = "wezterm"
 c.use_dead_keys = false
 c.window_close_confirmation = "NeverPrompt"
 c.window_decorations = "TITLE | RESIZE | MACOS_FORCE_DISABLE_SHADOW"
