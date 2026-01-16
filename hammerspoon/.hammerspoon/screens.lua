@@ -45,10 +45,10 @@ function S._moveWindow(window, screenObj, ratios, fullscreen)
   )
   window:move(f, screenObj, false)
   -- Retry resize if window didn't reach target height (common with terminals)
-  hs.timer.doAfter(0.2, function()
+  hs.timer.doAfter(2, function()
     if window and window:frame() then
       local heightDiff = math.abs(window:frame().h - f.h)
-      if heightDiff > 3 then
+      if heightDiff > 5 then
         window:move(f, screenObj, false)
       end
     end
