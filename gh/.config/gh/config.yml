@@ -14,6 +14,7 @@ aliases:
   rsd: '!gh repo set-default "$(basename "$(dirname "$(pwd)")")"/"$(basename "$(pwd)")"'
   myprs: pr list -s all -A @me
   prs: pr list -s all
+  pvh: '!gh pr view $(gh pr list -s all -A @me | head -n 1 | awk "{print \$1}") -w'
   url: "!gh repo view --json url -q .url | tr -d '\n' | pbcopy"
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
