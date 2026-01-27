@@ -3,7 +3,7 @@ local utils = require("utils")
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
-  cond = not utils.is_ssh(),  -- don't install on spaces
+  cond = not utils.is_ssh(), -- don't install on spaces
   ft = "markdown",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
@@ -32,7 +32,8 @@ return {
         -- hack NakedUrl so it takes bbg://screens into account
         -- remove after https://github.com/obsidian-nvim/obsidian.nvim/pull/328
         local search = require("obsidian.search")
-        search.Patterns.NakedUrl = "[a-zA-Z][a-zA-Z0-9+.-]*://[a-zA-Z0-9._-]+[a-zA-Z0-9._#/=&?:+%%-]*[a-zA-Z0-9/]"
+        search.Patterns.NakedUrl =
+          "[a-zA-Z][a-zA-Z0-9+.-]*://[a-zA-Z0-9._-]+[a-zA-Z0-9._#/=&?:+%%-]*[a-zA-Z0-9/]"
       end,
     },
   },

@@ -5,7 +5,6 @@ repos:
       - id: trailing-whitespace
       - id: check-yaml
       - id: check-toml
-      - id: end-of-file-fixer
         exclude: lazy-lock.json$
 
   - repo: https://github.com/pre-commit/mirrors-prettier

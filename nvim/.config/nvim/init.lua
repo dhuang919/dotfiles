@@ -69,8 +69,12 @@ if utils.is_ssh() then
       ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ["+"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
-      ["*"] = function() return vim.split(vim.fn.getreg("0"), "\n") end,
+      ["+"] = function()
+        return vim.split(vim.fn.getreg("0"), "\n")
+      end,
+      ["*"] = function()
+        return vim.split(vim.fn.getreg("0"), "\n")
+      end,
     },
   }
 end

@@ -25,7 +25,8 @@ k.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- disable mouse/trackpad scrolling
 local modes = { "n", "v", "i" }
-local scroll_keys = { "<ScrollWheelUp>", "<ScrollWheelDown>", "<ScrollWheelLeft>", "<ScrollWheelRight>" }
+local scroll_keys =
+  { "<ScrollWheelUp>", "<ScrollWheelDown>", "<ScrollWheelLeft>", "<ScrollWheelRight>" }
 
 for _, mode in ipairs(modes) do
   for _, key in ipairs(scroll_keys) do

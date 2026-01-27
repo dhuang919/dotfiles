@@ -23,7 +23,9 @@ autocmd("BufWritePre", {
     local bufname = vim.api.nvim_buf_get_name(buf)
 
     -- skip oil buffers
-    if bufname:match("^oil://") then return end
+    if bufname:match("^oil://") then
+      return
+    end
 
     -- skip unmodifiable/readonly
     if vim.bo[buf].buftype ~= "" or not vim.bo[buf].modifiable or vim.bo[buf].readonly then
@@ -142,12 +144,7 @@ end
 autocmd("LspAttach", {
   desc = "LSP key bindings",
   callback = function(event)
-    vim.keymap.set(
-      "n",
-      "K",
-      vim.lsp.buf.hover,
-      { desc = "LSP Hover", buffer = event.buf }
-    )
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover", buffer = event.buf })
     vim.keymap.set(
       "n",
       "<leader>rn",
