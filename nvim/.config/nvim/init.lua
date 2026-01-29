@@ -33,8 +33,11 @@ o.laststatus = 3 -- global statusline; required for horizontal pane separators
 
 -- use treesitter for folding
 o.foldmethod = "expr"
-o.foldlevelstart = 99 -- start with all folds open
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldlevelstart = 99     -- start with all folds open
+o.foldcolumn = "1"        -- show fold indicators in gutter
+o.foldtext = ""           -- show first line of fold cleanly
+o.fillchars:append({ fold = " " }) -- cleaner fold line appearance
 
 g.python3_host_prog = vim.fn.expand("~/nvim_venv/bin/python") -- python provider for plugins
 
