@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       theme = "auto",
-      globalstatus = vim.o.laststatus == 3,
+      globalstatus = true,
     },
     sections = {
       lualine_a = { "mode" },
