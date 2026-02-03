@@ -219,6 +219,7 @@ function ww {
   open -a /Applications/Docker.app
   open -a /Applications/Spotify.app
   open -a /Applications/Slack.app
+  open -a /Applications/Obsidian.app
   # Parallels VM (commented out - no longer using)
   # if [[ -x "$(which prlctl)" ]]; then
   #   prlctl start c1f2e698-0d26-4dd3-85a7-03bdb9b7cc1a

@@ -35,7 +35,6 @@ o.laststatus = 3 -- global statusline; required for horizontal pane separators
 o.foldmethod = "expr"
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldlevelstart = 99     -- start with all folds open
-o.foldcolumn = "1"        -- show fold indicators in gutter
 o.foldtext = ""           -- show first line of fold cleanly
 o.fillchars:append({ fold = " " }) -- cleaner fold line appearance
 

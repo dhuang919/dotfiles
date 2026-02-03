@@ -34,6 +34,3 @@ for _, mode in ipairs(modes) do
   end
 end
 
--- folding
-k.set("n", "<Tab>", "za", { desc = "Toggle fold" })
-k.set("n", "<S-Tab>", "zA", { desc = "Toggle fold recursively" })
