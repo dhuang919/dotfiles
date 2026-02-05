@@ -20,7 +20,7 @@ local ratios = {
   obsidian_lptp = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
   obsidian_lptp_ext = { top = 0.042, left = 0.007, height = 0.941, width = 0.978 },
   obsidian_horizontal = { top = 0.353, left = 0.500, height = 0.628, width = 0.483 },
-  messages = { top = 0.595, left = 0.668, height = 0.365, width = 0.321 },
+  messages = { top = 0.452, left = 0.448, height = 0.535, width = 0.543 },
   citrix = {
     msg = { top = 0.078, left = 0.007, height = 0.656, width = 0.486 },
     appt = { top = 0.078, left = 0.5, height = 0.578, width = 0.489 },
@@ -35,8 +35,8 @@ hs.hotkey.bind(bind_keys, "w", function()
   s.moveIfOpen("bbvpn2", "HORIZONTAL", ratios.bbvpn)
   s.moveIfOpen("Calendar", "HORIZONTAL", ratios.calendar)
   s.moveIfOpen("Obsidian", "HORIZONTAL", ratios.obsidian_horizontal)
-  s.moveIfOpen("Messages", "HORIZONTAL", ratios.messages)
   s.moveIfOpen("Slack", "HORIZONTAL", ratios.slack_horizontal)
+  s.moveIfOpen("Messages", "LAPTOP", ratios.messages)
   s.moveIfOpen(
     "WezTerm",
     external_connected and "VERTICAL" or "LAPTOP",

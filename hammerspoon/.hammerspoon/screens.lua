@@ -1,5 +1,7 @@
 local S = { screens = {}, locked = {} }
 
+hs.window.animationDuration = 0
+
 for _, screen in ipairs(hs.screen.allScreens()) do
   local x, y = screen:position()
   if x == 0 and y == 0 then
@@ -44,15 +46,6 @@ function S._moveWindow(window, screenObj, ratios, fullscreen)
     screenFrame.h * ratios.height
   )
   window:move(f, screenObj, false)
-  -- Retry resize if window didn't reach target height (common with terminals)
-  hs.timer.doAfter(2, function()
-    if window and window:frame() then
-      local heightDiff = math.abs(window:frame().h - f.h)
-      if heightDiff > 5 then
-        window:move(f, screenObj, false)
-      end
-    end
-  end)
 end
 
 function S.moveIfOpen(appName, screenKey, ratios, fullscreen, lock)
