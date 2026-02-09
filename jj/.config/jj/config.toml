@@ -41,6 +41,7 @@ auto-track-bookmarks = "main"
 
 [ui]
 pager = ["delta", "--pager", "less -FRX"]
+conflict-marker-style = "git"
 diff-formatter = ":git"
 diff-editor = ":builtin"
 default-command = "log"
