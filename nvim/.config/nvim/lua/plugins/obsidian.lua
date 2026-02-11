@@ -12,6 +12,7 @@ return {
   },
   opts = {
     ui = { enable = false },
+    footer = { enabled = false },
     legacy_commands = false,
     workspaces = {
       {
