@@ -30,6 +30,7 @@ o.clipboard = { "unnamed", "unnamedplus" } -- use system clipboard
 o.scrolloff = 3 -- keep 3 lines visible above/below cursor
 o.cursorline = true -- highlight current line
 o.laststatus = 3 -- global statusline; required for horizontal pane separators
+o.updatetime = 250 -- ms of idle before CursorHold fires and swap file writes (default 4000)
 
 -- use treesitter for folding
 o.foldmethod = "expr"

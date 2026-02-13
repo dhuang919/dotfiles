@@ -57,6 +57,31 @@ autocmd("TextYankPost", {
   end,
 })
 
+-- Detect external file changes when idle (claude)
+local reload_group = augroup("external_edit_reload", {})
+autocmd({ "FocusGained", "CursorHold" }, {
+  pattern = "*",
+  desc = "Check for external file changes",
+  group = reload_group,
+  callback = function()
+    if vim.bo.buftype == "" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+-- Fix treesitter highlighting after autoread reloads an externally changed file.
+autocmd("FileChangedShellPost", {
+  pattern = "*",
+  desc = "Re-parse buffer after external file change",
+  group = reload_group,
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd("e")
+    end, 1)
+  end,
+})
+
 local numtoggle_augroup = augroup("numbertoggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
   pattern = "*",
