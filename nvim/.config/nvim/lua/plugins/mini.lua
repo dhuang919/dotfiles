@@ -12,13 +12,6 @@ return {
     config = true,
   },
   {
-    "nvim-mini/mini.pairs",
-    enabled = false,
-    event = "VeryLazy",
-    version = "*",
-    config = true,
-  },
-  {
     "nvim-mini/mini.splitjoin",
     event = "VeryLazy",
     version = "*",
