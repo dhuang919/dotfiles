@@ -1,7 +1,12 @@
 local S = { screens = {}, locked = {} }
 
+-- Disable window animations since they slow down transitions
 hs.window.animationDuration = 0
 
+-- Map screens by grid position:
+--   LAPTOP     = primary display (0,0)
+--   HORIZONTAL = monitor directly above laptop (0,-1)
+--   VERTICAL   = monitor to the right, either above or level (1,-1 or 1,0)
 for _, screen in ipairs(hs.screen.allScreens()) do
   local x, y = screen:position()
   if x == 0 and y == 0 then
@@ -15,6 +20,9 @@ for _, screen in ipairs(hs.screen.allScreens()) do
   end
 end
 
+-- Place a window on the given screen using ratio-based coordinates.
+-- If the window is currently fullscreen, exit fullscreen first and
+-- wait for macOS to finish the transition before placing.
 function S.placeWindow(window, screenKey, ratios, fullscreen)
   local screenObj = S.screens[screenKey]
   if not screenObj or not window then
@@ -30,6 +38,8 @@ function S.placeWindow(window, screenKey, ratios, fullscreen)
   end
 end
 
+-- Low-level move: either fullscreen the window on the target screen,
+-- or compute an absolute frame from screen-relative ratios and apply it.
 function S._moveWindow(window, screenObj, ratios, fullscreen)
   if fullscreen then
     window:moveToScreen(screenObj)
@@ -38,16 +48,31 @@ function S._moveWindow(window, screenObj, ratios, fullscreen)
     end)
     return
   end
-  local screenFrame = screenObj:fullFrame()
-  local f = hs.geometry.rect(
-    screenFrame.x + screenFrame.w * ratios.left,
-    screenFrame.y + screenFrame.h * ratios.top,
-    screenFrame.w * ratios.width,
-    screenFrame.h * ratios.height
-  )
-  window:move(f, screenObj, false)
+  local function set_frame()
+    local screenFrame = screenObj:fullFrame()
+    local f = hs.geometry.rect(
+      screenFrame.x + screenFrame.w * ratios.left,
+      screenFrame.y + screenFrame.h * ratios.top,
+      screenFrame.w * ratios.width,
+      screenFrame.h * ratios.height
+    )
+    window:move(f, screenObj, false)
+  end
+
+  -- Move to screen first and delay resize so macOS can finish the
+  -- screen transition; without this the frame often applies partially.
+  if window:screen():id() ~= screenObj:id() then
+    window:moveToScreen(screenObj)
+    hs.timer.doAfter(0.3, set_frame)
+  else
+    set_frame()
+  end
 end
 
+-- Find a running app by name, activate it, and place its focused window.
+-- If lock=true, the window is marked so subsequent moveIfOpen calls skip it
+-- (prevents the same window from being repositioned by later hotkey presses).
+-- Locks reset on Hammerspoon reload.
 function S.moveIfOpen(appName, screenKey, ratios, fullscreen, lock)
   lock = lock or false
   local app = hs.application.get(appName)
@@ -80,6 +105,8 @@ function S.isLocked(win)
   return win and S.locked[win:id()]
 end
 
+-- Print the focused window's position as screen-relative ratios (0-1)
+-- to the Hammerspoon console for easy copy-pasting into the ratios table.
 function S.printFocusedWindowRatios()
   local win = hs.window.focusedWindow()
   if not win then
