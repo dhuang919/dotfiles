@@ -4,7 +4,6 @@ export GOPRIVATE="*.dev.bloomberg.com"
 export GOPROXY="https://goproxy.dev.bloomberg.com,direct"
 export GOPATH="$HOME/go"
 [[ $PATH != *${GOPATH}/bin* ]] && PATH="${PATH}:${GOPATH}/bin"
-[[ $PATH != *${HOME}/Projects/dhuang295/personal-scripts* ]] && PATH="${PATH}:${HOME}/Projects/dhuang295/personal-scripts"
 [[ $PATH != *${HOME}/Projects/bde/bde-tools/bin* ]] && PATH="${PATH}:${HOME}/Projects/bde/bde-tools/bin"
 export PIPENV_PYPI_MIRROR=https://artprod.dev.bloomberg.com/artifactory/api/pypi/bloomberg-pypi/simple
 export https_proxy="http://127.0.0.1:8888"
@@ -36,11 +35,6 @@ function tglpxy {
   fi
 }
 
-function bbid {
-  echo -n $BBID | pbcopy
-  echo "Copied $BBID to clipboard"
-}
-
 function pipconf {
   if [ -z "${1}" ]; then
     echo "'dev' or 'prod' required" >&2
@@ -48,6 +42,53 @@ function pipconf {
   fi
   cp "${PIPDIR}/${1}.conf" "${PIPDIR}/pip.conf"
   echo "${1}.conf copied"
+}
+
+function bbid {
+  echo -n $BBID | pbcopy
+  echo "Copied $BBID to clipboard"
+}
+
+# Convert a bb mnemonic to a formatted url and copy to clipboard
+# Usage: bbmd [-w|-j|-u] <mnemonic>
+#   -w  blinks url in markdown format
+#   -j  blinks url in Jira markdown format
+#   -u  blinks url only
+#   Default: bbg url in markdown format
+function bbmd {
+  local OPTIND mode="bbg"
+  while getopts "wju" opt; do
+    case $opt in
+      w) mode="web" ;;
+      j) mode="jira" ;;
+      u) mode="url" ;;
+      *) return 1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [[ -z "$1" ]]; then
+    echo "Usage: bbmd [-w|-j|-u] <mnemonic>" >&2
+    return 1
+  fi
+
+  # Strip {, }, <GO> and trim whitespace
+  local m
+  m="$(echo "$1" | sed 's/[{}]//g; s/<GO>//g' | xargs)"
+
+  # URL encode spaces
+  local e="${m// /%20}"
+
+  local res
+  case $mode in
+    web) res="[${m}](https://blinks.bloomberg.com/screens/${e})" ;;
+    jira) res="[${m}|https://blinks.bloomberg.com/screens/${e}]" ;;
+    url) res="https://blinks.bloomberg.com/screens/${e}" ;;
+    bbg) res="[${m}](bbg://screens/${e})" ;;
+  esac
+
+  printf '%s' "$res" | pbcopy
+  echo "Copied to clipboard: $res"
 }
 
 source ~/.lcldevrc
