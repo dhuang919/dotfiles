@@ -30,10 +30,10 @@ tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pus
 tool = "delta"
 
 [remotes.origin]
-auto-track-bookmarks = "main"
+auto-track-bookmarks = "regex:main|master"
 
 [remotes.upstream]
-auto-track-bookmarks = "main"
+auto-track-bookmarks = "regex:main|master"
 
 [revset-aliases]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
