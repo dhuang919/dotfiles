@@ -25,8 +25,13 @@ return {
     callbacks = {
       enter_note = function(_)
         vim.keymap.set("n", "<leader>ch", function()
-          require("obsidian.api").toggle_checkbox()
-        end, { buffer = true, desc = "Toggle checkbox" })
+          local line = vim.api.nvim_get_current_line()
+          if line:match("%[x%]") then
+            require("obsidian.actions").set_checkbox(" ")
+          else
+            require("obsidian.actions").set_checkbox("x")
+          end
+        end, { buffer = true, desc = "Toggle checkbox done" })
       end,
 
       post_setup = function()
