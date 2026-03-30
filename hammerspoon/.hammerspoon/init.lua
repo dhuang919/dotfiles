@@ -108,3 +108,7 @@ end)
 hs.hotkey.bind(bind_keys, "i", function()
   s.moveIfOpen("Citrix Viewer", "HORIZONTAL", ratios.citrix.ib, false, false)
 end)
+
+hs.hotkey.bind(bind_keys, "d", function()
+  hs.grid.show()
+end)
