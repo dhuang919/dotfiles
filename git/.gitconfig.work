@@ -3,9 +3,6 @@
     email = dhuang295@bloomberg.net
 [init]
     defaultBranch = main
-[alias]
-    upd = !git pull upstream $(git branch --show-current) && git push
-    pm = !git sm && git upd
 [core]
     fileMode = false
 [credential]
