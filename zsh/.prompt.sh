@@ -30,9 +30,25 @@ _pc_dir=$'%{\e['"${COLOR_DIR}"$'m%}'
 _pc_git=$'%{\e['"${COLOR_GIT}"$'m%}'
 _pc_reset=$'%{\e[0m%}'
 
-PROMPT=''
-PROMPT+="${_pc_time}"'[%D{%H:%M:%S}]'"${_pc_reset}"' '          # time (HH:MM:SS)
-PROMPT+='%(#.'"${_pc_root}"'.'"${_pc_user}"')%n'"${_pc_reset}"  # user
-PROMPT+=':'"${_pc_dir}"'%~'"${_pc_reset}"                       # directory
-PROMPT+="${_pc_git}"'$(parse_git)'"${_pc_reset}"                # git status
-PROMPT+=' %(?.%F{green}.%F{red})%(#.#.$)%f '                    # prompt char
+# Build the base prompt (everything before the prompt char)
+_prompt_base=''
+_prompt_base+="${_pc_time}"'[%D{%H:%M:%S}]'"${_pc_reset}"' '          # time (HH:MM:SS)
+_prompt_base+='%(#.'"${_pc_root}"'.'"${_pc_user}"')%n'"${_pc_reset}"  # user
+_prompt_base+=':'"${_pc_dir}"'%~'"${_pc_reset}"                       # directory
+_prompt_base+="${_pc_git}"'$(parse_git)'"${_pc_reset}"                # git status
+
+# Vi mode indicator: update prompt char color based on insert vs normal mode.
+# zle-keymap-select fires on every mode switch; zle-line-init resets on new prompt.
+# $KEYMAP is 'vicmd' in normal mode, 'viins' or 'main' in insert mode.
+function _set_vi_prompt {
+  case $KEYMAP in
+    vicmd)      PROMPT="${_prompt_base} %F{red}:%(?..)%f " ;;  # normal mode: red :
+    viins|main) PROMPT="${_prompt_base} %(?.%F{green}.%F{red})%(#.#.\$)%f " ;;  # insert mode: green/red $
+  esac
+  zle && zle reset-prompt
+}
+zle -N zle-keymap-select _set_vi_prompt
+zle -N zle-line-init _set_vi_prompt
+
+# Set initial prompt (insert mode is the default)
+PROMPT="${_prompt_base} %(?.%F{green}.%F{red})%(#.#.\$)%f "

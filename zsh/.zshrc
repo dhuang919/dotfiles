@@ -286,7 +286,8 @@ if command -v jj >/dev/null 2>&1; then
 fi
 
 # Use emacs keybindings for line editing (ctrl+a/e for beginning/end of line, etc)
-bindkey -e
+bindkey -v
+KEYTIMEOUT=1  # 10ms delay for key sequences (default 400ms) — makes Esc near-instant
 
 # Ctrl+X opens current command line in $EDITOR for complex edits
 autoload edit-command-line; zle -N edit-command-line
