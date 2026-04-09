@@ -22,6 +22,14 @@ parse_git() {
   fi
 }
 
+# --- Vi mode indicator ---
+# Readline's show-mode-in-prompt inserts a mode string before PS1.
+# vi-cmd-mode-string / vi-ins-mode-string customize what's shown.
+# The \1...\1 wrapping tells readline these are non-printing (like \[...\] in PS1).
+bind 'set show-mode-in-prompt on'
+bind 'set vi-cmd-mode-string "\1\e[31m\2[N]\1\e[0m\2 "'
+bind 'set vi-ins-mode-string "\1\e[32m\2[I]\1\e[0m\2 "'
+
 # --- Prompt ---
 __prompt_cmd() {
   local exit_code=$?

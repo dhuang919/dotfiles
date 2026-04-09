@@ -285,7 +285,7 @@ if command -v jj >/dev/null 2>&1; then
   source <(jj util completion zsh)
 fi
 
-# Use emacs keybindings for line editing (ctrl+a/e for beginning/end of line, etc)
+# Use vi keybindings for line editing
 bindkey -v
 KEYTIMEOUT=1  # 10ms delay for key sequences (default 400ms) — makes Esc near-instant
 

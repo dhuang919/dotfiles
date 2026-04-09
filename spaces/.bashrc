@@ -10,6 +10,10 @@ export LC_ALL=en_US.UTF-8
 [[ $PATH != *${HOME}/.local/bin* ]] && PATH="${PATH}:${HOME}/.local/bin"
 export PATH
 
+# Vi keybindings for line editing
+set -o vi
+bind 'set keyseq-timeout 10'  # 10ms delay for key sequences — makes Esc near-instant
+
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Setup custom prompt
