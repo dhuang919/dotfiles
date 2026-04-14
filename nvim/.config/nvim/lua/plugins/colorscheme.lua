@@ -6,14 +6,14 @@ return {
     require("kanso").setup({
       overrides = function()
         return {
-          LineNr = { fg = "#cccccc" },
-          LineNrAbove = { fg = "#98d2f4" },
-          LineNrBelow = { fg = "#fd9dc0" },
-          CursorLineNr = { fg = "#ffffff" },
-          WinSeparator = { fg = "#ffffff" },
+          LineNr = { fg = "#727272" },
+          LineNrAbove = { fg = "#2266aa" },
+          LineNrBelow = { fg = "#b84069" },
+          CursorLineNr = { fg = "#000000" },
+          WinSeparator = { fg = "#000000" },
         }
       end,
     })
-    vim.cmd.colorscheme("kanso-zen")
+    vim.cmd.colorscheme("kanso-pearl")
   end,
 }

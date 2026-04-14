@@ -15,8 +15,9 @@ c.keys = {
 }
 
 c.adjust_window_size_when_changing_font_size = false
-c.colors = { cursor_bg = "#fff" }
-c.default_cursor_style = "SteadyBar"
+c.color_scheme = "Catppuccin Latte"
+c.colors = { cursor_bg = "#000000" }
+c.default_cursor_style = "SteadyBlock"
 c.enable_scroll_bar = true
 c.font = wezterm.font("0xProto")
 c.font_size = 13

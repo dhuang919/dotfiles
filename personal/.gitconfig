@@ -22,6 +22,7 @@
     line-numbers = true
     navigate = true
     true-color = always
+    light = true
 [interactive]
     diffFilter = delta --color-only
 [push]
