@@ -29,8 +29,6 @@ function clean_docker {
   docker image prune -af
   printf "\nPruning volumes..."
   docker volume prune -af
-  printf "\nPruning builder cache..."
-  docker builder prune -f
   docker system df
 }
 

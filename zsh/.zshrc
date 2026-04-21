@@ -242,9 +242,6 @@ function clean_docker {
   echo "\nPruning volumes..."
   docker volume prune -af
 
-  echo "\nPruning builder cache..."
-  docker builder prune -f
-
   echo "\nPruning networks..."
   docker network prune -f
 
