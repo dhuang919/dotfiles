@@ -10,6 +10,7 @@ return {
       full        = "<leader>cY",     -- /home/user/project/src/foo/Bar.tsx
       filename    = "<leader>cN",     -- Bar.tsx
       line        = "<leader>cl",     -- src/foo/Bar.tsx:42
+      github      = "<leader>cg",     -- https://github.com/.../Bar.tsx
       github_line = "<leader>cG",     -- https://github.com/.../Bar.tsx#L42
     },
   },
