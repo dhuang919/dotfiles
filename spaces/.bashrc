@@ -80,8 +80,8 @@ function setup_chef {
 eval "$(zoxide init bash)"
 
 alias claude='get-claude-code-auth-token --skip-checks --warmup >/dev/null; /opt/bb/bin/claude'
-alias dpxy="http_proxy=http://devproxy.bloomberg.com:82 https_proxy=http://devproxy.bloomberg.com:82"
-alias epxy="http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81"
+alias dpxy="http_proxy=http://devproxy.bloomberg.com:82 https_proxy=http://devproxy.bloomberg.com:82 no_proxy=dev.bcs.bloomberg.com"
+alias epxy="http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81 no_proxy=dev.bcs.bloomberg.com"
 alias g="git"
 alias j="jj"
 alias jp="jj tug && jj gp"       # jj update the closest branch and push it - *depends on jj aliases*
