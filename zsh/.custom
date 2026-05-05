@@ -97,3 +97,4 @@ ssh-add ~/.ssh/bbgithub/id_ed25519
 alias dpxy='http_proxy=http://bproxy.tdmz1.bloomberg.com:80 https_proxy=http://bproxy.tdmz1.bloomberg.com:80 no_proxy=dev.bcs.bloomberg.com'
 alias epxy='http_proxy=http://proxy.bloomberg.com:81 https_proxy=http://proxy.bloomberg.com:81 no_proxy=dev.bcs.bloomberg.com'
 alias r3t='docker run --rm -v "$(pwd -P):/workarea" -e USER=${USER} -it artprod.dev.bloomberg.com/training/rapi3tool:latest bash'
+alias cc='curl -fsSL "https://cc-setup.s3.dev.bcs.bloomberg.com/cc-setup.sh" -o /tmp/cc-setup.sh && chmod +x /tmp/cc-setup.sh && /tmp/cc-setup.sh'
