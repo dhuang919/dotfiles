@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       theme = "auto",
-      globalstatus = true,
+      globalstatus = false,
     },
     sections = {
       lualine_a = { "mode" },
