@@ -245,6 +245,9 @@ function clean_docker {
   echo "\nPruning networks..."
   docker network prune -f
 
+  echo "\nPruning builder..."
+  docker builder prune -f
+
   echo "\nPrinting disk usage..."
   docker system df
 }
