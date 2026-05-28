@@ -19,6 +19,9 @@ end, { desc = "Show diagnostics in float" })
 -- mason ui
 k.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
+-- insert markdown code block
+k.set("n", "<leader>`", "i```<CR><CR>```<Esc>kA", { desc = "Insert code block" })
+
 -- disable mouse/trackpad scrolling
 local modes = { "n", "v", "i" }
 local scroll_keys =
