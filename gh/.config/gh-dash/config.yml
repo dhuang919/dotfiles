@@ -1,29 +1,6 @@
 prSections:
-  - title: My Open PRs
-    filters: >-
-      is:open
-      author:@me
-    layout:
-      author:
-        hidden: true
-  - title: My Assigned
-    filters: >-
-      assignee:@me
-    layout:
-      author:
-        hidden: true
-  - title: My Closed PRs (3mo)
-    filters: >-
-      is:closed
-      author:@me
-      updated:>={{ nowModify "-3mo" }}
-    layout:
-      author:
-        hidden: true
   - title: Needs My Review
     filters: is:open review-requested:@me
-  - title: Involved
-    filters: is:open involves:@me -author:@me
   - title: Runtime platform
     filters: >-
       is:open
@@ -41,26 +18,39 @@ prSections:
       org:bbrc
       org:cores
       org:svcm
-  - title: Peter
+  - title: Eric
     filters: >-
       is:open
       -is:draft
-      author:pmartini
-  - title: Vinit
-    filters: >-
-      is:open
-      -is:draft
-      author:vshah178
+      author:eadamson7
   - title: Steven
     filters: >-
       is:open
       -is:draft
       author:spackard
-  - title: Jim
+  - title: My Open PRs
     filters: >-
       is:open
-      -is:draft
-      author:jmahood
+      author:@me
+    layout:
+      author:
+        hidden: true
+  - title: Involved
+    filters: is:open involves:@me -author:@me
+  - title: My Assigned
+    filters: >-
+      assignee:@me
+    layout:
+      author:
+        hidden: true
+  - title: My Closed PRs (3mo)
+    filters: >-
+      is:closed
+      author:@me
+      updated:>={{ nowModify "-3mo" }}
+    layout:
+      author:
+        hidden: true
   - title: Yudhi
     filters: >-
       is:open
@@ -71,11 +61,21 @@ prSections:
       is:open
       -is:draft
       author:nmaharjan2
-  - title: Eric
+  - title: Jim
     filters: >-
       is:open
       -is:draft
-      author:eadamson7
+      author:jmahood
+  - title: Peter
+    filters: >-
+      is:open
+      -is:draft
+      author:pmartini
+  - title: Vinit
+    filters: >-
+      is:open
+      -is:draft
+      author:vshah178
 issuesSections:
   - title: My Issues
     filters: >-
