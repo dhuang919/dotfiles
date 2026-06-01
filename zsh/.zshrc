@@ -334,7 +334,7 @@ autoload run-help
 alias help=run-help
 
 # Homebrew maintenance - update, upgrade all packages, remove old versions
-alias bubu="brew update && brew upgrade && brew cleanup"
+alias bubu="epxy brew update && epxy brew upgrade && brew cleanup"
 
 # Short aliases for frequently used commands
 alias g="git"
