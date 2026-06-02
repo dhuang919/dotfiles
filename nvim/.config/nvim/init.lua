@@ -27,7 +27,6 @@ o.undofile = true -- persistent undo across sessions
 o.wrap = true -- wrap long lines
 o.backspace = { "indent", "eol", "start" } -- allow backspace over everything
 o.clipboard = { "unnamed", "unnamedplus" } -- use system clipboard
-o.scrolloff = 3 -- keep 3 lines visible above/below cursor
 o.cursorline = true -- highlight current line
 o.laststatus = 2 -- per-window statusline
 o.updatetime = 250 -- ms of idle before CursorHold fires and swap file writes (default 4000)
