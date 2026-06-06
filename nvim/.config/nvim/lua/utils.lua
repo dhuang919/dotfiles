@@ -6,4 +6,8 @@ function M.is_ssh()
   return IS_SSH
 end
 
+function M.gh(x)
+  return "https://github.com/" .. x
+end
+
 return M

@@ -8,7 +8,6 @@ g.maplocalleader = "\\"
 
 require("config.autocmds")
 require("config.keymaps")
-require("config.lazy")
 
 -- NOTE: formatoptions set in autocmds.lua
 -- https://neovim.discourse.group/t/options-formatoptions-not-working-when-put-in-init-lua/3746
