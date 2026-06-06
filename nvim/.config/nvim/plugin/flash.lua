@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 -- https://github.com/folke/flash.nvim
 vim.pack.add({
-  { src = gh("folke/flash.nvim"), version = vim.version.range("*") },
+  { src = gh("folke/flash.nvim") },
 })
 
 require("flash").setup()

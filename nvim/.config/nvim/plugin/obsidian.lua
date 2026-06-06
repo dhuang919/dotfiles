@@ -7,7 +7,7 @@ end
 
 -- https://github.com/obsidian-nvim/obsidian.nvim
 vim.pack.add({
-  { src = utils.gh("obsidian-nvim/obsidian.nvim"), version = vim.version.range("*") },
+  { src = utils.gh("obsidian-nvim/obsidian.nvim") },
 })
 
 require("obsidian").setup({

@@ -3,8 +3,8 @@ local gh = require("utils").gh
 
 -- https://github.com/stevearc/oil.nvim
 vim.pack.add({
-  { src = gh("nvim-mini/mini.icons"), version = vim.version.range("*") },
-  { src = gh("stevearc/oil.nvim"), version = vim.version.range("*") },
+  { src = gh("nvim-mini/mini.icons") },
+  { src = gh("stevearc/oil.nvim") },
 })
 
 require("mini.icons").setup()

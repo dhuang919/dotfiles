@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 -- https://github.com/folke/which-key.nvim
 vim.pack.add({
-  { src = gh("folke/which-key.nvim"), version = vim.version.range("*") },
+  { src = gh("folke/which-key.nvim") },
 })
 
 require("which-key").setup()

@@ -2,7 +2,7 @@ local gh = require("utils").gh
 
 -- https://github.com/Bekaboo/dropbar.nvim
 vim.pack.add({
-  { src = gh("Bekaboo/dropbar.nvim"), version = vim.version.range("*") },
+  { src = gh("Bekaboo/dropbar.nvim") },
 })
 
 require("dropbar").setup()

@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 -- https://github.com/numToStr/Navigator.nvim
 vim.pack.add({
-  { src = gh("numToStr/Navigator.nvim"), version = vim.version.range("*") },
+  { src = gh("numToStr/Navigator.nvim") },
 })
 
 require("Navigator").setup({

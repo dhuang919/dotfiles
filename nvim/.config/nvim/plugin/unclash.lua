@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 -- https://github.com/madmaxieee/unclash.nvim
 vim.pack.add({
-  { src = gh("madmaxieee/unclash.nvim"), version = vim.version.range("*") },
+  { src = gh("madmaxieee/unclash.nvim") },
 })
 
 k.set("n", "<leader>uo", "<cmd>UnclashOpenMergeEditor<cr>", { desc = "[unclash] Open Merge Editor" } )

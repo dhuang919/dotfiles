@@ -2,7 +2,7 @@ local gh = require("utils").gh
 
 -- https://github.com/hong4rc/copy-path.nvim
 vim.pack.add({
-  { src = gh("hong4rc/copy-path.nvim"), version = vim.version.range("*") },
+  { src = gh("hong4rc/copy-path.nvim") },
 })
 
 require("copy-path").setup({

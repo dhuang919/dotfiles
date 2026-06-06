@@ -3,8 +3,8 @@ local gh = require("utils").gh
 -- https://github.com/saghen/blink.cmp
 -- https://main.cmp.saghen.dev
 vim.pack.add({
-  { src = gh("saghen/blink.lib"), version = vim.version.range("*") },
-  { src = gh("saghen/blink.cmp"), version = vim.version.range("*") },
+  { src = gh("saghen/blink.lib") },
+  { src = gh("saghen/blink.cmp") },
 })
 
 local cmp = require("blink.cmp")

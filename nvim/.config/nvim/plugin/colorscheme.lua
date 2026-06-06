@@ -2,7 +2,7 @@ local gh = require("utils").gh
 
 -- https://github.com/webhooked/kanso.nvim
 vim.pack.add({
-  { src = gh("webhooked/kanso.nvim"), version = vim.version.range("*") },
+  { src = gh("webhooked/kanso.nvim") },
 })
 
 require("kanso").setup({

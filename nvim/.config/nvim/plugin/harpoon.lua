@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 -- https://github.com/ThePrimeagen/harpoon
 vim.pack.add({
-  { src = gh("nvim-lua/plenary.nvim"), version = vim.version.range("*") },
+  { src = gh("nvim-lua/plenary.nvim") },
   { src = gh("ThePrimeagen/harpoon"), version = "harpoon2" },
 })
 

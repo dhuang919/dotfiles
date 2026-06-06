@@ -2,10 +2,10 @@ local gh = require("utils").gh
 
 -- https://github.com/nvim-mini/mini.nvim
 vim.pack.add({
-  { src = gh("nvim-mini/mini.ai"), version = vim.version.range("*") },
-  { src = gh("nvim-mini/mini.comment"), version = vim.version.range("*") },
-  { src = gh("nvim-mini/mini.splitjoin"), version = vim.version.range("*") },
-  { src = gh("nvim-mini/mini.surround"), version = vim.version.range("*") },
+  { src = gh("nvim-mini/mini.ai") },
+  { src = gh("nvim-mini/mini.comment") },
+  { src = gh("nvim-mini/mini.splitjoin") },
+  { src = gh("nvim-mini/mini.surround") },
 })
 
 require("mini.ai").setup()

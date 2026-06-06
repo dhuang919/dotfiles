@@ -3,7 +3,7 @@ local gh = require("utils").gh
 
 --
 vim.pack.add({
-  { src = gh("f-person/git-blame.nvim"), version = vim.version.range("*") },
+  { src = gh("f-person/git-blame.nvim") },
 })
 
 require("gitblame").setup({

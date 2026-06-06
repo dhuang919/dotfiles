@@ -3,8 +3,8 @@ local gh = require("utils").gh
 
 -- https://github.com/ibhagwan/fzf-lua
 vim.pack.add({
-  { src = gh("nvim-mini/mini.icons"), version = vim.version.range("*") },
-  { src = gh("ibhagwan/fzf-lua"), version = vim.version.range("*") },
+  { src = gh("nvim-mini/mini.icons") },
+  { src = gh("ibhagwan/fzf-lua") },
 })
 
 require("mini.icons").setup()
