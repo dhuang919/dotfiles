@@ -9,9 +9,6 @@ k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
 
 k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
 
--- lazy.nvim ui
-k.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy plugin manager" })
-
 k.set("n", "<leader>d", function()
   vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
 end, { desc = "Show diagnostics in float" })
