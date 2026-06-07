@@ -30,3 +30,15 @@ for _, mode in ipairs(modes) do
   end
 end
 
+-- deletes go to register 'd' instead of default register
+k.set({"n", "x"}, "d", '"dd')
+k.set({"n", "x"}, "D", '"dD')
+k.set("n", "dd", '"ddd')
+
+-- changes go to register 'c' instead of default register
+k.set({"n", "x"}, "c", '"cc')
+k.set({"n", "x"}, "C", '"cC')
+k.set("n", "cc", '"ccc')
+
+-- x goes to black hole
+k.set({"n", "x"}, "x", '"_x')

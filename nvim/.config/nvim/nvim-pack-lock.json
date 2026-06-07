@@ -16,10 +16,6 @@
       "rev": "ffffff63de2a782c358e40a38c06fd1f44580679",
       "src": "https://github.com/hong4rc/copy-path.nvim"
     },
-    "cutlass.nvim": {
-      "rev": "d01b5c1943050fcda8edf5c89d4419c41a65890e",
-      "src": "https://github.com/gbprod/cutlass.nvim"
-    },
     "dropbar.nvim": {
       "rev": "808ba31cde89aec8833e9789f5e04557cd31c9e1",
       "src": "https://github.com/Bekaboo/dropbar.nvim"
@@ -113,10 +109,6 @@
     "unclash.nvim": {
       "rev": "6115c7540d7f3c6fcac7658f521d263d338044bf",
       "src": "https://github.com/madmaxieee/unclash.nvim"
-    },
-    "vim-python-pep8-indent": {
-      "rev": "60ba5e11a61618c0344e2db190210145083c91f8",
-      "src": "https://github.com/Vimjas/vim-python-pep8-indent"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
