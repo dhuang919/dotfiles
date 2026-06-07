@@ -5,7 +5,7 @@ local gh = require("utils").gh
 vim.pack.add({
   { src = gh("nvim-mini/mini.icons") },
   { src = gh("ibhagwan/fzf-lua") },
-})
+}, { confirm = false })
 
 require("mini.icons").setup()
 

@@ -4,15 +4,16 @@ local gh = require("utils").gh
 -- https://github.com/folke/which-key.nvim
 vim.pack.add({
   { src = gh("folke/which-key.nvim") },
-})
+}, { confirm = false })
 
-require("which-key").setup()
+local wk = require("which-key")
+wk.setup()
 
 k.set(
   "n",
   "<leader>?",
   function()
-    require("which-key").show({ global = false })
+    wk.show({ global = false })
   end,
   { desc = "[which-key] Buffer local keymaps" }
 )
@@ -20,7 +21,7 @@ k.set(
   "n",
   "<leader>??",
   function()
-    require("which-key").show({ global = true })
+    wk.show({ global = true })
   end,
   { desc = "[which-key] Buffer global keymaps" }
 )

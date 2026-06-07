@@ -5,7 +5,7 @@ local gh = require("utils").gh
 vim.pack.add({
   { src = gh("nvim-lua/plenary.nvim") },
   { src = gh("ThePrimeagen/harpoon"), version = "harpoon2" },
-})
+}, { confirm = false })
 
 local h = require("harpoon").setup()
 

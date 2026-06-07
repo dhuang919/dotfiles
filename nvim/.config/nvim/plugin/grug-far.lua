@@ -4,7 +4,7 @@ local gh = require("utils").gh
 -- https://github.com/MagicDuck/grug-far.nvim
 vim.pack.add({
   { src = gh("MagicDuck/grug-far.nvim") },
-})
+}, { confirm = false })
 
 local gf = require("grug-far")
 gf.setup()

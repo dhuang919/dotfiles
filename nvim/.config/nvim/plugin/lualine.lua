@@ -3,7 +3,7 @@ local gh = require("utils").gh
 -- https://github.com/nvim-lualine/lualine.nvim
 vim.pack.add({
   { src = gh("nvim-lualine/lualine.nvim") },
-})
+}, { confirm = false })
 
 require("lualine").setup({
   options = {

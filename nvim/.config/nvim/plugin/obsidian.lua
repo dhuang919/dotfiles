@@ -8,7 +8,7 @@ end
 -- https://github.com/obsidian-nvim/obsidian.nvim
 vim.pack.add({
   { src = utils.gh("obsidian-nvim/obsidian.nvim") },
-})
+}, { confirm = false })
 
 require("obsidian").setup({
   ui = { enable = false },
@@ -23,7 +23,7 @@ k.set(
   "n",
   "<leader>qs",
   "<cmd>Obsidian quick_switch<cr>",
-  { desc = "Obsidian Quick Switch" }
+  { desc = "[obsidian] Quick Switch" }
 )
 k.set(
   "n",
@@ -37,5 +37,5 @@ k.set(
       oa.set_checkbox("x")
     end
   end,
-  { buffer = true, desc = "Toggle checkbox done" }
+  { desc = "[obsidian] Toggle checkbox done" }
 )

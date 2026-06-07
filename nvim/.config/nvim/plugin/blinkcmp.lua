@@ -5,7 +5,7 @@ local gh = require("utils").gh
 vim.pack.add({
   { src = gh("saghen/blink.lib") },
   { src = gh("saghen/blink.cmp") },
-})
+}, { confirm = false })
 
 local cmp = require("blink.cmp")
 cmp.build():pwait()

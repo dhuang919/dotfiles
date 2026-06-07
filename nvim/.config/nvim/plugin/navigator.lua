@@ -4,7 +4,7 @@ local gh = require("utils").gh
 -- https://github.com/numToStr/Navigator.nvim
 vim.pack.add({
   { src = gh("numToStr/Navigator.nvim") },
-})
+}, { confirm = false })
 
 require("Navigator").setup({
   auto_save = "all",

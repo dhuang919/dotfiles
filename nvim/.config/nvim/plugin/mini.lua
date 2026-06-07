@@ -6,7 +6,7 @@ vim.pack.add({
   { src = gh("nvim-mini/mini.comment") },
   { src = gh("nvim-mini/mini.splitjoin") },
   { src = gh("nvim-mini/mini.surround") },
-})
+}, { confirm = false })
 
 require("mini.ai").setup()
 require("mini.comment").setup()

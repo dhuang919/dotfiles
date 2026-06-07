@@ -1,10 +1,10 @@
 local k = vim.keymap
 local gh = require("utils").gh
 
---
+-- https://github.com/f-person/git-blame.nvim
 vim.pack.add({
   { src = gh("f-person/git-blame.nvim") },
-})
+}, { confirm = false })
 
 require("gitblame").setup({
   enabled = false, -- toggle with key binding
