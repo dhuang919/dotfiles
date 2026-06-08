@@ -10,14 +10,14 @@ k.set("n", "<Esc>", ":noh<cr>", { desc = "Unhighlight" })
 k.set("n", "<leader>w", ":wa<cr>", { desc = "Write all buffers", noremap = true, silent = true })
 
 k.set("n", "<leader>d", function()
-  vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+  vim.diagnostic.open_float({ focusable = false, source = "if_many" })
 end, { desc = "Show diagnostics in float" })
 
 -- mason ui
 k.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- insert markdown code block
-k.set("n", "<leader>`", "i```<CR><CR>```<Esc>kA", { desc = "Insert code block" })
+k.set("n", "<leader>`", "o```<cr><cr>```<esc>kA", { desc = "Insert code block" })
 
 -- disable mouse/trackpad scrolling
 local modes = { "n", "v", "i" }

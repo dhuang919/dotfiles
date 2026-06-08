@@ -143,27 +143,11 @@ autocmd("FileType", {
 })
 
 local function jumpWithVirtLineDiags(jumpCount)
-  -- https://www.reddit.com/r/neovim/comments/1jm5atz/comment/mk9w6v0
-  pcall(vim.api.nvim_del_augroup_by_name, "jumpWithVirtLineDiags") -- prevent autocmd for repeated jumps
-
   vim.diagnostic.jump({ count = jumpCount })
-
-  local initialVirtTextConf = vim.diagnostic.config().virtual_text
-  vim.diagnostic.config({
-    virtual_text = false,
-    virtual_lines = { current_line = true },
-  })
-
-  vim.defer_fn(function() -- deferred to not trigger by jump itself
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      desc = "User(once): Reset diagnostics virtual lines",
-      once = true,
-      group = vim.api.nvim_create_augroup("jumpWithVirtLineDiags", {}),
-      callback = function()
-        vim.diagnostic.config({ virtual_lines = false, virtual_text = initialVirtTextConf })
-      end,
-    })
-  end, 1)
+  -- deferred so cursor position from jump is settled before opening float
+  vim.schedule(function()
+    vim.diagnostic.open_float({ focusable = false, source = "if_many" })
+  end)
 end
 
 autocmd("LspAttach", {
@@ -218,5 +202,11 @@ autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>gE", function()
       jumpWithVirtLineDiags(-1)
     end, { desc = "LSP Prev Diagnostic", buffer = event.buf })
+    vim.keymap.set("n", "<leader>gl", function()
+      vim.diagnostic.setloclist({ open = true })
+    end, { desc = "LSP Diagnostics loclist (current buffer)", buffer = event.buf })
+    vim.keymap.set("n", "<leader>gq", function()
+      vim.diagnostic.setqflist({ open = true })
+    end, { desc = "LSP Diagnostics quickfix (all buffers)", buffer = event.buf })
   end,
 })

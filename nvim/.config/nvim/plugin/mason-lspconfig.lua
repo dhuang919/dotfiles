@@ -1,4 +1,5 @@
 local gh = require("utils").gh
+local lsps = require("config.lsps")
 
 -- https://github.com/mason-org/mason-lspconfig.nvim
 vim.pack.add({
@@ -8,7 +9,4 @@ vim.pack.add({
 }, { confirm = false })
 
 require("mason").setup()
-require("mason-lspconfig").setup({
-  -- Install lsps when opening a matching filetype
-  automatic_installation = true
-})
+require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(lsps) })
