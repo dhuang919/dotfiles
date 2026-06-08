@@ -41,7 +41,7 @@ function take {
 }
 
 function tglpxy {
-  local PIPDIR=/root/.pip
+  local PIPDIR=/etc
   local NPMRCDIR=/opt/bb/etc
   local pipconf="${PIPDIR}/pip.conf"
   local npmrc="${NPMRCDIR}/npmrc"
