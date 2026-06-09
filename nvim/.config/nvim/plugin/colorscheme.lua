@@ -9,11 +9,12 @@ require("kanso").setup({
   transparent = true,
   overrides = function()
     return {
-      LineNr = { fg = "#727272" },
-      LineNrAbove = { fg = "#2266aa" },
-      LineNrBelow = { fg = "#b84069" },
-      CursorLineNr = { fg = "#000000" },
-      WinSeparator = { fg = "#000000" },
+      LineNr = { fg = "#727272" },           -- absolute line numbers
+      LineNrAbove = { fg = "#2266aa" },      -- relative lines above cursor
+      LineNrBelow = { fg = "#b84069" },      -- relative lines below cursor
+      CursorLineNr = { fg = "#000000" },     -- current line number
+      WinSeparator = { fg = "#000000" },     -- border between splits
+      NormalNC = { bg = "#dce0e8" },         -- dim inactive splits (Catppuccin Latte mantle, matches tmux)
     }
   end,
 })
