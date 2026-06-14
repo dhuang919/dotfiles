@@ -1,9 +1,18 @@
-return {
-  bashls = {},
-  clangd = {},
-  docker_language_server = {},
-  golangci_lint_ls = {},
-  gopls = {
+local utils = require("utils")
+
+local M = {}
+
+M.bashls = {}
+
+M.clangd = {}
+
+M.docker_language_server = {}
+
+-- Don't install go lsps in spaces
+if not utils.is_ssh() then
+  M.golangci_lint_ls = {}
+
+  M.gopls = {
     -- chatgpt recommendations
     on_attach = function(_, bufnr)
       local grp = vim.api.nvim_create_augroup("GoLspFormat", { clear = false })
@@ -31,15 +40,17 @@ return {
         analyses = { unusedparams = true },
       },
     },
-  },
-  jsonls = {},
-  lua_ls = {
-    on_init = function(client)
-      if client.workspace_folders then
-        local path = client.workspace_folders[1].name
-        if
-          path ~= vim.fn.stdpath("config")
-          and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+  }
+end
+
+M.jsonls = {}
+
+M.lua_ls = {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if path ~= vim.fn.stdpath("config")
+        and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
         then
           return
         end
@@ -67,43 +78,30 @@ return {
             -- '${3rd}/luv/library'
             -- '${3rd}/busted/library'
           },
-          -- Or pull in all of 'runtimepath'.
-          -- NOTE: this is a lot slower and will cause issues when working on
-          -- your own configuration.
-          -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-          -- library = {
-          --   vim.api.nvim_get_runtime_file('', true),
-          -- }
         },
       })
     end,
-    settings = {
-      Lua = {},
-    },
+  settings = {
+    Lua = {},
   },
-  -- pyright = {
-  --   settings = {
-  --     python = {
-  --       analysis = {
-  --         diagnosticSeverityOverrides = {
-  --           reportMissingImports = "none",
-  --         },
-  --       },
-  --       organizeImports = false, -- use ruff
-  --     },
-  --   },
-  -- },
-  ruff = {
-    capabilities = {
-      general = {
-        -- ruff was using utf-8 while pyright was using utf-16 (preferred)
-        -- https://github.com/astral-sh/ruff/issues/14483
-        positionEncodings = { "utf-16" },
-      },
-    },
-  },
-  sqlls = {},
-  ts_ls = {},
-  ty = {},
-  yamlls = {},
 }
+
+M.ruff = {
+  capabilities = {
+    general = {
+      -- ruff was using utf-8 while pyright was using utf-16 (preferred)
+      -- https://github.com/astral-sh/ruff/issues/14483
+      positionEncodings = { "utf-16" },
+    },
+  },
+}
+
+M.sqlls = {}
+
+M.ts_ls = {}
+
+M.ty = {}
+
+M.yamlls = {}
+
+return M
