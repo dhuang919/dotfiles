@@ -1,0 +1,53 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Derek Huang"
+email = "dhuang295@bloomberg.net"
+
+[[--scope]]
+--when.repositories = ["~/personal"]
+
+[--scope.user]
+email = "derekh919@gmail.com"
+
+[aliases]
+# list commits
+lcis = ["log", "--no-graph", "--reversed", "-r", "::@ ~ ::main", "-T", "\"- \" ++ commit_id.short(7) ++ \" \" ++ description.first_line() ++ \"\\n\""]
+de = ["describe", "--editor"]
+e = ["edit"]
+gfa = ["git", "fetch", "--all-remotes"]
+gi = ["git", "init"]
+gp = ["git", "push"]
+gpo = ["git", "push", "-b", "main", "--remote", "origin"]
+la = ["log", "-r", "all()"]
+n = ["new"]
+re = ["restore"]
+reb = ["rebase"]
+sq = ["squash"]
+tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_pushable(@)"]
+
+[diff]
+tool = "delta"
+
+[remotes.origin]
+auto-track-bookmarks = "regex:main|master"
+
+[remotes.upstream]
+auto-track-bookmarks = "regex:main|master"
+
+[revset-aliases]
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+
+[ui]
+pager = ["delta", "--pager", "less -FRX"]
+conflict-marker-style = "git"
+diff-formatter = ":git"
+diff-editor = ":builtin"
+default-command = "log"
+
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+pager = "delta"
