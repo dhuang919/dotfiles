@@ -34,8 +34,6 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)                   # End underline
 export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)     # Begin underline (white) - keywords
 
 # PATH additions - use pattern matching to avoid duplicates when re-sourcing
-[[ $PATH != *$GOPATH/bin* ]] && PATH="${PATH}:${GOPATH}/bin"    # Go binaries installed via 'go install'
-[[ $PATH != *$GOROOT/bin* ]] && PATH="${PATH}:${GOROOT}/bin"    # Go toolchain binaries
 [[ $PATH != */opt/homebrew/opt/bde-format@18/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/bde-format@18/bin"  # BDE code formatter
 [[ $PATH != */opt/homebrew/opt/node@22/bin* ]] && PATH="${PATH}:/opt/homebrew/opt/node@22/bin"  # Node.js v22 (keg-only, not linked)
 export PATH
@@ -54,7 +52,7 @@ function ftmr {
 # Useful for monorepo-style project layouts where each subdirectory is its own repo.
 # Usage: ggrep <pattern> [git-grep-options]
 function ggrep {
-  for d in $(find . -type d -depth 1); do
+  for d in $(find . -maxdepth 1 -mindepth 1 -type d); do
     git -C "$d" status &>/dev/null
     if [[ $? -eq 0 ]]; then
       git --no-pager -C "$d" grep "$@" &>/dev/null
@@ -103,7 +101,8 @@ function _get_last_md {
   find "${1}" -name "*.md" -type f | awk -F '/' '{print $NF}' | sort -rn | head -n 1
 }
 
-# Create today's scratch/todo markdown file, carrying over uncompleted tasks from previous day.
+# Create today's scratch/todo markdown file, carrying over uncompleted tasks from
+# the most recent previous file, if one exists.
 # Files are organized by year/month in ~/dev/notes/scratch/
 # Preserves front matter and incomplete todo items ([ ] or [>]) from the last file.
 # icloud notes: ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/notes
@@ -127,10 +126,15 @@ function todo {
   # Get the most recent md before today
   prev_md=$(_get_last_md "${scratch}/${year}/${month}")
   if [[ -z "${prev_md}" ]]; then
-    # Make sure we get the last md if it's been longer than a month since the last
-    while [[ -z "${prev_md}" ]]; do
+    local attempts=0
+    local max_attempts=12 # don't look back more than a year
+
+    # Search previous months for a prior file
+    while [[ -z "${prev_md}" && $attempts -lt $max_attempts ]]; do
+      (( attempts++ ))
+
       # Keep decrementing by a month, going back to prev years if needed
-      prev_dir=$(date -v-1m +%Y/%m)
+      prev_dir=$(date -v-${attempts}m +%Y/%m)
       prev_md=$(_get_last_md "${scratch}/${prev_dir}")
     done
   else
@@ -139,33 +143,38 @@ function todo {
 
   local -r prev_path="${scratch}/${prev_dir}/${prev_md}"
 
-  # Carry over front matter
-  local meta="$(awk '
-    NR==1 && $0 ~ /^---[ \t]*$/ {in_meta=1; print; next}
-    in_meta { print; if ($0 ~ /^---[ \t]*$/) exit }
-  ' "${prev_path}")"
+  local meta=""
+  local todo_block=""
 
-  # Carry over todos, keeping h2s and unchecked/in-progress items
-  local todo_block="$(awk '
-  BEGIN { in_todo=0; printed_any_section=0 }
-    # Enter Todo section
-    /^# +Todo[ \t]*$/ { in_todo=1; next }
-    # Leave Todo section on the next top-level header (e.g., "# Notes" or any "# ...")
-    in_todo && /^# +/ { in_todo=0 }
-    !in_todo { next }
+  if [[ -n "${prev_md}" ]]; then
+    # Carry over front matter
+    meta="$(awk '
+      NR==1 && $0 ~ /^---[ \t]*$/ {in_meta=1; print; next}
+      in_meta { print; if ($0 ~ /^---[ \t]*$/) exit }
+    ' "${prev_path}")"
 
-    # Inside Todo:
-    # H2 headings: ensure a blank line before each H2 except the first we print
-    /^## +/ {
-      if (printed_any_section) print "";
-      print $0;
-      printed_any_section=1;
-      next
-    }
+    # Carry over todos, keeping h2s and unchecked/in-progress items
+    todo_block="$(awk '
+    BEGIN { in_todo=0; printed_any_section=0 }
+      # Enter Todo section
+      /^# +Todo[ \t]*$/ { in_todo=1; next }
+      # Leave Todo section on the next top-level header (e.g., "# Notes" or any "# ...")
+      in_todo && /^# +/ { in_todo=0 }
+      !in_todo { next }
 
-    # Unchecked or in-progress tasks (including nested ones):
-    /^[ \t]*- \[[ >]\]/ { print $0 }
-  ' "${prev_path}")"
+      # Inside Todo:
+      # H2 headings: ensure a blank line before each H2 except the first we print
+      /^## +/ {
+        if (printed_any_section) print "";
+        print $0;
+        printed_any_section=1;
+        next
+      }
+
+      # Unchecked or in-progress tasks (including nested ones):
+      /^[ \t]*- \[[ >]\]/ { print $0 }
+    ' "${prev_path}")"
+  fi
 
   # Write the new file
   {
@@ -201,7 +210,7 @@ function tp {
   echo "Unpairing..."
   blueutil --unpair "$trackpad"
   echo "Connecting..."
-  while [ $(blueutil --is-connected "$trackpad") -eq 0 ]; do
+  while [[ "$(blueutil --is-connected "$trackpad")" -eq 0 ]]; do
     if [[ "$tries" -eq "$retries" ]]; then
       echo "stopping after $retries retries" >&2
       return 1
@@ -254,7 +263,7 @@ function clean_docker {
 
 # Create directory and cd into it in one command (like mkdir + cd combined)
 function take {
-  mkdir -p $@ && cd ${@:$#}
+  mkdir -p "$@" && cd "${@:$#}"
 }
 
 # ============================================================================
@@ -329,7 +338,7 @@ fi
 # ============================================================================
 
 # Enable zsh's built-in help system (like bash's 'help' command)
-[ alias run-help &>/dev/null ] && unalias run-help
+alias run-help &>/dev/null && unalias run-help
 autoload run-help
 alias help=run-help
 
