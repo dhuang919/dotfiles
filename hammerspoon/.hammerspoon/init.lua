@@ -18,7 +18,6 @@ local ratios = {
   spotify = { top = 0.463, left = 0.013, height = 0.500, width = 0.426 },
   obsidian_lptp = { top = 0.145, left = 0.17, height = 0.82, width = 0.8 },
   obsidian_lptp_ext = { top = 0.042, left = 0.007, height = 0.941, width = 0.978 },
-  obsidian_horiz = { top = 0.353, left = 0.500, height = 0.628, width = 0.483 },
   messages = { top = 0.452, left = 0.448, height = 0.535, width = 0.543 },
   citrix = {
     msg = { top = 0.078, left = 0.007, height = 0.656, width = 0.486 },
@@ -33,7 +32,6 @@ hs.hotkey.bind(bind_keys, "w", function()
   s.moveIfOpen("Spotify", "HORIZONTAL", ratios.spotify)
   s.moveIfOpen("bbvpn2", "HORIZONTAL", ratios.bbvpn)
   s.moveIfOpen("Calendar", "HORIZONTAL", ratios.calendar)
-  s.moveIfOpen("Obsidian", "HORIZONTAL", ratios.obsidian_horiz)
   s.moveIfOpen("Slack", "HORIZONTAL", ratios.slack_horizontal)
   s.moveIfOpen("Messages", "LAPTOP", ratios.messages)
   s.moveIfOpen(
