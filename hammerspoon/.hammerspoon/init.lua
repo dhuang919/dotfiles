@@ -34,13 +34,7 @@ hs.hotkey.bind(bind_keys, "w", function()
   s.moveIfOpen("Calendar", "HORIZONTAL", ratios.calendar)
   s.moveIfOpen("Slack", "HORIZONTAL", ratios.slack_horizontal)
   s.moveIfOpen("Messages", "LAPTOP", ratios.messages)
-  s.moveIfOpen(
-    "WezTerm",
-    "LAPTOP",
-    external_connected and ratios.obsidian_lptp_ext or ratios.obsidian_lptp,
-    false,
-    true
-  )
+  s.moveIfOpen("WezTerm", "VERTICAL", nil, true, true)
   s.moveIfOpen(
     "Google Chrome",
     external_connected and "HORIZONTAL" or "LAPTOP",
