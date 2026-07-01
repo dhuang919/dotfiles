@@ -1,7 +1,7 @@
 prSections:
-  - title: Needs My Review
+  - title: Requested
     filters: is:open review-requested:@me
-  - title: Runtime platform
+  - title: Runtime
     filters: >-
       is:open
       is:pr
@@ -18,17 +18,7 @@ prSections:
       org:bbrc
       org:cores
       org:svcm
-  - title: Eric
-    filters: >-
-      is:open
-      -is:draft
-      author:eadamson7
-  - title: Steven
-    filters: >-
-      is:open
-      -is:draft
-      author:spackard
-  - title: My Open PRs
+  - title: My Open
     filters: >-
       is:open
       author:@me
@@ -43,7 +33,7 @@ prSections:
     layout:
       author:
         hidden: true
-  - title: My Closed PRs (3mo)
+  - title: My Closed (3mo)
     filters: >-
       is:closed
       author:@me
@@ -51,6 +41,16 @@ prSections:
     layout:
       author:
         hidden: true
+  - title: Eric
+    filters: >-
+      is:open
+      -is:draft
+      author:eadamson7
+  - title: Steven
+    filters: >-
+      is:open
+      -is:draft
+      author:spackard
   - title: Yudhi
     filters: >-
       is:open
