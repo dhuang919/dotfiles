@@ -14,7 +14,7 @@ require("kanso").setup({
       LineNrBelow = { fg = "#b84069" },      -- relative lines below cursor
       CursorLineNr = { fg = "#000000" },     -- current line number
       WinSeparator = { fg = "#000000" },     -- border between splits
-      NormalNC = { bg = "#dce0e8" },         -- dim inactive splits (Catppuccin Latte mantle, matches tmux)
+      NormalNC = { bg = "#c4c9d6" },         -- dim inactive splits (darker grey, matches tmux)
     }
   end,
 })
