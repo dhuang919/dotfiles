@@ -106,6 +106,10 @@
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "south.nvim": {
+      "rev": "cade7e93a4f5b37415b1ded6ae61ac56edd900fd",
+      "src": "https://github.com/arnauKL/south.nvim"
+    },
     "unclash.nvim": {
       "rev": "6115c7540d7f3c6fcac7658f521d263d338044bf",
       "src": "https://github.com/madmaxieee/unclash.nvim"

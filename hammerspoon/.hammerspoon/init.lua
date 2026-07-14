@@ -51,13 +51,7 @@ end)
 
 -- Secondary chrome window
 hs.hotkey.bind(bind_keys, "c", function()
-  s.moveIfOpen(
-    "Google Chrome",
-    external_connected and "HORIZONTAL" or "LAPTOP",
-    external_connected and ratios.chrome_ext_lptp or ratios.chrome_lptp,
-    false,
-    true
-  )
+  s.moveIfOpen("Google Chrome", "LAPTOP", ratios.chrome_lptp, false, true)
 end)
 
 -- Fullscreen terminal for text editing on external monitor
