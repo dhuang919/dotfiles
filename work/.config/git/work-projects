@@ -1,12 +1,8 @@
 [user]
     name = dhuang295
     email = dhuang295@bloomberg.net
-[init]
-    defaultBranch = main
 [core]
     fileMode = false
-[credential]
-    helper = osxkeychain
 [url "bbgithub:"]
     insteadOf = https://bbgithub.dev.bloomberg.com/
 [http]

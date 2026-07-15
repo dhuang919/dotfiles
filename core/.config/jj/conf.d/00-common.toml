@@ -1,18 +1,6 @@
 "$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
 
-[user]
-name = "Derek Huang"
-email = "derekh919@gmail.com"
-
-# Work email for repos under ~/Projects
-[[--scope]]
---when.repositories = ["~/Projects"]
-
-[--scope.user]
-email = "dhuang295@bloomberg.net"
-
 [aliases]
-# list commits
 lcis = ["log", "--no-graph", "--reversed", "-r", "::@ ~ ::main", "-T", "\"- \" ++ commit_id.short(7) ++ \" \" ++ description.first_line() ++ \"\\n\""]
 de = ["describe", "--editor"]
 e = ["edit"]

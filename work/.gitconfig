@@ -1,0 +1,16 @@
+[include]
+    path = ~/.config/git/shared
+[user]
+    name = Derek Huang
+    email = derekh919@gmail.com
+[credential]
+    helper = osxkeychain
+[url "https://github.com/"]
+    insteadOf = github.com:
+    insteadOf = git@github.com:
+    insteadOf = ssh://git@github.com/
+[http "https://github.com"]
+    proxy = http://proxy.bloomberg.com:81
+    sslCAInfo = ~/bb-cert/bloomberg-root-ca.crt
+[includeIf "gitdir:~/Projects/"]
+    path = ~/.config/git/work-projects
