@@ -3,13 +3,10 @@
       sort = -committerdate
 [tag]
       sort = version:refname
-[color]
-      ui = auto
 [core]
       autocrlf = false
       editor = nvim
       pager = delta
-      safecrlf = true
 [init]
       defaultBranch = main
 [diff]
@@ -31,11 +28,10 @@
 [fetch]
       prune = true
       pruneTags = true
-      all = true
 [pull]
-      rebase = false
-[merge]
-      conflictstyle = zdiff3
+      ff = only
+[transfer]
+      fsckObjects = true
 [submodule]
       recurse = true
 [alias]
@@ -43,15 +39,9 @@
       br = branch
       ci = commit
       co = checkout
-      fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
       gone = "!f() { git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f"
       hist = log --pretty=format:'%C(bold blue)%h%C(reset) %C(bold cyan)%ad%C(reset) | %C(bold green)%s%C(reset)%C(bold yellow)%d%C(reset) [%C(white)%an%C(reset)]' --graph --date=short
-      prul = !git pull && git remote update origin --prune
-      pu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
       re = restore
-      rem = remote
-      rup = remote update origin --prune
-      sm = !git switch $(git remote show upstream | grep \"HEAD branch\" | sed 's/.*: //')
       st = status -sb
       sta = stash
       stp = stash pop
