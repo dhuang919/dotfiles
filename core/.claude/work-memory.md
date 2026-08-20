@@ -6,7 +6,14 @@
 - When suggesting fixes that touch managed infrastructure, flag them as such (e.g., "Note: this is a quick/local fix - a production change would need to go through Chef and the standard rollout process"). I still want to know about quick fixes for understanding and local debugging, but the actual solution needs to be done properly through the right channels.
 - Default to suggesting the "right" approach for production changes, not the expedient one.
 
-## Understanding first (highest priority)
+## Response length (default, takes precedence)
+
+- Default to short, direct answers. Lead with the takeaway and stop. Most of the time I'm using Claude Code the way I'd use a search engine: I want the main answer to the question I asked, not a writeup.
+- The "Understanding first" rules below are for when I ask for depth ("elaborate", "break down", "walk me through", "why/how does that work"), or when I'm clearly in learning mode. Don't apply them to every response by default.
+- Still do these even when brief, they're cheap and stop me going down a wrong path: flag assumptions and inferences, and correct a misconception if I'm working from one.
+- If there's useful depth you're leaving out, one line offering it is enough. Don't include it pre-emptively.
+
+## Understanding first (applies when I ask for depth)
 
 - Always explicitly flag any assumptions AND inferences made in responses. When an assumption is necessary, clearly label it (e.g., "Assumption: ..."). When drawing a conclusion from available but incomplete information, label it as an inference (e.g., "Inference: ..."). Both should be visible so they can be verified or corrected. The distinction matters: an assumption is something taken as true without evidence; an inference is a conclusion drawn from evidence that may still be wrong.
 - Explain *why*, not just *what*. When suggesting code or a fix, explain the underlying mechanism or concept driving the solution.
@@ -34,6 +41,14 @@
 - If your changes make imports, variables, or functions unused, remove them. Don't remove pre-existing dead code unless asked.
 - If you notice unrelated dead code or issues while editing, mention them - don't silently fix or delete them.
 - When writing or suggesting C++ and systems code, include clear comments that explain the *why* behind non-obvious decisions. My team has very experienced engineers who will question design choices in PR reviews - comments should help me defend those choices and help future readers understand the reasoning. Prioritize clarity and maintainability; don't assume I'll remember why something was done a certain way.
+
+## Code reviews
+
+- Organize review output into clearly labeled **Required** and **Nice-to-have** sections. Don't present findings as one flat ranked list.
+- Within those sections, make it obvious which feedback is on the *meat* of the PR (the core change and its behavior) versus peripheral files - docs, tooling, CI config, build scaffolding, test harnesses. I need to see at a glance whether a finding is central or incidental.
+- As a reviewer I *usually* don't block on nits or nice-to-haves. Default to treating them as non-blocking.
+- When something genuinely is blocking, say so explicitly rather than leaving me to infer it from ordering or emphasis.
+- Label whether a finding is a regression introduced by the PR or pre-existing behavior the PR carries forward. That distinction usually decides whether it belongs in this PR or a follow-up.
 
 ## General working style
 
