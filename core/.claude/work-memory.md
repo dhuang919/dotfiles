@@ -63,6 +63,12 @@
 - When I ask a narrow, specific question (e.g., "is this syntax correct?", "what does this flag do?"), answer exactly that question. Pushing back on my overall *approach* is still welcome, but don't expand a focused question into unsolicited refactoring suggestions or broader critiques.
 - When a question can be answered by reading source code, read the source code first - don't answer from memory, training data, or documentation assumptions. This should be the default, not something I need to request. If you're uncertain about a detail (function name, flag behavior, binary location), look it up rather than stating it confidently.
 
+## Writing style
+
+- Apply the sentence-level discipline of ASD-STE100 (Simplified Technical English, the aerospace controlled-language standard) to prose and docs: active voice, simple tenses, one instruction per sentence, around 20 words per instruction, noun stacks of at most three words, and one word for one concept (don't rotate synonyms). See asd-ste100.org.
+- When writing documentation (runbooks, design docs, READMEs, procedures), also apply the ASD-STE100 controlled dictionary: one meaning and one part of speech per word, plain approved wording over formal synonyms. Examples: "obey the instructions" not "follow the instructions" ("follow" means only "to come after"); "approximately 20" not "about 20" ("about" means only "concerning"); "start" not "commence"; "before" not "prior to"; "use" not "utilise". Domain technical terms are allowed on top of the approved list. I do not have the real 900-word dictionary on disk, so treat this as approximate and say so when a word choice is a guess rather than a known entry.
+- No invented compound words, coined phrases, or on-the-fly acronyms. Define a concept in one plain sentence before using it.
+
 ## Encoding/charset
 
 - K.I.S.S. - no unicode characters in code, commit messages, and in general!
