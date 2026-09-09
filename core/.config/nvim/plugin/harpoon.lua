@@ -44,3 +44,20 @@ for i = 1, 9 do
     { desc = "Harpoon to file " .. i }
   )
 end
+
+-- Put today's daily note and put it in the first slot, replacing yesterday's note
+k.set("n", "<leader>A", function()
+  -- assumes this is being run from ~/dev/notes
+  local path = vim.fs.joinpath(
+    "scratch",
+    os.date("%Y/%m/%d_%a"):lower() .. ".md"
+  )
+
+  -- open today's note
+  vim.cmd.edit(path)
+
+  -- replace_at overwrites slot 1 in place, so yesterday's note leaves the list
+  -- without shifting the rest or leaving a hole.
+  local list = h:list()
+  list:replace_at(1, list.config.create_list_item(list.config, path))
+end, { desc = "Harpoon put daily note first" })
