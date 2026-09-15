@@ -266,6 +266,32 @@ function take {
   mkdir -p "$@" && cd "${@:$#}"
 }
 
+function urlencode {
+  if ! command -v jq >/dev/null; then
+    echo "jq not on PATH" >&2
+    return 1
+  fi
+  if [[ $# -ne 1 ]]; then
+    echo "usage: urlencode <string>" >&2
+    return 1
+  fi
+  jq -jn --arg s "$1" '$s | @uri' | tee >(pbcopy)
+  echo  # print a newline so it looks nice in the terminal
+}
+
+function urldecode {
+  if ! command -v jq >/dev/null; then
+    echo "jq not on PATH" >&2
+    return 1
+  fi
+  if [[ $# -ne 1 ]]; then
+    echo "usage: urldecode <string>" >&2
+    return 1
+  fi
+  jq -jn --arg s "$1" '$s | @urid' | tee >(pbcopy)
+  echo  # print a newline so it looks nice in the terminal
+}
+
 # ============================================================================
 # ZSH Settings
 # ============================================================================
