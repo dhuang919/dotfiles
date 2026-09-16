@@ -292,6 +292,14 @@ function urldecode {
   echo  # print a newline so it looks nice in the terminal
 }
 
+# Create a bookmark and start tracking it on a remote in one step.
+# Usage: jbc <name> [remote]  (remote defaults to origin)
+function jbc {
+  local -r name="$1"
+  local -r remote="${2:-origin}"
+  j b c "$name" && j b t "$name" --remote "$remote"
+}
+
 # ============================================================================
 # ZSH Settings
 # ============================================================================
@@ -381,12 +389,3 @@ alias mng="todo && vt && vim"    # "Morning" routine: create todo, cd to notes, 
 alias tm="tmux"
 alias vim="nvim"
 alias vt="cd ~/dev/notes"        # Jump to notes directory
-
-# Create a bookmark and start tracking it on a remote in one step.
-# Usage: jbc <name> [remote]  (remote defaults to origin)
-function jbc {
-  local -r name="$1"
-  local -r remote="${2:-origin}"
-  j b c "$name" && j b t "$name" --remote "$remote"
-}
-

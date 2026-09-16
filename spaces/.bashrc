@@ -63,11 +63,6 @@ function tglpxy {
   fi
 }
 
-function setup_cc {
-  claude plugin marketplace add git@bbgithub.dev.bloomberg.com:devx-ai-tooling/claude-skills.git
-  claude plugin install bloomberg-engineering-skills
-}
-
 function setup_chef {
   docker pull artprod.dev.bloomberg.com/chef-workstation:latest
   docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-chef.sh > /usr/bin/chef
@@ -78,6 +73,14 @@ function setup_chef {
   chmod +x /usr/bin/knife
   docker run artprod.dev.bloomberg.com/chef-workstation cat /usr/bin/aliases/devxspace-general-irb.sh > /usr/bin/irb
   chmod +x /usr/bin/irb
+}
+
+# Create a bookmark and start tracking it on a remote in one step.
+# Usage: jbc <name> [remote]  (remote defaults to origin)
+function jbc {
+  local -r name="$1"
+  local -r remote="${2:-origin}"
+  j b c "$name" && j b t "$name" --remote "$remote"
 }
 
 # Init zoxide at the end otherwise it complains
