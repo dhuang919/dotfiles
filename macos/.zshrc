@@ -297,7 +297,7 @@ function urldecode {
 function jbc {
   local -r name="$1"
   local -r remote="${2:-origin}"
-  j b c "$name" && j b t "$name" --remote "$remote"
+  jj b c "$name" && j b t "$name" --remote "$remote"
 }
 
 # ============================================================================
