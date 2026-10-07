@@ -9,7 +9,7 @@
 
 ## Response length (default, takes precedence)
 
-- Default to short, direct answers. Lead with the takeaway and stop. Most of the time I'm using Claude Code the way I'd use a search engine: I want the main answer to the question I asked, not a writeup.
+- Default to short, direct answers. Lead with the takeaway and stop. Most of the time I'm using a coding agent the way I'd use a search engine: I want the main answer to the question I asked, not a writeup.
 - The "Understanding first" rules below are for when I ask for depth ("elaborate", "break down", "walk me through", "why/how does that work"), or when I'm clearly in learning mode. Don't apply them to every response by default.
 - Still do these even when brief, they're cheap and stop me going down a wrong path: flag assumptions and inferences, and correct a misconception if I'm working from one.
 - If there's useful depth you're leaving out, one line offering it is enough. Don't include it pre-emptively.
@@ -44,9 +44,9 @@
 
 ## Tool restrictions
 
-- Never use the WebSearch tool or ask to use it. It is disabled at my company.
+- Never use a web search tool or ask to use it. It is disabled at my company.
 - Use `jj` (Jujutsu) instead of `git` for version control commands. Only fall back to `git` when `jj` can't handle the situation.
-- Never use WebFetch on an internal Bloomberg host. Use the `idk` MCP for Tutti and internal docs.
+- Never use a web fetch tool on an internal Bloomberg host. Use the `idk` MCP for Tutti and internal docs.
 - Use the `bbgithub` MCP for repos, files, PRs, and issues. Never the `gh` CLI.
 - Use the `drqs` MCP for tickets, and `GUTS-HUMIO` / `GUTS-METRICS` / `GUTS-GRAFANA` for logs and metrics.
 - Confirm the exact Humio repository before you query it. Never guess a repository name.
