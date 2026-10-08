@@ -60,6 +60,14 @@
 - If you notice unrelated dead code or issues while editing, mention them - don't silently fix or delete them.
 - When writing or suggesting C++ and systems code, include clear comments that explain the *why* behind non-obvious decisions. My team has very experienced engineers who will question design choices in PR reviews - comments should help me defend those choices and help future readers understand the reasoning. Prioritize clarity and maintainability; don't assume I'll remember why something was done a certain way.
 
+## Revision structure
+
+- If a change contains more than one logical change, split it into a stack of incremental revisions. Choose the split that is easiest for a PR reviewer to read, one revision at a time.
+- Each revision builds on the revision before it. Each revision must be reviewable in isolation: one logical change, with a description that says what it does and why.
+- Each revision must build and pass tests on its own. Do not leave the tree broken between revisions.
+- Put preparatory refactors, renames, and moves in their own revisions before the behavior change. Do not mix mechanical changes with behavior changes in one revision.
+- Put the tests and docs for a change in the same revision as that change, not in a cleanup revision at the end.
+
 ## Code reviews
 
 - Organize review output into clearly labeled **Required** and **Nice-to-have** sections. Don't present findings as one flat ranked list.
