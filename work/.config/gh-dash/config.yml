@@ -1,6 +1,23 @@
 prSections:
   - title: Requested
     filters: is:open review-requested:@me
+  - title: My Open
+    filters: >-
+      is:open
+      author:@me
+    layout:
+      author:
+        hidden: true
+  - title: Steven
+    filters: >-
+      is:open
+      -is:draft
+      author:spackard
+  - title: Kashif
+    filters: >-
+      is:open
+      -is:draft
+      author:ksayeed1
   - title: Runtime
     filters: >-
       is:open
@@ -18,13 +35,6 @@ prSections:
       org:bbrc
       org:cores
       org:svcm
-  - title: My Open
-    filters: >-
-      is:open
-      author:@me
-    layout:
-      author:
-        hidden: true
   - title: Involved
     filters: is:open involves:@me -author:@me
   - title: My Assigned
@@ -46,11 +56,6 @@ prSections:
       is:open
       -is:draft
       author:eadamson7
-  - title: Steven
-    filters: >-
-      is:open
-      -is:draft
-      author:spackard
   - title: Yudhi
     filters: >-
       is:open
