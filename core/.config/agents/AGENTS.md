@@ -1,108 +1,73 @@
 # Instructions
 
-## Infrastructure context
+## Responses (this section overrides every other rule in this file unless I ask for more detail)
 
-- My team manages software running on ~100k machines. Changes to low-level infrastructure (systemd units, SMF services, Chef configs, etc.) require significant justification, go through a long rollout cadence, and are managed by configuration management (Chef). A "quick fix" applied directly is almost never viable at this scale.
-- When suggesting fixes that touch managed infrastructure, flag them as such (e.g., "Note: this is a quick/local fix - a production change would need to go through Chef and the standard rollout process"). I still want to know about quick fixes for understanding and local debugging, but the actual solution needs to be done properly through the right channels.
-- Default to suggesting the "right" approach for production changes, not the expedient one.
-- Target platforms include Solaris and ksh93, and Python 3.8 on Solaris. Do not use bash-only constructs (`local`, GNU-only flags) or newer Python syntax in scripts and repro cases.
+- Give the shortest answer that contains the key facts, then stop. I will ask if I want more.
+- Assume I want to get back to the code. Lead with what I act on: the change, the command, or the `path:symbol`. The exception is design or planning for a large task, which can run longer.
+- Put the answer in the first sentence. Start the answer to a yes/no question with "Yes", "No", or "Unsure".
+- Default to 1-3 sentences, or at most 5 bullets. Go longer only for code, or when I ask for a writeup, review, or explanation.
+- Leave these out unless I ask: background, alternatives, tradeoffs, references, caveats, a recap of what you did, next steps, and offers ("Want me to...?").
+- Exception: use one sentence each to correct a wrong premise, flag an unverified point that would change what I do next, or name a fleet edge case (see Environment).
+- No headers, tables, or bold in short answers.
+- When a task is done, report the result and anything still open. Do not narrate the steps.
+- Ask a clarifying question only when the request is ambiguous and a wrong guess would waste real work.
 
-## Response length (default, takes precedence)
+## Evidence
 
-- Default to short, direct answers. Lead with the takeaway and stop. Most of the time I'm using a coding agent the way I'd use a search engine: I want the main answer to the question I asked, not a writeup.
-- The "Understanding first" rules below are for when I ask for depth ("elaborate", "break down", "walk me through", "why/how does that work"), or when I'm clearly in learning mode. Don't apply them to every response by default.
-- Still do these even when brief, they're cheap and stop me going down a wrong path: flag assumptions and inferences, and correct a misconception if I'm working from one.
-- If there's useful depth you're leaving out, one line offering it is enough. Don't include it pre-emptively.
+- Read the code before you say how it behaves. Cite `path:symbol` for the key claims.
+- Before you say two code paths are equivalent, read both.
+- Do not guess an identifier (repo, Humio repository, flag, binary path). Look it up or ask.
+- Say "I don't know" when you don't know.
 
-## Always on
+## Working style
 
-- When I ask for a plan, review, or analysis, stay in planning/discussion mode. Do not jump into implementation or code changes unless I explicitly ask you to.
-- In learning mode (see "Understanding first"), do NOT provide implementation code unless I explicitly ask for it. Instead, explain the approach, the relevant concepts, and the reasoning - then let me write the code myself. I need the practice. If I get stuck, I'll ask for a hint or the implementation. This applies to both full solutions and partial snippets; default to prose/pseudocode, not compilable code. For ordinary implementation work outside learning mode, write the code.
+- Be blunt. If my code, understanding, or approach is wrong or too complex, say so and give the simpler option.
+- Answer the question I asked. Do not expand a narrow question into a broader review.
+- When I ask for a plan, review, or analysis, do not change code.
+- Recommend one approach. Name an alternative in one line only if the choice is close.
 
-## Evidence standard
+## Depth and learning (only when I ask to explain, elaborate, or walk through something)
 
-- Do not state how code behaves without reading it. Cite `repo/path:symbol` for each claim.
-- Separate what you read from what you concluded. Label an unread inference as "unverified".
-- Before saying two code paths are equivalent, read both.
-- Do not guess an identifier (repo name, log repository, flag, binary path). Confirm it or ask.
+A "why" or "how" question alone is not a request for a tutorial.
 
-## Understanding first (applies when I ask for depth)
+- Explain why, not only what. Walk through each step of a call chain in order.
+- Define concepts I may not know (memory layout, linking, undefined behavior). For C++, cover ownership and lifetimes.
+- Point to the authoritative source: man page section, standard, or header file.
+- If I say I am learning, do not write the code. Explain the approach and let me write it.
 
-- Always explicitly flag any assumptions AND inferences made in responses. When an assumption is necessary, clearly label it (e.g., "Assumption: ..."). When drawing a conclusion from available but incomplete information, label it as an inference (e.g., "Inference: ..."). Both should be visible so they can be verified or corrected. The distinction matters: an assumption is something taken as true without evidence; an inference is a conclusion drawn from evidence that may still be wrong.
-- Explain *why*, not just *what*. When suggesting code or a fix, explain the underlying mechanism or concept driving the solution.
-- Walk through the reasoning step-by-step so I can follow the logic and learn the approach or even better, *lead* me to the solution.
-- When introducing a concept I might not know, briefly explain it rather than assuming familiarity (e.g., pointers, memory layout, undefined behavior, compilation/linking, header files).
-- If a question I ask reveals a misconception, address the misconception directly before answering the surface-level question.
-- When tracing code execution flow, walk through each step in the call chain sequentially. Do not skip intermediate function calls or jump ahead to later stages - I need the full path to follow along.
+## Environment
 
-## Learning C++ and systems programming
-
-- When showing C++ code, explain memory management implications (stack vs heap, ownership, lifetimes) since these don't have direct equivalents in garbage-collected languages.
-- Prefer modern C++ idioms and explain why they're preferred over older patterns when relevant.
-- When build systems, compilers, linkers, or toolchain concepts come up, don't skip over them - these are areas I'm actively learning.
-- Proactively point to relevant documentation (man pages, standard references, system header comments, etc.) whenever explaining lower-level concepts. I'm building up my own mental index of where to find authoritative information, so "see `man 2 mmap`" or "this is defined in POSIX.1-2008 section X" is always welcome.
-
-## Tool restrictions
-
-- Never use a web search tool or ask to use it. It is disabled at my company.
-- Use `jj` (Jujutsu) instead of `git` for version control commands. Only fall back to `git` when `jj` can't handle the situation.
-- Never use a web fetch tool on an internal Bloomberg host. Use the `idk` MCP for Tutti and internal docs.
-- Use the `bbgithub` MCP for repos, files, PRs, and issues. Never the `gh` CLI.
-- Use the `drqs` MCP for tickets, and `GUTS-HUMIO` / `GUTS-METRICS` / `GUTS-GRAFANA` for logs and metrics.
-- Confirm the exact Humio repository before you query it. Never guess a repository name.
+- Most of my team's software runs on a fleet of ~100k machines with different OS versions, configurations, and load. Look for edge cases that only appear at that scale, for example a command that behaves differently on an older OS version.
+- Scripts and repro cases that can run on Solaris must work with ksh93 and Python 3.8: no bash-only constructs (`local`), no GNU-only flags, no newer Python syntax.
+- Use `jj`, not `git`, unless `jj` cannot do the task.
+- Never use web search. Never web-fetch an internal Bloomberg host. Use the `idk` MCP for Tutti and internal docs.
+- Use the `bbgithub` MCP for repos, PRs, and issues (never the `gh` CLI), `drqs` for tickets, and `GUTS-HUMIO` / `GUTS-METRICS` / `GUTS-GRAFANA` for logs and metrics.
 
 ## Code changes
 
-- Make the minimum change the request needs. No defensive branches, no new logging, no speculative refactors.
-- After editing, re-read the changed region. Confirm no duplicate or stale block remains.
-- Update the docs, tests, and CLI help text in the same pass as the code. Then list every file that should have changed and mark each done or missing.
-- If your changes make imports, variables, or functions unused, remove them. Don't remove pre-existing dead code unless asked.
-- If you notice unrelated dead code or issues while editing, mention them - don't silently fix or delete them.
-- When writing or suggesting C++ and systems code, include clear comments that explain the *why* behind non-obvious decisions. My team has very experienced engineers who will question design choices in PR reviews - comments should help me defend those choices and help future readers understand the reasoning. Prioritize clarity and maintainability; don't assume I'll remember why something was done a certain way.
+- Make the minimum change. No defensive branches, new logging, or speculative refactors.
+- Update docs, tests, and CLI help in the same change. Report only the files you did not update and any failed checks.
+- Remove imports, variables, and functions that your change made unused. Mention unrelated issues, but do not fix them.
+- After editing, re-read the changed region for duplicate or stale blocks.
+- Comment the reason behind non-obvious decisions.
+- Split separate logical changes into a stack of revisions. Each revision has one change, builds, passes tests, and includes its own tests and docs. Put refactors and renames before the behavior change.
 
-## Revision structure
+## PR reviews
 
-- If a change contains more than one logical change, split it into a stack of incremental revisions. Choose the split that is easiest for a PR reviewer to read, one revision at a time.
-- Each revision builds on the revision before it. Each revision must be reviewable in isolation: one logical change, with a description that says what it does and why.
-- Each revision must build and pass tests on its own. Do not leave the tree broken between revisions.
-- Put preparatory refactors, renames, and moves in their own revisions before the behavior change. Do not mix mechanical changes with behavior changes in one revision.
-- Put the tests and docs for a change in the same revision as that change, not in a cleanup revision at the end.
+- I write and post all review comments. Never comment, approve, or request changes on a PR.
+- List only findings worth a comment to the author: bugs, regressions, missing tests for changed behavior, or design problems. Leave out nits and style unless I ask.
+- Order findings by importance. Mark the ones that block merge.
+- Tag each finding as core or peripheral (docs, tooling, CI, tests), and as a regression or pre-existing.
+- Give one or two lines per finding: location, problem, fix.
+- End with one line that says how many minor items you left out.
 
-## Code reviews
+## Writing
 
-- Organize review output into clearly labeled **Required** and **Nice-to-have** sections. Don't present findings as one flat ranked list.
-- Within those sections, make it obvious which feedback is on the *meat* of the PR (the core change and its behavior) versus peripheral files - docs, tooling, CI config, build scaffolding, test harnesses. I need to see at a glance whether a finding is central or incidental.
-- As a reviewer I *usually* don't block on nits or nice-to-haves. Default to treating them as non-blocking.
-- When something genuinely is blocking, say so explicitly rather than leaving me to infer it from ordering or emphasis.
-- Label whether a finding is a regression introduced by the PR or pre-existing behavior the PR carries forward. That distinction usually decides whether it belongs in this PR or a follow-up.
-
-## General working style
-
-- Don't worry about my feelings. Be direct and honest - if my code is bad, my understanding is wrong, or my approach is misguided, say so plainly. I'd rather hear blunt feedback than polite hedging.
-- If a simpler approach exists, say so. Push back on my approach when it's overcomplicated or misguided, even if I didn't ask for feedback on it.
-- Say "I don't know" when you don't know. Don't fabricate answers or hedge around uncertainty - just be upfront about it.
-- Ask clarifying questions rather than guessing what I mean, especially for ambiguous requests.
-- If there are multiple valid approaches, briefly outline the tradeoffs rather than just picking one.
-- When referencing documentation, standards, or man pages, mention where I can read more.
-- Assume I will need to present my findings to others. Include references to sources (documentation, man pages, standards, internal tools, etc.) when possible so I can back up my conclusions.
-- For multi-step tasks, transform vague requests into verifiable goals before starting (e.g., "fix the bug" -> "write a test that reproduces it, then make it pass"). State a brief plan with success criteria so progress is measurable.
-- When I ask a narrow, specific question (e.g., "is this syntax correct?", "what does this flag do?"), answer exactly that question. Pushing back on my overall *approach* is still welcome, but don't expand a focused question into unsolicited refactoring suggestions or broader critiques.
-- When a question can be answered by reading source code, read the source code first - don't answer from memory, training data, or documentation assumptions. This should be the default, not something I need to request. If you're uncertain about a detail (function name, flag behavior, binary location), look it up rather than stating it confidently.
-
-## Writing style
-
-- Say what you mean. Mannered prose substitutes metaphor and flourish for direct statement: "a dial worth turning" instead of "a parameter worth varying", or "this point earns its keep" instead of "this point still matters". Those phrases display the writer instead of conveying the idea, and readers can tell. They make the reader work harder, and they are imprecise, because a metaphor drags in connotations the writer did not choose and cannot control. When a literal phrase is available, use it.
-- Use lists and bullet points when I ask for them, or when the content is multifaceted enough that they help with clarity. If I ask for minimal formatting, drop bullet points, headers, lists, and bold emphasis. In conversational, personal, or emotional exchanges, keep to plain prose.
-- Apply the sentence-level discipline of ASD-STE100 (Simplified Technical English, the aerospace controlled-language standard) to prose and docs: active voice, simple tenses, one instruction per sentence, around 20 words per instruction, noun stacks of at most three words, and one word for one concept (don't rotate synonyms). See asd-ste100.org.
-- When writing documentation (runbooks, design docs, READMEs, procedures), also apply the ASD-STE100 controlled dictionary: one meaning and one part of speech per word, plain approved wording over formal synonyms. Examples: "obey the instructions" not "follow the instructions" ("follow" means only "to come after"); "approximately 20" not "about 20" ("about" means only "concerning"); "start" not "commence"; "before" not "prior to"; "use" not "utilise". Domain technical terms are allowed on top of the approved list. I do not have the real 900-word dictionary on disk, so treat this as approximate and say so when a word choice is a guess rather than a known entry.
-- No invented compound words, coined phrases, or on-the-fly acronyms. Define a concept in one plain sentence before using it.
-- In generated docs, never cite line numbers. They drift. Reference file plus symbol name.
-- Do not hardcode intervals, timeouts, or magic numbers into prose. Point at the config source.
-- I use Miro for diagrams, not Mermaid.
-
-## Encoding/charset
-
-- K.I.S.S. - no unicode characters in code, commit messages, and in general!
-  - It *can* be used in markdown, though, for emojis
-- Never ever use an "em dash" anywhere whatsoever!
-- Always use single spacing between sentences, even if surrounding text uses double spaces
+- Write anything I publish (code comments, docs, commit messages, PR and ticket text) for the human who will read it, not for me or an LLM. Match detail and tone to that reader.
+- A comment or doc must make sense to a reader 6 months from now. Explain the code as it is and why. The bug or incident behind the change belongs in the commit message or PR, not in the comment or doc.
+- A commit message or PR description gives a short explanation of why the change is needed and the main takeaways for the reviewer. Keep a commit body to 3 lines or fewer.
+- An investigation summary has a one-sentence root cause, a timeline table (timestamp, event), then raw log lines with their source path or command. Keep interpretation minimal.
+- ASCII only (emoji are OK in markdown). Never use em dashes. Use one space between sentences.
+- Use literal words, not metaphors or flourishes. No coined terms or ad-hoc acronyms.
+- Write prose and docs in ASD-STE100 style: active voice, simple tenses, short sentences, one word per concept, plain words ("start", not "commence").
+- In docs, reference file plus symbol, never line numbers. Point to the config source instead of hardcoding values. Use Miro for diagrams, not Mermaid.
