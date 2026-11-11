@@ -8,7 +8,7 @@ vim.pack.add({
 }, { confirm = false })
 
 local cmp = require("blink.cmp")
-cmp.build():pwait()
+cmp.build():wait()
 cmp.setup({
   -- 'default' for mappings similar to built-in completion
   -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
